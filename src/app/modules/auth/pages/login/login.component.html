@@ -1,0 +1,53 @@
+<div class="div-container">
+  <div class="titleArea">
+    <h2>Sign in</h2>
+  </div>
+
+  <div>
+    <!-- <input class="textbox" type="text" placeholder="ID or email" /> -->
+    <app-input-textbox
+      type="text"
+      placeholder="ID or email"
+    ></app-input-textbox>
+  </div>
+  <!--Password-->
+  <div>
+    <!-- <input type="password" pInputText placeholder="Password" /> -->
+    <app-input-textbox
+      type="password"
+      placeholder="Password"
+    ></app-input-textbox>
+  </div>
+
+  <div class="flex-display">
+    <input
+      id="member_check_save_id0"
+      name="check_save_id"
+      fw-label="Save ID"
+      type="checkbox"
+      class="checkbox"
+    />
+    <p class="flex-right">Save ID</p>
+    <p>?? Secured Login</p>
+  </div>
+
+  <div>
+    <!-- <button pButton type="button" label="Sign in"></button> -->
+    <app-input-button buttonText="Sign in"></app-input-button>
+  </div>
+
+  <div class="flex-display">
+    <a href="/">Forgot ID | </a>
+    <a href="/">Forgot Password</a>
+  </div>
+
+  <div>
+    <button pButton type="button" label="Login with Facebook"></button>
+  </div>
+
+  <hr />
+
+  <div>
+    <button pButton type="button" label="Sign Up"></button>
+  </div>
+</div>

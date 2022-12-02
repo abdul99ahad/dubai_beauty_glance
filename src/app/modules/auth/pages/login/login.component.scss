@@ -1,0 +1,33 @@
+.p-card .p-card-content {
+    display: grid !important;
+}
+.flex-display {
+    display: flex;
+}
+.titleArea {
+    text-align: center;
+    margin: 20px 0 40px;
+}
+.titleArea h2 {
+    color: #3b3b3b;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    font-family: 'Montserrat','Arial';
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    vertical-align: -3px;
+}
+.div-container {
+    color: #868686;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.flex-right {
+    flex: 50%;
+}

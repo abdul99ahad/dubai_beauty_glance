@@ -1,0 +1,22 @@
+.btnLogin {
+    position: static;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-weight: 400;
+    background: #ff2d47;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    border: 1px solid #ff2d47;
+    font-size: 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+ a.btnLogin:hover {
+    background: #fff;
+    color: #ff2d47;
+}

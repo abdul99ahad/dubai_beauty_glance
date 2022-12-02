@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    // background-color: #edf1f7;
+    font: 0.75em 'Montserrat',Arial,Verdana,sans-serif;
+}
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat','Arial';
+}
+
+input {
+    vertical-align: middle;
+}
+
+input:focus, button:focus, select:focus {
+    outline: none;
+}
