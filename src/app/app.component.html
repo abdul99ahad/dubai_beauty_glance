@@ -1,1 +1,55 @@
+<div class="header-container">
+  <div class="promotion-area">
+    <a href="">
+      <img src="../assets/promotion_bar.jpg" width="100%" />
+    </a>
+  </div>
+  <div class="top-area display-flex">
+    <div>
+      <a href="">
+        <img src="https://jolse.com/_dbook/img/logo.png" alt="" />
+      </a>
+    </div>
+
+    <div class="search-bar">
+      <input class="search" type="text" />
+      <input type="image" src="../assets/search_1.png" />
+    </div>
+
+    <div style="display: flex">
+      <div class="member-link">
+        <a href="">
+          <img src="../assets/sign_in.png" alt="" />
+          <p>Sign In</p>
+        </a>
+      </div>
+
+      <div class="member-link">
+        <a href="">
+          <img src="../assets/sign_up.png" alt="" />
+          <p>Sign Up</p>
+        </a>
+      </div>
+
+      <div class="member-link">
+        <a href="">
+          <img src="../assets/cart.png" alt="" />
+          <p>Cart</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="solid" />
+
+  <div>
+    <ul class="navbar-items" id="navbar">
+      <li *ngFor="let item of navBarItemList">
+        <a href="" class="black">{{ item }}</a>
+      </li>
+      <!-- ... -->
+    </ul>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

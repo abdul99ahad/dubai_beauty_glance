@@ -1,9 +1,78 @@
-body {
-    background-color: #edf1f7;
-    font: 0.75em Arial,Verdana,sans-serif;
+.search {
+    border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  border-bottom-width: thick;
+  border-bottom-color: black;
+  width: 594px;
+  height: 100%;
+  line-height: 38px;
+  padding: 0 0 0 7px;
 }
-html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat','Arial';
+
+.search-bar {
+    // width: 594px;
+    // height: 100%;
+    // line-height: 38px;
+    // border: 0;
+    // padding: 0 0 0 7px;
+}
+
+.top-area {
+    justify-content: space-around;
+    margin: 1.5rem 0rem;
+}
+
+.member-link {
+    padding: 0rem 1rem
+}
+
+input[type="image"] {
+    // position: relative;
+    // width: 30px;
+    // height: 100%;    
+    // opacity: 0;
+    z-index: 1;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+hr.solid {
+    border-top: 1px solid #F0F0F0;
+    border-bottom: none;
+    
+}
+
+ul#navbar {
+    display:inline;
+    /* Any other CSS you want */
+}
+ul#navbar li {
+    display:inline;
+}
+
+.navbar-items {
+    line-height: 48px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+ .navbar-items > li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0 30px;
+    font-weight: 500;
+}
+
+.black {
+    color: black !important;
+}
+
+.navbar-items > li > a:hover {
+    color: #ff2e47 !important;
 }

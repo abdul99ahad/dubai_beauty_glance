@@ -3,6 +3,7 @@
 }
 .flex-display {
     display: flex;
+    margin: 20px 0;
 }
 .titleArea {
     text-align: center;
@@ -30,4 +31,34 @@
 
 .flex-right {
     flex: 50%;
+}
+.forget-pwd {
+    color: #797979;
+    font-size: 17px;
+    font-weight: 300;
+}
+a, a:hover {
+    text-decoration: none;
+}
+.sign-up {
+    position: static;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-weight: 500;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    border: 1px solid #333333;
+    background: #fff;
+    margin-top: 20px;
+}
+.facebook_login {
+    width: 30rem;
+}
+.m-btm-20 {
+    margin-bottom: 20px;
 }
