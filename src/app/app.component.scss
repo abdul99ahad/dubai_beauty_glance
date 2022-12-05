@@ -104,6 +104,14 @@ ul#navbar li {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+.main-inner{
+    position: relative;
+    max-width: 1260px;
+    min-width: 1260px;
+    width: 100%;
+    padding: 0 0;
+    margin: 0 auto;
+}
 
 .main-quick-menu {
     display: table;
@@ -199,5 +207,74 @@ li {
 }
 
 .main-quick-menu .main-quick-list li:hover p {
+    color: #ff2e47;
+}
+
+.main-quick-menu .main-quick-list .main-quick-makeup span {
+    background-image: url(../assets/main_cote2_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-makeup:hover span {
+    background-image: url(../assets/main_cote2_on.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-hair span {
+    background-image: url(../assets/main_cote3_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-hair:hover span {
+    background-image: url(../assets/main_cote3_on.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-mask span {
+    background-image: url(../assets/main_cote4_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-mask:hover span {
+    background-image: url(../assets/main_cote4_on.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-devices span {
+    background-image: url(../assets/main_cote5_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-devices:hover span {
+    background-image: url(../assets/main_cote5_on.png);
+}
+
+.title {
+    margin: 0 0 27px;
+    /* line-height: 1; */
+    text-align: center;
+}
+
+.title h2 {
+    color: #000;
+    font-size: 50px;
+    font-weight: 900;
+}
+.main-bn-slide1 {
+    padding: 42px 0 45px;
+    background: #f1f1f1;
+    margin-top: 60px;
+    position: relative;
+    height: 600px;
+}
+.title a {
+    display: inline-block;
+    position: relative;
+    padding-right: 37px;
+    margin-top: 20px;
+    background: url(../assets/ico_more_arr.png) no-repeat 100% 50%;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    border-bottom: 2px solid #000;
+}
+
+.title a:hover {
+    background: url(../assets/ico_more_arr_on.png) no-repeat 100% 50%;
     color: #ff2e47;
 }

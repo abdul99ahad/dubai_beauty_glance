@@ -5,15 +5,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputTextboxComponent } from './input-textbox/input-textbox.component';
 import { InputButtonComponent } from './input-button/input-button.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [InputTextboxComponent, InputButtonComponent],
+  declarations: [InputTextboxComponent, InputButtonComponent, FooterComponent],
   imports: [CommonModule, InputTextModule, ButtonModule],
   exports: [
     InputTextModule,
     ButtonModule,
     InputTextboxComponent,
     InputButtonComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule {}

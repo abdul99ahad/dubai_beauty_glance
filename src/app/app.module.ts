@@ -8,14 +8,19 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 
 import { CarouselModule } from 'primeng/carousel';
+import { HomeModule } from './modules/home/home.module';
+import { QuickMenuComponent } from './modules/home/quick-menu/quick-menu.component';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, QuickMenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
+    HomeModule,
+    SharedModule,
     CarouselModule,
   ],
   providers: [],

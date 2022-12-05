@@ -52,6 +52,21 @@ export class AppComponent implements OnInit {
       title: 'Banner 4',
     },
   ];
+
+  eventBannerCarousel: Array<object> = [
+    {
+      image: '../assets/event_banner_1.jpg',
+      title: 'Event Banner 1',
+    },
+    {
+      image: '../assets/event_banner_2.jpg',
+      title: 'Event banner 2',
+    },
+    {
+      image: '../assets/event_banner_3.jpg',
+      title: 'Event banner 3',
+    },
+  ];
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {
