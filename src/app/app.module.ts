@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 
+import { CarouselModule } from 'primeng/carousel';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,6 +16,7 @@ import { AuthModule } from './modules/auth/auth.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

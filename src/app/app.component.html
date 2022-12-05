@@ -39,7 +39,9 @@
       </div>
     </div>
   </div>
+</div>
 
+<div>
   <hr class="solid" />
 
   <div>
@@ -49,6 +51,34 @@
       </li>
       <!-- ... -->
     </ul>
+  </div>
+
+  <div style="height: 540px">
+    <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
+    <p-carousel
+      [value]="bannerImagesCarousel"
+      [autoplayInterval]="3000"
+      [circular]="true"
+      [showNavigators]="false"
+    >
+      <ng-template let-banner pTemplate="item">
+        <img src="{{ banner.image }}" alt="banner image" width="100%" />
+      </ng-template>
+    </p-carousel>
+    <div class="controls">
+      <span class="prev">Prev</span>
+      <span class="next">Next</span>
+    </div>
+  </div>
+
+  <div class="main-quick-menu">
+    <div class="title">
+      <h2>
+        QUICK <br />
+        CATEGORY
+      </h2>
+      <p>Find products quickly by category selection</p>
+    </div>
   </div>
 </div>
 

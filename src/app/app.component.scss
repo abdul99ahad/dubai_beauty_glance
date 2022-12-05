@@ -76,3 +76,74 @@ ul#navbar li {
 .navbar-items > li > a:hover {
     color: #ff2e47 !important;
 }
+
+.controls .next {
+    right: 50px;
+    background-image: url(../assets/right_button.png);
+}
+
+.controls .prev {
+    left: 50px;
+    background-image: url(../assets/prev_button.png);
+}
+
+.controls > span {
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    font-size: 0;
+    background: rgba(255,255,255,0.3) no-repeat 50% 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    cursor: pointer;
+    z-index: 61;
+    -khtml-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.main-quick-menu {
+    display: table;
+    width: 100%;
+    padding: 0 55px;
+    box-sizing: border-box;
+}
+
+.main-quick-menu .title {
+    display: table-cell;
+    vertical-align: middle;
+    width: 415px;
+    padding-top: 8px;
+    text-align: left;
+}
+
+.main-quick-menu .title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    right: -9px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background: #ff2e47;
+}
+
+.main-quick-menu .title h2 {
+    display: inline-block;
+    position: relative;
+    font-size: 32px;
+    line-height: 1.1;
+    color: #000;
+    font-weight: 900;
+}
+
+.main-quick-menu .title p {
+    margin-top: 5px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 300;
+}
