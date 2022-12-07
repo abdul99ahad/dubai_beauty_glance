@@ -21,3 +21,7 @@ input:focus, button:focus, select:focus {
 .display-flex {
     display: flex;
 }
+
+a, a:hover {
+    text-decoration: none;
+}
