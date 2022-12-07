@@ -1,13 +1,13 @@
 .thumbnail {
     margin: 0 7px 0;
-    position: relative;
+    // position: relative;
     text-align: center;
     display: inherit;
 }
 
 .thumbnail > .prdImage {
     border: 1px solid #ececec;
-    position: relative;
+    // position: relative;
     display: inline-block;
 }
 
@@ -23,9 +23,25 @@
 .prdList  {
     display: flex;
     flex-direction: column;
+    // position:relative;
+    height:100%;
     margin: 0.5rem;
-    width: 18rem;
+    width: 16rem; // COMMENT: Setting the side-margin of card
 }
+
+.prdList .description .name a {
+    height: 65px; 
+}
+
+// #div1, #div2 {
+//     position:absolute;
+// }
+#div1 {
+    height: 85%; // COMMENT: Adjusted the divs position 
+}
+// #div2 {
+    
+// }
 
 .prdList .description {
     margin: 0 14px 0;

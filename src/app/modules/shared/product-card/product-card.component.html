@@ -1,31 +1,37 @@
 <div class="prdList">
-  <div class="thumbnail">
-    <div class="prdImage">
-      <a href=""> <img src="../../../../assets/product.jpg" /> </a>
-      <!-- <span class="wish">
-        <img src="../../../../assets/wish_icon.png" />
-      </span>
-      <span class="cart">
-        <img src="../../../../assets/cart_icon.png" />
-      </span> -->
+  <div id="div1">
+    <div class="thumbnail">
+      <div class="prdImage">
+        <a href=""> <img src="{{ imgSrc }}" width="240px" height="240px" /> </a>
+        <!-- <span class="wish">
+            <img src="../../../../assets/wish_icon.png" />
+          </span>
+          <span class="cart">
+            <img src="../../../../assets/cart_icon.png" />
+          </span> -->
+      </div>
+    </div>
+
+    <div class="description">
+      <span class="prd-brand">{{ title }}</span>
+      <strong class="name">
+        <a href="">
+          <span>{{ description }}</span>
+        </a>
+      </strong>
     </div>
   </div>
 
-  <div class="description">
-    <span class="prd-brand">{{ title }}</span>
-    <strong class="name">
-      <a href="">
-        <span>{{ description }}</span>
-      </a>
-    </strong>
-  </div>
+  <div id="div2">
+    <div class="solid"></div>
 
-  <div class="solid"></div>
-
-  <div style="text-align: center; margin: 5px 0px 0px 0px">
-    <span class="price">{{ defaultCurrencyCode }} {{ price }}</span>
-  </div>
-  <div style="text-align: center">
-    <span class="discounted_price">{{ defaultCurrencyCode }} {{ price }}</span>
+    <div style="text-align: center; margin: 5px 0px 0px 0px">
+      <span class="price">{{ defaultCurrencyCode }} {{ price }}</span>
+    </div>
+    <div style="text-align: center">
+      <span class="discounted_price"
+        >{{ defaultCurrencyCode }} {{ price }}</span
+      >
+    </div>
   </div>
 </div>
