@@ -8,6 +8,7 @@ import { InputButtonComponent } from './input-button/input-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.component';
+import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.componen
     FooterComponent,
     ProductCardComponent,
     BrandsaleCardComponent,
+    CountdownTimerComponent,
   ],
   imports: [CommonModule, InputTextModule, ButtonModule],
   exports: [
@@ -26,6 +28,7 @@ import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.componen
     FooterComponent,
     ProductCardComponent,
     BrandsaleCardComponent,
+    CountdownTimerComponent,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,27 @@
+<div class="main-prd3 main-timedeal">
+  <div class="main-inner">
+    <div class="top-bar">
+      <div class="title">
+        <span>ONLY TODAY</span>
+        <h2>TIME DEAL</h2>
+      </div>
+
+      <div class="timer" style="flex: 3rem">
+        <app-countdown-timer></app-countdown-timer>
+      </div>
+    </div>
+
+    <div class="main-timedeal-prd">
+      <div style="display: flex; flex-wrap: wrap">
+        <app-product-card
+          *ngFor="let product of products"
+          [title]="product.title"
+          [description]="product.description"
+          [price]="product.price"
+          [discountedPrice]="product.discountedPrice"
+          [imgSrc]="product.imgSrc"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
+</div>

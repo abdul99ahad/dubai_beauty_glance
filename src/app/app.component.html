@@ -179,7 +179,7 @@
       </div>
       <div style="display: flex; flex-wrap: wrap">
         <app-product-card
-          *ngFor="let product of productsDisplay"
+          *ngFor="let product of latestProductsDisplay"
           [title]="product.title"
           [description]="product.description"
           [price]="product.price"
@@ -190,10 +190,12 @@
     </div>
   </div>
 
+  <app-main-timedeal></app-main-timedeal>
+
   <div class="main-box8">
     <div>
       <a href="" style="display: flex">
-        <img src="../assets/ad.jpg" />
+        <img src="../assets/ad.jpg" style="width: 100%" />
       </a>
     </div>
   </div>
