@@ -7,6 +7,7 @@ import { InputTextboxComponent } from './input-textbox/input-textbox.component';
 import { InputButtonComponent } from './input-button/input-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     InputButtonComponent,
     FooterComponent,
     ProductCardComponent,
+    BrandsaleCardComponent,
   ],
   imports: [CommonModule, InputTextModule, ButtonModule],
   exports: [
@@ -23,6 +25,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     InputButtonComponent,
     FooterComponent,
     ProductCardComponent,
+    BrandsaleCardComponent,
   ],
 })
 export class SharedModule {}
