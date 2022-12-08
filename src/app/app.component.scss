@@ -278,3 +278,37 @@ li {
     background: url(../assets/ico_more_arr_on.png) no-repeat 100% 50%;
     color: #ff2e47;
 }
+
+.main-box3{
+    padding: 75px 0 60px;
+    position: relative;
+    box-shadow: 0 3px 13px 2px rgb(226 226 226);
+}
+
+.main-inner {
+    position: relative;
+    max-width: 1260px;
+    min-width: 1260px;
+    width: 100%;
+    padding: 0 0;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 0 27px;
+    line-height: 1;
+    text-align: center;
+}
+
+.title h2 {
+    color: #000;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.title p {
+    margin-top: 10px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 300;
+}

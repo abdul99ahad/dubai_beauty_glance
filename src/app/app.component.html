@@ -136,17 +136,25 @@
       </div>
     </div>
   </div>
-</div>
 
-<div style="display: flex">
-  <app-product-card
-    *ngFor="let product of productsDisplay"
-    [title]="product.title"
-    [description]="product.description"
-    [price]="product.price"
-    [discountedPrice]="product.discountedPrice"
-    [imgSrc]="product.imgSrc"
-  ></app-product-card>
+  <div class="main-box3">
+    <div class="main-inner">
+      <div class="title">
+        <h2>BEST</h2>
+        <p>BEST ITEMS OF MONTH</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap">
+        <app-product-card
+          *ngFor="let product of productsDisplay"
+          [title]="product.title"
+          [description]="product.description"
+          [price]="product.price"
+          [discountedPrice]="product.discountedPrice"
+          [imgSrc]="product.imgSrc"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
 </div>
 
 <app-footer></app-footer>
