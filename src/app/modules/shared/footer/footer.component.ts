@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
     // },
     {
       title: 'FAQ',
-      url: '',
+      url: '/faq',
     },
     {
       title: 'CONTACT',

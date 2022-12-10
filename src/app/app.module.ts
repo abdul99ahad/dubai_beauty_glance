@@ -17,9 +17,10 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { TestimonialComponent } from './pages/testimonial/testimonial.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { AgreementComponent } from './pages/agreement/agreement.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 @NgModule({
-  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent, AboutUsComponent, TestimonialComponent, PrivacyPolicyComponent, AgreementComponent],
+  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent, AboutUsComponent, TestimonialComponent, PrivacyPolicyComponent, AgreementComponent, FaqComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -8,6 +8,7 @@ import {
   TestimonialComponent,
   PrivacyPolicyComponent,
   AgreementComponent,
+  FaqComponent,
 } from './exports';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'testimonials', component: TestimonialComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'agreement', component: AgreementComponent },
+  { path: 'faq', component: FaqComponent },
 ];
 
 @NgModule({
