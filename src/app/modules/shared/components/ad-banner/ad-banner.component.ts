@@ -6,7 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./ad-banner.component.scss'],
 })
 export class AdBannerComponent implements OnInit {
-  @Input('adImgUrl') adImgUrl: string;
+  @Input('adImgUrl') adImgUrl: string =
+    'https://jolse.com/web/images/topbanner08552.jpg'; //TODO:
   constructor() {}
 
   ngOnInit(): void {}

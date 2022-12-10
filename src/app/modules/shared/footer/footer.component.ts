@@ -33,6 +33,10 @@ export class FooterComponent implements OnInit {
       title: 'AFFILAIATE',
       url: '',
     },
+    {
+      title: 'ABOUT US',
+      url: '/about-us',
+    },
   ];
 
   footerBarSocialMediaItemList: FooterBarSocialMediaItemList[] = [

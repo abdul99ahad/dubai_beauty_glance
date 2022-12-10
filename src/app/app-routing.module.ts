@@ -4,6 +4,7 @@ import {
   LoginComponent,
   HomepageComponent,
   ContactUsComponent,
+  AboutUsComponent,
 } from './exports';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contact-us', component: ContactUsComponent },
+  { path: 'about-us', component: AboutUsComponent },
 ];
 
 @NgModule({
