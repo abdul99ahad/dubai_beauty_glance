@@ -11,6 +11,7 @@ import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.componen
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
+import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DividerModule } from 'primeng/divider';
     ProductCardComponent,
     BrandsaleCardComponent,
     CountdownTimerComponent,
+    AdBannerComponent,
   ],
   imports: [CommonModule, InputTextModule, ButtonModule, CarouselModule],
   exports: [
@@ -31,6 +33,7 @@ import { DividerModule } from 'primeng/divider';
     ProductCardComponent,
     BrandsaleCardComponent,
     CountdownTimerComponent,
+    AdBannerComponent,
     CarouselModule,
     DividerModule,
   ],
