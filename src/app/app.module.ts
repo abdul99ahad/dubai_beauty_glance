@@ -14,9 +14,13 @@ import { SharedModule } from './modules/shared/shared.module';
 import { HomepageComponent } from './modules/home/pages/homepage/homepage.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { TestimonialComponent } from './pages/testimonial/testimonial.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { AgreementComponent } from './pages/agreement/agreement.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 @NgModule({
-  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent, AboutUsComponent],
+  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent, AboutUsComponent, TestimonialComponent, PrivacyPolicyComponent, AgreementComponent, FaqComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

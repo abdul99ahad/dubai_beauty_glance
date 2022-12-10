@@ -10,28 +10,28 @@ import { FooterBarSocialMediaItemList } from './footerbarsocialmedialist.interfa
 export class FooterComponent implements OnInit {
   footerBarItemList: FooterItemList[] = [
     {
-      title: 'ARTICLE',
-      url: '',
+      title: 'AGREEMENT',
+      url: '/agreement',
     },
-    {
-      title: 'REVIEW',
-      url: '',
-    },
+    // {
+    //   title: 'REVIEW',
+    //   url: '',
+    // },
     {
       title: 'FAQ',
-      url: '',
+      url: '/faq',
     },
     {
       title: 'CONTACT',
       url: '/contact-us',
     },
     {
-      title: 'NOTICE',
-      url: '',
+      title: 'TESTIMONIALS',
+      url: '/testimonials',
     },
     {
-      title: 'AFFILAIATE',
-      url: '',
+      title: 'PRIVACY POLICY',
+      url: '/privacy-policy',
     },
     {
       title: 'ABOUT US',

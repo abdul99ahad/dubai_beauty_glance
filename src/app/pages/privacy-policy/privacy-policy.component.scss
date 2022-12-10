@@ -1,0 +1,32 @@
+#wrap {
+    position: relative;
+    min-height: 550px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#container {
+    max-width: 1260px;
+    min-width: 1260px;
+    width: 100%;
+    padding: 0 0;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#contents {
+    display: inline-block;
+    float: none;
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+p {
+    // font-size: 16px;
+    // text-align: center;
+}
