@@ -1,0 +1,326 @@
+.search {
+    border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  border-bottom-width: thick;
+  border-bottom-color: black;
+  width: 594px;
+  height: 100%;
+  line-height: 38px;
+  padding: 0 0 0 7px;
+}
+
+.search-bar {
+    // width: 594px;
+    // height: 100%;
+    // line-height: 38px;
+    // border: 0;
+    // padding: 0 0 0 7px;
+}
+
+.top-area {
+    justify-content: space-around;
+    margin: 1.5rem 0rem;
+}
+
+.member-link {
+    padding: 0rem 1rem
+}
+
+input[type="image"] {
+    // position: relative;
+    // width: 30px;
+    // height: 100%;    
+    // opacity: 0;
+    z-index: 1;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+hr.solid {
+    border-top: 1px solid #F0F0F0;
+    border-bottom: none;
+    
+}
+
+ul#navbar {
+    display:inline;
+    /* Any other CSS you want */
+}
+ul#navbar li {
+    display:inline;
+}
+
+.navbar-items {
+    line-height: 48px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+ .navbar-items > li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0 30px;
+    font-weight: 500;
+}
+
+.black {
+    color: black !important;
+}
+
+.navbar-items > li > a:hover {
+    color: #ff2e47 !important;
+}
+
+.controls .next {
+    right: 50px;
+    background-image: url(../../../../../assets/right_button.png);
+}
+
+.controls .prev {
+    left: 50px;
+    background-image: url(../../../../../assets/prev_button.png);
+}
+
+.controls > span {
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    font-size: 0;
+    background: rgba(255,255,255,0.3) no-repeat 50% 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    cursor: pointer;
+    z-index: 61;
+    -khtml-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.main-inner{
+    position: relative;
+    max-width: 1260px;
+    min-width: 1260px;
+    width: 100%;
+    padding: 0 0;
+    margin: 0 auto;
+}
+
+.main-quick-menu {
+    display: table;
+    width: 100%;
+    padding: 0 55px;
+    box-sizing: border-box;
+}
+
+.main-quick-menu .title {
+    display: table-cell;
+    vertical-align: middle;
+    width: 415px;
+    padding-top: 8px;
+    text-align: left;
+}
+
+.main-quick-menu .title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    right: -9px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background: #ff2e47;
+}
+
+.main-quick-menu .title h2 {
+    display: inline-block;
+    position: relative;
+    font-size: 32px;
+    line-height: 1.1;
+    color: #000;
+    font-weight: 900;
+}
+
+.main-quick-menu .title p {
+    margin-top: 5px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.main-quick-menu .main-quick-list li {
+    display: inline-block;
+    vertical-align: top;
+    width: 147px;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+.main-quick-menu .main-quick-list li a {
+    display: block;
+}
+
+.main-quick-menu .main-quick-list .main-quick-skin span {
+    background-image: url(../../../../../assets/main_cote1_off.png);
+}
+
+.main-quick-menu .main-quick-list li span {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background-color: #f5f5f5;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    -khtml-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.main-quick-menu .main-quick-list li:hover span {
+    background-color: c;
+}
+
+.main-quick-menu .main-quick-list .main-quick-skin:hover span {
+    background-image: url(../../../../../assets/main_cote1_on.png);
+}
+
+.main-quick-menu .main-quick-list li p {
+    margin-top: 10px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.main-quick-menu .main-quick-list li:hover p {
+    color: #ff2e47;
+}
+
+.main-quick-menu .main-quick-list .main-quick-makeup span {
+    background-image: url(../../../../../assets/main_cote2_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-makeup:hover span {
+    background-image: url(../../../../../assets/main_cote2_on.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-hair span {
+    background-image: url(../../../../../assets/main_cote3_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-hair:hover span {
+    background-image: url(../../../../../assets/main_cote3_on.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-mask span {
+    background-image: url(../../../../../assets/main_cote4_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-mask:hover span {
+    background-image: url(../../../../../assets/main_cote4_on.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-devices span {
+    background-image: url(../../../../../assets/main_cote5_off.png);
+}
+
+.main-quick-menu .main-quick-list .main-quick-devices:hover span {
+    background-image: url(../../../../../assets/main_cote5_on.png);
+}
+
+.title {
+    margin: 0 0 27px;
+    /* line-height: 1; */
+    text-align: center;
+}
+
+.title h2 {
+    color: #000;
+    font-size: 50px;
+    font-weight: 900;
+}
+.main-bn-slide1 {
+    padding: 42px 0 45px;
+    background: #f1f1f1;
+    margin-top: 60px;
+    // position: relative;
+    height: 600px;
+}
+
+.brandsale-card {
+    margin: 30px;
+    display: flex;
+}
+
+.main-bn-slide2 {
+    padding: 42px 0 45px;
+    background: #f1f1f1;
+    position: relative;
+    height: 600px;
+}
+.title a {
+    display: inline-block;
+    position: relative;
+    padding-right: 37px;
+    margin-top: 20px;
+    background: url(../../../../../assets/ico_more_arr.png) no-repeat 100% 50%;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    border-bottom: 2px solid #000;
+}
+
+.title a:hover {
+    background: url(../../../../../assets/ico_more_arr_on.png) no-repeat 100% 50%;
+    color: #ff2e47;
+}
+
+.main-box3{
+    padding: 75px 0 60px;
+    position: relative;
+    box-shadow: 0 3px 13px 2px rgb(226 226 226);
+}
+
+.main-inner {
+    position: relative;
+    max-width: 1260px;
+    min-width: 1260px;
+    width: 100%;
+    padding: 0 0;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 0 27px;
+    line-height: 1;
+    text-align: center;
+}
+
+.title h2 {
+    color: #000;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.title p {
+    margin-top: 10px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 300;
+}
