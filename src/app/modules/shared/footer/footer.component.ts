@@ -23,7 +23,7 @@ export class FooterComponent implements OnInit {
     },
     {
       title: 'CONTACT',
-      url: '',
+      url: '/contact-us',
     },
     {
       title: 'NOTICE',
@@ -32,6 +32,10 @@ export class FooterComponent implements OnInit {
     {
       title: 'AFFILAIATE',
       url: '',
+    },
+    {
+      title: 'ABOUT US',
+      url: '/about-us',
     },
   ];
 
