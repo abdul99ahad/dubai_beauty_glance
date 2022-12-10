@@ -11,6 +11,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { HomeModule } from './modules/home/home.module';
 import { QuickMenuComponent } from './modules/home/quick-menu/quick-menu.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { HomepageComponent } from './modules/home/pages/homepage/homepage.component';
 
 @NgModule({
   declarations: [AppComponent, QuickMenuComponent],
