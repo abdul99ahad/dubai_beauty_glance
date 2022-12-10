@@ -12,9 +12,10 @@ import { HomeModule } from './modules/home/home.module';
 import { QuickMenuComponent } from './modules/home/quick-menu/quick-menu.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { HomepageComponent } from './modules/home/pages/homepage/homepage.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 @NgModule({
-  declarations: [AppComponent, QuickMenuComponent],
+  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

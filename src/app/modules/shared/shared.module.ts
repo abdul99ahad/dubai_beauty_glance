@@ -10,6 +10,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { CarouselModule } from 'primeng/carousel';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CarouselModule } from 'primeng/carousel';
     BrandsaleCardComponent,
     CountdownTimerComponent,
     CarouselModule,
+    DividerModule,
   ],
 })
 export class SharedModule {}
