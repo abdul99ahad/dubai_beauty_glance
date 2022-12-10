@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
     BrandsaleCardComponent,
     CountdownTimerComponent,
   ],
-  imports: [CommonModule, InputTextModule, ButtonModule],
+  imports: [CommonModule, InputTextModule, ButtonModule, CarouselModule],
   exports: [
     InputTextModule,
     ButtonModule,
@@ -29,6 +30,7 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
     ProductCardComponent,
     BrandsaleCardComponent,
     CountdownTimerComponent,
+    CarouselModule,
   ],
 })
 export class SharedModule {}

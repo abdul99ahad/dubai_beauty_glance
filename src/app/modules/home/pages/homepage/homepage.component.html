@@ -1,0 +1,143 @@
+<div style="height: 540px">
+  <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
+  <p-carousel
+    [value]="bannerImagesCarousel"
+    [autoplayInterval]="3000"
+    [circular]="true"
+    [showNavigators]="false"
+  >
+    <ng-template let-banner pTemplate="item">
+      <img src="{{ banner.image }}" alt="banner image" width="100%" />
+    </ng-template>
+  </p-carousel>
+  <div class="controls">
+    <span class="prev">Prev</span>
+    <span class="next">Next</span>
+  </div>
+</div>
+<div class="main-inner">
+  <div class="main-quick-menu">
+    <div class="title">
+      <h2>
+        QUICK <br />
+        CATEGORY
+      </h2>
+      <p>Find products quickly by category selection</p>
+    </div>
+    <ul class="main-quick-list">
+      <li class="main-quick-skin">
+        <a href="">
+          <span></span>
+          <p>SKINCARE</p>
+        </a>
+      </li>
+      <li class="main-quick-makeup">
+        <a href="">
+          <span></span>
+          <p>MAKEUP</p>
+        </a>
+      </li>
+      <li class="main-quick-hair">
+        <a href="">
+          <span></span>
+          <p>HAIR & BODY</p>
+        </a>
+      </li>
+      <li class="main-quick-mask">
+        <a href="">
+          <span></span>
+          <p>MASK TRIAL KIT</p>
+        </a>
+      </li>
+      <li class="main-quick-devices">
+        <a href="">
+          <span></span>
+          <p>DEVICES & TOOLS</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="main-box2">
+  <div class="main-bn-slide1">
+    <div class="title">
+      <h2>EVENT</h2>
+      <a href=""> GO TO PROMOTION </a>
+    </div>
+    <div style="text-align: center">
+      <p-carousel
+        [value]="eventBannerCarousel"
+        [autoplayInterval]="2500"
+        [circular]="true"
+      >
+        <ng-template let-banner pTemplate="item">
+          <img src="{{ banner.image }}" alt="banner image" />
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</div>
+
+<div class="main-box3">
+  <div class="main-inner">
+    <div class="title">
+      <h2>BEST</h2>
+      <p>BEST ITEMS OF MONTH</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap">
+      <app-product-card
+        *ngFor="let product of productsDisplay"
+        [title]="product.title"
+        [description]="product.description"
+        [price]="product.price"
+        [discountedPrice]="product.discountedPrice"
+        [imgSrc]="product.imgSrc"
+      ></app-product-card>
+    </div>
+  </div>
+</div>
+
+<div class="main-box2">
+  <div class="main-bn-slide2">
+    <div class="title">
+      <h2>BRAND SALE</h2>
+      <a href=""> GO TO PROMOTION </a>
+    </div>
+    <div class="brandsale-card">
+      <app-brandsale-card></app-brandsale-card>
+      <app-brandsale-card></app-brandsale-card>
+    </div>
+  </div>
+</div>
+
+<div class="main-box4"></div>
+
+<div class="main-box3">
+  <div class="main-inner">
+    <div class="title">
+      <h2>NEW ARRIVALS</h2>
+      <!-- <p>BEST ITEMS OF MONTH</p> -->
+    </div>
+    <div style="display: flex; flex-wrap: wrap">
+      <app-product-card
+        *ngFor="let product of latestProductsDisplay"
+        [title]="product.title"
+        [description]="product.description"
+        [price]="product.price"
+        [discountedPrice]="product.discountedPrice"
+        [imgSrc]="product.imgSrc"
+      ></app-product-card>
+    </div>
+  </div>
+</div>
+
+<app-main-timedeal></app-main-timedeal>
+
+<div class="main-box8">
+  <div>
+    <a href="" style="display: flex">
+      <img src="../../../../../assets/ad.jpg" style="width: 100%" />
+    </a>
+  </div>
+</div>
