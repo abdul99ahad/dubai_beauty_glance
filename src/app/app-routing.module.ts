@@ -5,6 +5,9 @@ import {
   HomepageComponent,
   ContactUsComponent,
   AboutUsComponent,
+  TestimonialComponent,
+  PrivacyPolicyComponent,
+  AgreementComponent,
 } from './exports';
 
 const routes: Routes = [
@@ -13,6 +16,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'testimonials', component: TestimonialComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'agreement', component: AgreementComponent },
 ];
 
 @NgModule({
