@@ -1,11 +1,50 @@
 .parent {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .child {
     flex: 1 0 21%; /* explanation below */
     margin: 10px;
+}
+
+h2 {
+    color: #3b3b3b;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+#wrap {
+    position: relative;
+    min-height: 550px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#container {
+    max-width: 1260px;
+    min-width: 1260px;
+    width: 100%;
+    padding: 0 0;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#contents {
+    display: inline-block;
+    float: none;
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+p {
+    font-size: 16px;
+    text-align: center;
 }
 
 :host ::ng-deep {
@@ -99,7 +138,7 @@
   }
   
   .card {
-    padding: 2rem;
+    // padding: 2rem;
     // box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     //   0 1px 3px 0 rgba(0, 0, 0, 0.12);
     border-radius: 4px;

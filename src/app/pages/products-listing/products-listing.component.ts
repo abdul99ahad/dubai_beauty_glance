@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
 import productsJson from '../../mock/products.json';
@@ -9,7 +9,7 @@ import productsJson from '../../mock/products.json';
   providers: [ProductService],
 })
 export class ProductsListingComponent implements OnInit {
-  //products: any;
+  @Input('title') title: string = 'PRODUCTS'; //TODO:
   // products: Product = <Product>productsJson;
   constructor(private productService: ProductService) {}
 
@@ -375,6 +375,7 @@ export class ProductsListingComponent implements OnInit {
       rating: 3,
     },
   ];
+
   ngOnInit(): void {
     // this.products = this.productService
     //   .getProducts()
