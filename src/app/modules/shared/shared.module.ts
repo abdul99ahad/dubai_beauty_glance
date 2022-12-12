@@ -11,6 +11,7 @@ import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.componen
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
+import { DataViewModule } from 'primeng/dataview';
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 
 @NgModule({
@@ -23,7 +24,13 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     CountdownTimerComponent,
     AdBannerComponent,
   ],
-  imports: [CommonModule, InputTextModule, ButtonModule, CarouselModule],
+  imports: [
+    CommonModule,
+    InputTextModule,
+    ButtonModule,
+    CarouselModule,
+    DataViewModule,
+  ],
   exports: [
     InputTextModule,
     ButtonModule,
@@ -36,6 +43,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     AdBannerComponent,
     CarouselModule,
     DividerModule,
+    DataViewModule,
   ],
 })
 export class SharedModule {}

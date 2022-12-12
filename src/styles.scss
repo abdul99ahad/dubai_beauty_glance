@@ -30,3 +30,11 @@ h2 {
     font-size: 38px;
     text-align: center;
 }
+
+.p-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+}

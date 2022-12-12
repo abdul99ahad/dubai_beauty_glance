@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,13 +19,25 @@ import { TestimonialComponent } from './pages/testimonial/testimonial.component'
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { AgreementComponent } from './pages/agreement/agreement.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
 
 @NgModule({
-  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent, AboutUsComponent, TestimonialComponent, PrivacyPolicyComponent, AgreementComponent, FaqComponent],
+  declarations: [
+    AppComponent,
+    QuickMenuComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    TestimonialComponent,
+    PrivacyPolicyComponent,
+    AgreementComponent,
+    FaqComponent,
+    ProductsListingComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AuthModule,
     HomeModule,
     SharedModule,
