@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SelectItem } from 'primeng/api';
 import { Product } from 'src/app/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
 import productsJson from '../../mock/products.json';
@@ -376,9 +377,26 @@ export class ProductsListingComponent implements OnInit {
     },
   ];
 
+  sortOptions: SelectItem[];
+
+  sortOrder: number;
+
+  sortField: string;
   ngOnInit(): void {
     // this.products = this.productService
     //   .getProducts()
     //   .then((products) => (this.products = products));
+  }
+
+  onSortChange(event: any) {
+    // let value = event.value;
+    let value = '!price';
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
 }
