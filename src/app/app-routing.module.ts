@@ -9,6 +9,7 @@ import {
   PrivacyPolicyComponent,
   AgreementComponent,
   FaqComponent,
+  ProductComponent,
 } from './exports';
 import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'agreement', component: AgreementComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'products', component: ProductsListingComponent },
+  { path: 'product', component: ProductComponent },
 ];
 
 @NgModule({

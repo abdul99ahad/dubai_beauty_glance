@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 import { CarouselModule } from 'primeng/carousel';
 import { HomeModule } from './modules/home/home.module';
@@ -20,6 +21,7 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 import { AgreementComponent } from './pages/agreement/agreement.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,14 @@ import { ProductsListingComponent } from './pages/products-listing/products-list
     AgreementComponent,
     FaqComponent,
     ProductsListingComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     AuthModule,
     HomeModule,
     SharedModule,
