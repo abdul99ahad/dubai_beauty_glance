@@ -10,6 +10,7 @@ import {
   AgreementComponent,
   FaqComponent,
   ProductComponent,
+  CartComponent,
 } from './exports';
 import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent },
   { path: 'products', component: ProductsListingComponent },
   { path: 'product', component: ProductComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

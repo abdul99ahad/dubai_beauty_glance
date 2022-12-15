@@ -13,6 +13,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
+import { CartListComponent } from './components/cart-list/cart-list.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     BrandsaleCardComponent,
     CountdownTimerComponent,
     AdBannerComponent,
+    CartListComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     ButtonModule,
     CarouselModule,
     DataViewModule,
+    TableModule,
   ],
   exports: [
     InputTextModule,
@@ -44,6 +48,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
     CarouselModule,
     DividerModule,
     DataViewModule,
+    CartListComponent,
   ],
 })
 export class SharedModule {}

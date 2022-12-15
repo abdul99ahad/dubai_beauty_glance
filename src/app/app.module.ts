@@ -22,6 +22,7 @@ import { AgreementComponent } from './pages/agreement/agreement.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
 import { ProductComponent } from './pages/product/product.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProductComponent } from './pages/product/product.component';
     FaqComponent,
     ProductsListingComponent,
     ProductComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

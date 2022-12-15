@@ -1,0 +1,52 @@
+.title {
+    height: 55px;
+    padding: 10px 20px;
+    border: 0;
+    background: #f6f6f6;
+    box-sizing: border-box;
+    line-height: 38px;
+    margin: 20px 0 0;
+}
+
+h3 {
+    font-size: 20px;
+    color: #353535;
+    font-weight: 400;
+}
+
+i:hover {
+    color:#ff2e47 ;
+    cursor: pointer;
+}
+
+.xans-order-empty.emptyArea {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.xans-order-empty.emptyArea p {
+    color: #B7B7B7;
+    font-size: 26px;
+    margin: 50px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.xans-order-empty.emptyArea .btnBase {
+    margin-top: -40px;
+}
+
+.btnBase {
+    display: inline-block;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 15px;
+    line-height: 50px;
+    color:#f6f6f6;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.btnPoint {
+    background: #ff2e47 
+}

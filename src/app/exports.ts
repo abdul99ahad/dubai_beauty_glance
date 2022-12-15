@@ -8,3 +8,4 @@ export * from './pages/privacy-policy/privacy-policy.component';
 export * from './pages/agreement/agreement.component';
 export * from './pages/faq/faq.component';
 export * from './pages/product/product.component';
+export * from './pages/cart/cart.component';
