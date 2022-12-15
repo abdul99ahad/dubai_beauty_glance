@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-list.component.scss'],
 })
 export class CartListComponent implements OnInit {
-  title: string = 'CART';
   cartList: any = [
     {
       id: 123,
@@ -30,6 +29,14 @@ export class CartListComponent implements OnInit {
       total: 118.49,
     },
   ]; // TODO: Interface and API
+
+  totalAmount: any = [
+    {
+      amount: 120.0,
+      discountAmount: 18.0,
+      totalAmount: 102.0,
+    },
+  ];
   currencyUsed: string = 'USD';
   totalProductItemsCount: number = this.cartList.length;
   constructor() {}
@@ -41,4 +48,10 @@ export class CartListComponent implements OnInit {
     this.cartList.splice(index, 1);
     this.totalProductItemsCount = this.cartList.length;
   }
+
+  quantityUp() {}
+
+  quantityDown() {}
+
+  updatePrice(price: number) {}
 }

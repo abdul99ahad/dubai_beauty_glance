@@ -50,3 +50,99 @@ i:hover {
 .btnPoint {
     background: #ff2e47 
 }
+
+:host ::ng-deep .quantity-number.p-inputNumber {
+    .p-inputnumber-input {
+        width: 70px;
+    }
+}
+// .quantity {
+//     display: inline-block;
+//     position: relative;
+//     width: 50px;
+//     vertical-align: top;
+//     *margin: 0 4px 0 0;
+// }
+
+// .quantity input {
+//     width: 100%;
+//     // height: 100%;
+//     padding: 0 2px 0 3px;
+//     line-height: 23px;
+//     border: 1px solid #d4d8d9;
+//     border-radius: 3px 0 0 3px;
+//     *margin-top: -1px;
+// }
+
+// .quantity .up {
+//     position: absolute;
+//     left: 28px;
+//     top: 0;
+// }
+
+// .quantity .down {
+//     position: absolute;
+//     left: 28px;
+//     top: 12px;
+// }
+
+.xans-order-selectorder {
+    margin: 0 0 40px;
+}
+
+.ec-base-button {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.ec-base-button .gLeft {
+    float: left;
+    text-align: left;
+}
+
+.ec-base-button .gRight {
+    float: right;
+    text-align: right;
+}
+
+.btnNormal.sizeM.btnGray {
+    border-color: #b6b6b6;
+    background: #b6b6b6;
+    color: #fff;
+}
+[class^='btn'].sizeM {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+.btnNormal.btnLine {
+    border: transparent;
+    text-decoration: underline;
+}
+
+.btnNormal.sizeM.btnGray:hover {
+    background: black;
+}
+
+.icoPrint, .icoDel {
+    position: relative;
+    padding-left: 25px;
+}
+
+.icoDel:before {
+    width: 15px;
+    height: 21px;
+    background-image: url(https://jolse.com/_dbook/img/ico_renewal/remove.png);
+}
+
+.icoDel:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 100% auto;
+}
