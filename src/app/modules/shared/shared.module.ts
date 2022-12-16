@@ -20,6 +20,7 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { FormsModule } from '@angular/forms';
+import { SimpleButtonComponent } from './components/simple-button/simple-button.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
+    SimpleButtonComponent,
   ],
   imports: [
     CommonModule,

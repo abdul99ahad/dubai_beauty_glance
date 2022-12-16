@@ -24,6 +24,7 @@
             [showButtons]="true"
             styleClass="quantity-number"
             [min]="0"
+            (ngModelChange)="updatePrice(item)"
           ></p-inputNumber>
           <!-- <span class="quantity">
             <input
@@ -48,7 +49,7 @@
           </span> -->
         </td>
         <td>{{ currencyUsed }} {{ item.total }}</td>
-        <td>
+        <td class="trash">
           <i
             class="pi pi-trash"
             style="font-size: 1.2rem"
@@ -60,51 +61,52 @@
   </p-table>
   <div class="xans-element- xans-order xans-order-selectorder ec-base-button">
     <span class="gLeft">
-      <a
-        href="#none"
-        class="btnNormal sizeM btnGray"
-        onclick="Basket.deleteBasket()"
+      <a class="btnNormal sizeM btnGray"
         ><span class="icoDel">Remove seleted item(s)</span></a
       >
-      <a href="#none" onclick="Basket.emptyBasket()" class="btnNormal sizeM"
-        >EMPTY CART</a
-      >
+      <app-simple-button buttonText="EMPTY CART"></app-simple-button>
     </span>
     <span class="gRight">
-      <a href="#none" class="btnNormal btnLine"
-        ><span class="icoPrint">PRINT QUOTE</span></a
-      >
-      <a href="/" class="btnNormal sizeM">Continue Shopping</a>
+      <app-simple-button buttonText="CONTINUE SHOPPING"></app-simple-button>
     </span>
   </div>
 
-  <div>
+  <div class="tblList">
     <p-table [value]="totalAmount">
       <ng-template pTemplate="body" let-item>
         <tr>
           <td>
-            <div>
-              <p>Merchandise</p>
-              <p>{{ item.amount }}</p>
+            <div class="center">
+              <p class="totalBarHeader">Merchandise</p>
+              <p class="totalBarAmount">USD {{ item.amount }}</p>
             </div>
           </td>
-          <td>-</td>
+          <td class="center iconMinus">
+            <i class="pi pi-minus-circle" style="font-size: 2rem"></i>
+          </td>
           <td>
-            <div>
-              <p>Product Discounts</p>
-              <p>{{ item.discountedAmount }}</p>
+            <div class="center">
+              <p class="totalBarHeader">Product Discounts</p>
+              <p class="totalBarAmount">USD {{ item.discountAmount }}</p>
             </div>
           </td>
-          <td>=</td>
+          <td class="iconEquals">
+            <i class="pi pi-pause iconEqualsInner"></i>
+          </td>
           <td>
-            <div>
-              <p>Total Amount</p>
-              <p>{{ item.totalAmount }}</p>
+            <div class="center">
+              <p class="totalBarHeader">Total Amount</p>
+              <p class="totalBarAmount" style="color: #ff2d46">
+                USD {{ item.totalAmount }}
+              </p>
             </div>
           </td>
         </tr>
       </ng-template>
     </p-table>
+    <div style="margin-top: 20px; text-align: center">
+      <a class="checkout">CHECKOUT</a>
+    </div>
   </div>
 </div>
 

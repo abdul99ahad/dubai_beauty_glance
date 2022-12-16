@@ -10,6 +10,7 @@ export class CartListComponent implements OnInit {
     {
       id: 123,
       productDetail: 'Beauty of joseon Relief Sun Rice Probiotics 50ml',
+      unitPrice: 11.49,
       price: 11.49,
       quantity: 1,
       total: 11.49,
@@ -17,6 +18,7 @@ export class CartListComponent implements OnInit {
     {
       id: 234,
       productDetail: 'Ala Bala Item 50ml',
+      unitPrice: 19.49,
       price: 19.49,
       quantity: 1,
       total: 19.49,
@@ -24,9 +26,10 @@ export class CartListComponent implements OnInit {
     {
       id: 393,
       productDetail: 'Spponn dfosdu sdlsfd',
-      price: 118.49,
+      unitPrice: 20.0,
+      price: 60.0,
       quantity: 3,
-      total: 118.49,
+      total: 60.0,
     },
   ]; // TODO: Interface and API
 
@@ -53,5 +56,20 @@ export class CartListComponent implements OnInit {
 
   quantityDown() {}
 
-  updatePrice(price: number) {}
+  updatePrice(item: any) {
+    item.price = item.quantity * item.unitPrice;
+    item.total = item.quantity * item.unitPrice;
+    this.calculateTotalBill();
+  }
+
+  calculateTotalBill(): void {
+    let totalPrice: number = 0;
+    this.cartList.forEach((element: any) => {
+      totalPrice += element.price;
+      totalPrice.toPrecision(2);
+    });
+    this.totalAmount[0].amount = totalPrice;
+    this.totalAmount[0].totalAmount =
+      this.totalAmount[0].amount - this.totalAmount[0].discountAmount;
+  }
 }
