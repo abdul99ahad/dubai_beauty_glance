@@ -14,6 +14,7 @@ export class CartListComponent implements OnInit {
       price: 11.49,
       quantity: 1,
       total: 11.49,
+      imgSrc: 'https://d1f6um9xlu8jl4.cloudfront.net/COSRX/cosrx_aloe.jpg',
     },
     {
       id: 234,
@@ -22,6 +23,7 @@ export class CartListComponent implements OnInit {
       price: 19.49,
       quantity: 1,
       total: 19.49,
+      imgSrc: 'https://d1f6um9xlu8jl4.cloudfront.net/COSRX/cosrx_aloe.jpg',
     },
     {
       id: 393,
@@ -30,6 +32,7 @@ export class CartListComponent implements OnInit {
       price: 60.0,
       quantity: 3,
       total: 60.0,
+      imgSrc: 'https://d1f6um9xlu8jl4.cloudfront.net/COSRX/cosrx_aloe.jpg',
     },
   ]; // TODO: Interface and API
 

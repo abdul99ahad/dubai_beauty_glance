@@ -7,6 +7,7 @@
   <p-table [value]="cartList">
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th>Product Detail</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -16,6 +17,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-item>
       <tr>
+        <td>
+          <img src="{{ item.imgSrc }}" style="width: 100px; height: 100px" />
+        </td>
         <td>{{ item.productDetail }}</td>
         <td>{{ currencyUsed }} {{ item.price }}</td>
         <td>
