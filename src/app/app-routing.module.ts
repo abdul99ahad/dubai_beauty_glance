@@ -14,7 +14,7 @@ import {
   SignUpComponent,
   ProductsListingComponent,
   CheckoutComponent,
-} from './exports';
+} from './public-api';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },

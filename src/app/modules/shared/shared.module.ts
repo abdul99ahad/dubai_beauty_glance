@@ -10,6 +10,9 @@ import { DataViewModule } from 'primeng/dataview';
 import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber';
 
+// Third Party Modules
+import { NgMarqueeModule } from 'ng-marquee';
+
 // Components
 import { InputTextboxComponent } from './input-textbox/input-textbox.component';
 import { InputButtonComponent } from './input-button/input-button.component';
@@ -22,6 +25,7 @@ import { CartListComponent } from './components/cart-list/cart-list.component';
 import { FormsModule } from '@angular/forms';
 import { SimpleButtonComponent } from './components/simple-button/simple-button.component';
 import { RouterModule } from '@angular/router';
+import { MarqueeComponent } from './components/marquee/marquee.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { RouterModule } from '@angular/router';
     AdBannerComponent,
     CartListComponent,
     SimpleButtonComponent,
+    MarqueeComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +50,7 @@ import { RouterModule } from '@angular/router';
     InputNumberModule,
     FormsModule,
     RouterModule,
+    NgMarqueeModule,
   ],
   exports: [
     InputTextModule,
@@ -53,6 +59,7 @@ import { RouterModule } from '@angular/router';
     DividerModule,
     DataViewModule,
     InputNumberModule,
+    NgMarqueeModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
@@ -61,6 +68,7 @@ import { RouterModule } from '@angular/router';
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
+    MarqueeComponent,
   ],
 })
 export class SharedModule {}
