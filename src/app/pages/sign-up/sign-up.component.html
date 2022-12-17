@@ -1,0 +1,128 @@
+<div id="wrap">
+  <div id="container">
+    <div id="contents">
+      <app-ad-banner></app-ad-banner>
+
+      <div class="contactusWrap">
+        <div class="content0">
+          <h2>{{ title }}</h2>
+        </div>
+        <p-divider></p-divider>
+      </div>
+      <div>
+        <table summary="" style="margin: 0 auto">
+          <h3 class="title">Personal Details</h3>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.firstName }}
+                  <span class="required">*</span>
+                </p>
+              </th>
+              <td>
+                <app-input-textbox
+                  type="text"
+                  [placeholder]="registerFormFields.firstName"
+                ></app-input-textbox>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.lastName }}
+                  <span class="required">*</span>
+                </p>
+              </th>
+              <td>
+                <app-input-textbox
+                  type="text"
+                  [placeholder]="registerFormFields.lastName"
+                ></app-input-textbox>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.email }} <span class="required">*</span>
+                </p>
+              </th>
+              <td>
+                <app-input-textbox
+                  type="text"
+                  [placeholder]="registerFormFields.email"
+                ></app-input-textbox>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.contactNo }}
+                  <span class="required">*</span>
+                </p>
+              </th>
+              <td>
+                <app-input-textbox
+                  type="text"
+                  [placeholder]="registerFormFields.contactNo"
+                ></app-input-textbox>
+              </td>
+            </tr>
+
+            <h3 class="title">Password</h3>
+
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.password }}
+                  <span class="required">*</span>
+                </p>
+              </th>
+              <td>
+                <app-input-textbox
+                  type="password"
+                  [placeholder]="registerFormFields.password"
+                ></app-input-textbox>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.confirmPassword }}
+                  <span class="required">*</span>
+                </p>
+              </th>
+              <td>
+                <app-input-textbox
+                  type="password"
+                  [placeholder]="registerFormFields.confirmPassword"
+                ></app-input-textbox>
+              </td>
+            </tr>
+            <h3 class="title">Newsletter</h3>
+            <tr>
+              <th scope="row">
+                <p>
+                  {{ registerFormFields.subscribeNewsLetter }}
+                </p>
+              </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>
+                <p style="font-size: 12px">
+                  I have read and agree to the Terms & Condition
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="text-align: center">
+          <app-input-button buttonText="Register"></app-input-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

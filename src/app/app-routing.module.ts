@@ -9,6 +9,10 @@ import {
   PrivacyPolicyComponent,
   AgreementComponent,
   FaqComponent,
+  ProductComponent,
+  CartComponent,
+  SignUpComponent,
+  ProductsListingComponent,
 } from './exports';
 
 const routes: Routes = [
@@ -21,6 +25,10 @@ const routes: Routes = [
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'agreement', component: AgreementComponent },
   { path: 'faq', component: FaqComponent },
+  { path: 'products', component: ProductsListingComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'register', component: SignUpComponent },
 ];
 
 @NgModule({

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 import { CarouselModule } from 'primeng/carousel';
 import { HomeModule } from './modules/home/home.module';
@@ -18,13 +20,32 @@ import { TestimonialComponent } from './pages/testimonial/testimonial.component'
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { AgreementComponent } from './pages/agreement/agreement.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
+import { ProductComponent } from './pages/product/product.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [AppComponent, QuickMenuComponent, ContactUsComponent, AboutUsComponent, TestimonialComponent, PrivacyPolicyComponent, AgreementComponent, FaqComponent],
+  declarations: [
+    AppComponent,
+    QuickMenuComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    TestimonialComponent,
+    PrivacyPolicyComponent,
+    AgreementComponent,
+    FaqComponent,
+    ProductsListingComponent,
+    ProductComponent,
+    CartComponent,
+    SignUpComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
     AuthModule,
     HomeModule,
     SharedModule,

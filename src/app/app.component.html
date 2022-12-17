@@ -6,7 +6,7 @@
   </div>
   <div class="top-area display-flex">
     <div>
-      <a href="">
+      <a [routerLink]="['/']">
         <img src="https://jolse.com/_dbook/img/logo.png" alt="" />
       </a>
     </div>
@@ -18,21 +18,21 @@
 
     <div style="display: flex">
       <div class="member-link">
-        <a href="/login">
+        <a [routerLink]="['/login']">
           <img src="../assets/sign_in.png" alt="" />
           <p>Sign In</p>
         </a>
       </div>
 
       <div class="member-link">
-        <a href="">
+        <a [routerLink]="['/register']">
           <img src="../assets/sign_up.png" alt="" />
           <p>Sign Up</p>
         </a>
       </div>
 
       <div class="member-link">
-        <a href="">
+        <a [routerLink]="['/cart']">
           <img src="../assets/cart.png" alt="" />
           <p>Cart</p>
         </a>
