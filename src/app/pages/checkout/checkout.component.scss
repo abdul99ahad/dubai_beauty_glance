@@ -486,3 +486,34 @@ p {
 .section-register .form-control input{
     width: 100%;
 }
+
+th {
+    text-align: left;
+}
+
+input#input-payment-company {
+    width: 100%;
+}
+
+input {
+    padding: 10px;
+}
+
+select .form-control {
+    color: rgba(51, 51, 51, 1) !important;
+    background: rgba(250, 250, 250, 1) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(221, 221, 221, 1) !important;
+    border-radius: 2px !important;
+    max-width: 500px;
+}
+
+select.form-control:hover {
+    border-color: rgba(247, 22, 104, 1) !important;
+    box-shadow: 0 5px 20px -5px rgb(0 0 0 / 10%);
+}
+
+select.form-control:focus, select.form-control:active {
+    border-color: rgba(247, 22, 104, 1) !important;
+}

@@ -21,6 +21,7 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { FormsModule } from '@angular/forms';
 import { SimpleButtonComponent } from './components/simple-button/simple-button.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SimpleButtonComponent } from './components/simple-button/simple-button.
     TableModule,
     InputNumberModule,
     FormsModule,
+    RouterModule,
   ],
   exports: [
     InputTextModule,
