@@ -13,6 +13,7 @@ import {
   CartComponent,
   SignUpComponent,
   ProductsListingComponent,
+  CheckoutComponent,
 } from './exports';
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   { path: 'register', component: SignUpComponent },
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({

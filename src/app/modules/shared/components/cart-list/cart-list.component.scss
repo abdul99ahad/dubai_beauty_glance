@@ -217,3 +217,22 @@ h3 {
     color: #ff2d47;
     cursor: pointer;
 }
+
+:host ::ng-deep p-inputNumber{
+    .p-inputnumber-input {
+        width: 100px;
+    }
+    .p-inputnumber-button {
+        background-color: #ff2e47;
+        border: none;
+    }
+
+    .p-inputnumber-button:hover {
+        background-color: #d2273b;
+        border: none;
+    }
+    .p-inputnumber-input:hover, .p-inputnumber-input:focus{
+        border-color: #ff2e47; ;
+        box-shadow: none;
+    }
+}
