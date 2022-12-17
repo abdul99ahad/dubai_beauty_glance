@@ -50,6 +50,7 @@ import { SimpleButtonComponent } from './components/simple-button/simple-button.
     CarouselModule,
     DividerModule,
     DataViewModule,
+    InputNumberModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
