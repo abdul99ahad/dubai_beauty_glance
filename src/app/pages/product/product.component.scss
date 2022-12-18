@@ -257,3 +257,44 @@ a:hover {
     background: #fff;
     margin: 10px !important;
 }
+
+:host ::ng-deep p-toggleButton{
+    div {
+        padding: 0 ;
+        margin: 5px !important;
+        margin-left:0 !important;
+    }
+    div span {
+        font-weight: 100;
+        font-size: 14px;
+        padding:5px;
+    }
+
+    .p-togglebutton.p-button.p-highlight:hover {
+        background: #ff2e47;
+        border-color: #ff2e47;
+        color: #ffffff;
+    }
+
+    .p-togglebutton.p-button.p-highlight:focus {
+        box-shadow: 0;
+    }
+
+    .p-togglebutton.p-button.p-highlight {
+        background: #ff2e47;
+        border-color: #ff2e47;
+        color: #ffffff;
+    }
+
+    .p-button:focus {
+        box-shadow: none;
+        //box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ff94a0, 0 1px 2px 0 black;
+    }
+
+    // .p-togglebutton.p-button.p-highlight {
+    //     /* background: #3B82F6; */
+    //     /* border-color: #3B82F6; */
+    //     background: none !important;
+    //     color: #ffffff;
+    // }
+}

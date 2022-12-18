@@ -9,6 +9,7 @@ import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
 import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
@@ -51,6 +52,7 @@ import { MarqueeComponent } from './components/marquee/marquee.component';
     FormsModule,
     RouterModule,
     NgMarqueeModule,
+    ToggleButtonModule,
   ],
   exports: [
     InputTextModule,
@@ -60,6 +62,7 @@ import { MarqueeComponent } from './components/marquee/marquee.component';
     DataViewModule,
     InputNumberModule,
     NgMarqueeModule,
+    ToggleButtonModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
