@@ -9,14 +9,15 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent implements OnInit {
   title = 'dubai_beauty_glance';
 
-  navBarItemList: string[] = [
-    'NEW',
-    'BEST',
-    'TIME DEAL',
-    'PROMOTION',
-    'BRAND',
-    'COUPON',
+  navBarItemList: any = [
+    { page: 'NEW', url: 'products' },
+    { page: 'BEST', url: 'products' },
+    { page: 'TIME DEAL', url: 'products' },
+    { page: 'PROMOTIONS', url: 'promotions' },
+    { page: 'BRAND', url: 'products' },
+    { page: 'COUPON', url: 'products' },
   ];
+
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {

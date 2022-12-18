@@ -1,0 +1,47 @@
+<div id="wrap">
+  <div id="container">
+    <div id="contents">
+      <app-ad-banner
+        adImgUrl="https://beautyglance.pk/image/cache/catalog/category/PromotionBanner2-01-min-1440x400w.jpg"
+      ></app-ad-banner>
+
+      <div class="contactusWrap">
+        <div class="content0">
+          <h2>{{ title }}</h2>
+        </div>
+        <p-divider></p-divider>
+      </div>
+
+      <div class="card">
+        <p-dataView
+          #dv
+          [value]="products"
+          [paginator]="true"
+          [rows]="12"
+          filterBy="name"
+          layout="grid"
+          [sortField]="sortField"
+          [sortOrder]="sortOrder"
+        >
+          <ng-template pTemplate="header">
+            <div
+              class="flex flex-column md:flex-row md:justify-content-between"
+            >
+              <button type="button" (click)="onSortChange($event)">Sort</button>
+            </div>
+          </ng-template>
+          <ng-template let-product pTemplate="gridItem" class="parent">
+            <app-product-card
+              class="child"
+              [title]="product.name"
+              [description]="product.description"
+              [price]="product.price"
+              [discountedPrice]="product.price"
+              imgSrc="../../../assets/product.jpg"
+            ></app-product-card>
+          </ng-template>
+        </p-dataView>
+      </div>
+    </div>
+  </div>
+</div>

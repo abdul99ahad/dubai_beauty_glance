@@ -14,6 +14,7 @@ import {
   SignUpComponent,
   ProductsListingComponent,
   CheckoutComponent,
+  PromotionsListingComponent,
 } from './public-api';
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'register', component: SignUpComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'promotions', component: PromotionsListingComponent },
 ];
 
 @NgModule({
