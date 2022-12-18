@@ -57,6 +57,7 @@ export class ProductComponent implements OnInit {
   checkSkuItemTrue(item: any): void {
     // item.checked = true;
     this.skus[0].checked = false;
+    // $('')
   }
 
   private numberToFloat() {
