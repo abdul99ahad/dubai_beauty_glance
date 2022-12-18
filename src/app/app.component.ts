@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { fakeAsync } from '@angular/core/testing';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -8,6 +9,7 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   title = 'dubai_beauty_glance';
+  display: boolean = false;
 
   navBarItemList: any = [
     { page: 'NEW', url: 'products' },

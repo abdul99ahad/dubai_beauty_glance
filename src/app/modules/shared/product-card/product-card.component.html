@@ -2,7 +2,9 @@
   <div id="div1">
     <div class="thumbnail">
       <div class="prdImage">
-        <a href=""> <img src="{{ imgSrc }}" width="240px" height="240px" /> </a>
+        <a [routerLink]="['product']">
+          <img src="{{ imgSrc }}" width="240px" height="240px" />
+        </a>
         <!-- <span class="wish">
             <img src="../../../../assets/wish_icon.png" />
           </span>
@@ -15,7 +17,7 @@
     <div class="description">
       <span class="prd-brand">{{ title }}</span>
       <strong class="name">
-        <a href="">
+        <a [routerLink]="['product']">
           <span>{{ description }}</span>
         </a>
       </strong>
