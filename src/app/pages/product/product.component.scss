@@ -154,7 +154,7 @@ p.ec-base-help, ul.ec-base-help li {
     line-height: 23px;
     border: 1px solid #d4d8d9;
     border-radius: 3px 0 0 3px;
-    *margin-top: -1px;
+    // margin-top: -1px;
 }
 
 #totalProducts tbody td .quantity .up {
@@ -193,7 +193,6 @@ p.ec-base-help, ul.ec-base-help li {
     width: 100%;
     text-align: left;
     box-sizing: border-box;
-    margin-bottom: 20px;
 }
 
 .infoArea .totalPrice .total {
@@ -297,4 +296,28 @@ a:hover {
     //     background: none !important;
     //     color: #ffffff;
     // }
+}
+
+.display-none {
+    display: none;
+}
+
+.gifts-img {
+    animation: beat 2s infinite;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: beat;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.custom_features_image {
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
 }
