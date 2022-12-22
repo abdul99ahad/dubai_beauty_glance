@@ -21,6 +21,7 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 import { AgreementComponent } from './pages/agreement/agreement.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ProductsListingComponent } from './pages/products-listing/products-listing.component';
+import { PromotionsListingComponent } from './pages/promotions-listing/promotions-listing.component';
 import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
@@ -37,6 +38,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     AgreementComponent,
     FaqComponent,
     ProductsListingComponent,
+    PromotionsListingComponent,
     ProductComponent,
     CartComponent,
     SignUpComponent,

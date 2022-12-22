@@ -9,6 +9,11 @@ import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
 import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { SidebarModule } from 'primeng/sidebar';
+
+// Third Party Modules
+import { NgMarqueeModule } from 'ng-marquee';
 
 // Components
 import { InputTextboxComponent } from './input-textbox/input-textbox.component';
@@ -22,6 +27,8 @@ import { CartListComponent } from './components/cart-list/cart-list.component';
 import { FormsModule } from '@angular/forms';
 import { SimpleButtonComponent } from './components/simple-button/simple-button.component';
 import { RouterModule } from '@angular/router';
+import { MarqueeComponent } from './components/marquee/marquee.component';
+import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +41,8 @@ import { RouterModule } from '@angular/router';
     AdBannerComponent,
     CartListComponent,
     SimpleButtonComponent,
+    MarqueeComponent,
+    HamburgerMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +54,9 @@ import { RouterModule } from '@angular/router';
     InputNumberModule,
     FormsModule,
     RouterModule,
+    NgMarqueeModule,
+    ToggleButtonModule,
+    SidebarModule,
   ],
   exports: [
     InputTextModule,
@@ -53,6 +65,9 @@ import { RouterModule } from '@angular/router';
     DividerModule,
     DataViewModule,
     InputNumberModule,
+    NgMarqueeModule,
+    ToggleButtonModule,
+    SidebarModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
@@ -61,6 +76,8 @@ import { RouterModule } from '@angular/router';
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
+    MarqueeComponent,
+    HamburgerMenuComponent,
   ],
 })
 export class SharedModule {}

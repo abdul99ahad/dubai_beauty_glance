@@ -14,7 +14,8 @@ import {
   SignUpComponent,
   ProductsListingComponent,
   CheckoutComponent,
-} from './exports';
+  PromotionsListingComponent,
+} from './public-api';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -31,10 +32,13 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'register', component: SignUpComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'promotions', component: PromotionsListingComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -17,7 +17,21 @@ export class ProductComponent implements OnInit {
     'The History of Whoo Radiant White Moisture Cushion Foundation 13g + Refill 13g #21 light beige';
   @Input() minimumOrder: number = 1;
   @Input() selectedQuantity: number = 1;
+  country: string = 'PK';
+  checked: boolean = true;
 
+  skus: any = [
+    {
+      productId: 1,
+      sku: '2N Black',
+      checked: false,
+    },
+    {
+      productId: 1,
+      sku: '6N Light Brown',
+      checked: false,
+    },
+  ];
   price: number = this.unitPrice;
   discountedPrice: number = this.unitDiscountedPrice;
 
@@ -38,6 +52,12 @@ export class ProductComponent implements OnInit {
       this.selectedQuantity--;
       this.updatePrice(this.selectedQuantity);
     }
+  }
+
+  checkSkuItemTrue(item: any): void {
+    // item.checked = true;
+    this.skus[0].checked = false;
+    // $('')
   }
 
   private numberToFloat() {

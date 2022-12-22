@@ -1,0 +1,53 @@
+h3 {
+    font-size: 28px;
+    font-weight: 900;
+    color:black;
+}
+
+h4 {
+    font-size: 22px;
+    font-weight: 600;
+    color:black;
+}
+
+a:visited{
+    text-decoration: none;
+    color:black
+}
+
+a:hover {
+    color: #ff2e47;
+    cursor: pointer;
+}
+
+h3, h4 {
+    margin-bottom: 20px;
+    margin-top:0; 
+}
+
+.mar-20 {
+    margin: 20px
+}
+
+li {
+    list-style: none;
+}
+
+li a {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+li {
+    margin:10px 0;
+}
+
+li a:hover {
+    color: black;
+    font-weight:600;
+    cursor: pointer;
+}
+
+.display-none {
+    display: none;;
+}

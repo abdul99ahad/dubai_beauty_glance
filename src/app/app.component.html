@@ -1,8 +1,6 @@
 <div class="header-container">
   <div class="promotion-area">
-    <a href="">
-      <img src="../assets/promotion_bar.jpg" width="100%" />
-    </a>
+    <app-marquee></app-marquee>
   </div>
   <div class="top-area display-flex">
     <div>
@@ -42,12 +40,17 @@
 </div>
 
 <div>
-  <hr class="solid" />
+  <hr class="solid" style="margin-bottom: 0px" />
 
   <div>
     <ul class="navbar-items" id="navbar">
+      <li>
+        <div class="cate-all-btn-open" (click)="display = true">
+          <span>All category</span>
+        </div>
+      </li>
       <li *ngFor="let item of navBarItemList">
-        <a href="" class="black">{{ item }}</a>
+        <a [routerLink]="[item.url]" class="black">{{ item.page }}</a>
       </li>
       <!-- ... -->
     </ul>
@@ -55,3 +58,7 @@
 </div>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
+
+<p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
+  <app-hamburger-menu></app-hamburger-menu>
+</p-sidebar>
