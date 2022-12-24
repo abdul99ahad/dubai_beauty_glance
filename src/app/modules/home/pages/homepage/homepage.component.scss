@@ -104,17 +104,8 @@ ul#navbar li {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-.main-inner{
-    position: relative;
-    max-width: 1260px;
-    min-width: 1260px;
-    width: 100%;
-    padding: 0 0;
-    margin: 0 auto;
-}
-
 .main-quick-menu {
-    display: table;
+    display: flex;
     width: 100%;
     padding: 0 55px;
     box-sizing: border-box;
@@ -123,8 +114,10 @@ ul#navbar li {
 .main-quick-menu .title {
     display: table-cell;
     vertical-align: middle;
-    width: 415px;
     padding-top: 8px;
+    text-align: left;
+}
+.title h2 {
     text-align: left;
 }
 
@@ -156,10 +149,14 @@ ul#navbar li {
     font-weight: 300;
 }
 
+.main-quick-list > * {
+    margin: 1rem;
+}
+
 .main-quick-menu .main-quick-list li {
     display: inline-block;
     vertical-align: top;
-    width: 147px;
+    // width: 147px;
     text-align: center;
 }
 
@@ -167,8 +164,15 @@ li {
     list-style: none;
 }
 
+.main-quick-menu .main-quick-list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: end;
+}
+
 .main-quick-menu .main-quick-list li a {
-    display: block;
+    // display: block;
 }
 
 .main-quick-menu .main-quick-list .main-quick-skin span {
@@ -299,8 +303,8 @@ li {
 
 .main-inner {
     position: relative;
-    max-width: 1260px;
-    min-width: 1260px;
+    // max-width: 1260px;
+    // min-width: 1260px;
     width: 100%;
     padding: 0 0;
     margin: 0 auto;
@@ -324,3 +328,33 @@ li {
     font-size: 16px;
     font-weight: 300;
 }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .m-15 {
+      margin:15px;
+  }
+  /* Responsive layout - makes a one column-layout instead of two-column layout */
+  @media (max-width: 800px) {
+      .flex-container {
+        flex-direction: column;
+      }
+
+      .mbl-disable {
+        display: none;
+      }
+      .main-quick-menu .main-quick-list li {
+        display: inline-block;
+        vertical-align: top;
+        // width: 147px;
+        text-align: center;
+        width: 30%;
+    }
+    .main-quick-menu .main-quick-list {
+        justify-content:flex-start;
+    }
+    
+    }
