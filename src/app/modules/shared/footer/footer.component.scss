@@ -8,8 +8,8 @@
 
 #footer .footer-inner {
     position: relative;
-    max-width: 1260px;
-    min-width: 1260px;
+    max-width: 100%;
+    min-width: 100%;
     width: 100%;
     padding: 0 0;
     margin: 0 auto;
@@ -114,22 +114,37 @@ li {
 }
 
 #footer .footer-pg {
+    display: flex;
+    flex-direction: row;
     padding: 30px 0 13px;
 }
 
 #footer .footer-pg li {
-    display: inline-block;
+    // display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
 }
 
 #footer .app-down {
-    position: absolute;
-    bottom: 15px;
-    right: 0;
+    // position: absolute;
+    // bottom: 15px;
+    // right: 0;
 }
 
 #footer .app-down li {
     display: inline-block;
     vertical-align: middle;
 }
+
+.flex-container {
+    display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 500px) {
+    .flex-container {
+      flex-direction: column;
+    }
+  }
