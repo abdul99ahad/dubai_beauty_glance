@@ -1,0 +1,61 @@
+<div class="header-container">
+  <div class="promotion-area">
+    <app-marquee></app-marquee>
+  </div>
+  <div class="top-area flex-container">
+    <div style="width: 100%; margin: auto 0">
+      <a [routerLink]="['/']">
+        <img
+          src="https://beautyglance.pk/image/cache/catalog/bg-logo-484x66.png"
+          alt=""
+          class="logo"
+        />
+      </a>
+    </div>
+
+    <div class="search-bar" style="width: 100%">
+      <input class="search" type="text" />
+      <input type="image" style="width: 2rem" src="../assets/search_1.png" />
+    </div>
+
+    <div class="auth">
+      <div class="member-link">
+        <a [routerLink]="['/login']">
+          <img src="../assets/sign_in.png" alt="" />
+          <p>Sign In</p>
+        </a>
+      </div>
+
+      <div class="member-link">
+        <a [routerLink]="['/register']">
+          <img src="../assets/sign_up.png" alt="" />
+          <p>Sign Up</p>
+        </a>
+      </div>
+
+      <div class="member-link">
+        <a [routerLink]="['/cart']">
+          <img src="../assets/cart.png" alt="" />
+          <p>Cart</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <hr class="solid" style="margin-bottom: 0px" />
+
+  <div class="flex-container" id="navbar">
+    <div class="cate-all-btn-open" (click)="display = true">
+      <span>All category</span>
+    </div>
+    <ul class="navbar-items">
+      <div style="display: flex; flex-wrap: wrap; flex-direction: row">
+        <li *ngFor="let item of navBarItemList">
+          <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>

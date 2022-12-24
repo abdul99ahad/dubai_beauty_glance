@@ -31,6 +31,7 @@ import { RouterModule } from '@angular/router';
 import { MarqueeComponent } from './components/marquee/marquee.component';
 import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ProductDescriptionComponent } from './components/product-description/pr
     MarqueeComponent,
     HamburgerMenuComponent,
     ProductDescriptionComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +87,7 @@ import { ProductDescriptionComponent } from './components/product-description/pr
     MarqueeComponent,
     HamburgerMenuComponent,
     ProductDescriptionComponent,
+    HeaderComponent,
   ],
 })
 export class SharedModule {}
