@@ -53,13 +53,14 @@ export class ProductService {
   }
 
   getProducts() {
-    return this.http
-      .get<any>('../mock/products.json')
-      .toPromise()
-      .then((res) => <Product[]>res.data)
-      .then((data) => {
-        return data;
-      });
+    // return this.http
+    //   .get<any>('../mock/products.json')
+    //   .toPromise()
+    //   .then((res) => <Product[]>res.data)
+    //   .then((data) => {
+    //     return data;
+    //   });
+    
   }
 
   getProductsWithOrdersSmall() {

@@ -1,0 +1,323 @@
+// .grid > div {
+//     height: 50px;
+//     width: 100px;
+//     border: 1px solid blueviolet;
+// }
+
+
+.box {
+    background-color: var(--surface-e);
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .box-stretched {
+    height: 100%;
+  }
+
+  .vertical-container {
+    margin: 0;
+    height: 200px;
+    background: var(--surface-d);
+    border-radius: 4px;
+  }
+
+  .nested-grid .p-col-4 {
+    padding-bottom: 1rem;
+  }
+
+.keyImg {
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.keyImg .thumbnail {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+}
+
+.infoArea {
+    // float: right;
+    width: 570px;
+    padding: 0 0;
+    background: #fff;
+    position: relative;
+}
+
+.headingArea {
+    border-bottom: 2px solid #000;
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+}
+
+.headingArea h2 {
+    color: #000;
+    font-size: 28px;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-align: left;
+    display: block;
+    width: 80%;
+}
+
+.infoArea table {
+    border: 0;
+    font-size: 12px;
+    margin: 10px 0 0;
+}
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.infoArea .xans-product-detaildesign table.prd-tb {
+    margin: 10px 0;
+}
+
+span {
+    text-align: left;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.infoArea th {
+    font-weight: normal;
+    color: #353535;
+    // width: 115px;
+    padding: 7px 0 8px 9px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.displaynone {
+    display: none;
+} 
+
+#totalProducts {
+    margin: 21px 0 0;
+}
+
+p.ec-base-help, ul.ec-base-help li {
+    margin: 2px 9px;
+    padding: 1px 0 1px 20px;
+    line-height: 1.4;
+    background: url(https://img.echosting.cafe24.com/skin/base/common/ico_info.gif) no-repeat 0 2px;
+}
+
+.txtWarn {
+    color: #f76560;
+}
+
+.txt11 {
+    font-size: 11px;
+}
+
+#totalProducts table {
+    margin: 0;
+}
+
+#totalProducts tbody td .quantity {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    vertical-align: top;
+    *margin: 0 4px 0 0;
+}
+
+#totalProducts tbody td {
+    padding: 9px 0;
+    border-top: 1px solid #ebebeb;
+    color: #353535;
+    line-height: 18px;
+    vertical-align: middle;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+#totalProducts tbody td .quantity input {
+    width: 100%;
+    // height: 100%;
+    padding: 0 2px 0 3px;
+    line-height: 23px;
+    border: 1px solid #d4d8d9;
+    border-radius: 3px 0 0 3px;
+    // margin-top: -1px;
+}
+
+#totalProducts tbody td .quantity .up {
+    position: absolute;
+    left: 28px;
+    top: 0;
+}
+
+#totalProducts tbody td .quantity .down {
+    position: absolute;
+    left: 28px;
+    top: 12px;
+}
+
+#totalProducts table .right {
+    padding-right: 9px;
+    color: #202020;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.infoArea table .prd_brand_css td span {
+    color: #ff2d47 !important;
+    font-weight: 700;
+}
+
+.infoArea .totalPrice {
+    // border-top: 1px solid #e8e8e8;
+    margin: 0;
+    // padding: 16px 0 0;
+    background: none;
+    color: #000;
+    font-size: 16px;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.infoArea .totalPrice .total {
+    color: #000;
+    font-size: 16px;
+    line-height: 1.2;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.infoArea .totalPrice .total > strong > em {
+    color: #ff2d47;
+}
+
+.infoArea .totalPrice .total > strong > em {
+    font-size: 25px;
+    font-weight: 900;
+    vertical-align: middle;
+}
+
+.totalPrice .total em {
+    font-style: normal;
+}
+
+.buynow_btn_wrap .add_cart_btn {
+    width: calc(50% - 10px);
+    line-height: 28px;
+    float: left;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    margin: 10px 0;
+}
+
+.btnBasket {
+    border: 1px solid #d1d1d1;
+    color: #000;
+    background: #fff;
+}
+
+.btnNormal {
+    font-size: 18px;
+    font-weight: 100 !important;
+    height: 57px;
+    text-align: center;
+}
+
+.sizeL {
+    padding: 14px 16px;
+    min-width: 80px;
+    font-weight: bold;
+}   
+
+a:hover {
+    background-color: #eeeeee
+}
+
+.btnWish {
+    width: 30%;
+    border: 1px solid #d1d1d1;
+    color: #000;
+    background: #fff;
+    margin: 10px !important;
+}
+
+:host ::ng-deep p-toggleButton{
+    div {
+        padding: 0 ;
+        margin: 5px !important;
+        margin-left:0 !important;
+    }
+    div span {
+        font-weight: 100;
+        font-size: 14px;
+        padding:5px;
+    }
+
+    .p-togglebutton.p-button.p-highlight:hover {
+        background: #ff2e47;
+        border-color: #ff2e47;
+        color: #ffffff;
+    }
+
+    .p-togglebutton.p-button.p-highlight:focus {
+        box-shadow: 0;
+    }
+
+    .p-togglebutton.p-button.p-highlight {
+        background: #ff2e47;
+        border-color: #ff2e47;
+        color: #ffffff;
+    }
+
+    .p-button:focus {
+        box-shadow: none;
+        //box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ff94a0, 0 1px 2px 0 black;
+    }
+
+    // .p-togglebutton.p-button.p-highlight {
+    //     /* background: #3B82F6; */
+    //     /* border-color: #3B82F6; */
+    //     background: none !important;
+    //     color: #ffffff;
+    // }
+}
+
+.display-none {
+    display: none;
+}
+
+.gifts-img {
+    animation: beat 2s infinite;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: beat;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.custom_features_image {
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+}

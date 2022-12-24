@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SidebarModule } from 'primeng/sidebar';
+import { DialogModule } from 'primeng/dialog';
 
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
@@ -29,6 +30,7 @@ import { SimpleButtonComponent } from './components/simple-button/simple-button.
 import { RouterModule } from '@angular/router';
 import { MarqueeComponent } from './components/marquee/marquee.component';
 import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
+import { ProductDescriptionComponent } from './components/product-description/product-description.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
     SimpleButtonComponent,
     MarqueeComponent,
     HamburgerMenuComponent,
+    ProductDescriptionComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +60,8 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
     NgMarqueeModule,
     ToggleButtonModule,
     SidebarModule,
+    DialogModule,
+    DividerModule,
   ],
   exports: [
     InputTextModule,
@@ -68,6 +73,7 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
     NgMarqueeModule,
     ToggleButtonModule,
     SidebarModule,
+    DialogModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
@@ -78,6 +84,7 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
     CartListComponent,
     MarqueeComponent,
     HamburgerMenuComponent,
+    ProductDescriptionComponent,
   ],
 })
 export class SharedModule {}

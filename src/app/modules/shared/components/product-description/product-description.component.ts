@@ -1,11 +1,11 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+  selector: 'app-product-description',
+  templateUrl: './product-description.component.html',
+  styleUrls: ['./product-description.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductDescriptionComponent implements OnInit {
   @Input() productTitle: string =
     'Beauty of joseon Relief Sun Rice Probiotics 50ml'; //TODO:
   @Input() brand: string = 'The History of WHOO';
@@ -45,6 +45,7 @@ export class ProductComponent implements OnInit {
 
   @HostListener('mousewheel', ['$event'])
   onMousewheel(event: any) {
+    if (this.display) return;
     this.display = true;
   }
 
