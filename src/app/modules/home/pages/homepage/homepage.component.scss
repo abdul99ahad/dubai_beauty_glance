@@ -270,6 +270,10 @@ li {
     display: flex;
 }
 
+.promotion-flex {
+    justify-content: flex-start !important;
+}
+
 .flex-products {
     display: flex; 
     flex-wrap: wrap;
@@ -367,6 +371,10 @@ li {
     }
     .main-quick-menu .main-quick-list {
         justify-content:flex-start;
+    }
+
+    .promotion-flex {
+        justify-content:  space-around !important;
     }
     
     }
