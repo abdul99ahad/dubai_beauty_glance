@@ -8,11 +8,20 @@
 
 .main-inner {
     position: relative;
-    max-width: 1260px;
-    min-width: 1260px;
+    // max-width: 1260px;
+    // min-width: 1260px;
     width: 100%;
     padding: 0 0;
     margin: 0 auto;
+}
+
+.flex-products {
+    display: flex; 
+    flex-wrap: wrap;
+    // border: 1px solid silver;
+    margin:0;
+    padding: 0;
+    justify-content: flex-start;
 }
 
 .main-timedeal .title {
@@ -39,5 +48,18 @@
 .top-bar {
     display: flex;
     flex-direction: row;
-    
 }
+
+@media (max-width: 800px) {
+    .top-bar {
+      flex-direction: column;
+    }
+
+    span {
+        text-align: center;
+    }
+
+    .flex-products {
+        justify-content: space-around;
+    }
+  }
