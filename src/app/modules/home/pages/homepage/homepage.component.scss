@@ -118,7 +118,7 @@ ul#navbar li {
     text-align: left;
 }
 .title h2 {
-    text-align: left;
+    text-align: center;
 }
 
 .main-quick-menu .title h2::after {
@@ -262,7 +262,7 @@ li {
     background: #f1f1f1;
     margin-top: 60px;
     position: relative;
-    height: 600px;
+    // height: 600px;
 }
 
 .brandsale-card {
@@ -270,6 +270,18 @@ li {
     display: flex;
 }
 
+.flex-products {
+    display: flex; 
+    flex-wrap: wrap;
+    // border: 1px solid silver;
+    margin:0;
+    padding: 0;
+    justify-content: space-around;
+}
+
+.flex-products app-product-card {
+    // flex: 0 0 33.333333%;
+}
 .main-bn-slide2 {
     padding: 42px 0 45px;
     background: #f1f1f1;
