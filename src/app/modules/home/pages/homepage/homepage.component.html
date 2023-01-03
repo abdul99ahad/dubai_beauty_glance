@@ -1,4 +1,4 @@
-<div style="height: 540px">
+<div>
   <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
   <p-carousel
     [value]="bannerImagesCarousel"
@@ -15,10 +15,11 @@
     <span class="next">Next</span>
   </div>
 </div>
+
 <div class="main-inner">
-  <div class="main-quick-menu">
-    <div class="title">
-      <h2>
+  <div class="main-quick-menu flex-container">
+    <div class="title mbl-disable">
+      <h2 style="text-align: left !important">
         QUICK <br />
         CATEGORY
       </h2>
@@ -85,7 +86,7 @@
       <h2>BEST</h2>
       <p>BEST ITEMS OF MONTH</p>
     </div>
-    <div style="display: flex; flex-wrap: wrap">
+    <div class="flex-products">
       <app-product-card
         *ngFor="let product of productsDisplay"
         [title]="product.title"
@@ -98,13 +99,13 @@
   </div>
 </div>
 
-<div class="main-box2">
-  <div class="main-bn-slide2">
+<div style="padding: 3rem 0">
+  <div class="">
     <div class="title">
       <h2>BRAND SALE</h2>
       <a href=""> GO TO PROMOTION </a>
     </div>
-    <div class="brandsale-card">
+    <div class="brandsale-card flex-products promotion-flex">
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
@@ -120,9 +121,8 @@
   <div class="main-inner">
     <div class="title">
       <h2>NEW ARRIVALS</h2>
-      <!-- <p>BEST ITEMS OF MONTH</p> -->
     </div>
-    <div style="display: flex; flex-wrap: wrap">
+    <div class="flex-products">
       <app-product-card
         *ngFor="let product of latestProductsDisplay"
         [title]="product.title"

@@ -7,9 +7,9 @@
 }
 
 #footer .footer-inner {
-    position: relative;
-    max-width: 1260px;
-    min-width: 1260px;
+    // position: relative;
+    max-width: 100%;
+    min-width: 100%;
     width: 100%;
     padding: 0 0;
     margin: 0 auto;
@@ -19,7 +19,7 @@
     -webkit-box-sizing: border-box;
 }
 
-.footer-top .footer-inner .footer-link {
+.footer-top .footer-inner  {
     position: relative;
     width: 100%;
 }
@@ -33,26 +33,27 @@
 
 
 
-ul#navbar {
-    display:inline;
-    /* Any other CSS you want */
-}
-ul#navbar li {
-    display:inline;
-}
+// ul#navbar {
+//     display:inline;
+//     /* Any other CSS you want */
+// }
+// ul#navbar li {
+//     display:inline;
+// }
 
 .navbar-items {
-    line-height: 48px;
+    // line-height: 48px;
+    flex-direction: row;
     color: #000;
     font-size: 15px;
     font-weight: 500;
 }
 
  .navbar-items > li {
-    display: inline-block;
+    // display: inline-block;
     vertical-align: top;
-    position: relative;
-    margin: 0 30px;
+    // position: relative;
+    // margin: 0 30px;
     font-weight: 500;
 }
 
@@ -64,34 +65,14 @@ a, a:hover {
     text-decoration: none;
 }
 
-.footer-link{
-    display: flex;
-    justify-content: space-between
+#footer .footer-area {
+    padding: 2rem;
+    
 }
-.footer-inner .footer-link .sns li.fb a {
-    background-position: 8px 50%;
-}
-
-.footer-inner .footer-link .sns li.insta a {
-    background-position: -30px 50%;
-}
-
-.footer-inner .footer-link .sns li.ytb a {
-    width: 36px;
-    background-position: -72px 50%;
-}
-
-.footer-inner .footer-link .sns li a {
-    display: block;
-    width: 30px;
-    text-indent: -9999px;
-    background: url(../../../../assets/sp_sns.png) no-repeat;
-}
-
 #footer .footer-area, #footer .footer-bottom {
     background: #000;
     color: #fff;
-    padding: 30px 0 0;
+    padding: 30px 0.5rem 1rem;
     border-top: 1px solid #cbcaca;
 }
 
@@ -114,22 +95,39 @@ li {
 }
 
 #footer .footer-pg {
+    display: flex;
+    flex-direction: row;
     padding: 30px 0 13px;
 }
 
 #footer .footer-pg li {
-    display: inline-block;
+    // display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
 }
 
 #footer .app-down {
-    position: absolute;
-    bottom: 15px;
-    right: 0;
+    // position: absolute;
+    // bottom: 15px;
+    // right: 0;
 }
 
 #footer .app-down li {
     display: inline-block;
     vertical-align: middle;
 }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.m-15 {
+    margin:15px;
+}
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+    .flex-container {
+      flex-direction: column;
+    }
+  }
