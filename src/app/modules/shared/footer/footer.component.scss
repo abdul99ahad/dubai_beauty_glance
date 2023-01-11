@@ -66,7 +66,7 @@ a, a:hover {
 }
 
 #footer .footer-area {
-    padding: 2rem;
+    padding: 2rem 10% !important; 
     
 }
 #footer .footer-area, #footer .footer-bottom {
@@ -125,9 +125,24 @@ li {
 .m-15 {
     margin:15px;
 }
+
+.footer-top-bar {
+    justify-content: space-between;
+    margin: 0 10% !important;
+}
+.logo {
+    width: 200px;
+    margin: 0 -30px;
+}
 /* Responsive layout - makes a one column-layout instead of two-column layout */
 @media (max-width: 800px) {
     .flex-container {
       flex-direction: column;
+    }
+    .footer-top-bar {
+        margin: 0 !important;
+    }
+    .footer-top-bar {
+        padding: 0 !important;
     }
   }
