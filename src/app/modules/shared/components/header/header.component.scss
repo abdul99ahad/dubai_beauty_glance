@@ -176,6 +176,18 @@ li {
   .m-15 {
       margin:15px;
   }
+
+.recently-viewed {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.recently-viewed-container {
+    display: flex;
+    justify-content: end;
+    flex:1;
+    line-height: 48px;
+}
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
       .flex-container {

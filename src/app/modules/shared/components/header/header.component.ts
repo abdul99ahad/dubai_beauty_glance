@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,16 @@ export class HeaderComponent implements OnInit {
     { page: 'COUPON', url: 'products' },
   ];
 
+  recentlyViewedItems: MenuItem[];
   display: boolean = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.recentlyViewedItems = [
+      { label: 'Item 1', icon: 'pi pi-fw pi-plus' },
+      { label: 'Item 2', icon: 'pi pi-fw pi-download' },
+      { label: 'Item 3', icon: 'pi pi-fw pi-refresh' },
+    ];
+  }
 }

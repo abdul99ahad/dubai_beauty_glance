@@ -12,7 +12,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
-
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
 
@@ -64,6 +65,7 @@ import { HeaderComponent } from './components/header/header.component';
     SidebarModule,
     DialogModule,
     DividerModule,
+    MenuModule,
   ],
   exports: [
     InputTextModule,
@@ -76,6 +78,7 @@ import { HeaderComponent } from './components/header/header.component';
     ToggleButtonModule,
     SidebarModule,
     DialogModule,
+    MenuModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,

@@ -53,6 +53,16 @@
         </li>
       </div>
     </ul>
+    <div class="recently-viewed-container">
+      <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
+      <a class="recently-viewed" (click)="menu.toggle($event)"
+        >Recently Viewed <i class="pi pi-angle-down"></i
+      ></a>
+
+      <!-- <button type="button" icon="pi pi-list" (click)="menu.toggle($event)">
+        RECENTLY VIEWED
+      </button> -->
+    </div>
   </div>
 </div>
 
