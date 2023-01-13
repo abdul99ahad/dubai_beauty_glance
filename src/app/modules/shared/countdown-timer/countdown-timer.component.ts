@@ -11,7 +11,7 @@ export class CountdownTimerComponent implements OnInit {
   ngOnInit(): void {}
   date: any;
   now: any;
-  targetDate: any = new Date(2022, 12, 1);
+  targetDate: any = new Date(2023, 2, 1);
   targetTime: any = this.targetDate.getTime();
   difference: number = 0;
   months: Array<string> = [

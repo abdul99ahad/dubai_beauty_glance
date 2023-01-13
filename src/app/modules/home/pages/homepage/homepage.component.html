@@ -80,21 +80,38 @@
   </div>
 </div>
 
-<div class="main-box3">
+<div class="main-box3 mbl-disable">
   <div class="main-inner">
     <div class="title">
       <h2>BEST</h2>
       <p>BEST ITEMS OF MONTH</p>
     </div>
     <div class="flex-products">
-      <app-product-card
+      <!-- <app-product-card
         *ngFor="let product of productsDisplay"
         [title]="product.title"
         [description]="product.description"
         [price]="product.price"
         [discountedPrice]="product.discountedPrice"
         [imgSrc]="product.imgSrc"
-      ></app-product-card>
+      ></app-product-card> -->
+      <p-carousel
+        [value]="productsDisplay"
+        [numVisible]="5"
+        [responsiveOptions]="responsiveOptions"
+        [autoplayInterval]="3000"
+        [showIndicators]="false"
+      >
+        <ng-template let-product pTemplate="item">
+          <app-product-card
+            [title]="product.title"
+            [description]="product.description"
+            [price]="product.price"
+            [discountedPrice]="product.discountedPrice"
+            [imgSrc]="product.imgSrc"
+          ></app-product-card>
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
 </div>
@@ -106,7 +123,6 @@
       <a href=""> GO TO PROMOTION </a>
     </div>
     <div class="brandsale-card flex-products promotion-flex">
-      <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
@@ -124,6 +140,7 @@
     </div>
     <div class="flex-products">
       <app-product-card
+        style="width: 20em"
         *ngFor="let product of latestProductsDisplay"
         [title]="product.title"
         [description]="product.description"

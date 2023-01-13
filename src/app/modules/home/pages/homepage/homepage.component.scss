@@ -279,8 +279,8 @@ li {
     flex-wrap: wrap;
     // border: 1px solid silver;
     margin:0;
-    padding: 0;
-    justify-content: space-around;
+    padding: 0 10%;
+    justify-content: flex-start;
 }
 
 .flex-products app-product-card {
@@ -375,6 +375,11 @@ li {
 
     .promotion-flex {
         justify-content:  space-around !important;
+    }
+
+    .flex-products {
+        justify-content: space-around;
+        padding: 0;
     }
     
     }

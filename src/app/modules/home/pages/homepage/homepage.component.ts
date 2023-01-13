@@ -9,6 +9,20 @@ export class HomepageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  responsiveOptions = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 2,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
 
   imageObject: Array<object> = [
     {
@@ -99,6 +113,44 @@ export class HomepageComponent implements OnInit {
       discountedPrice: '18,000',
       imgSrc: '../../../../../assets/product_1.jpg',
     },
+    {
+      title: 'MISSHA',
+      description:
+        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
+      price: '22,000',
+      discountedPrice: '18,000',
+      imgSrc: '../../../../../assets/product_1.jpg',
+    },
+    {
+      title: 'COSRX',
+      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
+      price: '10,000',
+      discountedPrice: '8,000',
+      imgSrc: '../../../../../assets/product.jpg',
+    },
+    {
+      title: 'MISSHA',
+      description:
+        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
+      price: '22,000',
+      discountedPrice: '18,000',
+      imgSrc: '../../../../../assets/product_1.jpg',
+    },
+    {
+      title: 'COSRX',
+      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
+      price: '10,000',
+      discountedPrice: '8,000',
+      imgSrc: '../../../../../assets/product.jpg',
+    },
+    // {
+    //   title: 'MISSHA',
+    //   description:
+    //     'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
+    //   price: '22,000',
+    //   discountedPrice: '18,000',
+    //   imgSrc: '../../../../../assets/product_1.jpg',
+    // },
   ];
 
   latestProductsDisplay: any = [
