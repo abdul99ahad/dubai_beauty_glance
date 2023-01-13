@@ -9,6 +9,7 @@
     border: 1px solid #ececec;
     // position: relative;
     display: inline-block;
+    position: relative;
 }
 
 .thumbnail .prdImage > a > img {
@@ -84,4 +85,31 @@
     font-weight:bold;
     line-height: 1.25;
     margin: 2px 0px;
+}
+
+.prdImage:hover img {
+    opacity: 0.3;
+}
+
+.prdImage:hover .middle {
+    opacity: 0.6;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    top:50%;
+    left:20%;
+    cursor: pointer;
+}
+
+.middle i {
+    margin: 0 10px;
+    font-size: 2rem;
 }
