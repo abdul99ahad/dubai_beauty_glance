@@ -45,7 +45,12 @@ export class ProductComponent implements OnInit {
 
   @HostListener('mousewheel', ['$event'])
   onMousewheel(event: any) {
-    this.display = true;
+    // this.display = true;
+    if (event.pageY > event.view.outerHeight * 1.5) {
+      this.display = true;
+    } else {
+      this.display = false;
+    }
   }
 
   quantityUp(): void {
