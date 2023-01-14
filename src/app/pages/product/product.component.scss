@@ -257,6 +257,12 @@ a:hover {
     margin: 10px !important;
 }
 
+:host ::ng-deep p-dialog{
+    .p-dialog {
+        opacity: 0.9;
+    }
+}
+
 :host ::ng-deep p-toggleButton{
     div {
         padding: 0 ;
