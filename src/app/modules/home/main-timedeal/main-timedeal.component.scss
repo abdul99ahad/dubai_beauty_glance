@@ -50,6 +50,33 @@
     flex-direction: row;
 }
 
+
+.main-prd3 .main-timedeal-more {
+    margin-top: 20px;
+}
+.main-prd3 .main-timedeal-more {
+    width: 333px;
+    height: 60px;
+    margin: 0 auto;
+    margin-top: 3%;
+    background: url(https://jolse.com/_dbook/img/main_timedeal_more_bg.jpg);
+    border-radius: 30px;
+}
+
+.main-prd3 .main-timedeal-more:hover {
+    cursor: pointer;
+}
+
+.main-prd3 .main-timedeal-more a {
+    display: block;
+    line-height: 60px;
+    padding-left: 40px;
+    color: #fff;
+    // background: url(https://jolse.com/_dbook/img/main_timedeal_more.png);
+    font-size: 24px;
+    font-weight: 700;
+}
+
 @media (max-width: 800px) {
     .top-bar {
       flex-direction: column;
