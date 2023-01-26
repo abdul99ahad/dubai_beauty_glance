@@ -362,6 +362,23 @@ li {
   .w-20 {
     width: 20%;
   }
+
+  .no-flex {
+    display: block;
+  }
+
+.main-prd-tit h3 {
+    display: inline-block;
+    margin-right: 5px;
+    color: #000;
+    font-size: 32px;
+    font-weight: 700;
+}
+.main-prd-tit span {
+    display: inline-block;
+    color: #888;
+    font-size: 16px;
+}
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
       .flex-container {
@@ -401,6 +418,10 @@ li {
 
       .main-banner {
         height: 100%;
+    }
+
+    .main-prd-tit {
+        margin: 0 auto;
     }
     
     }

@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="description">
+    <div class="description" *ngIf="showDetails">
       <span class="prd-brand">{{ title }}</span>
       <strong class="name">
         <a [routerLink]="['product']">
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div id="div2">
+  <div id="div2" *ngIf="showDetails">
     <div class="solid"></div>
 
     <div style="text-align: center; margin: 5px 0px 0px 0px">

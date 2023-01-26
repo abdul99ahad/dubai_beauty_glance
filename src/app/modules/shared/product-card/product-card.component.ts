@@ -12,6 +12,7 @@ export class ProductCardComponent implements OnInit {
   @Input('discountedPrice') discountedPrice: string = '';
   @Input('imgSrc') imgSrc: string = '';
   @Input('defaultCurrencyCode') defaultCurrencyCode: string = 'PKR';
+  @Input('showDetails') showDetails: boolean = true;
   constructor() {}
 
   ngOnInit(): void {}

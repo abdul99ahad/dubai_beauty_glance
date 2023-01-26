@@ -93,7 +93,7 @@
       <h2>BEST</h2>
       <p>BEST ITEMS OF MONTH</p>
     </div>
-    <div class="flex-products div-center-m5">
+    <div class="flex-products div-center-m5 no-flex">
       <!-- <app-product-card
         *ngFor="let product of productsDisplay"
         [title]="product.title"
@@ -180,5 +180,44 @@
         style="width: 100%"
       />
     </a>
+  </div>
+</div>
+
+<div class="main-box3">
+  <div class="main-inner">
+    <div class="title">
+      <h2>BEST BRAND</h2>
+    </div>
+    <div class="flex-container div-center-m5">
+      <div style="width: 40%" class="mbl-disable">
+        <img
+          style="height: 100%"
+          src="https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg"
+        />
+      </div>
+      <div style="margin: 0 2%; width: 60%">
+        <div class="main-prd-tit">
+          <h3>BEST ITEM</h3>
+          <span>Click on a product to see more details.</span>
+        </div>
+        <div>
+          <p-carousel
+            [value]="productsDisplay"
+            [numVisible]="3"
+            [responsiveOptions]="responsiveOptions"
+            [autoplayInterval]="3000"
+            [showIndicators]="false"
+            [showNavigators]="false"
+          >
+            <ng-template let-product pTemplate="item">
+              <app-product-card
+                [imgSrc]="product.imgSrc"
+                [showDetails]="false"
+              ></app-product-card>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
