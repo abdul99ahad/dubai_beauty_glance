@@ -7,13 +7,18 @@
     [showNavigators]="false"
   >
     <ng-template let-banner pTemplate="item">
-      <img src="{{ banner.image }}" alt="banner image" width="100%" />
+      <img
+        class="main-banner"
+        src="{{ banner.image }}"
+        alt="banner image"
+        width="100%"
+      />
     </ng-template>
   </p-carousel>
-  <div class="controls">
+  <!-- <div class="controls">
     <span class="prev">Prev</span>
     <span class="next">Next</span>
-  </div>
+  </div> -->
 </div>
 
 <div class="main-inner">
@@ -71,6 +76,8 @@
         [value]="eventBannerCarousel"
         [autoplayInterval]="2500"
         [circular]="true"
+        [numVisible]="3"
+        [numScroll]="1"
       >
         <ng-template let-banner pTemplate="item">
           <img src="{{ banner.image }}" alt="banner image" />
