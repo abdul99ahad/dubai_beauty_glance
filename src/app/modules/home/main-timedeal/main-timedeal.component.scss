@@ -77,6 +77,10 @@
     font-weight: 700;
 }
 
+.w-20 {
+    width: 20%;
+  }
+
 @media (max-width: 800px) {
     .top-bar {
       flex-direction: column;
@@ -89,4 +93,8 @@
     .flex-products {
         justify-content: space-around;
     }
+
+    .w-20 {
+        width: 80%;
+      }
   }

@@ -359,6 +359,9 @@ li {
   .m-15 {
       margin:15px;
   }
+  .w-20 {
+    width: 20%;
+  }
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
       .flex-container {
@@ -386,6 +389,18 @@ li {
     .flex-products {
         justify-content: space-around;
         padding: 0;
+    }
+
+    .div-center-m5 {
+        margin:0;
+    }
+
+    .w-20 {
+        width: 80%;
+      }
+
+      .main-banner {
+        height: 100%;
     }
     
     }
