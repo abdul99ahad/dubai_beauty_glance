@@ -278,9 +278,12 @@ li {
     display: flex; 
     flex-wrap: wrap;
     // border: 1px solid silver;
-    margin:0;
-    padding: 0 10%;
+    // padding: 0 10%;
     justify-content: flex-start;
+}
+
+.div-center-m5 {
+    margin:0 10%;
 }
 
 .flex-products app-product-card {
