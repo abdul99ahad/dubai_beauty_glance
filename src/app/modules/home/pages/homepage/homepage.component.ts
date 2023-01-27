@@ -9,6 +9,16 @@ export class HomepageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  brandSaleImgs: string[] = [
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+  ];
+
   responsiveOptions = [
     {
       breakpoint: '1024px',
@@ -21,6 +31,7 @@ export class HomepageComponent implements OnInit {
     {
       breakpoint: '560px',
       numVisible: 1,
+      numScroll: 1,
     },
   ];
 

@@ -130,10 +130,20 @@
       <a href=""> GO TO PROMOTION </a>
     </div>
     <div class="brandsale-card flex-products promotion-flex">
+      <p-carousel
+        [value]="brandSaleImgs"
+        [numVisible]="5"
+        [responsiveOptions]="responsiveOptions"
+        [showIndicators]="false"
+      >
+        <ng-template let-product pTemplate="item">
+          <app-brandsale-card [imgSrc]="product"></app-brandsale-card>
+        </ng-template>
+      </p-carousel>
+      <!-- <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
+      <app-brandsale-card></app-brandsale-card> -->
     </div>
   </div>
 </div>
