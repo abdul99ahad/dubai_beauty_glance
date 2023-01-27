@@ -78,9 +78,15 @@
         [circular]="true"
         [numVisible]="3"
         [numScroll]="1"
+        [showIndicators]="false"
+        [showNavigators]="false"
       >
         <ng-template let-banner pTemplate="item">
-          <img src="{{ banner.image }}" alt="banner image" />
+          <img
+            src="{{ banner.image }}"
+            alt="banner image"
+            style="margin: 10px"
+          />
         </ng-template>
       </p-carousel>
     </div>
