@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  expandedState: boolean = false;
   navBarItemList: any = [
     { page: 'NEW', url: 'products' },
     { page: 'BEST', url: 'products' },
@@ -15,6 +16,22 @@ export class HeaderComponent implements OnInit {
     { page: 'BRAND', url: 'products' },
     { page: 'COUPON', url: 'products' },
   ];
+
+  navBarItemListMobile: any = [
+    { page: 'NEW', url: 'products' },
+    { page: 'BEST', url: 'products' },
+    { page: 'TIME DEAL', url: 'products' },
+    { page: 'PROMOTIONS', url: 'promotions' },
+  ];
+
+  navBarMobileListViewToggle(): void {
+    if (this.expandedState) {
+      this.navBarItemListMobile = this.navBarItemListMobile.slice(0, 4);
+    } else {
+      this.navBarItemListMobile = this.navBarItemList;
+    }
+    this.expandedState = !this.expandedState;
+  }
 
   recentlyViewedItems: MenuItem[];
   display: boolean = false;

@@ -2,7 +2,7 @@
   <div class="promotion-area">
     <app-marquee></app-marquee>
   </div>
-  <div class="top-area flex-container">
+  <div class="top-area flex-container mbl-disable">
     <div class="logo-area">
       <a [routerLink]="['/']">
         <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
@@ -37,9 +37,70 @@
       </div>
     </div>
   </div>
+
+  <!--Mobile View-->
+  <div class="top-area flex-container web-disable">
+    <div class="logo-area w-100 flex">
+      <i
+        class="pi pi-align-justify"
+        (click)="display = true"
+        style="font-size: 1.2rem; line-height: 2; width: 30%"
+      ></i>
+      <a [routerLink]="['/']" style="width: 50%">
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
+      </a>
+
+      <div class="flex">
+        <div class="member-link">
+          <a [routerLink]="['/cart']">
+            <img
+              src="../assets/cart.png"
+              alt=""
+              class="w-50"
+              style="padding-top: 15%"
+            />
+          </a>
+        </div>
+
+        <div class="member-link">
+          <a [routerLink]="['/login']">
+            <img
+              src="../assets/sign_up.png"
+              alt=""
+              class="w-50"
+              style="padding-top: 15%"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="top-search">
+      <div class="xans-element- xans-search xans-search-form top-search-wrap">
+        <div>
+          <legend></legend>
+          <input
+            id="keyword"
+            name="keyword"
+            fw-msg=""
+            class="inputTypeText"
+            placeholder=""
+            size="15"
+            value=""
+            type="text"
+          /><button type="submit">
+            <img
+              src="	https://m.jolse.com/_dbook/img/top_search_ico.png"
+              alt=""
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
+<div class="mbl-disable-block">
   <hr class="solid" style="margin-bottom: 0px" />
 
   <div class="flex-container" id="navbar">
@@ -63,6 +124,24 @@
         RECENTLY VIEWED
       </button> -->
     </div>
+  </div>
+</div>
+
+<!--Mobile View-->
+<div class="web-disable">
+  <div class="flex-container" id="navbar">
+    <ul class="navbar-items flex">
+      <div style="display: flex; flex-wrap: wrap; flex-direction: row">
+        <li *ngFor="let item of navBarItemListMobile">
+          <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
+        </li>
+      </div>
+      <i
+        class="pi pi-angle-down"
+        style="line-height: 1.6"
+        (click)="navBarMobileListViewToggle()"
+      ></i>
+    </ul>
   </div>
 </div>
 
