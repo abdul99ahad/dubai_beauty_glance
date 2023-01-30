@@ -1,7 +1,7 @@
-<div>
+<div class="mbl-disable">
   <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
   <p-carousel
-    [value]="bannerImagesCarousel"
+    [value]="eventBannerCarousel"
     [autoplayInterval]="3000"
     [circular]="true"
     [showNavigators]="false"
@@ -15,10 +15,25 @@
       />
     </ng-template>
   </p-carousel>
-  <!-- <div class="controls">
-    <span class="prev">Prev</span>
-    <span class="next">Next</span>
-  </div> -->
+</div>
+<!--Mobile View-->
+<div class="web-disable">
+  <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
+  <p-carousel
+    [value]="eventBannerCarouselMobile"
+    [autoplayInterval]="3000"
+    [circular]="true"
+    [showNavigators]="false"
+  >
+    <ng-template let-banner pTemplate="item">
+      <img
+        class="main-banner"
+        src="{{ banner.image }}"
+        alt="banner image"
+        width="100%"
+      />
+    </ng-template>
+  </p-carousel>
 </div>
 
 <div class="main-inner">

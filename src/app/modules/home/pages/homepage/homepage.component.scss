@@ -379,14 +379,33 @@ li {
     color: #888;
     font-size: 16px;
 }
+
+.web-disable {
+    display: none;
+}
+
+.mbl-disable {
+    display: flex;
+}
+
+.mbl-disable-block {
+    display: block;
+}
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
+
+    .mbl-disable {
+        display: none;
+    }
+
+    .mbl-disable-block {
+        display: none;
+    }
+    .web-disable {
+        display:flex
+    }
       .flex-container {
         flex-direction: column;
-      }
-
-      .mbl-disable {
-        display: none;
       }
       .main-quick-menu .main-quick-list li {
         display: inline-block;

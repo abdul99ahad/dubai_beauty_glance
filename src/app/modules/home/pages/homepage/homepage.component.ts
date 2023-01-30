@@ -70,6 +70,18 @@ export class HomepageComponent implements OnInit {
     },
   ];
 
+  eventBannerCarouselMobile: Array<object> = [
+    {
+      image:
+        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg',
+      title: 'Event Banner 1',
+    },
+    {
+      image:
+        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg',
+      title: 'Event Banner 1',
+    },
+  ];
   eventBannerCarousel: Array<object> = [
     {
       image:
