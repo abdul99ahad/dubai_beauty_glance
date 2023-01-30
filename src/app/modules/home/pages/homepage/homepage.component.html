@@ -1,4 +1,4 @@
-<div class="mbl-disable">
+<div class="web-view">
   <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
   <p-carousel
     [value]="eventBannerCarousel"
@@ -17,7 +17,7 @@
   </p-carousel>
 </div>
 <!--Mobile View-->
-<div class="web-disable">
+<div class="mobile-view">
   <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
   <p-carousel
     [value]="eventBannerCarouselMobile"
@@ -36,7 +36,7 @@
   </p-carousel>
 </div>
 
-<div class="main-inner">
+<div class="main-inner web-view">
   <div class="main-quick-menu flex-container">
     <div class="title mbl-disable">
       <h2 style="text-align: left !important">
@@ -44,6 +44,46 @@
         CATEGORY
       </h2>
       <p>Find products quickly by category selection</p>
+    </div>
+    <ul class="main-quick-list">
+      <li class="main-quick-skin">
+        <a href="">
+          <span></span>
+          <p>SKINCARE</p>
+        </a>
+      </li>
+      <li class="main-quick-makeup">
+        <a href="">
+          <span></span>
+          <p>MAKEUP</p>
+        </a>
+      </li>
+      <li class="main-quick-hair">
+        <a href="">
+          <span></span>
+          <p>HAIR & BODY</p>
+        </a>
+      </li>
+      <li class="main-quick-mask">
+        <a href="">
+          <span></span>
+          <p>MASK TRIAL KIT</p>
+        </a>
+      </li>
+      <li class="main-quick-devices">
+        <a href="">
+          <span></span>
+          <p>DEVICES & TOOLS</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="main-inner mobile-view">
+  <div class="main-quick-menu flex-container">
+    <div class="title mbl-disable">
+      <h2>QUICK CATEGORY</h2>
     </div>
     <ul class="main-quick-list">
       <li class="main-quick-skin">
