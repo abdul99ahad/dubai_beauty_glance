@@ -81,7 +81,37 @@
     width: 20%;
   }
 
+  .mobile-view {
+    display: none;
+}
+
+.mobile-view-block {
+    display: none;
+}
+
+.web-view {
+    display: flex;
+}
+
+.web-view-block {
+    display: block;
+}
+  /* Responsive layout - makes a one column-layout instead of two-column layout */
 @media (max-width: 800px) {
+    .web-view {
+        display: none;
+    }
+
+    .mobile-view-block {
+        display: block;
+    }
+
+    .web-view-block {
+        display: none;
+    }
+    .mobile-view {
+        display:flex
+    }
     .top-bar {
       flex-direction: column;
     }
@@ -96,5 +126,9 @@
 
     .w-20 {
         width: 80%;
+      }
+
+      .flex-products > #time-deal-products {
+        flex: 50%
       }
   }

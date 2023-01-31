@@ -164,11 +164,32 @@
         [imgSrc]="product.imgSrc"
       ></app-product-card> -->
       <p-carousel
+        class="web-view"
         [value]="productsDisplay"
         [numVisible]="5"
         [responsiveOptions]="responsiveOptions"
         [autoplayInterval]="3000"
         [showIndicators]="false"
+      >
+        <ng-template let-product pTemplate="item">
+          <app-product-card
+            [title]="product.title"
+            [description]="product.description"
+            [price]="product.price"
+            [discountedPrice]="product.discountedPrice"
+            [imgSrc]="product.imgSrc"
+          ></app-product-card>
+        </ng-template>
+      </p-carousel>
+
+      <p-carousel
+        class="mobile-view-block"
+        [value]="productsDisplay"
+        [numVisible]="5"
+        [responsiveOptions]="responsiveOptions"
+        [autoplayInterval]="3000"
+        [showIndicators]="false"
+        [showNavigators]="false"
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
@@ -216,9 +237,21 @@
     <div class="title">
       <h2>NEW ARRIVALS</h2>
     </div>
-    <div class="flex-products div-center-m5">
+    <div class="flex-products div-center-m5 web-view">
       <app-product-card
         class="w-20"
+        *ngFor="let product of latestProductsDisplay"
+        [title]="product.title"
+        [description]="product.description"
+        [price]="product.price"
+        [discountedPrice]="product.discountedPrice"
+        [imgSrc]="product.imgSrc"
+      ></app-product-card>
+    </div>
+
+    <div class="flex-products div-center-m5 mobile-view">
+      <app-product-card
+        id="new-arrivals"
         *ngFor="let product of latestProductsDisplay"
         [title]="product.title"
         [description]="product.description"
@@ -254,7 +287,7 @@
   </div>
 </div>
 
-<div class="main-box3">
+<div class="main-box3 web-view">
   <div class="main-inner">
     <div class="title">
       <h2>BEST BRAND</h2>
@@ -284,6 +317,51 @@
               <app-product-card
                 [imgSrc]="product.imgSrc"
                 [showDetails]="false"
+              ></app-product-card>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-box3 mobile-view">
+  <div class="main-inner">
+    <div class="title">
+      <h2>BEST BRAND</h2>
+    </div>
+    <div class="flex-container div-center-m5">
+      <div style="margin: 5%">
+        <img
+          style="height: 100%"
+          src="https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg"
+        />
+      </div>
+      <div style="margin: 0 2%">
+        <div class="main-prd-tit">
+          <h3 style="font-size: 20px">BEST ITEM</h3>
+          <span style="font-size: 16px"
+            >Click on a product to see more details.</span
+          >
+        </div>
+        <div>
+          <p-carousel
+            [value]="productsDisplay"
+            [numVisible]="1"
+            [responsiveOptions]="responsiveOptions"
+            [autoplayInterval]="3000"
+            [showIndicators]="false"
+            [showNavigators]="false"
+          >
+            <ng-template let-product pTemplate="item">
+              <app-product-card
+                *ngFor="let product of latestProductsDisplay"
+                [title]="product.title"
+                [description]="product.description"
+                [price]="product.price"
+                [discountedPrice]="product.discountedPrice"
+                [imgSrc]="product.imgSrc"
               ></app-product-card>
             </ng-template>
           </p-carousel>

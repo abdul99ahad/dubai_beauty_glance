@@ -30,7 +30,7 @@ export class HomepageComponent implements OnInit {
     },
     {
       breakpoint: '560px',
-      numVisible: 1,
+      numVisible: 2,
       numScroll: 1,
     },
   ];

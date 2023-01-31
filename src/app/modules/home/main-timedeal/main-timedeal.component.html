@@ -12,9 +12,22 @@
     </div>
 
     <div class="main-timedeal-prd">
-      <div class="flex-products">
+      <div class="flex-products web-view">
         <app-product-card
           class="w-20"
+          *ngFor="let product of products"
+          [title]="product.title"
+          [description]="product.description"
+          [price]="product.price"
+          [discountedPrice]="product.discountedPrice"
+          [imgSrc]="product.imgSrc"
+        ></app-product-card>
+      </div>
+
+      <div class="flex-products mobile-view">
+        <app-product-card
+          class="w-20"
+          id="time-deal-products"
           *ngFor="let product of products"
           [title]="product.title"
           [description]="product.description"
