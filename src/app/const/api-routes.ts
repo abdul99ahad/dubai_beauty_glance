@@ -3,4 +3,5 @@ export const ApiRoutes = {
   products: 'products',
   brands: 'brands',
   brand: 'brand',
+  category: 'category',
 } as const;

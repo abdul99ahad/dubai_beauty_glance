@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../../../../interfaces/categories.interface';
+import { WebApiService } from 'src/app/services/web-api.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-hamburger-menu',
@@ -6,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hamburger-menu.component.scss'],
 })
 export class HamburgerMenuComponent implements OnInit {
+  @Output() clickEvent = new EventEmitter<string>();
   subHeading: any = 'Cleansers';
   invisible: string = '‎';
   categoryItems: any = [
@@ -79,7 +83,18 @@ export class HamburgerMenuComponent implements OnInit {
       ],
     },
   ];
-  constructor() {}
 
-  ngOnInit(): void {}
+  categories: Category[];
+  constructor(private webApiService: WebApiService) {}
+
+  ngOnInit(): void {
+    this.webApiService.getCategories().subscribe((category) => {
+      this.categories = category.data;
+      console.log(category.data);
+    });
+  }
+
+  categoryClick() {
+    this.clickEvent.emit();
+  }
 }

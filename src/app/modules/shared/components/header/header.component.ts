@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   getCategories() {
     this.display = true;
     this.webApi.getCategories().subscribe((data) => {
-      this.categories = data;
+      //this.categories = data;
       console.log(this.categories);
     });
   }

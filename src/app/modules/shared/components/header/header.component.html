@@ -146,5 +146,5 @@
 </div>
 
 <p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
-  <app-hamburger-menu></app-hamburger-menu>
+  <app-hamburger-menu (clickEvent)="display = false"></app-hamburger-menu>
 </p-sidebar>
