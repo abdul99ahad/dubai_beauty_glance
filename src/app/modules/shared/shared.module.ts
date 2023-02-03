@@ -33,6 +33,7 @@ import { MarqueeComponent } from './components/marquee/marquee.component';
 import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AutoCompleteModule } from "primeng/autocomplete";
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { HeaderComponent } from './components/header/header.component';
     DialogModule,
     DividerModule,
     MenuModule,
+    AutoCompleteModule,
   ],
   exports: [
     InputTextModule,
