@@ -5,33 +5,39 @@
   <div class="top-area flex-container mbl-disable">
     <div class="logo-area">
       <a [routerLink]="['/']">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
       </a>
     </div>
 
     <div class="search-bar" style="width: 100%">
-      <input class="search" type="text" />
-      <input type="image" style="width: 2rem" src="../assets/search_1.png" />
+      <p-autoComplete field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
+        <ng-template let-product pTemplate="item">
+          <a href="javascript:void(0)">
+            <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px" [alt]="product.name"/>
+            <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
+          </a>
+        </ng-template>
+      </p-autoComplete>
     </div>
 
     <div class="auth">
       <div class="member-link">
         <a [routerLink]="['/login']">
-          <img src="../assets/sign_in.png" alt="" />
+          <img src="../assets/sign_in.png" alt=""/>
           <p>Sign In</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/register']">
-          <img src="../assets/sign_up.png" alt="" />
+          <img src="../assets/sign_up.png" alt=""/>
           <p>Sign Up</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/cart']">
-          <img src="../assets/cart.png" alt="" />
+          <img src="../assets/cart.png" alt=""/>
           <p>Cart</p>
         </a>
       </div>
@@ -47,7 +53,7 @@
         style="font-size: 1.2rem; line-height: 2; width: 30%"
       ></i>
       <a [routerLink]="['/']" style="width: 50%">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
       </a>
 
       <div class="flex">
@@ -78,22 +84,14 @@
     <div class="top-search">
       <div class="xans-element- xans-search xans-search-form top-search-wrap">
         <div>
-          <legend></legend>
-          <input
-            id="keyword"
-            name="keyword"
-            fw-msg=""
-            class="inputTypeText"
-            placeholder=""
-            size="15"
-            value=""
-            type="text"
-          /><button type="submit">
-            <img
-              src="	https://m.jolse.com/_dbook/img/top_search_ico.png"
-              alt=""
-            />
-          </button>
+          <p-autoComplete field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchMobileViewInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
+            <ng-template let-product pTemplate="item">
+              <a href="javascript:void(0);">
+                <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px; display: inline-block" [alt]="product.name"/>
+                <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
+              </a>
+            </ng-template>
+          </p-autoComplete>
         </div>
       </div>
     </div>
@@ -101,7 +99,7 @@
 </div>
 
 <div class="mbl-disable-block">
-  <hr class="solid" style="margin-bottom: 0px" />
+  <hr class="solid" style="margin-bottom: 0px"/>
 
   <div class="flex-container" id="navbar">
     <div class="cate-all-btn-open" (click)="getCategories()">
@@ -116,13 +114,9 @@
     </ul>
     <div class="recently-viewed-container">
       <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
-      <a class="recently-viewed" (click)="menu.toggle($event)"
-        >Recently Viewed <i class="pi pi-angle-down"></i
-      ></a>
-
-      <!-- <button type="button" icon="pi pi-list" (click)="menu.toggle($event)">
-        RECENTLY VIEWED
-      </button> -->
+      <a class="recently-viewed" (click)="menu.toggle($event)">Recently Viewed
+        <i class="pi pi-angle-down"></i>
+      </a>
     </div>
   </div>
 </div>
