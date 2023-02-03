@@ -33,6 +33,7 @@ import { MarqueeComponent } from './components/marquee/marquee.component';
 import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BrandCardComponent } from './brand-card/brand-card.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HeaderComponent } from './components/header/header.component';
     HamburgerMenuComponent,
     ProductDescriptionComponent,
     HeaderComponent,
+    BrandCardComponent,
   ],
   imports: [
     CommonModule,
@@ -91,6 +93,7 @@ import { HeaderComponent } from './components/header/header.component';
     HamburgerMenuComponent,
     ProductDescriptionComponent,
     HeaderComponent,
+    BrandCardComponent,
   ],
 })
 export class SharedModule {}

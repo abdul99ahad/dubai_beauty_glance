@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { DataViewLayoutOptions } from 'primeng/dataview';
+import { Category } from 'src/app/models/categories.model';
+import { WebApiService } from 'src/app/services/web-api.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +16,7 @@ export class HeaderComponent implements OnInit {
     { page: 'BEST', url: 'products' },
     { page: 'TIME DEAL', url: 'products' },
     { page: 'PROMOTIONS', url: 'promotions' },
-    { page: 'BRAND', url: 'products' },
+    { page: 'BRAND', url: 'brands' },
     { page: 'COUPON', url: 'products' },
   ];
 
@@ -36,7 +39,7 @@ export class HeaderComponent implements OnInit {
   recentlyViewedItems: MenuItem[];
   display: boolean = false;
 
-  constructor() {}
+  constructor(private webApi: WebApiService) {}
 
   ngOnInit(): void {
     this.recentlyViewedItems = [
@@ -44,5 +47,15 @@ export class HeaderComponent implements OnInit {
       { label: 'Item 2', icon: 'pi pi-fw pi-download' },
       { label: 'Item 3', icon: 'pi pi-fw pi-refresh' },
     ];
+  }
+
+  categories: Category[] = [];
+
+  getCategories() {
+    this.display = true;
+    this.webApi.getCategories().subscribe((data) => {
+      this.categories = data;
+      console.log(this.categories);
+    });
   }
 }
