@@ -102,7 +102,7 @@
   <hr class="solid" style="margin-bottom: 0px"/>
 
   <div class="flex-container" id="navbar">
-    <div class="cate-all-btn-open" (click)="display = true">
+    <div class="cate-all-btn-open" (click)="getCategories()">
       <span>All category</span>
     </div>
     <ul class="navbar-items">
@@ -140,5 +140,5 @@
 </div>
 
 <p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
-  <app-hamburger-menu></app-hamburger-menu>
+  <app-hamburger-menu (clickEvent)="display = false"></app-hamburger-menu>
 </p-sidebar>

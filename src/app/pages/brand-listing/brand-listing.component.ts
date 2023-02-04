@@ -1,22 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { Product } from 'src/app/interfaces/product.interface';
-import { ProductService } from 'src/app/services/product.service';
+// import { ProductService } from 'src/app/services/product.service';
 import productsJson from '../../mock/products.json';
 import { WebApiService } from 'src/app/services/web-api.service';
+import { Brand } from 'src/app/interfaces/brand.interface';
 @Component({
-  selector: 'app-products-listing',
-  templateUrl: './products-listing.component.html',
-  styleUrls: ['./products-listing.component.scss'],
-  providers: [ProductService],
+  selector: 'app-brands-listing',
+  templateUrl: './brand-listing.component.html',
+  styleUrls: ['./brand-listing.component.scss'],
 })
-export class ProductsListingComponent implements OnInit {
-  @Input('title') title: string = 'PRODUCTS'; //TODO:
+export class BrandsListingComponent implements OnInit {
+  @Input('title') title: string = 'BRANDS'; //TODO:
   // products: Product = <Product>productsJson;
-  constructor(
-    private productService: ProductService,
-    private webApiService: WebApiService
-  ) {}
+  constructor(private webApiService: WebApiService) {}
+
   //   {
   //     id: '1000',
   //     code: 'f230fh0g3',
@@ -378,8 +376,7 @@ export class ProductsListingComponent implements OnInit {
   //     rating: 3,
   //   },
   // ];
-  products: Product[];
-  productList: any = [];
+  brands: Brand[];
 
   sortOptions: SelectItem[];
 
@@ -391,10 +388,10 @@ export class ProductsListingComponent implements OnInit {
     //   .getProducts()
     //   .then((products) => (this.products = products));
 
-    this.webApiService.getProducts().subscribe((data) => {
-      this.products = data.data;
-      this.products.forEach((prod) => {
-        prod.image = this.webApiService.imgUrl + prod.image;
+    this.webApiService.getBrands().subscribe((data) => {
+      this.brands = data.data;
+      this.brands.forEach((brand) => {
+        brand.brand_image = this.webApiService.imgUrl + brand.brand_image;
       });
     });
   }

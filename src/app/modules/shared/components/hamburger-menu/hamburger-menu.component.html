@@ -1,16 +1,29 @@
 <div class="grid mar-20">
   <div class="col-12 md:col-6 lg:col-3 sm:col-12">
-    <h3><a>SKINCARE</a></h3>
-    <h4>
-      <a>{{ subHeading }}</a>
-    </h4>
-    <ul>
-      <li *ngFor="let item of categoryItems">
-        <a>{{ item.text }}</a>
-      </li>
-    </ul>
+    <div *ngFor="let category of categories">
+      <h3>
+        <a
+          (click)="categoryClick()"
+          routerLink="../category/{{ category.slug }}"
+          >{{ category.name }}</a
+        >
+      </h3>
+      <h4 *ngFor="let child of category.childrenCategories; let i = index">
+        <a
+          (click)="categoryClick()"
+          routerLink="../category/{{ child.slug }}"
+          >{{ child.name }}</a
+        >
+      </h4>
+      <ul>
+        <!-- <li *ngFor="let child2 of category[i].childrenCategories">
+          <a>{{ child2.name }}</a>
+        </li> -->
+      </ul>
+    </div>
   </div>
-  <div class="col-12 md:col-6 lg:col-3 sm:col-12">
+
+  <!-- <div class="col-12 md:col-6 lg:col-3 sm:col-12">
     <h3>{{ invisible }}</h3>
     <h4>
       <a href="">{{ subHeading }}</a>
@@ -87,41 +100,5 @@
         <a>{{ item.text }}</a>
       </li>
     </ul>
-  </div>
-
-  <!-- Dynamic -->
-  <!-- <div
-    class="col-12 md:col-6 lg:col-3 sm:col-12"
-    *ngFor="let item of categoryItemsHeirarchy"
-  >
-    <h3>
-      <a href="">{{ item.item }}</a>
-    </h3>
-    <div *ngFor="let subItem of item.child">
-      <h4>
-        <a href="">{{ subItem.item }}</a>
-      </h4>
-
-      <ul>
-        <li *ngFor="let subSubItem of subItem">
-          <a>{{ subSubItem.item }}</a>
-        </li>
-      </ul>
-    </div>
   </div> -->
-
-  <!-- Dynamic end-->
-  <!-- <div class="col-12 md:col-6 lg:col-3 sm:col-12">
-    <h3>{{ invisible }}</h3>
-    <h4>
-      <a href="">{{ subHeading }}</a>
-    </h4>
-    <ul>
-      <li *ngFor="let item of categoryItems">
-        <a>{{ item.text }}</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col-12 md:col-6 lg:col-3">C</div>
-  <div class="col-12 md:col-6 lg:col-3">D</div> -->
 </div>

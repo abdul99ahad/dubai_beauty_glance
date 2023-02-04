@@ -1,0 +1,20 @@
+<div class="prdList">
+  <div id="div1">
+    <div class="thumbnail">
+      <div class="prdImage">
+        <a routerLink="../brand/{{ brandSlug }}">
+          <img src="{{ imgSrc }}" width="100%" height="100%" />
+        </a>
+      </div>
+    </div>
+
+    <div class="description" *ngIf="showDetails">
+      <span class="prd-brand">{{ title }}</span>
+      <strong class="name">
+        <a routerLink="../brand/{{ brandSlug }}">
+          <span>{{ description }}</span>
+        </a>
+      </strong>
+    </div>
+  </div>
+</div>

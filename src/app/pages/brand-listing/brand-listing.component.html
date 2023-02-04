@@ -13,7 +13,7 @@
       <div class="card">
         <p-dataView
           #dv
-          [value]="products"
+          [value]="brands"
           [paginator]="true"
           [rows]="12"
           filterBy="name"
@@ -29,14 +29,12 @@
             </div>
           </ng-template>
           <ng-template let-product pTemplate="gridItem" class="parent">
-            <app-product-card
+            <app-brand-card
               class="child"
               [title]="product.name"
-              [description]="product.description"
-              [price]="product.price"
-              [discountedPrice]="product.price"
-              [imgSrc]="product.image"
-            ></app-product-card>
+              [imgSrc]="product.brand_image"
+              [brandSlug]="product.slug"
+            ></app-brand-card>
           </ng-template>
         </p-dataView>
       </div>

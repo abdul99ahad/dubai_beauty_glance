@@ -4,17 +4,19 @@ import { Product } from 'src/app/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
 import productsJson from '../../mock/products.json';
 import { WebApiService } from 'src/app/services/web-api.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
-  selector: 'app-products-listing',
-  templateUrl: './products-listing.component.html',
-  styleUrls: ['./products-listing.component.scss'],
+  selector: 'app-category-products-listing',
+  templateUrl: './category-products-listing.component.html',
+  styleUrls: ['./category-products-listing.component.scss'],
   providers: [ProductService],
 })
-export class ProductsListingComponent implements OnInit {
+export class CategoryProductsListingComponent implements OnInit {
   @Input('title') title: string = 'PRODUCTS'; //TODO:
   // products: Product = <Product>productsJson;
   constructor(
     private productService: ProductService,
+    private route: ActivatedRoute,
     private webApiService: WebApiService
   ) {}
   //   {
@@ -387,11 +389,9 @@ export class ProductsListingComponent implements OnInit {
 
   sortField: string;
   ngOnInit(): void {
-    // this.products = this.productService
-    //   .getProducts()
-    //   .then((products) => (this.products = products));
-
-    this.webApiService.getProducts().subscribe((data) => {
+    const id = this.route.snapshot.paramMap.get('id') || '';
+    this.title = id;
+    this.webApiService.getCategoryProducts(id).subscribe((data) => {
       this.products = data.data;
       this.products.forEach((prod) => {
         prod.image = this.webApiService.imgUrl + prod.image;

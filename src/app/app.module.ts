@@ -26,6 +26,10 @@ import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { WebApiService } from './services/web-api.service';
+import { BrandsListingComponent } from './pages/brand-listing/brand-listing.component';
+import { BrandProductListingComponent } from './pages/brand-products-listing/brand-products-listing.component';
+import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,9 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     CartComponent,
     SignUpComponent,
     CheckoutComponent,
+    BrandsListingComponent,
+    BrandProductListingComponent,
+    CategoryProductsListingComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     SharedModule,
     CarouselModule,
   ],
-  providers: [],
+  providers: [WebApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
