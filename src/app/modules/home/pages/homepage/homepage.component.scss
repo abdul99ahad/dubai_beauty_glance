@@ -395,6 +395,94 @@ li {
 .web-view-block {
     display: block;
 }
+
+.main-brand-ctrl {
+    //width: 1150px;
+    width: 80%;
+    font-size: 0;
+    margin: 0 auto;
+}
+
+.swiper-pagination {
+    display: inline-block;
+    vertical-align: middle;
+    position: static;
+    width:80%;
+    height: 3px;
+    background: #d5d5d5;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.main-brand-ctrl .fraction {
+    display: inline-block;
+    vertical-align: middle;
+    width: 113px;
+    padding: 0 0 0 0;
+    text-align: right;
+}
+
+.main-brand-ctrl .fraction .count {
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.main-brand-ctrl .fraction .total {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: #000;
+}
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.main-brand-btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 8px;
+}
+
+.main-brand-btn .swiper-button-prev {
+    background: url("https://jolse.com/_dbook/img/main_slide_prev_btn2.png") no-repeat;
+}
+
+.main-brand-btn .swiper-button-next, .main-brand-btn .swiper-button-prev {
+    position: static;
+    display: inline-block;
+    vertical-align: middle;
+    width: 12px;
+    height: 20px;
+    margin: 0 21px;
+    opacity: 1;
+}
+
+.main-brand-btn .swiper-button-next {
+    margin-right: 0;
+    background: url("https://jolse.com/_dbook/img/main_slide_next_btn2.png") no-repeat;
+}
+
+.main-brand-btn .swiper-button-next, .main-brand-btn .swiper-button-prev {
+    position: static;
+    display: inline-block;
+    vertical-align: middle;
+    width: 12px;
+    height: 20px;
+    margin: 0 21px;
+    opacity: 1;
+}
+
+.swiper-button-prev {
+    cursor: pointer;
+}
+
+.swiper-button-next {
+    cursor: pointer;
+}
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
 

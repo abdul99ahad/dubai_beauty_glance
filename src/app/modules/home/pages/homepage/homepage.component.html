@@ -217,6 +217,7 @@
         [numVisible]="5"
         [responsiveOptions]="responsiveOptions"
         [showIndicators]="false"
+        (onPage)="onChange($event)"
       >
         <ng-template let-product pTemplate="item">
           <app-brandsale-card [imgSrc]="product"></app-brandsale-card>
@@ -226,6 +227,37 @@
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card>
       <app-brandsale-card></app-brandsale-card> -->
+    </div>
+
+    <!-- Slider -->
+    <div class="main-brand-ctrl">
+      <div class="swiper-pagination swiper-pagination-progressbar">
+        <span
+          class="swiper-pagination-progressbar-fill"
+          style="
+            transform: translate3d(0px, 0px, 0px) scaleX(0.181818) scaleY(1);
+            transition-duration: 400ms;
+          "
+        ></span>
+      </div>
+      <div class="fraction">
+        <span class="count">2</span>
+        <span class="total">&nbsp;/&nbsp;11</span>
+      </div>
+      <div class="main-brand-btn">
+        <div
+          class="swiper-button-prev"
+          tabindex="0"
+          role="button"
+          aria-label="Previous slide"
+        ></div>
+        <div
+          class="swiper-button-next"
+          tabindex="0"
+          role="button"
+          aria-label="Next slide"
+        ></div>
+      </div>
     </div>
   </div>
 </div>
