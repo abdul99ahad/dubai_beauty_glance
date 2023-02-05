@@ -1,5 +1,5 @@
-<div class="grid mar-20">
-  <div class="col-12 md:col-6 lg:col-3 sm:col-12">
+<div class="">
+  <div class="">
     <div *ngFor="let category of categories">
       <h3>
         <a
@@ -8,13 +8,26 @@
           >{{ category.name }}</a
         >
       </h3>
-      <h4 *ngFor="let child of category.childrenCategories; let i = index">
-        <a
-          (click)="categoryClick()"
-          routerLink="../category/{{ child.slug }}"
-          >{{ child.name }}</a
-        >
-      </h4>
+      <div *ngFor="let child of category.childrenCategories; let i = index">
+        <h4>
+          <a
+            (click)="categoryClick()"
+            routerLink="../category/{{ child.slug }}"
+            >{{ child.name }}</a
+          >
+        </h4>
+
+        <div class="sub-item-container">
+          <a
+            (click)="categoryClick()"
+            routerLink="../category/{{ subItem.slug }}"
+            style="flex: 20; font-size: 18px; margin: 5px 0"
+            *ngFor="let subItem of child.childrenCategories"
+            >{{ subItem.name }}</a
+          >
+        </div>
+      </div>
+
       <ul>
         <!-- <li *ngFor="let child2 of category[i].childrenCategories">
           <a>{{ child2.name }}</a>
