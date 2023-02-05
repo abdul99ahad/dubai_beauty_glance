@@ -169,14 +169,6 @@
       <p>BEST ITEMS OF MONTH</p>
     </div>
     <div class="flex-products div-center-m5 no-flex">
-      <!-- <app-product-card
-        *ngFor="let product of productsDisplay"
-        [title]="product.title"
-        [description]="product.description"
-        [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
-      ></app-product-card> -->
       <p-carousel
         class="web-view"
         [value]="productsDisplay"
@@ -226,22 +218,15 @@
       <a href=""> GO TO PROMOTION </a>
     </div>
     <div class="brandsale-card flex-products promotion-flex">
-      <p-carousel
-        [value]="brandSaleImgs"
-        [numVisible]="5"
-        [responsiveOptions]="responsiveOptions"
-        [showIndicators]="false"
-        [showNavigators]="false"
-        (onPage)="onChange($event)"
+      <ngx-slick-carousel
+        #slickModalBrands="slick-carousel"
+        class="carousel"
+        [config]="slideConfigBrandSales"
       >
-        <ng-template let-product pTemplate="item">
-          <app-brandsale-card [imgSrc]="product"></app-brandsale-card>
-        </ng-template>
-      </p-carousel>
-      <!-- <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card> -->
+        <div ngxSlickItem *ngFor="let slide of brandSaleImgs" class="slide">
+          <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
+        </div>
+      </ngx-slick-carousel>
     </div>
 
     <!-- Slider -->
@@ -256,8 +241,8 @@
         ></span>
       </div>
       <div class="fraction">
-        <span class="count">2</span>
-        <span class="total">&nbsp;/&nbsp;11</span>
+        <span class="count">{{ currentBrandSlideNumber }}</span>
+        <span class="total">&nbsp;/&nbsp;{{ totalBrandSlideNumber }}</span>
       </div>
       <div class="main-brand-btn">
         <div
@@ -265,12 +250,14 @@
           tabindex="0"
           role="button"
           aria-label="Previous slide"
+          (click)="previousSlide(slickModalBrands)"
         ></div>
         <div
           class="swiper-button-next"
           tabindex="0"
           role="button"
           aria-label="Next slide"
+          (click)="nextSlide(slickModalBrands)"
         ></div>
       </div>
     </div>

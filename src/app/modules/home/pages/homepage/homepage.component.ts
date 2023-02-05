@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-homepage',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
+  // @ViewChild('slickModalBrands') slickModalBrands: ElementRef;
   constructor() {}
 
   ngOnInit(): void {}
@@ -91,50 +93,70 @@ export class HomepageComponent implements OnInit {
     // infinite: true,
     // speed: 300,
     // adaptiveHeight: true,
-    // responsive: [
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       arrows: false,
-    //       centerMode: true,
-    //       centerPadding: '40px',
-    //       slidesToShow: 3,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       arrows: false,
-    //       centerMode: true,
-    //       centerPadding: '40px',
-    //       slidesToShow: 1,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
-  addSlide() {
-    //this.slides.push({ img: 'http://placehold.it/350x150/777777' });
+  slideConfigBrandSales = {
+    arrows: false,
+    focusOnSelect: true,
+    dots: false,
+    speed: 300,
+    slidesToShow: 5,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
+  currentBrandSlideNumber: number = 1;
+  totalBrandSlideNumber: number = this.brandSaleImgs.length;
+  nextSlide(slickModalBrands: SlickCarouselComponent) {
+    if (this.currentBrandSlideNumber < this.totalBrandSlideNumber) {
+      this.currentBrandSlideNumber++;
+      slickModalBrands.slickNext();
+    }
   }
 
-  removeSlide() {
-    //this.slides.length = this.slides.length - 1;
-  }
-
-  slickInit(e: any) {
-    console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    console.log('beforeChange');
+  previousSlide(slickModalBrands: SlickCarouselComponent) {
+    if (this.currentBrandSlideNumber > 1) {
+      this.currentBrandSlideNumber--;
+      slickModalBrands.slickPrev();
+    }
   }
 
   eventBannerCarouselMobile: Array<object> = [
