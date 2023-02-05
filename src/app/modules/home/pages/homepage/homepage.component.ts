@@ -144,34 +144,24 @@ export class HomepageComponent implements OnInit {
   ];
   eventBannerCarousel: Array<{ image: string; title: string }> = [
     {
-      image:
-        'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/26c736a5538e3a856b7259d112370b4b.jpg',
+      image: '../../../../../assets/slider_banner_1.jpg',
       title: 'Event Banner 1',
     },
     {
-      image:
-        'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/3bfed446b01427542d26d16a5c8f5db6.jpg',
+      image: '../../../../../assets/slider_banner_2.jpg',
       title: 'Event banner 2',
     },
     {
-      image:
-        'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/466fc19a2caa384db675df0011ef9502.jpg',
+      image: '../../../../../assets/slider_banner_3.jpg',
       title: 'Event banner 3',
     },
     {
-      image:
-        'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/26c736a5538e3a856b7259d112370b4b.jpg',
+      image: '../../../../../assets/slider_banner_4.jpg',
       title: 'Event Banner 1',
     },
     {
-      image:
-        'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/3bfed446b01427542d26d16a5c8f5db6.jpg',
+      image: '../../../../../assets/slider_banner_5.jpg',
       title: 'Event banner 2',
-    },
-    {
-      image:
-        'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/466fc19a2caa384db675df0011ef9502.jpg',
-      title: 'Event banner 3',
     },
   ];
   tabHeaderItems: Array<{ brand: string; imgSrc: string }> = [
