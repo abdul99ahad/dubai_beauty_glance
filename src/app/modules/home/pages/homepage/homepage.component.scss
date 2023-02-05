@@ -349,6 +349,7 @@ li {
 }
 .main-banner {
     height: 540px;
+    object-fit: cover;
 }
 
 .flex-container {
@@ -485,6 +486,28 @@ li {
 }
 .main-prd-tit {
     margin: 0 1.4%;
+}
+
+.carousel {
+    margin: 0;
+    width: 100%;
+}
+
+:host ::ng-deep ngx-slick-carousel{
+    .slick-slide {
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+
+    .slide .slick-slide .slick-cloned {
+        width: auto !important;
+    }
+
+    .slick-slide img {
+        object-fit: cover;
+        width: 730px;
+        height: 350px;
+    }
 }
 
     :host ::ng-deep p-tabView{
