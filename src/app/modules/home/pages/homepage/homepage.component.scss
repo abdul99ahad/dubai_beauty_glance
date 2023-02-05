@@ -483,6 +483,37 @@ li {
 .swiper-button-next {
     cursor: pointer;
 }
+.main-prd-tit {
+    margin: 0 1.4%;
+}
+
+    :host ::ng-deep p-tabView{
+        .p-tabview-nav {
+            justify-content: center !important;
+            border: none;
+        }
+
+        .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+            background: #ffffff;
+            color: black;
+            font-weight: 900;
+        }
+
+        .p-tabview-title {
+        font-size: 20px;
+        }
+
+        .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+            outline-offset: 0;
+            box-shadow: none;
+        }
+        .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+            background-color: black;
+        }
+
+        
+    }
+
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
 
@@ -568,16 +599,16 @@ li {
         letter-spacing: -0.5px;
         }
 
-        .flex-products > #new-arrivals {
-            flex: 50%;
-          }
+    .flex-products > #new-arrivals {
+        flex: 50%;
+        }
 
-          #div1 {
-            height: auto !important;
-          }
-          .prdList {
-            height: auto !important;
-          }
+        #div1 {
+        height: auto !important;
+        }
+        .prdList {
+        height: auto !important;
+        }
 
     :host ::ng-deep app-product-card{
         .prdList .description .name a {
@@ -592,5 +623,7 @@ li {
             font-size: 18px;
         }
     }
+
+ 
 
     }

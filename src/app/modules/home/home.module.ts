@@ -4,6 +4,7 @@ import { MainTimedealComponent } from './main-timedeal/main-timedeal.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { RouterModule } from '@angular/router';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [MainTimedealComponent, HomepageComponent],
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     SharedModule,
     RouterModule.forRoot([{ path: 'home', component: HomepageComponent }]),
+    SlickCarouselModule,
   ],
-  exports: [MainTimedealComponent],
+  exports: [MainTimedealComponent, SlickCarouselModule],
 })
 export class HomeModule {}

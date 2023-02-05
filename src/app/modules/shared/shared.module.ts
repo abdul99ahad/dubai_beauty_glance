@@ -14,6 +14,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
+import { TabViewModule } from 'primeng/tabview';
+
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
 
@@ -70,6 +72,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     DividerModule,
     MenuModule,
     AutoCompleteModule,
+    TabViewModule,
   ],
   exports: [
     InputTextModule,
@@ -83,6 +86,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     SidebarModule,
     DialogModule,
     MenuModule,
+    TabViewModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,

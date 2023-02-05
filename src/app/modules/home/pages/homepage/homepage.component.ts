@@ -74,6 +74,62 @@ export class HomepageComponent implements OnInit {
     },
   ];
 
+  slideConfig = {
+    // slidesToShow: 3,
+    // slidesToScroll: 3,
+    centerMode: true,
+    arrows: false,
+    focusOnSelect: true,
+    // dots: true,
+    // infinite: true,
+    // speed: 300,
+    // adaptiveHeight: true,
+    // responsive: [
+    //   {
+    //     breakpoint: 768,
+    //     settings: {
+    //       arrows: false,
+    //       centerMode: true,
+    //       centerPadding: '40px',
+    //       slidesToShow: 3,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       arrows: false,
+    //       centerMode: true,
+    //       centerPadding: '40px',
+    //       slidesToShow: 1,
+    //     },
+    //   },
+    // ],
+  };
+
+  addSlide() {
+    //this.slides.push({ img: 'http://placehold.it/350x150/777777' });
+  }
+
+  removeSlide() {
+    //this.slides.length = this.slides.length - 1;
+  }
+
+  slickInit(e: any) {
+    console.log('slick initialized');
+  }
+
+  breakpoint(e: any) {
+    console.log('breakpoint');
+  }
+
+  afterChange(e: any) {
+    console.log('afterChange');
+  }
+
+  beforeChange(e: any) {
+    console.log('beforeChange');
+  }
+
   eventBannerCarouselMobile: Array<object> = [
     {
       image:
@@ -86,7 +142,7 @@ export class HomepageComponent implements OnInit {
       title: 'Event Banner 1',
     },
   ];
-  eventBannerCarousel: Array<object> = [
+  eventBannerCarousel: Array<{ image: string; title: string }> = [
     {
       image:
         'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/26c736a5538e3a856b7259d112370b4b.jpg',
@@ -118,7 +174,33 @@ export class HomepageComponent implements OnInit {
       title: 'Event banner 3',
     },
   ];
-
+  tabHeaderItems: Array<{ brand: string; imgSrc: string }> = [
+    {
+      brand: 'CORSX',
+      imgSrc:
+        'https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg',
+    },
+    {
+      brand: 'MISHA',
+      imgSrc:
+        'https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg',
+    },
+    {
+      brand: 'ETUDE',
+      imgSrc:
+        'https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg',
+    },
+    {
+      brand: 'Beauty of Jeason',
+      imgSrc:
+        'https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg',
+    },
+    {
+      brand: 'Round Lab',
+      imgSrc:
+        'https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg',
+    },
+  ];
   productsDisplay: any = [
     {
       title: 'MISSHA',
