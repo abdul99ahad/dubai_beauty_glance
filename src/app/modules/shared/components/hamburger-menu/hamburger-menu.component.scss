@@ -56,3 +56,11 @@ li a:hover {
 .display-none {
     display: none;;
 }
+
+.sub-item-container {
+    display: flex;
+    height: 100px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin:10px;
+}
