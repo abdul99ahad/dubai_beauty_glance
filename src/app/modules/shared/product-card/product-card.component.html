@@ -15,7 +15,7 @@
     <div class="description">
       <span class="prd-brand">{{ name }}</span>
       <strong class="name">
-        <a [routerLink]="['product']">
+        <a [routerLink]="['product', slug]">
           <span>{{ name }}</span>
         </a>
       </strong>
@@ -25,7 +25,7 @@
   <div id="div2">
     <div class="solid"></div>
 
-    <div style="text-align: center; margin: 5px 0px 0px 0px">
+    <div style="text-align: center; margin: 5px 0 0 0">
       <span class="price">$ {{ price }}</span>
     </div>
     <div style="text-align: center">

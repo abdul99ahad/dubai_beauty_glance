@@ -6,7 +6,7 @@ export interface Category {
 }
 
 export interface CategoryWithChildren extends Category {
-  children_categories: Array<CategoryWithChildren>;
+  childrenCategories: Array<CategoryWithChildren>;
 }
 
 
