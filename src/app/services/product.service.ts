@@ -74,6 +74,9 @@ export class ProductService {
 
   generatePrduct(): Product {
     const product: Product = {
+      discount_price: 0,
+      image: "",
+      slug: "",
       id: this.generateId(),
       name: this.generateName(),
       description: 'Product Description',
@@ -81,7 +84,7 @@ export class ProductService {
       quantity: this.generateQuantity(),
       category: 'Product Category',
       inventoryStatus: this.generateStatus(),
-      rating: this.generateRating(),
+      rating: this.generateRating()
     };
 
     //product.image = product.name.toLocaleLowerCase().split(/[ ,]+/).join('-') + '.jpg';
