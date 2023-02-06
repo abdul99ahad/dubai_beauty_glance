@@ -177,15 +177,12 @@
         [discountedPrice]="product.discountedPrice"
         [imgSrc]="product.imgSrc"
       ></app-product-card> -->
-      <p-carousel
-        class="web-view"
-        [value]="productsDisplay"
-        [numVisible]="5"
-        [responsiveOptions]="responsiveOptions"
-        [autoplayInterval]="3000"
-        [showIndicators]="false"
-      >
-        <ng-template let-product pTemplate="item">
+      <ngx-slick-carousel class="web-view carousel" [config]="slideConfig">
+        <div
+          ngxSlickItem
+          *ngFor="let product of productsDisplay"
+          class="slide"
+        >
           <app-product-card
             [name]="product.name"
             [slug]="product.slug"
@@ -193,8 +190,26 @@
             [discount_price]="product.discount_price"
             [image]="product.image"
           ></app-product-card>
-        </ng-template>
-      </p-carousel>
+        </div>
+      </ngx-slick-carousel>
+<!--      <p-carousel-->
+<!--        class="web-view"-->
+<!--        [value]="productsDisplay"-->
+<!--        [numVisible]="5"-->
+<!--        [responsiveOptions]="responsiveOptions"-->
+<!--        [autoplayInterval]="3000"-->
+<!--        [showIndicators]="false"-->
+<!--      >-->
+<!--        <ng-template let-product pTemplate="item">-->
+<!--          <app-product-card-->
+<!--            [name]="product.name"-->
+<!--            [slug]="product.slug"-->
+<!--            [price]="product.price"-->
+<!--            [discount_price]="product.discount_price"-->
+<!--            [image]="product.image"-->
+<!--          ></app-product-card>-->
+<!--        </ng-template>-->
+<!--      </p-carousel>-->
 
       <p-carousel
         class="mobile-view-block"

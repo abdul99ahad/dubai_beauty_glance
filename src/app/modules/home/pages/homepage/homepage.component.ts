@@ -49,26 +49,26 @@ export class HomepageComponent {
     // infinite: true,
     // speed: 300,
     // adaptiveHeight: true,
-    // responsive: [
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       arrows: false,
-    //       centerMode: true,
-    //       centerPadding: '40px',
-    //       slidesToShow: 3,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       arrows: false,
-    //       centerMode: true,
-    //       centerPadding: '40px',
-    //       slidesToShow: 1,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   public eventBannerCarouselMobile: Array<{ image: string; title: string }> = [
