@@ -7,7 +7,7 @@ import { Product } from "../../../interfaces/product.interface";
   styleUrls: ['./main-time-deal.component.scss'],
 })
 export class MainTimeDealComponent {
-  products: Array<Product> = new Array<Product>(20).fill(
+  products: Array<Product> = new Array<Product>(5).fill(
     {
       name: 'MISSHA',
       slug: 'missha',

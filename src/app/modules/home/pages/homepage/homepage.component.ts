@@ -154,4 +154,14 @@ export class HomepageComponent {
       image: '../../../../../assets/product_1.jpg',
     },
   );
+
+  public newArrivalsProductsDisplay: Array<Product> = new Array<Product>(5).fill(
+    {
+      name: 'MISSHA',
+      slug: 'missha',
+      price: '22,000',
+      discount_price: '18,000',
+      image: '../../../../../assets/product_1.jpg',
+    },
+  );
 }
