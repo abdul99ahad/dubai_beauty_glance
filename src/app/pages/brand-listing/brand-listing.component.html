@@ -11,32 +11,27 @@
       </div>
 
       <div class="card">
-        <p-dataView
-          #dv
-          [value]="brands"
-          [paginator]="true"
-          [rows]="12"
-          filterBy="name"
-          layout="grid"
-          [sortField]="sortField"
-          [sortOrder]="sortOrder"
-        >
+        <p-dataView [value]="brands" layout="grid">
           <ng-template pTemplate="header">
-            <div
-              class="flex flex-column md:flex-row md:justify-content-between"
-            >
-              <!-- <button type="button" (click)="onSortChange($event)">Sort</button> -->
-            </div>
+            <div class="flex flex-column md:flex-row md:justify-content-between"></div>
           </ng-template>
-          <ng-template let-product pTemplate="gridItem" class="parent">
+          <ng-template let-brand pTemplate="gridItem" class="parent">
             <app-brand-card
               class="child"
-              [title]="product.name"
-              [imgSrc]="product.brand_image"
-              [brandSlug]="product.slug"
+              [title]="brand.name"
+              [imgSrc]="brand.brand_image"
+              [brandSlug]="brand.slug"
             ></app-brand-card>
           </ng-template>
         </p-dataView>
+        <ng-container *ngFor="let brandPageButton of brandPageButtons">
+          <ng-container *ngIf="!!brandPageButton.url; else elseBlock;">
+            <button class="p-button" type="submit" (click)="fetchBrands(brandPageButton.url)">{{ brandPageButton.label }}</button>
+          </ng-container>
+          <ng-template #elseBlock>
+            <button disabled class="p-button" type="submit">{{ brandPageButton.label }}</button>
+          </ng-template>
+        </ng-container>
       </div>
     </div>
   </div>

@@ -3,14 +3,8 @@
     <div class="thumbnail">
       <div class="prdImage">
         <a [routerLink]="['product']">
-          <img src="{{ imgSrc }}" width="100%" height="100%" />
+          <img [src]="image" width="100%" height="100%" [alt]="name" />
         </a>
-        <!-- <span class="wish">
-            <img src="../../../../assets/wish_icon.png" />
-          </span>
-          <span class="cart">
-            <img src="../../../../assets/cart_icon.png" />
-          </span> -->
         <div class="middle">
           <i class="pi pi-heart"> </i>
           <i class="pi pi-shopping-bag"></i>
@@ -18,26 +12,24 @@
       </div>
     </div>
 
-    <div class="description" *ngIf="showDetails">
-      <span class="prd-brand">{{ title }}</span>
+    <div class="description">
+      <span class="prd-brand">{{ name }}</span>
       <strong class="name">
         <a [routerLink]="['product']">
-          <span>{{ description }}</span>
+          <span>{{ name }}</span>
         </a>
       </strong>
     </div>
   </div>
 
-  <div id="div2" *ngIf="showDetails">
+  <div id="div2">
     <div class="solid"></div>
 
     <div style="text-align: center; margin: 5px 0px 0px 0px">
-      <span class="price">{{ defaultCurrencyCode }} {{ price }}</span>
+      <span class="price">$ {{ price }}</span>
     </div>
     <div style="text-align: center">
-      <span class="discounted_price"
-        >{{ defaultCurrencyCode }} {{ price }}</span
-      >
+      <span class="discounted_price">$ {{ price }}</span>
     </div>
   </div>
 </div>

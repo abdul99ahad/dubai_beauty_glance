@@ -182,11 +182,11 @@
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
-            [title]="product.title"
-            [description]="product.description"
+            [name]="product.name"
+            [slug]="product.slug"
             [price]="product.price"
-            [discountedPrice]="product.discountedPrice"
-            [imgSrc]="product.imgSrc"
+            [discount_price]="product.discount_price"
+            [image]="product.image"
           ></app-product-card>
         </ng-template>
       </p-carousel>
@@ -202,11 +202,11 @@
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
-            [title]="product.title"
-            [description]="product.description"
+            [name]="product.name"
+            [slug]="product.slug"
             [price]="product.price"
-            [discountedPrice]="product.discountedPrice"
-            [imgSrc]="product.imgSrc"
+            [discount_price]="product.discount_price"
+            [image]="product.image"
           ></app-product-card>
         </ng-template>
       </p-carousel>
@@ -226,7 +226,7 @@
         class="carousel"
         [config]="slideConfigBrandSales"
       >
-        <div ngxSlickItem *ngFor="let slide of brandSaleImgs" class="slide">
+        <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
           <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
         </div>
       </ngx-slick-carousel>
@@ -278,11 +278,11 @@
       <app-product-card
         class="w-20"
         *ngFor="let product of latestProductsDisplay"
-        [title]="product.title"
-        [description]="product.description"
+        [name]="product.name"
+        [slug]="product.slug"
         [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
+        [discount_price]="product.discount_price"
+        [image]="product.image"
       ></app-product-card>
     </div>
 
@@ -290,11 +290,11 @@
       <app-product-card
         id="new-arrivals"
         *ngFor="let product of latestProductsDisplay"
-        [title]="product.title"
-        [description]="product.description"
+        [name]="product.name"
+        [slug]="product.slug"
         [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
+        [discount_price]="product.discount_price"
+        [image]="product.image"
       ></app-product-card>
     </div>
   </div>
@@ -311,7 +311,7 @@
   </div>
 </div>
 
-<app-main-timedeal></app-main-timedeal>
+<app-main-time-deal></app-main-time-deal>
 
 <div class="main-box8">
   <div>
@@ -352,8 +352,11 @@
               >
                 <ng-template let-product pTemplate="item">
                   <app-product-card
-                    [imgSrc]="product.imgSrc"
-                    [showDetails]="false"
+                    [name]="product.name"
+                    [slug]="product.slug"
+                    [price]="product.price"
+                    [discount_price]="product.discount_price"
+                    [image]="product.image"
                   ></app-product-card>
                 </ng-template>
               </p-carousel>
@@ -396,11 +399,11 @@
               <ng-template let-product pTemplate="item">
                 <app-product-card
                   *ngFor="let product of latestProductsDisplay"
-                  [title]="product.title"
-                  [description]="product.description"
+                  [name]="product.name"
+                  [slug]="product.slug"
                   [price]="product.price"
-                  [discountedPrice]="product.discountedPrice"
-                  [imgSrc]="product.imgSrc"
+                  [discount_price]="product.discount_price"
+                  [image]="product.image"
                 ></app-product-card>
               </ng-template>
             </p-carousel>

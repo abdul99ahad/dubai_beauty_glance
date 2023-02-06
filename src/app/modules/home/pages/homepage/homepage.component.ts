@@ -1,22 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { Product } from 'src/app/interfaces/product.interface';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })
-export class HomepageComponent implements OnInit {
-  // @ViewChild('slickModalBrands') slickModalBrands: ElementRef;
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  onChange($event: Event) {
-    console.log($event);
-  }
-
-  brandSaleImgs: string[] = [
+export class HomepageComponent {
+  public brandSaleImages: string[] = [
     'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
     'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
     'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
@@ -25,7 +17,7 @@ export class HomepageComponent implements OnInit {
     'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
   ];
 
-  responsiveOptions = [
+  public responsiveOptions = [
     {
       breakpoint: '1024px',
       numVisible: 5,
@@ -41,42 +33,7 @@ export class HomepageComponent implements OnInit {
     },
   ];
 
-  imageObject: Array<object> = [
-    {
-      image: 'assets/img/slider/1.jpg',
-      thumbImage: 'assets/img/slider/1_min.jpeg',
-      alt: 'alt of image',
-      title: 'title of image',
-    },
-    {
-      image: '.../iOe/xHHf4nf8AE75h3j1x64ZmZ//Z==', // Support base64 image
-      thumbImage: '.../iOe/xHHf4nf8AE75h3j1x64ZmZ//Z==', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt', //Optional: You can use this key if want to show image with alt
-      order: 1, //Optional: if you pass this key then slider images will be arrange according @input: slideOrderType
-    },
-  ];
-
-  bannerImagesCarousel: Array<object> = [
-    {
-      image: '../../../../../assets/banner_1.jpg',
-      title: 'Banner 1',
-    },
-    {
-      image: '../../../../../assets/banner_2.jpg',
-      title: 'Banner 2',
-    },
-    {
-      image: '../../../../../assets/banner_3.jpg',
-      title: 'Banner 3',
-    },
-    {
-      image: '../../../../../assets/banner_4.jpg',
-      title: 'Banner 4',
-    },
-  ];
-
-  slideConfig = {
+  public slideConfig = {
     // slidesToShow: 3,
     // slidesToScroll: 3,
     centerMode: true,
@@ -144,7 +101,7 @@ export class HomepageComponent implements OnInit {
   };
 
   currentBrandSlideNumber: number = 1;
-  totalBrandSlideNumber: number = this.brandSaleImgs.length;
+  totalBrandSlideNumber: number = this.brandSaleImages.length;
   nextSlide(slickModalBrands: SlickCarouselComponent) {
     if (this.currentBrandSlideNumber < this.totalBrandSlideNumber) {
       this.currentBrandSlideNumber++;
@@ -171,7 +128,8 @@ export class HomepageComponent implements OnInit {
       title: 'Event Banner 1',
     },
   ];
-  eventBannerCarousel: Array<{ image: string; title: string }> = [
+
+  public eventBannerCarousel: Array<{ image: string; title: string }> = [
     {
       image: '../../../../../assets/slider_banner_1.jpg',
       title: 'Event Banner 1',
@@ -193,7 +151,8 @@ export class HomepageComponent implements OnInit {
       title: 'Event banner 2',
     },
   ];
-  tabHeaderItems: Array<{ brand: string; imgSrc: string }> = [
+
+  public tabHeaderItems: Array<{ brand: string; imgSrc: string }> = [
     {
       brand: 'CORSX',
       imgSrc:
@@ -220,160 +179,20 @@ export class HomepageComponent implements OnInit {
         'https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg',
     },
   ];
-  productsDisplay: any = [
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    // {
-    //   title: 'MISSHA',
-    //   description:
-    //     'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-    //   price: '22,000',
-    //   discountedPrice: '18,000',
-    //   imgSrc: '../../../../../assets/product_1.jpg',
-    // },
-  ];
 
-  latestProductsDisplay: any = [
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-    {
-      title: 'MISSHA',
-      description:
-        'MISSHA All-around Safe Block Soft Finish Sun Milk SPF50+ PA+++ 70ml',
-      price: '22,000',
-      discountedPrice: '18,000',
-      imgSrc: '../../../../../assets/product_1.jpg',
-    },
-    {
-      title: 'COSRX',
-      description: 'COSRX ADVANCED SNAIL 92 ALL IN ONE CREAM 100ml',
-      price: '10,000',
-      discountedPrice: '8,000',
-      imgSrc: '../../../../../assets/product.jpg',
-    },
-  ];
+  public productsDisplay: Array<Product> = new Array<Product>(20).fill({
+    name: 'MISSHA',
+    slug: 'missha',
+    price: '22,000',
+    discount_price: '18,000',
+    image: '../../../../../assets/product_1.jpg',
+  });
+
+  public latestProductsDisplay: Array<Product> = new Array<Product>(20).fill({
+    name: 'MISSHA',
+    slug: 'missha',
+    price: '22,000',
+    discount_price: '18,000',
+    image: '../../../../../assets/product_1.jpg',
+  });
 }

@@ -16,11 +16,11 @@
         <app-product-card
           class="w-20"
           *ngFor="let product of products"
-          [title]="product.title"
-          [description]="product.description"
+          [name]="product.name"
+          [slug]="product.slug"
           [price]="product.price"
-          [discountedPrice]="product.discountedPrice"
-          [imgSrc]="product.imgSrc"
+          [discount_price]="product.discount_price"
+          [image]="product.image"
         ></app-product-card>
       </div>
 
@@ -29,11 +29,11 @@
           class="w-20"
           id="time-deal-products"
           *ngFor="let product of products"
-          [title]="product.title"
-          [description]="product.description"
+          [name]="product.name"
+          [slug]="product.slug"
           [price]="product.price"
-          [discountedPrice]="product.discountedPrice"
-          [imgSrc]="product.imgSrc"
+          [discount_price]="product.discount_price"
+          [image]="product.image"
         ></app-product-card>
       </div>
     </div>
