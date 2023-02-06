@@ -177,7 +177,7 @@
         [discountedPrice]="product.discountedPrice"
         [imgSrc]="product.imgSrc"
       ></app-product-card> -->
-      <ngx-slick-carousel class="web-view carousel" [config]="slideConfig">
+      <ngx-slick-carousel class="web-view carousel" [config]="bestItemsCarouselConfig">
         <div
           ngxSlickItem
           *ngFor="let product of productsDisplay"

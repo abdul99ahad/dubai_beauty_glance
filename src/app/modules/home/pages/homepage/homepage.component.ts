@@ -71,6 +71,35 @@ export class HomepageComponent {
     ],
   };
 
+  public bestItemsCarouselConfig = {
+    // slidesToShow: 3,
+    // slidesToScroll: 3,
+    arrows: false,
+    focusOnSelect: true,
+    dots: false,
+    infinite: true,
+    speed: 300,
+    centerPadding: '60px',
+    slidesToShow: 5,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    // dots: true,
+    // infinite: true,
+    // speed: 300,
+    // adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
+
   public eventBannerCarouselMobile: Array<{ image: string; title: string }> = [
     {
       image:
