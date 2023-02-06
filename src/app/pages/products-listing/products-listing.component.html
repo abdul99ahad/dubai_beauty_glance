@@ -18,11 +18,11 @@
           <ng-template let-product pTemplate="gridItem" class="parent">
             <app-product-card
               class="child"
-              [title]="product.name"
-              [description]="product.description"
+              [name]="product.name"
+              [slug]="product.slug"
               [price]="product.price"
-              [discountedPrice]="product.discount_price"
-              [imgSrc]="product.image"
+              [discount_price]="product.discount_price"
+              [image]="product.image"
             ></app-product-card>
           </ng-template>
         </p-dataView>

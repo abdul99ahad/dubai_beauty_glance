@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
 import { Product } from 'src/app/interfaces/product.interface';
-import { ProductService } from 'src/app/services/product.service';
-import productsJson from '../../mock/products.json';
 import { WebApiService } from 'src/app/services/web-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { IPageButton, PaginatedResponse } from "../../interfaces/response.interface";
+import { map } from "rxjs";
 @Component({
   selector: 'app-brand-products-listing',
   templateUrl: './brand-products-listing.component.html',
@@ -19,33 +18,33 @@ export class BrandProductListingComponent implements OnInit {
     private webApiService: WebApiService
   ) {}
 
-  products: Product[];
-  productList: any = [];
+  public products: Array<Product> = [];
+  public productPageButtons: Array<IPageButton> = [];
 
-  sortOptions: SelectItem[];
+  public ngOnInit(): void {
+    const brandId = this.route.snapshot.paramMap.get("id");
+    if (!brandId) throw new Error("Brand id not available!");
 
-  sortOrder: number;
-
-  sortField: string;
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id') || '';
-    this.webApiService.getBrandProducts(id).subscribe((data) => {
-      this.products = data.data;
-      this.products.forEach((prod) => {
-        prod.image = this.webApiService.imgUrl + prod.image;
-      });
-    });
+    this.fetchProductsOfBrand(+brandId);
   }
 
-  onSortChange(event: any) {
-    // let value = event.value;
-    let value = '!price';
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
-    }
+  public fetchProductsOfBrand(urlOrBrandId: number): void;
+  public fetchProductsOfBrand(urlOrBrandId: string): void;
+  public fetchProductsOfBrand(urlOrBrandId: number | string): void {
+    this.webApiService.getBrandProducts(urlOrBrandId).pipe(
+      map((response: PaginatedResponse<Product>) => {
+        response.data = response.data.map((product: Product) => {
+          product.image = this.webApiService.imgUrl + product.image;
+
+          return product;
+        });
+
+        return response;
+      })
+    ).subscribe((response: PaginatedResponse<Product>) => {
+      this.products = response.data;
+      this.productPageButtons = response.meta.links;
+    });
+
   }
 }

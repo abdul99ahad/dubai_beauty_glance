@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Product } from "src/app/interfaces/product.interface";
-import { ProductService } from "src/app/services/product.service";
 import { WebApiService } from "src/app/services/web-api.service";
 import { IPageButton, PaginatedResponse } from "../../interfaces/response.interface";
 import { map } from "rxjs";
@@ -9,7 +8,6 @@ import { map } from "rxjs";
   selector: "app-products-listing",
   templateUrl: "./products-listing.component.html",
   styleUrls: ["./products-listing.component.scss"],
-  providers: [ProductService],
 })
 export class ProductsListingComponent implements OnInit {
   @Input("title") public title: string = "PRODUCTS";
@@ -17,10 +15,7 @@ export class ProductsListingComponent implements OnInit {
   public productsPageButtons: Array<IPageButton> = [];
 
 
-  public constructor(
-    private webApiService: WebApiService
-  ) {
-  }
+  public constructor(private webApiService: WebApiService) {}
 
   public ngOnInit(): void {
     this.fetchProducts();

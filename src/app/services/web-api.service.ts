@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { HttpService } from "./http.service";
 import { ApiRoutes } from "src/app/const/api-routes";
-import { Category } from "../interfaces/categories.interface";
+import { CategoryWithChildren } from "../interfaces/categories.interface";
 import { Product } from "../interfaces/product.interface";
 import { PaginatedResponse } from "../interfaces/response.interface";
 import { environment } from "src/environments/environment";
@@ -15,8 +14,7 @@ import { Brand } from "../interfaces/brand.interface";
 export class WebApiService {
   imgUrl: string = environment.imgUrl;
 
-  constructor(private httpService: HttpService, private router: Router) {
-  }
+  public constructor(private readonly httpService: HttpService) {}
 
   getProducts(url?: string): Observable<PaginatedResponse<Product>> {
     return this.httpService.get(url ?? ApiRoutes.products, !!url);
@@ -26,8 +24,10 @@ export class WebApiService {
     return this.httpService.get(url ?? `${ ApiRoutes.products }?promotional=1`, !!url);
   }
 
-  getBrandProducts(id: string): Observable<PaginatedResponse<Product>> {
-    return this.httpService.get(ApiRoutes.brand + "/" + encodeURI(id));
+  getBrandProducts(urlOrBrandId: number | string): Observable<PaginatedResponse<Product>> {
+    const useAbsoluteUrl = typeof urlOrBrandId === "string"
+
+    return this.httpService.get(useAbsoluteUrl ? urlOrBrandId : `${ApiRoutes.brand}/${encodeURI(urlOrBrandId.toString())}`, useAbsoluteUrl);
   }
 
   getCategoryProducts(id: string): Observable<PaginatedResponse<Product>> {
@@ -38,7 +38,7 @@ export class WebApiService {
     return this.httpService.get(url ?? ApiRoutes.brands, !!url);
   }
 
-  getCategories(): Observable<PaginatedResponse<Category>> {
-    return this.httpService.get(ApiRoutes.categories);
+  getCategories(): Observable<{ data: Array<CategoryWithChildren> }> {
+    return this.httpService.get<{ data: Array<CategoryWithChildren> }>(ApiRoutes.categories);
   }
 }

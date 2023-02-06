@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { DataViewLayoutOptions } from 'primeng/dataview';
-import { Category } from 'src/app/models/categories.model';
 import { WebApiService } from 'src/app/services/web-api.service';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -12,6 +10,7 @@ import {
   Subscription,
   switchMap,
 } from 'rxjs';
+import { Category } from "../../../../interfaces/categories.interface";
 
 interface Product {
   name: string;
@@ -135,7 +134,7 @@ export class HeaderComponent implements OnInit {
       .subscribe((products: Array<Product>) => (this.products = products));
   }
 
-  categories: Category[] = [];
+  categories: Array<Category> = [];
 
   getCategories() {
     this.display = true;

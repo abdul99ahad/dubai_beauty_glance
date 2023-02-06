@@ -3,5 +3,10 @@ export interface Category {
   description: string;
   slug: string;
   image: string;
-  childrenCategories: Category[];
 }
+
+export interface CategoryWithChildren extends Category {
+  children_categories: Array<CategoryWithChildren>;
+}
+
+

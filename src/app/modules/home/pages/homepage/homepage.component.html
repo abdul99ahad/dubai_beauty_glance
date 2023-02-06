@@ -187,11 +187,11 @@
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
-            [title]="product.title"
-            [description]="product.description"
+            [name]="product.name"
+            [slug]="product.slug"
             [price]="product.price"
-            [discountedPrice]="product.discountedPrice"
-            [imgSrc]="product.imgSrc"
+            [discount_price]="product.discount_price"
+            [image]="product.image"
           ></app-product-card>
         </ng-template>
       </p-carousel>
@@ -207,11 +207,11 @@
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
-            [title]="product.title"
-            [description]="product.description"
+            [name]="product.name"
+            [slug]="product.slug"
             [price]="product.price"
-            [discountedPrice]="product.discountedPrice"
-            [imgSrc]="product.imgSrc"
+            [discount_price]="product.discount_price"
+            [image]="product.image"
           ></app-product-card>
         </ng-template>
       </p-carousel>
@@ -227,12 +227,11 @@
     </div>
     <div class="brandsale-card flex-products promotion-flex">
       <p-carousel
-        [value]="brandSaleImgs"
+        [value]="brandSaleImages"
         [numVisible]="5"
         [responsiveOptions]="responsiveOptions"
         [showIndicators]="false"
         [showNavigators]="false"
-        (onPage)="onChange($event)"
       >
         <ng-template let-product pTemplate="item">
           <app-brandsale-card [imgSrc]="product"></app-brandsale-card>
@@ -288,11 +287,11 @@
       <app-product-card
         class="w-20"
         *ngFor="let product of latestProductsDisplay"
-        [title]="product.title"
-        [description]="product.description"
+        [name]="product.name"
+        [slug]="product.slug"
         [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
+        [discount_price]="product.discount_price"
+        [image]="product.image"
       ></app-product-card>
     </div>
 
@@ -300,11 +299,11 @@
       <app-product-card
         id="new-arrivals"
         *ngFor="let product of latestProductsDisplay"
-        [title]="product.title"
-        [description]="product.description"
+        [name]="product.name"
+        [slug]="product.slug"
         [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
+        [discount_price]="product.discount_price"
+        [image]="product.image"
       ></app-product-card>
     </div>
   </div>
@@ -321,7 +320,7 @@
   </div>
 </div>
 
-<app-main-timedeal></app-main-timedeal>
+<app-main-time-deal></app-main-time-deal>
 
 <div class="main-box8">
   <div>
@@ -362,8 +361,11 @@
               >
                 <ng-template let-product pTemplate="item">
                   <app-product-card
-                    [imgSrc]="product.imgSrc"
-                    [showDetails]="false"
+                    [name]="product.name"
+                    [slug]="product.slug"
+                    [price]="product.price"
+                    [discount_price]="product.discount_price"
+                    [image]="product.image"
                   ></app-product-card>
                 </ng-template>
               </p-carousel>
@@ -406,11 +408,11 @@
               <ng-template let-product pTemplate="item">
                 <app-product-card
                   *ngFor="let product of latestProductsDisplay"
-                  [title]="product.title"
-                  [description]="product.description"
+                  [name]="product.name"
+                  [slug]="product.slug"
                   [price]="product.price"
-                  [discountedPrice]="product.discountedPrice"
-                  [imgSrc]="product.imgSrc"
+                  [discount_price]="product.discount_price"
+                  [image]="product.image"
                 ></app-product-card>
               </ng-template>
             </p-carousel>
