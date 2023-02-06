@@ -26,6 +26,14 @@
             ></app-product-card>
           </ng-template>
         </p-dataView>
+        <ng-container *ngFor="let productPageButton of productPageButtons">
+          <ng-container *ngIf="!!productPageButton.url; else elseBlock;">
+            <button class="p-button" type="submit" (click)="fetchProductsOfBrandWithUrl(productPageButton.url)">{{ productPageButton.label }}</button>
+          </ng-container>
+          <ng-template #elseBlock>
+            <button disabled class="p-button" type="submit">{{ productPageButton.label }}</button>
+          </ng-template>
+        </ng-container>
       </div>
     </div>
   </div>

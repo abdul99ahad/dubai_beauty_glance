@@ -24,10 +24,12 @@ export class WebApiService {
     return this.httpService.get(url ?? `${ ApiRoutes.products }?promotional=1`, !!url);
   }
 
-  getBrandProducts(urlOrBrandId: number | string): Observable<PaginatedResponse<Product>> {
-    const useAbsoluteUrl = typeof urlOrBrandId === "string"
+  public getBrandProductsWithUrl(brandCompleteUrl: string): Observable<PaginatedResponse<Product>> {
+    return this.httpService.get(brandCompleteUrl, true);
+  }
 
-    return this.httpService.get(useAbsoluteUrl ? urlOrBrandId : `${ApiRoutes.brand}/${encodeURI(urlOrBrandId.toString())}`, useAbsoluteUrl);
+  public getBrandProductsWithSlug(brandSlug: string): Observable<PaginatedResponse<Product>> {
+    return this.httpService.get(`${ApiRoutes.brand}/${encodeURI(brandSlug)}`);
   }
 
   getCategoryProducts(id: string): Observable<PaginatedResponse<Product>> {
