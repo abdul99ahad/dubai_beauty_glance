@@ -4,13 +4,13 @@
       <h3>
         <a (click)="categoryClick()" routerLink="../category/{{ category.slug }}">{{ category.name }}</a>
       </h3>
-      <div *ngFor="let child of category.children_categories; let i = index">
+      <div *ngFor="let child of category.childrenCategories; let i = index">
         <h4>
           <a (click)="categoryClick()" routerLink="../category/{{ child.slug }}">{{ child.name }}</a>
         </h4>
 
         <div class="sub-item-container">
-          <a (click)="categoryClick()" routerLink="../category/{{ subItem.slug }}" style="flex: 20; font-size: 18px; margin: 5px 0" *ngFor="let subItem of child.children_categories">{{ subItem.name }}</a>
+          <a (click)="categoryClick()" routerLink="../category/{{ subItem.slug }}" style="flex: 20; font-size: 18px; margin: 5px 0" *ngFor="let subItem of child.childrenCategories">{{ subItem.name }}</a>
         </div>
       </div>
 
