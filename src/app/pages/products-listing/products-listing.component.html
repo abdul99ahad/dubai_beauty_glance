@@ -28,10 +28,10 @@
         </p-dataView>
         <ng-container *ngFor="let productPageButton of productsPageButtons">
           <ng-container *ngIf="!!productPageButton.url; else elseBlock;">
-            <button class="p-button" type="submit" (click)="fetchProducts(productPageButton.url)">{{ productPageButton.label }}</button>
+            <button class="p-button" type="submit" (click)="fetchProducts(productPageButton.url)">{{ productPageButton.label | decodeHtmlEntitiesPipe }}</button>
           </ng-container>
           <ng-template #elseBlock>
-            <button disabled class="p-button" type="submit">{{ productPageButton.label }}</button>
+            <button disabled class="p-button" type="submit">{{ productPageButton.label | decodeHtmlEntitiesPipe }}</button>
           </ng-template>
         </ng-container>
       </div>
