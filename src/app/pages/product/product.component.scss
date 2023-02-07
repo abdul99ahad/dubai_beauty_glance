@@ -327,3 +327,20 @@ a:hover {
     height: 16px;
     margin-top: -5px;
 }
+
+@media (max-width: 800px) {
+    .infoArea {
+        width: 100%;
+    }
+    .gifts-img {
+        max-width: 100%;
+    }
+
+    .web-view {
+        display: none;
+    }
+
+    .keyImg {
+        width: 100%;
+    }
+}
