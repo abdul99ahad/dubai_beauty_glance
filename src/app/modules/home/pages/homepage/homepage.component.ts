@@ -1,33 +1,33 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SlickCarouselComponent } from 'ngx-slick-carousel';
-import { Product } from 'src/app/interfaces/product.interface';
+import { Component } from "@angular/core";
+import { SlickCarouselComponent } from "ngx-slick-carousel";
+import { Product } from "src/app/interfaces/product.interface";
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+  selector: "app-homepage",
+  templateUrl: "./homepage.component.html",
+  styleUrls: ["./homepage.component.scss"],
 })
 export class HomepageComponent {
   public brandSaleImages: string[] = [
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
   ];
 
   public responsiveOptions = [
     {
-      breakpoint: '1024px',
+      breakpoint: "1024px",
       numVisible: 5,
     },
     {
-      breakpoint: '768px',
+      breakpoint: "768px",
       numVisible: 2,
     },
     {
-      breakpoint: '560px',
+      breakpoint: "560px",
       numVisible: 2,
       numScroll: 1,
     },
@@ -42,7 +42,7 @@ export class HomepageComponent {
     dots: false,
     infinite: true,
     speed: 300,
-    centerPadding: '60px',
+    centerPadding: "60px",
     slidesToShow: 3,
     autoplay: true,
     autoplaySpeed: 3500,
@@ -56,7 +56,7 @@ export class HomepageComponent {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: "40px",
           slidesToShow: 1,
         },
       },
@@ -65,14 +65,14 @@ export class HomepageComponent {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: "40px",
           slidesToShow: 1,
         },
       },
     ],
   };
 
-  slideConfigBrandSales = {
+  public slideConfigBrandSales = {
     arrows: false,
     focusOnSelect: true,
     dots: false,
@@ -84,7 +84,7 @@ export class HomepageComponent {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: "40px",
           slidesToShow: 1,
         },
       },
@@ -93,28 +93,12 @@ export class HomepageComponent {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: "40px",
           slidesToShow: 1,
         },
       },
     ],
   };
-
-  currentBrandSlideNumber: number = 1;
-  totalBrandSlideNumber: number = this.brandSaleImages.length;
-  nextSlide(slickModalBrands: SlickCarouselComponent) {
-    if (this.currentBrandSlideNumber < this.totalBrandSlideNumber) {
-      this.currentBrandSlideNumber++;
-      slickModalBrands.slickNext();
-    }
-  }
-
-  previousSlide(slickModalBrands: SlickCarouselComponent) {
-    if (this.currentBrandSlideNumber > 1) {
-      this.currentBrandSlideNumber--;
-      slickModalBrands.slickPrev();
-    }
-  }
 
   public bestItemsCarouselConfig = {
     // slidesToShow: 3,
@@ -124,7 +108,7 @@ export class HomepageComponent {
     dots: false,
     infinite: true,
     speed: 300,
-    centerPadding: '60px',
+    centerPadding: "60px",
     slidesToShow: 5,
     autoplay: true,
     autoplaySpeed: 3500,
@@ -138,100 +122,111 @@ export class HomepageComponent {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: "40px",
           slidesToShow: 2,
         },
       },
     ],
   };
 
+  public currentBrandSlideNumber: number = 1;
+  public totalBrandSlideNumber: number = this.brandSaleImages.length;
   public eventBannerCarouselMobile: Array<{ image: string; title: string }> = [
     {
       image:
-        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg',
-      title: 'Event Banner 1',
+        "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg",
+      title: "Event Banner 1",
     },
     {
       image:
-        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg',
-      title: 'Event Banner 1',
+        "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg",
+      title: "Event Banner 1",
     },
   ];
-
   public eventBannerCarousel: Array<{ image: string; title: string }> = [
     {
-      image: '../../../../../assets/slider_banner_1.jpg',
-      title: 'Event Banner 1',
+      image: "../../../../../assets/slider_banner_1.jpg",
+      title: "Event Banner 1",
     },
     {
-      image: '../../../../../assets/slider_banner_2.jpg',
-      title: 'Event banner 2',
+      image: "../../../../../assets/slider_banner_2.jpg",
+      title: "Event banner 2",
     },
     {
-      image: '../../../../../assets/slider_banner_3.jpg',
-      title: 'Event banner 3',
+      image: "../../../../../assets/slider_banner_3.jpg",
+      title: "Event banner 3",
     },
     {
-      image: '../../../../../assets/slider_banner_4.jpg',
-      title: 'Event Banner 1',
+      image: "../../../../../assets/slider_banner_4.jpg",
+      title: "Event Banner 1",
     },
     {
-      image: '../../../../../assets/slider_banner_5.jpg',
-      title: 'Event banner 2',
+      image: "../../../../../assets/slider_banner_5.jpg",
+      title: "Event banner 2",
     },
   ];
-
   public tabHeaderItems: Array<{ brand: string; imgSrc: string }> = [
     {
-      brand: 'CORSX',
+      brand: "CORSX",
       imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg',
+        "https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg",
     },
     {
-      brand: 'MISHA',
+      brand: "MISHA",
       imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg',
+        "https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg",
     },
     {
-      brand: 'ETUDE',
+      brand: "ETUDE",
       imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg',
+        "https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg",
     },
     {
-      brand: 'Beauty of Jeason',
+      brand: "Beauty of Jeason",
       imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg',
+        "https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg",
     },
     {
-      brand: 'Round Lab',
+      brand: "Round Lab",
       imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg',
+        "https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg",
     },
   ];
-
   public productsDisplay: Array<Product> = new Array<Product>(20).fill({
-    name: 'MISSHA',
-    slug: 'missha',
-    price: '22,000',
-    discount_price: '18,000',
-    image: '../../../../../assets/product_1.jpg',
+    name: "MISSHA",
+    slug: "missha",
+    price: "22,000",
+    discount_price: "18,000",
+    image: "../../../../../assets/product_1.jpg",
   });
-
   public latestProductsDisplay: Array<Product> = new Array<Product>(20).fill({
-    name: 'MISSHA',
-    slug: 'missha',
-    price: '22,000',
-    discount_price: '18,000',
-    image: '../../../../../assets/product_1.jpg',
+    name: "MISSHA",
+    slug: "missha",
+    price: "22,000",
+    discount_price: "18,000",
+    image: "../../../../../assets/product_1.jpg",
   });
-
   public newArrivalsProductsDisplay: Array<Product> = new Array<Product>(
     5
   ).fill({
-    name: 'MISSHA',
-    slug: 'missha',
-    price: '22,000',
-    discount_price: '18,000',
-    image: '../../../../../assets/product_1.jpg',
+    name: "MISSHA",
+    slug: "missha",
+    price: "22,000",
+    discount_price: "18,000",
+    image: "../../../../../assets/product_1.jpg",
   });
+
+  public nextSlide(slickModalBrands: SlickCarouselComponent): void {
+    if (this.currentBrandSlideNumber < this.totalBrandSlideNumber) {
+      this.currentBrandSlideNumber++;
+      slickModalBrands.slickNext();
+    }
+  }
+
+  public previousSlide(slickModalBrands: SlickCarouselComponent): void {
+    if (this.currentBrandSlideNumber > 1) {
+      this.currentBrandSlideNumber--;
+      slickModalBrands.slickPrev();
+    }
+  }
 }
