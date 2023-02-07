@@ -2,7 +2,7 @@
   <div id="div1">
     <div class="thumbnail">
       <div class="prdImage">
-        <a [routerLink]="['product', slug]">
+        <a [routerLink]="'/product/' + slug">
           <img [src]="image" width="100%" height="100%" [alt]="name"/>
         </a>
         <div class="middle">
@@ -15,7 +15,7 @@
     <div class="description">
       <span class="prd-brand">{{ name }}</span>
       <strong class="name">
-        <a [routerLink]="['product', slug]">
+        <a [routerLink]="'/product/' + slug">
           <span>{{ name }}</span>
         </a>
       </strong>

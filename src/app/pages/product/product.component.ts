@@ -1,4 +1,8 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { WebApiService } from "../../services/web-api.service";
+import { map } from "rxjs";
+import { ProductDetail } from "../../interfaces/product.interface";
 
 @Component({
   selector: 'app-product',
@@ -6,18 +10,10 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  @Input() productTitle: string =
-    'Beauty of joseon Relief Sun Rice Probiotics 50ml'; //TODO:
-  @Input() brand: string = 'The History of WHOO';
-  @Input() currencyUsed: string = 'USD';
-  @Input() unitPrice: number = 60.0;
-  // @Input() price: number = 60.0;
-  @Input() unitDiscountedPrice: number = 51.0;
-  @Input() productDetail: string =
-    'The History of Whoo Radiant White Moisture Cushion Foundation 13g + Refill 13g #21 light beige';
-  @Input() minimumOrder: number = 1;
-  @Input() selectedQuantity: number = 1;
-  country: string = 'PK';
+  public selectedQuantity: number;
+  public totalPrice: number;
+  public discountedTotalPrice: number;
+
   checked: boolean = true;
   display: boolean = false;
 
@@ -33,35 +29,56 @@ export class ProductComponent implements OnInit {
       checked: false,
     },
   ];
-  price: number = this.unitPrice;
-  discountedPrice: number = this.unitDiscountedPrice;
 
-  floatPrice: string = this.price.toPrecision(4);
-  floatDiscountedPrice: string = this.discountedPrice.toPrecision(4);
+  public productDetails: ProductDetail;
 
-  constructor() {}
+  public constructor(
+    private readonly route: ActivatedRoute,
+    private readonly webApiService: WebApiService,
+  ) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.fetchProductDetails();
+  }
+
+  public fetchProductDetails(): void {
+    const productSlug = this.route.snapshot.paramMap.get("slug");
+    if (!productSlug) throw new Error("Product slug unavailable!");
+
+    this.webApiService.getProductDetails(productSlug).pipe(
+      map((response: { data: ProductDetail }) => response.data),
+      map((product: ProductDetail) => {
+        product.image = this.webApiService.imgUrl + product.image;
+        product.brand.country_flag = this.webApiService.imgUrl + product.brand.country_flag;
+
+        return product;
+      }),
+    ).subscribe((product: ProductDetail) => {
+      this.productDetails = product;
+
+      this.initializeProductInitialStates(product);
+    });
+  }
+
+  public initializeProductInitialStates(product: ProductDetail): void {
+    this.selectedQuantity = product.min_order_quantity;
+  }
 
   @HostListener('mousewheel', ['$event'])
   onMousewheel(event: any) {
     // this.display = true;
-    if (event.pageY > event.view.outerHeight * 1.5) {
-      this.display = true;
-    } else {
-      this.display = false;
-    }
+    this.display = event.pageY > event.view.outerHeight * 1.5;
   }
 
   quantityUp(): void {
     this.selectedQuantity++;
-    this.updatePrice(this.selectedQuantity);
+    this.updateTotalPrice(this.selectedQuantity);
   }
 
   quantityDown(): void {
     if (this.selectedQuantity > 1) {
       this.selectedQuantity--;
-      this.updatePrice(this.selectedQuantity);
+      this.updateTotalPrice(this.selectedQuantity);
     }
   }
 
@@ -74,19 +91,10 @@ export class ProductComponent implements OnInit {
     this.display = true;
   }
 
-  private numberToFloat() {
-    this.floatPrice = this.price.toPrecision(
-      ((Math.log(this.price) * Math.LOG10E + 1) | 0) + 2
-    );
-    this.floatDiscountedPrice = this.discountedPrice.toPrecision(
-      ((Math.log(this.discountedPrice) * Math.LOG10E + 1) | 0) + 2
-    );
-  }
-
-  updatePrice(quantity: number) {
+  public updateTotalPrice(quantity: number): void {
     if (quantity <= 0) return;
-    this.price = this.unitPrice * quantity;
-    this.discountedPrice = this.unitDiscountedPrice * quantity;
-    this.numberToFloat();
+
+    this.totalPrice = (+this.productDetails.price) * quantity;
+    this.discountedTotalPrice = (+(this.productDetails.discount_price ?? 0)) * quantity;
   }
 }

@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'agreement', component: AgreementComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'products', component: ProductsListingComponent },
-  { path: 'product', component: ProductComponent },
+  { path: 'product/:slug', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   { path: 'register', component: SignUpComponent },
   { path: 'checkout', component: CheckoutComponent },
