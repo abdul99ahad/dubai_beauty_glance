@@ -32,50 +32,15 @@
         <div style="display: flex; justify-content: space-evenly">
           <ng-container *ngFor="let productPageButton of productsPageButtons">
             <ng-container *ngIf="!!productPageButton.url; else elseBlock">
-              <button
-                type="button"
-                pripple=""
-                (click)="fetchProducts(productPageButton.url)"
-                class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted"
-              >
-                {{ productPageButton.label }}
-                <span
-                  class="p-ink"
-                  style="
-                    height: 42px;
-                    width: 42px;
-                    top: 2.17494px;
-                    left: 5.39996px;
-                  "
-                ></span>
+              <button type="button" (click)="fetchProducts(productPageButton.url)" class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ productPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px;"></span>
               </button>
-              <!-- <button
-              pButton
-              class="p-button p-button-outlined"
-              type="button"
-              (click)="fetchProducts(productPageButton.url)"
-            >
-              {{ productPageButton.label }}
-            </button> -->
             </ng-container>
             <ng-template #elseBlock>
-              <button
-                disabled
-                class="p-button"
-                class="p-button-outlined"
-                type="submit"
-                class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted"
-              >
-                {{ productPageButton.label }}
-                <span
-                  class="p-ink"
-                  style="
-                    height: 42px;
-                    width: 42px;
-                    top: 2.17494px;
-                    left: 5.39996px;
-                  "
-                ></span>
+              <button disabled type="submit" class="p-button p-button-outlined p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ productPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px;"></span>
               </button>
             </ng-template>
           </ng-container>
