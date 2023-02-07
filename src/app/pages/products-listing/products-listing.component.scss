@@ -223,4 +223,19 @@ p {
       }
     }
   }
+
+  @media (max-width: 800px) {
+    #container {
+      max-width: 100%;
+      min-width: 100%;
+  }
+
+  .web-view {
+    display:none !important;
+  }
+  .child {
+      flex: 1 0 33%;
+  }
+  }
+
   

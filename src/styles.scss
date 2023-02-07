@@ -61,3 +61,37 @@ body .slick-next {
     z-index: 100;
 }
 
+.mobile-view {
+    display: none;
+}
+
+.mobile-view-block {
+    display: none;
+}
+
+.web-view {
+    display: flex;
+}
+
+.web-view-block {
+    display: block;
+}
+
+
+@media (max-width: 800px) {
+
+    .web-view {
+        display: none;
+    }
+
+    .mobile-view-block {
+        display: block;
+    }
+
+    .web-view-block {
+        display: none;
+    }
+    .mobile-view {
+        display:flex
+    }
+}

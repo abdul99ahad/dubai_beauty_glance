@@ -26,21 +26,46 @@
               [discount_price]="product.discount_price"
               [image]="product.image"
             ></app-product-card>
+            <!-- <div
+              style="
+                height: 100px;
+                width: 100px;
+                background-color: aliceblue;
+                border: 1px solid black;
+              "
+            ></div> -->
           </ng-template>
         </p-dataView>
-        <p-divider></p-divider>
-        <div style="display: flex; justify-content: space-evenly">
+        <p-divider class="web-view"></p-divider>
+        <div
+          style="display: flex; justify-content: space-evenly"
+          class="web-view"
+        >
           <ng-container *ngFor="let productPageButton of productsPageButtons">
             <ng-container *ngIf="!!productPageButton.url; else elseBlock">
-              <button type="button" (click)="fetchProducts(productPageButton.url)" class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+              <button
+                type="button"
+                (click)="fetchProducts(productPageButton.url)"
+                class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted"
+              >
                 {{ productPageButton.label | decodeHtmlEntitiesPipe }}
-                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px;"></span>
+                <span
+                  class="p-ink"
+                  style="height: 42px; width: 42px; top: 2px; left: 5px"
+                ></span>
               </button>
             </ng-container>
             <ng-template #elseBlock>
-              <button disabled type="submit" class="p-button p-button-outlined p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+              <button
+                disabled
+                type="submit"
+                class="p-button p-button-outlined p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted"
+              >
                 {{ productPageButton.label | decodeHtmlEntitiesPipe }}
-                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px;"></span>
+                <span
+                  class="p-ink"
+                  style="height: 42px; width: 42px; top: 2px; left: 5px"
+                ></span>
               </button>
             </ng-template>
           </ng-container>
