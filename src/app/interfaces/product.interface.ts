@@ -25,4 +25,15 @@ export interface ProductDetail extends Product {
   brand: Brand;
   tags: Array<Tag>;
   categories: Array<Omit<Category, "childrenCategories">>;
+  optionValues: Array<ProductOption>;
+}
+
+export interface ProductOption {
+  image: null | string;
+  name: string;
+  option: Option;
+}
+
+export interface Option {
+  name: string;
 }

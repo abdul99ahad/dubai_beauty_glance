@@ -1,11 +1,11 @@
-<div class="grid">
+<div class="grid" *ngIf="productDetail">
   <div class="col-12 md:col-12 lg:col-12">
     <app-ad-banner></app-ad-banner>
   </div>
   <div class="col-12 md:col-6 lg:col-6">
     <div class="keyImg">
       <div class="thumbnail">
-        <img [src]="productDetails.image" [alt]="productDetails.name"/>
+        <img [src]="productDetail.image" [alt]="productDetail.name"/>
       </div>
     </div>
   </div>
@@ -13,11 +13,11 @@
     <div class="infoArea">
       <div class="headingArea" style="display: flex">
         <div style="width: 80%">
-          <h2>{{ productDetails.name }}</h2>
+          <h2>{{ productDetail.name }}</h2>
         </div>
         <div style="width: 20%; display: flex">
-          <img [alt]="productDetails.brand.country_name" [src]="productDetails.brand.country_flag" style="max-width: 50%"/>
-          <p style="font-size: 18px; margin: auto">{{ productDetails.brand.country_code }}</p>
+          <img [alt]="productDetail.brand.country_name" [src]="productDetail.brand.country_flag" style="max-width: 50%"/>
+          <p style="font-size: 18px; margin: auto">{{ productDetail.brand.country_code }}</p>
         </div>
       </div>
 
@@ -30,7 +30,7 @@
               </th>
               <td>
                 <span style="font-size: 12px; color: #555555">
-                  <a [routerLink]="'/brand/' + productDetails.brand.slug">{{ productDetails.brand.name }}</a>
+                  <a [routerLink]="'/brand/' + productDetail.brand.slug">{{ productDetail.brand.name }}</a>
                 </span>
               </td>
             </tr>
@@ -40,19 +40,19 @@
               </th>
               <td>
                 <span style="font-size: 12px; color: #555555; font-weight: bold">
-                  <strong [style.text-decoration]="!productDetails.discount_price ? 'initial' : 'line-through'">$ {{ productDetails.price }}</strong>
+                  <strong [style.text-decoration]="!productDetail.discount_price ? 'initial' : 'line-through'">$ {{ productDetail.price }}</strong>
                 </span>
               </td>
             </tr>
-            <tr *ngIf="productDetails.discount_price" class="prd_price_sale_css xans-record-">
+            <tr *ngIf="productDetail.discount_price" class="prd_price_sale_css xans-record-">
               <th scope="row">
                 <span style="font-size: 12px; color: #323232">Discounted Price</span>
               </th>
               <td>
                 <span>
                   <span style="font-size: 12px; color: #323232">
-                    <span id="span_product_price_sale">$ {{ productDetails.discount_price }}
-                      <span style="font-size: 12px; color: #555555">($ {{ (+productDetails.price) - (+productDetails.discount_price) }} discount)</span>
+                    <span id="span_product_price_sale">$ {{ productDetail.discount_price }}
+                      <span style="font-size: 12px; color: #555555">($ {{ (+productDetail.price) - (+productDetail.discount_price) }} discount)</span>
                     </span>
                   </span>
                 </span>
@@ -63,7 +63,7 @@
                 <span style="font-size: 12px; color: #555555">Description</span>
               </th>
               <td>
-                <span style="font-size: 12px; color: #555555">{{ productDetails.description }}</span>
+                <span style="font-size: 12px; color: #555555">{{ productDetail.description }}</span>
               </td>
             </tr>
             <tr class="simple_desc_css xans-record-">
@@ -72,11 +72,11 @@
               </th>
               <td>
                 <p-toggleButton
-                  *ngFor="let item of skus"
-                  [onLabel]="item.sku"
-                  [offLabel]="item.sku"
-                  [ngModel]="item.checked"
-                  (ngModelChange)="checkSkuItemTrue(item)"
+                  *ngFor="let productOption of productDetail.optionValues; index as productOptionIndex;"
+                  [onLabel]="productOption.name"
+                  [offLabel]="productOption.name"
+                  [ngModel]="checkedOptions[productOptionIndex]"
+                  (ngModelChange)="toggleProductOptionSelection(productOptionIndex)"
                 ></p-toggleButton>
               </td>
             </tr>
@@ -86,14 +86,14 @@
         <p-divider></p-divider>
       </div>
       <div>
-        <p class="info">(Minimum Order : {{ productDetails.min_order_quantity }} or more )</p>
+        <p class="info">(Minimum Order : {{ productDetail.min_order_quantity }} or more )</p>
       </div>
       <div id="totalProducts" class="">
         <p class="ec-base-help txtWarn txt11">Select quantity.</p>
         <p class="ec-base-help txtWarn txt11 displaynone">
           Product will be automatically added below when you select an option.
         </p>
-        <table summary="">
+        <table>
           <caption class="displaynone">
             Product List
           </caption>
@@ -111,7 +111,7 @@
           </thead>
           <tbody class="">
             <tr>
-              <td>{{ productDetails.description }}</td>
+              <td>{{ productDetail.description }}</td>
               <td>
                 <span class="quantity">
                   <input
@@ -139,12 +139,8 @@
               </td>
             </tr>
             <tr id="totalProductsOption" class="xans-element- xans-product xans-product-option option xans-record-">
-              <!--
-                    $use_per_add_option = yes
-                    $default_option = yes
-                    -->
               <td class="middle" colspan="3">
-                <table summary="" class="displaynone">
+                <table class="displaynone">
                   <caption>
                     Option Information
                   </caption>
@@ -172,10 +168,7 @@
       </div>
 
       <div style="margin: 15px 0">
-        <p style="font-size: 16px; margin-bottom: 15px">
-          Free Shipping : On Bill above Rs.3,000 (else Rs.200) (Not applicable
-          for discounted items)
-        </p>
+        <p style="font-size: 16px; margin-bottom: 15px">Free Shipping : On Bill above $ 3,000 (else $ 200) (Not applicable for discounted items)</p>
         <img
           src="https://beautyglance.pk/image/catalog/icons/free-gifts.jpg"
           alt="gifts"
@@ -210,12 +203,7 @@
   </div>
   <div class="col-12 md:col-12 lg:col-12 box" style="height: 500px"></div>
 
-  <p-dialog
-    [(visible)]="display"
-    position="bottom-left"
-    [draggable]="false"
-    class="web-view"
-  >
+  <p-dialog [(visible)]="display" position="bottom-left" [draggable]="false" class="web-view">
     <app-product-description class="web-view"></app-product-description>
   </p-dialog>
 </div>

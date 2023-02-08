@@ -1,41 +1,33 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { WebApiService } from "../../services/web-api.service";
 import { map } from "rxjs";
 import { ProductDetail } from "../../interfaces/product.interface";
 
+type SelectedProductOption = { [productOptionIndex: number]: boolean };
+
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+  selector: "app-product",
+  templateUrl: "./product.component.html",
+  styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
   public selectedQuantity: number;
-  public totalPrice: number;
-  public discountedTotalPrice: number;
+  public totalPrice = 0.00;
+  public discountedTotalPrice = 0.00;
 
   checked: boolean = true;
   display: boolean = false;
 
-  skus: any = [
-    {
-      productId: 1,
-      sku: '2N Black',
-      checked: false,
-    },
-    {
-      productId: 1,
-      sku: '6N Light Brown',
-      checked: false,
-    },
-  ];
+  public checkedOptions: SelectedProductOption = {};
 
-  public productDetails: ProductDetail;
+  public productDetail: ProductDetail;
 
   public constructor(
     private readonly route: ActivatedRoute,
     private readonly webApiService: WebApiService,
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
     this.fetchProductDetails();
@@ -47,54 +39,53 @@ export class ProductComponent implements OnInit {
 
     this.webApiService.getProductDetails(productSlug).pipe(
       map((response: { data: ProductDetail }) => response.data),
-      map((product: ProductDetail) => {
-        product.image = this.webApiService.imgUrl + product.image;
-        product.brand.country_flag = this.webApiService.imgUrl + product.brand.country_flag;
+      map((productDetail: ProductDetail) => {
+        productDetail.image = this.webApiService.imgUrl + productDetail.image;
+        productDetail.brand.country_flag = this.webApiService.imgUrl + productDetail.brand.country_flag;
 
-        return product;
+        return productDetail;
       }),
-    ).subscribe((product: ProductDetail) => {
-      this.productDetails = product;
+    ).subscribe((productDetail: ProductDetail) => {
+      this.productDetail = productDetail;
 
-      this.initializeProductInitialStates(product);
+      this.selectedQuantity = productDetail.min_order_quantity;
+      this.updateTotalPrice(this.selectedQuantity);
     });
   }
 
-  public initializeProductInitialStates(product: ProductDetail): void {
-    this.selectedQuantity = product.min_order_quantity;
+  @HostListener("wheel", ["$event"])
+  public onMousewheel(event: WheelEvent): void {
+    this.display = event.pageY > (event.view)!.outerHeight * 1.5;
   }
 
-  @HostListener('mousewheel', ['$event'])
-  onMousewheel(event: any) {
-    // this.display = true;
-    this.display = event.pageY > event.view.outerHeight * 1.5;
-  }
-
-  quantityUp(): void {
+  public quantityUp(): void {
     this.selectedQuantity++;
     this.updateTotalPrice(this.selectedQuantity);
   }
 
-  quantityDown(): void {
-    if (this.selectedQuantity > 1) {
+  public quantityDown(): void {
+    if (this.selectedQuantity > this.productDetail.min_order_quantity) {
       this.selectedQuantity--;
       this.updateTotalPrice(this.selectedQuantity);
     }
   }
 
-  checkSkuItemTrue(item: any): void {
-    // item.checked = true;
-    this.skus[0].checked = false;
-    // $('')
-  }
-  showDialog(): void {
-    this.display = true;
+  public toggleProductOptionSelection(productOptionIndex: number): void {
+    if (this.checkedOptions[productOptionIndex]) {
+      this.checkedOptions[productOptionIndex] = !this.checkedOptions[productOptionIndex];
+
+      return;
+    }
+
+    this.checkedOptions[productOptionIndex] = true;
   }
 
   public updateTotalPrice(quantity: number): void {
     if (quantity <= 0) return;
 
-    this.totalPrice = (+this.productDetails.price) * quantity;
-    this.discountedTotalPrice = (+(this.productDetails.discount_price ?? 0)) * quantity;
+    const productPrice = this.productDetail.discount_price ? +this.productDetail.discount_price : +this.productDetail.price;
+
+    this.totalPrice = parseFloat((+this.productDetail.price * quantity).toFixed(2));
+    this.discountedTotalPrice = parseFloat((productPrice * quantity).toFixed(2));
   }
 }

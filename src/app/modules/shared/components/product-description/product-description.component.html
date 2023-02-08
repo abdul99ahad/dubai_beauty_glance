@@ -29,40 +29,50 @@
           <tr class="product_price_css xans-record-">
             <th scope="row">
               <span style="font-size: 12px; color: #555555; font-weight: bold"
-                >Price</span
+              >Price
+              </span
               >
             </th>
             <td>
               <span style="font-size: 12px; color: #555555; font-weight: bold"
-                ><strong
+              >
+                <strong
                   id="span_product_price_text"
                   style="text-decoration: line-through"
-                  >{{ currencyUsed }} {{ floatPrice }}</strong
-                ><input
+                >{{ currencyUsed }} {{ floatPrice }}</strong
+                >
+                <input
                   id="product_price"
                   name="product_price"
                   value=""
                   type="hidden"
-              /></span>
+                />
+              </span>
             </td>
           </tr>
           <tr class="prd_price_sale_css xans-record-">
             <th scope="row">
               <span style="font-size: 12px; color: #323232"
-                >Discounted Price</span
+              >Discounted Price
+              </span
               >
             </th>
             <td>
               <span
-                ><span style="font-size: 12px; color: #323232"
-                  ><span id="span_product_price_sale"
-                    >{{ currencyUsed }} {{ floatDiscountedPrice }}
+              >
+                <span style="font-size: 12px; color: #323232"
+                >
+                  <span id="span_product_price_sale"
+                  >{{ currencyUsed }} {{ floatDiscountedPrice }}
                     <span style="font-size: 12px; color: #555555"
-                      >({{ currencyUsed }}
-                      {{ price - discountedPrice }} discount)</span
+                    >({{ currencyUsed }}
+                      {{ price - discountedPrice }} discount)
+                    </span
                     >
-                  </span></span
-                ></span
+                  </span>
+                </span
+                >
+              </span
               >
             </td>
           </tr>
@@ -73,7 +83,7 @@
             <td>
               <span style="font-size: 12px; color: #555555">{{
                 productDetail
-              }}</span>
+                }}</span>
             </td>
           </tr>
           <tr class="simple_desc_css xans-record-">
@@ -97,9 +107,12 @@
     </div>
     <div>
       <p class="info">
-        (Minimum Order : 1 or more<span class="displaynone">
-          / Maximum Order 0 or less</span
-        >)
+        (Minimum Order : 1 or more
+        <span class="displaynone">
+          / Maximum Order 0 or less
+        </span
+        >
+        )
       </p>
     </div>
     <div id="totalProducts" class="">
@@ -112,9 +125,9 @@
           Product List
         </caption>
         <colgroup>
-          <col style="width: auto" />
-          <col style="width: 76px" />
-          <col style="width: 150px" />
+          <col style="width: auto"/>
+          <col style="width: 76px"/>
+          <col style="width: 150px"/>
         </colgroup>
         <thead class="displaynone">
           <tr>
@@ -138,23 +151,28 @@
                   type="number"
                 />
                 <a href="javascript:;" class="up QuantityUp"
-                  ><img
+                >
+                  <img
                     src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
                     alt="up"
                     (click)="quantityUp()"
-                /></a>
+                  />
+                </a>
                 <a href="javascript:;" class="down QuantityDown"
-                  ><img
+                >
+                  <img
                     src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
                     alt="down"
                     (click)="quantityDown()"
-                /></a>
+                  />
+                </a>
               </span>
             </td>
             <td class="right">
               <span class="quantity_price"></span>
               {{ currencyUsed }} {{ floatPrice
-              }}<input
+              }}
+              <input
                 type="hidden"
                 name="option_box_price"
                 class="option_box_price"
@@ -162,7 +180,9 @@
                 item_code="P000DMBZ000A"
               />
               <span class="mileage displaynone" style="display: none"
-                ><img src="" /> &nbsp;<span class="mileage_price">0</span></span
+              >
+                <img src=""/> &nbsp;<span class="mileage_price">0</span>
+              </span
               >
             </td>
           </tr>
@@ -180,8 +200,8 @@
                   Option Information
                 </caption>
                 <colgroup>
-                  <col style="width: 105px" />
-                  <col style="width: auto" />
+                  <col style="width: 105px"/>
+                  <col style="width: auto"/>
                 </colgroup>
                 <tbody></tbody>
               </table>
@@ -192,12 +212,17 @@
     </div>
 
     <div id="totalPrice" class="totalPrice">
-      <strong>Price</strong>(Quantity) :
+      <strong>Price</strong>
+      (Quantity) :
       <span class="total"
-        ><strong
-          ><em>{{ currencyUsed }} {{ floatDiscountedPrice }}</em></strong
+      >
+        <strong
         >
-        ({{ selectedQuantity }} item(s))</span
+          <em>{{ currencyUsed }} {{ floatDiscountedPrice }}</em>
+        </strong
+        >
+        ({{ selectedQuantity }} item(s))
+      </span
       >
     </div>
 
@@ -233,10 +258,12 @@
       <app-input-button buttonText="Buy Now"></app-input-button>
       <div class="buynow_btn_wrap m_margin">
         <a href="#none" class="btnNormal sizeL btnBasket add_cart_btn"
-          >Add to Cart</a
+        >Add to Cart
+        </a
         >
         <a href="#none" class="btnNormal sizeL btnWish add_cart_btn"
-          >Add to WishList</a
+        >Add to WishList
+        </a
         >
       </div>
     </div>
