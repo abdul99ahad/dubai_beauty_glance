@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { HttpService } from "./http.service";
 import { ApiRoutes } from "src/app/const/api-routes";
 import { CategoryWithChildren } from "../interfaces/categories.interface";
-import { Product } from "../interfaces/product.interface";
+import { Product, ProductDetail } from "../interfaces/product.interface";
 import { PaginatedResponse } from "../interfaces/response.interface";
 import { environment } from "src/environments/environment";
 import { Brand } from "../interfaces/brand.interface";
@@ -16,11 +16,15 @@ export class WebApiService {
 
   public constructor(private readonly httpService: HttpService) {}
 
-  getProducts(url?: string): Observable<PaginatedResponse<Product>> {
+  public getProducts(url?: string): Observable<PaginatedResponse<Product>> {
     return this.httpService.get(url ?? ApiRoutes.products, !!url);
   }
 
-  getPromotionalProducts(url?: string): Observable<PaginatedResponse<Product>> {
+  public getProductDetails(productSlug: string): Observable<{ data: ProductDetail }> {
+    return this.httpService.get(`${ApiRoutes.product}/${productSlug}`);
+  }
+
+  public getPromotionalProducts(url?: string): Observable<PaginatedResponse<Product>> {
     return this.httpService.get(url ?? `${ ApiRoutes.products }?promotional=1`, !!url);
   }
 
@@ -32,15 +36,15 @@ export class WebApiService {
     return this.httpService.get(`${ApiRoutes.brand}/${encodeURI(brandSlug)}`);
   }
 
-  getCategoryProducts(id: string): Observable<PaginatedResponse<Product>> {
+  public getCategoryProducts(id: string): Observable<PaginatedResponse<Product>> {
     return this.httpService.get(ApiRoutes.category + "/" + encodeURI(id));
   }
 
-  getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
+  public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
     return this.httpService.get(url ?? ApiRoutes.brands, !!url);
   }
 
-  getCategories(): Observable<{ data: Array<CategoryWithChildren> }> {
+  public getCategories(): Observable<{ data: Array<CategoryWithChildren> }> {
     return this.httpService.get<{ data: Array<CategoryWithChildren> }>(ApiRoutes.categories);
   }
 }

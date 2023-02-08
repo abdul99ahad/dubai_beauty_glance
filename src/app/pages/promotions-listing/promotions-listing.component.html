@@ -28,14 +28,23 @@
             ></app-product-card>
           </ng-template>
         </p-dataView>
-        <ng-container *ngFor="let productPageButton of productsPageButtons">
-          <ng-container *ngIf="!!productPageButton.url; else elseBlock;">
-            <button class="p-button" type="submit" (click)="fetchPromotionalProducts(productPageButton.url)">{{ productPageButton.label }}</button>
+        <p-divider></p-divider>
+        <div style="display: flex; justify-content: space-evenly">
+          <ng-container *ngFor="let productPageButton of productsPageButtons">
+            <ng-container *ngIf="!!productPageButton.url; else elseBlock">
+              <button type="button" (click)="fetchPromotionalProducts(productPageButton.url)" class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ productPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px"></span>
+              </button>
+            </ng-container>
+            <ng-template #elseBlock>
+              <button disabled type="submit" class="p-button p-button-outlined p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ productPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px"></span>
+              </button>
+            </ng-template>
           </ng-container>
-          <ng-template #elseBlock>
-            <button disabled class="p-button" type="submit">{{ productPageButton.label }}</button>
-          </ng-template>
-        </ng-container>
+        </div>
       </div>
     </div>
   </div>
