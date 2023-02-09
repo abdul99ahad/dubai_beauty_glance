@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { WebApiService } from 'src/app/services/web-api.service';
 import { HttpClient } from '@angular/common/http';
 import {
   debounce,
@@ -10,7 +9,7 @@ import {
   Subscription,
   switchMap,
 } from 'rxjs';
-import { Category } from "../../../../interfaces/categories.interface";
+import { Router } from "@angular/router";
 
 interface Product {
   name: string;
@@ -82,13 +81,9 @@ export class HeaderComponent implements OnInit {
   public searchProductDebouncedSubject: Subject<string> = new Subject<string>();
   private coldSubscriber: Subscription;
 
-  constructor(private http: HttpClient, private webApi: WebApiService) {}
+  public constructor(private readonly http: HttpClient, private readonly router: Router) {}
 
-  ngOnDestroy(): void {
-    this.coldSubscriber.unsubscribe();
-  }
-
-  navBarMobileListViewToggle(): void {
+  public navBarMobileListViewToggle(): void {
     if (this.expandedState) {
       this.navBarItemListMobile = this.navBarItemListMobile.slice(0, 4);
     } else {
@@ -97,7 +92,7 @@ export class HeaderComponent implements OnInit {
     this.expandedState = !this.expandedState;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.recentlyViewedItems = [
       {
         label: 'Item 1',
@@ -134,13 +129,11 @@ export class HeaderComponent implements OnInit {
       .subscribe((products: Array<Product>) => (this.products = products));
   }
 
-  categories: Array<Category> = [];
+  public toggleHamBurgerMenu(): void {
+    this.display = !this.display;
+  }
 
-  getCategories() {
-    this.display = true;
-    this.webApi.getCategories().subscribe((data) => {
-      //this.categories = data;
-      console.log(this.categories);
-    });
+  public navigateToProduct(product: Product): void {
+    this.router.navigate(['/product', product.slug])
   }
 }

@@ -10,7 +10,7 @@ import { map } from "rxjs";
   styleUrls: ['./hamburger-menu.component.scss'],
 })
 export class HamburgerMenuComponent implements OnInit {
-  @Output() clickEvent = new EventEmitter<string>();
+  @Output() public onCategorySelected = new EventEmitter<string>();
 
   public categories: Array<CategoryWithChildren> = [];
 
@@ -25,6 +25,6 @@ export class HamburgerMenuComponent implements OnInit {
   }
 
   categoryClick() {
-    this.clickEvent.emit();
+    this.onCategorySelected.emit();
   }
 }

@@ -10,12 +10,10 @@
     </div>
 
     <div class="search-bar" style="width: 100%">
-      <p-autoComplete field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
+      <p-autoComplete (onSelect)="navigateToProduct($event)" field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
         <ng-template let-product pTemplate="item">
-          <a href="javascript:void(0)">
-            <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px" [alt]="product.name"/>
-            <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
-          </a>
+          <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px" [alt]="product.name"/>
+          <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
         </ng-template>
       </p-autoComplete>
     </div>
@@ -84,12 +82,10 @@
     <div class="top-search">
       <div class="xans-element- xans-search xans-search-form top-search-wrap">
         <div>
-          <p-autoComplete field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchMobileViewInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
+          <p-autoComplete (onSelect)="navigateToProduct($event)" field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchMobileViewInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
             <ng-template let-product pTemplate="item">
-              <a href="javascript:void(0);">
-                <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px; display: inline-block" [alt]="product.name"/>
-                <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
-              </a>
+              <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px; display: inline-block" [alt]="product.name"/>
+              <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
             </ng-template>
           </p-autoComplete>
         </div>
@@ -102,7 +98,7 @@
   <hr class="solid" style="margin-bottom: 0px"/>
 
   <div class="flex-container" id="navbar">
-    <div class="cate-all-btn-open" (click)="getCategories()">
+    <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
       <span>All category</span>
     </div>
     <ul class="navbar-items">
@@ -140,5 +136,5 @@
 </div>
 
 <p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
-  <app-hamburger-menu (clickEvent)="display = false"></app-hamburger-menu>
+  <app-hamburger-menu (onCategorySelected)="toggleHamBurgerMenu()"></app-hamburger-menu>
 </p-sidebar>
