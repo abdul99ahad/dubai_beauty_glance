@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://dbg.test:8000/api/',
-  imgUrl: 'http://dbg.test:8000/',
+  apiUrl: 'https://api.technosavvyllc.com/beautymallkorea/public/api/',
+  imgUrl: 'https://api.technosavvyllc.com/beautymallkorea/public/',
 };
 
 /*
