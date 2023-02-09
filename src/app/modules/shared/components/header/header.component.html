@@ -5,15 +5,31 @@
   <div class="top-area flex-container mbl-disable">
     <div class="logo-area">
       <a [routerLink]="['/']">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
       </a>
     </div>
 
     <div class="search-bar" style="width: 100%">
-      <p-autoComplete (onSelect)="navigateToProduct($event)" field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
+      <p-autoComplete
+        (onSelect)="navigateToProduct($event)"
+        field="name"
+        [style]="{ width: '100%' }"
+        [inputStyle]="productSearchInputStyles"
+        [suggestions]="products"
+        (completeMethod)="searchProducts($event.query)"
+      >
         <ng-template let-product pTemplate="item">
-          <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px" [alt]="product.name"/>
-          <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
+          <img
+            [src]="
+              'https://api.technosavvyllc.com/beautymallkorea/public/' +
+              product.image
+            "
+            style="width: 100px"
+            [alt]="product.name"
+          />
+          <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
+            {{ product.name }}
+          </div>
         </ng-template>
       </p-autoComplete>
     </div>
@@ -21,21 +37,21 @@
     <div class="auth">
       <div class="member-link">
         <a [routerLink]="['/login']">
-          <img src="../assets/sign_in.png" alt=""/>
+          <img src="../assets/sign_in.png" alt="" />
           <p>Sign In</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/register']">
-          <img src="../assets/sign_up.png" alt=""/>
+          <img src="../assets/sign_up.png" alt="" />
           <p>Sign Up</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/cart']">
-          <img src="../assets/cart.png" alt=""/>
+          <img src="../assets/cart.png" alt="" />
           <p>Cart</p>
         </a>
       </div>
@@ -51,7 +67,7 @@
         style="font-size: 1.2rem; line-height: 2; width: 30%"
       ></i>
       <a [routerLink]="['/']" style="width: 50%">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
       </a>
 
       <div class="flex">
@@ -82,10 +98,26 @@
     <div class="top-search">
       <div class="xans-element- xans-search xans-search-form top-search-wrap">
         <div>
-          <p-autoComplete (onSelect)="navigateToProduct($event)" field="name" [style]="{ width: '100%' }" [inputStyle]="productSearchMobileViewInputStyles" [suggestions]="products" (completeMethod)="searchProducts($event.query)">
+          <p-autoComplete
+            (onSelect)="navigateToProduct($event)"
+            field="name"
+            [style]="{ width: '100%' }"
+            [inputStyle]="productSearchMobileViewInputStyles"
+            [suggestions]="products"
+            (completeMethod)="searchProducts($event.query)"
+          >
             <ng-template let-product pTemplate="item">
-              <img [src]="'https://api.technosavvyllc.com/beautymallkorea/public/' + product.image" style="width: 100px; display: inline-block" [alt]="product.name"/>
-              <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">{{ product.name }}</div>
+              <img
+                [src]="
+                  'https://api.technosavvyllc.com/beautymallkorea/public/' +
+                  product.image
+                "
+                style="width: 100px; display: inline-block"
+                [alt]="product.name"
+              />
+              <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
+                {{ product.name }}
+              </div>
             </ng-template>
           </p-autoComplete>
         </div>
@@ -95,7 +127,7 @@
 </div>
 
 <div class="mbl-disable-block">
-  <hr class="solid" style="margin-bottom: 0px"/>
+  <hr class="solid" style="margin-bottom: 0px" />
 
   <div class="flex-container" id="navbar">
     <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
@@ -110,7 +142,8 @@
     </ul>
     <div class="recently-viewed-container">
       <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
-      <a class="recently-viewed" (click)="menu.toggle($event)">Recently Viewed
+      <a class="recently-viewed" (click)="menu.toggle($event)"
+        >Recently Viewed
         <i class="pi pi-angle-down"></i>
       </a>
     </div>
@@ -135,6 +168,16 @@
   </div>
 </div>
 
-<p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
-  <app-hamburger-menu (onCategorySelected)="toggleHamBurgerMenu()"></app-hamburger-menu>
-</p-sidebar>
+<p-dialog
+  [(visible)]="display"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-hamburger-menu
+    (onCategorySelected)="toggleHamBurgerMenu()"
+  ></app-hamburger-menu>
+</p-dialog>
+
+<!-- <p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
+</p-sidebar> -->
