@@ -179,6 +179,53 @@ p {
   }
 }
 
+@media (max-width: 800px) {
+  #container {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.web-view {
+  display:none !important;
+}
+.child {
+    flex: 1 0 33%;
+}
+}
+
+@media screen and (max-width: 576px) {
+  :host ::ng-deep .product-list-item {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 75%;
+      margin: 2rem 0;
+    }
+
+    .product-list-detail {
+      text-align: center;
+    }
+
+    .product-price {
+      align-self: center;
+    }
+
+    .product-list-action {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-list-action {
+      margin-top: 2rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
+}
+
 .p-paginator-page.p-highlight {
   background: #f5f5f5;
   border-color: #EFF6FF;

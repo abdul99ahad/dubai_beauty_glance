@@ -459,6 +459,10 @@ li {
   background: url("https://jolse.com/_dbook/img/main_slide_prev_btn2.png") no-repeat;
 }
 
+.main-brand-btn .swiper-button-prev-red {
+  background: url("https://jolse.com/_dbook/img/main_slide_prev_btn1.png") no-repeat;
+}
+
 .main-brand-btn .swiper-button-next, .main-brand-btn .swiper-button-prev {
   position: static;
   display: inline-block;
@@ -472,6 +476,11 @@ li {
 .main-brand-btn .swiper-button-next {
   margin-right: 0;
   background: url("https://jolse.com/_dbook/img/main_slide_next_btn2.png") no-repeat;
+}
+
+.main-brand-btn .swiper-button-next-red {
+  margin-right: 0;
+  background: url("https://jolse.com/_dbook/img/main_slide_next_btn1.png") no-repeat;
 }
 
 .main-brand-btn .swiper-button-next, .main-brand-btn .swiper-button-prev {
@@ -646,6 +655,26 @@ li {
     height: auto !important;
   }
 
+  .main-brand-ctrl {
+    text-align: center;
+  }
+  .w-100 {
+    width: 100% !important;
+    margin: 0;
+  }
+
+
+  :host ::ng-deep p-tabView {
+  
+    .p-tabview-title {
+       font-size: 16px; 
+  }
+
+  .p-tabview-panels {
+    padding: 0.25rem;
+  }
+}
+
   :host ::ng-deep app-product-card {
     .prdList .description .name a {
       font-size: 13px;
@@ -653,12 +682,30 @@ li {
 
     .prdList {
       height: auto;
+      margin: 0;
     }
 
     .discounted_price {
       font-size: 18px;
     }
   }
+
+  :host ::ng-deep app-brandsale-card {
+    .swiper-slide {
+      margin: 0 auto;
+    }
+    .slick-slide {
+      background-color: white;
+      padding: 0;
+  }
+  }
+
+  :host ::ng-deep app-main-time-deal {
+    .main-inner {
+      padding: 0;
+  }
+  }
+  
 
 
 }
