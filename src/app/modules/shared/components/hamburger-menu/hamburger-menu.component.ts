@@ -16,7 +16,7 @@ export class HamburgerMenuComponent implements OnInit {
 
   public constructor(private readonly webApiService: WebApiService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.webApiService.getCategories().pipe(
       map(({ data }: { data: Array<CategoryWithChildren> }) => data)
     ).subscribe((category: Array<CategoryWithChildren>) => {
@@ -24,7 +24,7 @@ export class HamburgerMenuComponent implements OnInit {
     });
   }
 
-  categoryClick() {
+  public categoryClick() {
     this.onCategorySelected.emit();
   }
 }
