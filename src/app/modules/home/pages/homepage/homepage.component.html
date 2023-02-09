@@ -131,7 +131,12 @@
       <a href=""> GO TO PROMOTION</a>
     </div>
     <div style="text-align: center">
-      <ngx-slick-carousel #eventCarousel="slick-carousel" class="carousel" [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)">
+      <ngx-slick-carousel
+        (afterChange)="adjustSliderStateInAccordanceWithMovement(homePageNgxCarouselsToRender.EventBannerCarousel.carouselName, $event.currentSlide)"
+        #eventCarousel="slick-carousel"
+        class="carousel"
+        [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)"
+      >
         <div
           ngxSlickItem
           *ngFor="let slide of allEventAndBgMainBanner"
@@ -167,14 +172,14 @@
           tabindex="0"
           role="button"
           aria-label="Previous slide"
-          (click)="moveSlideBackward(eventCarousel,homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)"
+          (click)="moveSlideBackward(eventCarousel)"
         ></div>
         <div
           class="swiper-button-next"
           tabindex="0"
           role="button"
           aria-label="Next slide"
-          (click)="moveSlideForward(eventCarousel,homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)"
+          (click)="moveSlideForward(eventCarousel)"
         ></div>
       </div>
     </div>
@@ -191,7 +196,12 @@
       <p>BEST ITEMS OF MONTH</p>
     </div>
     <div class="flex-products div-center-m5 no-flex">
-      <ngx-slick-carousel #bestItemsCarousel="slick-carousel" class="carousel web-view" [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)">
+      <ngx-slick-carousel
+        (afterChange)="adjustSliderStateInAccordanceWithMovement(homePageNgxCarouselsToRender.BestItemsCarousel.carouselName, $event.currentSlide)"
+        #bestItemsCarousel="slick-carousel"
+        class="carousel web-view"
+        [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)"
+      >
         <div
           ngxSlickItem
           *ngFor="let bestItem of bestItemsOfTheMonth"
@@ -253,14 +263,14 @@
           tabindex="0"
           role="button"
           aria-label="Previous slide"
-          (click)="moveSlideBackward(bestItemsCarousel,homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)"
+          (click)="moveSlideBackward(bestItemsCarousel)"
         ></div>
         <div
           class="swiper-button-next"
           tabindex="0"
           role="button"
           aria-label="Next slide"
-          (click)="moveSlideForward(bestItemsCarousel,homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)"
+          (click)="moveSlideForward(bestItemsCarousel)"
         ></div>
       </div>
     </div>
@@ -276,7 +286,12 @@
     <a href=""> GO TO PROMOTION</a>
   </div>
   <div class="brandsale-card flex-products promotion-flex">
-    <ngx-slick-carousel #brandSaleCarousel="slick-carousel" class="carousel" [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)">
+    <ngx-slick-carousel
+      (afterChange)="adjustSliderStateInAccordanceWithMovement(homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName, $event.currentSlide)"
+      #brandSaleCarousel="slick-carousel"
+      class="carousel"
+      [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)"
+    >
       <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
         <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
       </div>
@@ -308,14 +323,14 @@
         tabindex="0"
         role="button"
         aria-label="Previous slide"
-        (click)="moveSlideBackward(brandSaleCarousel,homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)"
+        (click)="moveSlideBackward(brandSaleCarousel)"
       ></div>
       <div
         class="swiper-button-next"
         tabindex="0"
         role="button"
         aria-label="Next slide"
-        (click)="moveSlideForward(brandSaleCarousel,homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)"
+        (click)="moveSlideForward(brandSaleCarousel)"
       ></div>
     </div>
   </div>
