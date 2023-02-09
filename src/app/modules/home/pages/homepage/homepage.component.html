@@ -41,7 +41,8 @@
   <div class="main-quick-menu flex-container">
     <div class="title mbl-disable">
       <h2 style="text-align: left !important">
-        QUICK <br />
+        QUICK
+        <br/>
         CATEGORY
       </h2>
       <p>Find products quickly by category selection</p>
@@ -127,24 +128,16 @@
   <div class="main-bn-slide1">
     <div class="title">
       <h2>EVENT</h2>
-      <a href=""> GO TO PROMOTION </a>
+      <a href=""> GO TO PROMOTION</a>
     </div>
     <div style="text-align: center">
-      <ngx-slick-carousel
-        #eventCarousel="slick-carousel"
-        class="carousel"
-        [config]="
-          getCarouselConfiguration(
-            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-          )
-        "
-      >
+      <ngx-slick-carousel #eventCarousel="slick-carousel" class="carousel" [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)">
         <div
           ngxSlickItem
           *ngFor="let slide of allEventAndBgMainBanner"
           class="slide"
         >
-          <img src="{{ slide.image }}" alt="" />
+          <img src="{{ slide.image }}" alt=""/>
         </div>
       </ngx-slick-carousel>
     </div>
@@ -166,12 +159,12 @@
           getCarouselCurrentSlide(
             homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
           )
-        }}</span>
+          }}</span>
         <span class="total"
-          >&nbsp;/&nbsp;{{
-            getCarouselTotalSlides(
-              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-            )
+        >&nbsp;/&nbsp;{{
+          getCarouselTotalSlides(
+            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+          )
           }}</span
         >
       </div>
@@ -215,15 +208,7 @@
       <p>BEST ITEMS OF MONTH</p>
     </div>
     <div class="flex-products div-center-m5 no-flex">
-      <ngx-slick-carousel
-        #bestItemsCarousel="slick-carousel"
-        class="carousel web-view"
-        [config]="
-          getCarouselConfiguration(
-            homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-          )
-        "
-      >
+      <ngx-slick-carousel #bestItemsCarousel="slick-carousel" class="carousel web-view" [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)">
         <div
           ngxSlickItem
           *ngFor="let bestItem of bestItemsOfTheMonth"
@@ -263,26 +248,19 @@
     <!-- Slider Buttons Start -->
     <div class="main-brand-ctrl web-view">
       <div class="swiper-pagination-outer web-view">
-        <div
-          class="swiper-pagination-inner"
-          [style.width]="
-            getCarouselPercentageMoved(
-              homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-            ) + '%'
-          "
-        ></div>
+        <div class="swiper-pagination-inner" [style.width]="getCarouselPercentageMoved(homePageNgxCarouselsToRender.BestItemsCarousel.carouselName) + '%'"></div>
       </div>
       <div class="fraction">
         <span class="count">{{
           getCarouselCurrentSlide(
             homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
           )
-        }}</span>
+          }}</span>
         <span class="total"
-          >&nbsp;/&nbsp;{{
-            getCarouselTotalSlides(
-              homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-            )
+        >&nbsp;/&nbsp;{{
+          getCarouselTotalSlides(
+            homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
+          )
           }}</span
         >
       </div>
@@ -320,82 +298,65 @@
 
 <!-- Brand Sale Start -->
 <div style="padding: 3rem 0">
-  <div>
-    <div class="title">
-      <h2>BRAND SALE</h2>
-      <a href=""> GO TO PROMOTION </a>
-    </div>
-    <div class="brandsale-card flex-products promotion-flex">
-      <ngx-slick-carousel
-        #brandSaleCarousel="slick-carousel"
-        class="carousel"
-        [config]="
-          getCarouselConfiguration(
-            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-          )
-        "
-      >
-        <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
-          <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
-        </div>
-      </ngx-slick-carousel>
-    </div>
+  <div class="title">
+    <h2>BRAND SALE</h2>
+    <a href=""> GO TO PROMOTION</a>
+  </div>
+  <div class="brandsale-card flex-products promotion-flex">
+    <ngx-slick-carousel #brandSaleCarousel="slick-carousel" class="carousel" [config]="getCarouselConfiguration(homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)">
+      <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
+        <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
+      </div>
+    </ngx-slick-carousel>
+  </div>
 
-    <!-- Slider Buttons Start -->
-    <div class="main-brand-ctrl">
-      <div class="swiper-pagination-outer web-view">
-        <div
-          class="swiper-pagination-inner"
-          [style.width]="
-            getCarouselPercentageMoved(
-              homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-            ) + '%'
-          "
-        ></div>
-      </div>
-      <div class="fraction">
-        <span class="count">{{
-          getCarouselCurrentSlide(
-            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-          )
+  <!-- Slider Buttons Start -->
+  <div class="main-brand-ctrl">
+    <div class="swiper-pagination-outer web-view">
+      <div class="swiper-pagination-inner" [style.width]="getCarouselPercentageMoved(homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName) + '%'"></div>
+    </div>
+    <div class="fraction">
+      <span class="count">{{
+        getCarouselCurrentSlide(
+          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+        )
         }}</span>
-        <span class="total"
-          >&nbsp;/&nbsp;{{
-            getCarouselTotalSlides(
-              homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-            )
-          }}</span
-        >
-      </div>
-      <div class="main-brand-btn">
-        <div
-          class="swiper-button-prev"
-          tabindex="0"
-          role="button"
-          aria-label="Previous slide"
-          (click)="
+      <span class="total"
+      >&nbsp;/&nbsp;{{
+        getCarouselTotalSlides(
+          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+        )
+        }}</span
+      >
+    </div>
+    <div class="main-brand-btn">
+      <div
+        class="swiper-button-prev"
+        tabindex="0"
+        role="button"
+        aria-label="Previous slide"
+        (click)="
             moveSlideBackward(
               brandSaleCarousel,
               homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
             )
           "
-        ></div>
-        <div
-          class="swiper-button-next"
-          tabindex="0"
-          role="button"
-          aria-label="Next slide"
-          (click)="
+      ></div>
+      <div
+        class="swiper-button-next"
+        tabindex="0"
+        role="button"
+        aria-label="Next slide"
+        (click)="
             moveSlideForward(
               brandSaleCarousel,
               homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
             )
           "
-        ></div>
-      </div>
+      ></div>
     </div>
-    <!-- Slider Buttons End -->
   </div>
+  <!-- Slider Buttons End -->
 </div>
 <!-- Brand Sale End -->
 
@@ -466,7 +427,7 @@
       <p-tabPanel header="{{ item.brand }}" *ngFor="let item of tabHeaderItems">
         <div class="flex-container div-center-m5">
           <div class="mbl-disable">
-            <img style="height: 100%" [src]="item.imgSrc" [alt]="item.brand" />
+            <img style="height: 100%" [src]="item.imgSrc" [alt]="item.brand"/>
           </div>
           <div style="margin: 0 2%; width: 60%" class="w-100">
             <div class="main-prd-tit">
