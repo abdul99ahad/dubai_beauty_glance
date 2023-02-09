@@ -130,20 +130,21 @@ export class HomepageComponent {
   };
 
   public currentBrandSlideNumber: number = 1;
+
   public totalBrandSlideNumber: number = this.brandSaleImages.length;
-  public eventBannerCarouselMobile: Array<{ image: string; title: string }> = [
+
+  public smMainBanner: Array<{ image: string; title: string }> = [
     {
-      image:
-        "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg",
+      image: "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg",
       title: "Event Banner 1",
     },
     {
-      image:
-        "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg",
+      image: "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg",
       title: "Event Banner 1",
     },
   ];
-  public eventBannerCarousel: Array<{ image: string; title: string }> = [
+
+  public allEventAndBgMainBanner: Array<{ image: string; title: string }> = [
     {
       image: "../../../../../assets/slider_banner_1.jpg",
       title: "Event Banner 1",
@@ -165,6 +166,7 @@ export class HomepageComponent {
       title: "Event banner 2",
     },
   ];
+
   public tabHeaderItems: Array<{ brand: string; imgSrc: string; products: Array<Product> }> = [
     {
       brand: "CORSX",
@@ -222,6 +224,7 @@ export class HomepageComponent {
       }),
     },
   ];
+
   public productsDisplay: Array<Product> = new Array<Product>(20).fill({
     name: "MISSHA",
     slug: "missha",
@@ -229,6 +232,7 @@ export class HomepageComponent {
     discount_price: "18,000",
     image: "../../../../../assets/product_1.jpg",
   });
+
   public latestProductsDisplay: Array<Product> = new Array<Product>(20).fill({
     name: "MISSHA",
     slug: "missha",
@@ -236,6 +240,7 @@ export class HomepageComponent {
     discount_price: "18,000",
     image: "../../../../../assets/product_1.jpg",
   });
+
   public newArrivalsProductsDisplay: Array<Product> = new Array<Product>(
     5
   ).fill({

@@ -1,24 +1,7 @@
+<!-- Main Banner Start -->
 <div class="web-view">
   <p-carousel
-    [value]="eventBannerCarousel"
-    [autoplayInterval]="3000"
-    [circular]="true"
-    [showNavigators]="false"
-  >
-    <ng-template let-banner pTemplate="item">
-      <img
-        class="main-banner"
-        src="{{ banner.image }}"
-        alt="banner image"
-        width="100%"
-      />
-    </ng-template>
-  </p-carousel>
-</div>
-<!--Mobile View-->
-<div class="mobile-view">
-  <p-carousel
-    [value]="eventBannerCarouselMobile"
+    [value]="allEventAndBgMainBanner"
     [autoplayInterval]="3000"
     [circular]="true"
     [showNavigators]="false"
@@ -34,6 +17,26 @@
   </p-carousel>
 </div>
 
+<div class="mobile-view">
+  <p-carousel
+    [value]="smMainBanner"
+    [autoplayInterval]="3000"
+    [circular]="true"
+    [showNavigators]="false"
+  >
+    <ng-template let-banner pTemplate="item">
+      <img
+        class="main-banner"
+        src="{{ banner.image }}"
+        alt="banner image"
+        width="100%"
+      />
+    </ng-template>
+  </p-carousel>
+</div>
+<!-- Main Banner End -->
+
+<!-- Quick Category Start -->
 <div class="main-inner web-view">
   <div class="main-quick-menu flex-container">
     <div class="title mbl-disable">
@@ -45,31 +48,31 @@
     </div>
     <ul class="main-quick-list">
       <li class="main-quick-skin">
-        <a href="">
+        <a href="javascript:void(0)">
           <span></span>
           <p>SKINCARE</p>
         </a>
       </li>
       <li class="main-quick-makeup">
-        <a href="">
+        <a href="javascript:void(0)">
           <span></span>
           <p>MAKEUP</p>
         </a>
       </li>
       <li class="main-quick-hair">
-        <a href="">
+        <a href="javascript:void(0)">
           <span></span>
           <p>HAIR & BODY</p>
         </a>
       </li>
       <li class="main-quick-mask">
-        <a href="">
+        <a href="javascript:void(0)">
           <span></span>
           <p>MASK TRIAL KIT</p>
         </a>
       </li>
       <li class="main-quick-devices">
-        <a href="">
+        <a href="javascript:void(0)">
           <span></span>
           <p>DEVICES & TOOLS</p>
         </a>
@@ -117,6 +120,7 @@
     </ul>
   </div>
 </div>
+<!-- Quick Category End -->
 
 <div class="main-box2">
   <div class="main-bn-slide1">
@@ -128,7 +132,7 @@
       <ngx-slick-carousel class="carousel" [config]="slideConfig">
         <div
           ngxSlickItem
-          *ngFor="let slide of eventBannerCarousel"
+          *ngFor="let slide of allEventAndBgMainBanner"
           class="slide"
         >
           <img src="{{ slide.image }}" alt="" />
