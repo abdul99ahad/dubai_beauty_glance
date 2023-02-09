@@ -1,82 +1,80 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/product.interface';
-import { HomepageNgxCarouselsState } from './homepage-carousel.type';
-import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { Component, OnInit } from "@angular/core";
+import { Product } from "src/app/interfaces/product.interface";
+import { HomepageNgxCarouselsState } from "./homepage-carousel.type";
+import { SlickCarouselComponent } from "ngx-slick-carousel";
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+  selector: "app-homepage",
+  templateUrl: "./homepage.component.html",
+  styleUrls: ["./homepage.component.scss"],
 })
 export class HomepageComponent implements OnInit {
   // region NGX Carousel Sliders
   public allEventAndBgMainBanner: Array<{ image: string; title: string }> = [
     {
-      image: '../../../../../assets/slider_banner_1.jpg',
-      title: 'Event Banner 1',
+      image: "../../../../../assets/slider_banner_1.jpg",
+      title: "Event Banner 1",
     },
     {
-      image: '../../../../../assets/slider_banner_2.jpg',
-      title: 'Event banner 2',
+      image: "../../../../../assets/slider_banner_2.jpg",
+      title: "Event banner 2",
     },
     {
-      image: '../../../../../assets/slider_banner_3.jpg',
-      title: 'Event banner 3',
+      image: "../../../../../assets/slider_banner_3.jpg",
+      title: "Event banner 3",
     },
     {
-      image: '../../../../../assets/slider_banner_4.jpg',
-      title: 'Event Banner 1',
+      image: "../../../../../assets/slider_banner_4.jpg",
+      title: "Event Banner 1",
     },
     {
-      image: '../../../../../assets/slider_banner_5.jpg',
-      title: 'Event banner 2',
+      image: "../../../../../assets/slider_banner_5.jpg",
+      title: "Event banner 2",
     },
   ];
 
   public bestItemsOfTheMonth: Array<Product> = new Array<Product>(20).fill({
-    name: 'MISSHA',
-    slug: 'missha',
-    price: '22,000',
-    discount_price: '18,000',
-    image: '../../../../../assets/product_1.jpg',
+    name: "MISSHA",
+    slug: "missha",
+    price: "22,000",
+    discount_price: "18,000",
+    image: "../../../../../assets/product_1.jpg",
   });
 
   public brandSaleImages: string[] = [
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
+    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
   ];
 
   // endregion
 
   public responsiveOptions = [
     {
-      breakpoint: '1024px',
+      breakpoint: "1024px",
       numVisible: 5,
     },
     {
-      breakpoint: '768px',
+      breakpoint: "768px",
       numVisible: 2,
     },
     {
-      breakpoint: '560px',
+      breakpoint: "560px",
       numVisible: 2,
       numScroll: 1,
     },
   ];
   public smMainBanner: Array<{ image: string; title: string }> = [
     {
-      image:
-        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg',
-      title: 'Event Banner 1',
+      image: "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg",
+      title: "Event Banner 1",
     },
     {
-      image:
-        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg',
-      title: 'Event Banner 1',
+      image: "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg",
+      title: "Event Banner 1",
     },
   ];
   public tabHeaderItems: Array<{
@@ -85,95 +83,89 @@ export class HomepageComponent implements OnInit {
     products: Array<Product>;
   }> = [
     {
-      brand: 'CORSX',
-      imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg',
+      brand: "CORSX",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg",
       products: new Array<Product>(20).fill({
-        name: 'CORSX',
-        slug: 'corsx',
-        price: '22,000',
-        discount_price: '18,000',
-        image: '../../../../../assets/product_1.jpg',
+        name: "CORSX",
+        slug: "corsx",
+        price: "22,000",
+        discount_price: "18,000",
+        image: "../../../../../assets/product_1.jpg",
       }),
     },
     {
-      brand: 'MISHA',
-      imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg',
+      brand: "MISHA",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg",
       products: new Array<Product>(20).fill({
-        name: 'MISSHA',
-        slug: 'missha',
-        price: '20,000',
-        discount_price: '18,000',
-        image: '../../../../../assets/product_1.jpg',
+        name: "MISSHA",
+        slug: "missha",
+        price: "20,000",
+        discount_price: "18,000",
+        image: "../../../../../assets/product_1.jpg",
       }),
     },
     {
-      brand: 'ETUDE',
-      imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg',
+      brand: "ETUDE",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg",
       products: new Array<Product>(20).fill({
-        name: 'ETUDE',
-        slug: 'etude',
-        price: '18,000',
-        discount_price: '16,000',
-        image: '../../../../../assets/product_1.jpg',
+        name: "ETUDE",
+        slug: "etude",
+        price: "18,000",
+        discount_price: "16,000",
+        image: "../../../../../assets/product_1.jpg",
       }),
     },
     {
-      brand: 'Beauty of Jeason',
-      imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg',
+      brand: "Beauty of Jeason",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg",
       products: new Array<Product>(20).fill({
-        name: 'Beauty of Jeason',
-        slug: 'beauty-of-jeason',
-        price: '16,000',
-        discount_price: '14,000',
-        image: '../../../../../assets/product_1.jpg',
+        name: "Beauty of Jeason",
+        slug: "beauty-of-jeason",
+        price: "16,000",
+        discount_price: "14,000",
+        image: "../../../../../assets/product_1.jpg",
       }),
     },
     {
-      brand: 'Round Lab',
-      imgSrc:
-        'https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg',
+      brand: "Round Lab",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg",
       products: new Array<Product>(20).fill({
-        name: 'Round Lab',
-        slug: 'round-lab',
-        price: '14,000',
-        discount_price: '12,000',
-        image: '../../../../../assets/product_1.jpg',
+        name: "Round Lab",
+        slug: "round-lab",
+        price: "14,000",
+        discount_price: "12,000",
+        image: "../../../../../assets/product_1.jpg",
       }),
     },
   ];
-  public latestProductsDisplay: Array<Product> = new Array<Product>(20).fill({
-    name: 'MISSHA',
-    slug: 'missha',
-    price: '22,000',
-    discount_price: '18,000',
-    image: '../../../../../assets/product_1.jpg',
+  public latestProductsDisplay: Array<Product> = new Array<Product>(8).fill({
+    name: "MISSHA",
+    slug: "missha",
+    price: "22,000",
+    discount_price: "18,000",
+    image: "../../../../../assets/product_1.jpg",
   });
-  public newArrivalsProductsDisplay: Array<Product> = new Array<Product>(
-    5
-  ).fill({
-    name: 'MISSHA',
-    slug: 'missha',
-    price: '22,000',
-    discount_price: '18,000',
-    image: '../../../../../assets/product_1.jpg',
+  public newArrivalsProductsDisplay: Array<Product> = new Array<Product>(5).fill({
+    name: "MISSHA",
+    slug: "missha",
+    price: "22,000",
+    discount_price: "18,000",
+    image: "../../../../../assets/product_1.jpg",
   });
+
   public homePageNgxCarouselsToRender = {
     EventBannerCarousel: {
-      carouselName: 'EventBannerCarousel',
+      carouselName: "EventBannerCarousel",
       data: this.allEventAndBgMainBanner,
       carouselNumOfSlidesOnBg: 3,
     },
     BestItemsCarousel: {
-      carouselName: 'BestItemsCarousel',
+      carouselName: "BestItemsCarousel",
       data: this.bestItemsOfTheMonth,
       carouselNumOfSlidesOnBg: 5,
     },
     BrandSaleCarousel: {
-      carouselName: 'BrandSaleCarousel',
+      carouselName: "BrandSaleCarousel",
       data: this.brandSaleImages,
       carouselNumOfSlidesOnBg: 5,
     },
@@ -201,39 +193,27 @@ export class HomepageComponent implements OnInit {
     return this.homePageNgxCarouselsState[carouselName].percentageOfSliderMoved;
   }
 
-  public moveSlideForward(
-    carouselComponent: SlickCarouselComponent,
-    carouselName: string
-  ): void {
+  public moveSlideForward(carouselComponent: SlickCarouselComponent, carouselName: string): void {
     carouselComponent.slickNext();
 
-    this.adjustSliderStateInAccordanceWithMovement(carouselName, 'forward');
+    this.adjustSliderStateInAccordanceWithMovement(carouselName, "forward");
   }
 
-  public moveSlideBackward(
-    carouselComponent: SlickCarouselComponent,
-    carouselName: string
-  ): void {
+  public moveSlideBackward(carouselComponent: SlickCarouselComponent, carouselName: string): void {
     carouselComponent.slickPrev();
 
-    this.adjustSliderStateInAccordanceWithMovement(carouselName, 'backward');
+    this.adjustSliderStateInAccordanceWithMovement(carouselName, "backward");
   }
 
   private initializeNgxCarousels(): void {
-    for (const [, carouselInitializationState] of Object.entries(
-      this.homePageNgxCarouselsToRender
-    )) {
-      this.homePageNgxCarouselsState[carouselInitializationState.carouselName] =
-        {
-          configuration: this.prepareNgxCarouselConfig(
-            carouselInitializationState.carouselNumOfSlidesOnBg
-          ),
-          data: carouselInitializationState.data,
-          currentSlide: 1,
-          numOfSlides: carouselInitializationState.data.length,
-          percentageOfSliderMoved:
-            (1 / carouselInitializationState.data.length) * 100,
-        };
+    for (const [, carouselInitializationState] of Object.entries(this.homePageNgxCarouselsToRender)) {
+      this.homePageNgxCarouselsState[carouselInitializationState.carouselName] = {
+        configuration: this.prepareNgxCarouselConfig(carouselInitializationState.carouselNumOfSlidesOnBg),
+        data: carouselInitializationState.data,
+        currentSlide: 1,
+        numOfSlides: carouselInitializationState.data.length,
+        percentageOfSliderMoved: (1 / carouselInitializationState.data.length) * 100,
+      };
     }
   }
 
@@ -245,17 +225,15 @@ export class HomepageComponent implements OnInit {
       dots: false,
       infinite: true,
       speed: 300,
-      centerPadding: '60px',
+      centerPadding: "60px",
       slidesToShow,
-      // autoplay: true,
-      // autoplaySpeed: 3500,
       responsive: [
         {
           breakpoint: 768,
           settings: {
             centerMode: false,
             arrows: false,
-            centerPadding: '40px',
+            centerPadding: "40px",
             slidesToShow: 1,
           },
         },
@@ -264,7 +242,7 @@ export class HomepageComponent implements OnInit {
           settings: {
             centerMode: false,
             arrows: false,
-            centerPadding: '40px',
+            centerPadding: "40px",
             slidesToShow: 1,
           },
         },
@@ -272,31 +250,20 @@ export class HomepageComponent implements OnInit {
     };
   }
 
-  private adjustSliderStateInAccordanceWithMovement(
-    carouselName: string,
-    movement: 'forward' | 'backward'
-  ): void {
-    const numOfSlidesForThisCarousel =
-      this.homePageNgxCarouselsState[carouselName].numOfSlides;
-    const previousCurrentSlide =
-      this.homePageNgxCarouselsState[carouselName].currentSlide;
+  private adjustSliderStateInAccordanceWithMovement(carouselName: string, movement: "forward" | "backward"): void {
+    const numOfSlidesForThisCarousel = this.getCarouselTotalSlides(carouselName);
+    const previousCurrentSlide = this.getCarouselCurrentSlide(carouselName);
 
     let newCurrentSlide: number;
-    if (movement === 'forward') {
-      newCurrentSlide =
-        previousCurrentSlide === numOfSlidesForThisCarousel
-          ? 1
-          : previousCurrentSlide + 1;
+    if (movement === "forward") {
+      newCurrentSlide = previousCurrentSlide === numOfSlidesForThisCarousel ? 1 : previousCurrentSlide + 1;
     } else {
-      newCurrentSlide =
-        previousCurrentSlide === 1
-          ? numOfSlidesForThisCarousel
-          : previousCurrentSlide - 1;
+      newCurrentSlide = previousCurrentSlide === 1 ? numOfSlidesForThisCarousel : previousCurrentSlide - 1;
     }
 
     this.homePageNgxCarouselsState[carouselName].currentSlide = newCurrentSlide;
-    this.homePageNgxCarouselsState[carouselName].percentageOfSliderMoved =
-      (newCurrentSlide / numOfSlidesForThisCarousel) * 100;
+    this.homePageNgxCarouselsState[carouselName].percentageOfSliderMoved = (newCurrentSlide / numOfSlidesForThisCarousel) * 100;
   }
+
   // endregion
 }

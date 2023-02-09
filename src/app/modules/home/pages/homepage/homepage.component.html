@@ -145,14 +145,7 @@
     <!-- Slider Buttons Start -->
     <div class="main-brand-ctrl" style="text-align: center; color: red">
       <div class="swiper-pagination-outer" style="display: none">
-        <div
-          class="swiper-pagination-inner"
-          [style.width]="
-            getCarouselPercentageMoved(
-              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-            ) + '%'
-          "
-        ></div>
+        <div class="swiper-pagination-inner" [style.width]="getCarouselPercentageMoved(homePageNgxCarouselsToRender.EventBannerCarousel.carouselName) + '%'"></div>
       </div>
       <div class="fraction" style="display: none">
         <span class="count">{{
@@ -174,24 +167,14 @@
           tabindex="0"
           role="button"
           aria-label="Previous slide"
-          (click)="
-            moveSlideBackward(
-              eventCarousel,
-              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-            )
-          "
+          (click)="moveSlideBackward(eventCarousel,homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)"
         ></div>
         <div
           class="swiper-button-next"
           tabindex="0"
           role="button"
           aria-label="Next slide"
-          (click)="
-            moveSlideForward(
-              eventCarousel,
-              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-            )
-          "
+          (click)="moveSlideForward(eventCarousel,homePageNgxCarouselsToRender.EventBannerCarousel.carouselName)"
         ></div>
       </div>
     </div>
@@ -270,24 +253,14 @@
           tabindex="0"
           role="button"
           aria-label="Previous slide"
-          (click)="
-            moveSlideBackward(
-              bestItemsCarousel,
-              homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-            )
-          "
+          (click)="moveSlideBackward(bestItemsCarousel,homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)"
         ></div>
         <div
           class="swiper-button-next"
           tabindex="0"
           role="button"
           aria-label="Next slide"
-          (click)="
-            moveSlideForward(
-              bestItemsCarousel,
-              homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-            )
-          "
+          (click)="moveSlideForward(bestItemsCarousel,homePageNgxCarouselsToRender.BestItemsCarousel.carouselName)"
         ></div>
       </div>
     </div>
@@ -335,24 +308,14 @@
         tabindex="0"
         role="button"
         aria-label="Previous slide"
-        (click)="
-            moveSlideBackward(
-              brandSaleCarousel,
-              homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-            )
-          "
+        (click)="moveSlideBackward(brandSaleCarousel,homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)"
       ></div>
       <div
         class="swiper-button-next"
         tabindex="0"
         role="button"
         aria-label="Next slide"
-        (click)="
-            moveSlideForward(
-              brandSaleCarousel,
-              homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-            )
-          "
+        (click)="moveSlideForward(brandSaleCarousel,homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName)"
       ></div>
     </div>
   </div>
