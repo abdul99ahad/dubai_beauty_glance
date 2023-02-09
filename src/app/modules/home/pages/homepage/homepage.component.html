@@ -1,5 +1,4 @@
 <div class="web-view">
-  <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
   <p-carousel
     [value]="eventBannerCarousel"
     [autoplayInterval]="3000"
@@ -18,7 +17,6 @@
 </div>
 <!--Mobile View-->
 <div class="mobile-view">
-  <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
   <p-carousel
     [value]="eventBannerCarouselMobile"
     [autoplayInterval]="3000"
@@ -127,24 +125,6 @@
       <a href=""> GO TO PROMOTION </a>
     </div>
     <div style="text-align: center">
-      <!-- <p-carousel
-        [value]="eventBannerCarousel"
-        [autoplayInterval]="2500"
-        [circular]="true"
-        [numVisible]="3"
-        [numScroll]="1"
-        [showIndicators]="false"
-        [showNavigators]="false"
-      >
-        <ng-template let-banner pTemplate="item">
-          <img
-            src="{{ banner.image }}"
-            alt="banner image"
-            style="margin: 10px"
-          />
-        </ng-template>
-      </p-carousel> -->
-
       <ngx-slick-carousel class="carousel" [config]="slideConfig">
         <div
           ngxSlickItem
@@ -154,10 +134,6 @@
           <img src="{{ slide.image }}" alt="" />
         </div>
       </ngx-slick-carousel>
-      <!-- <button (click)="addSlide()">Add</button>
-      <button (click)="removeSlide()">Remove</button>
-      <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
-      <button (click)="slickModal.unslick()">unslick</button> -->
     </div>
   </div>
 </div>
@@ -169,14 +145,6 @@
       <p>BEST ITEMS OF MONTH</p>
     </div>
     <div class="flex-products div-center-m5 no-flex">
-      <!-- <app-product-card
-        *ngFor="let product of productsDisplay"
-        [title]="product.title"
-        [description]="product.description"
-        [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
-      ></app-product-card> -->
       <ngx-slick-carousel
         class="web-view carousel"
         [config]="bestItemsCarouselConfig"
@@ -191,24 +159,6 @@
           ></app-product-card>
         </div>
       </ngx-slick-carousel>
-      <!--      <p-carousel-->
-      <!--        class="web-view"-->
-      <!--        [value]="productsDisplay"-->
-      <!--        [numVisible]="5"-->
-      <!--        [responsiveOptions]="responsiveOptions"-->
-      <!--        [autoplayInterval]="3000"-->
-      <!--        [showIndicators]="false"-->
-      <!--      >-->
-      <!--        <ng-template let-product pTemplate="item">-->
-      <!--          <app-product-card-->
-      <!--            [name]="product.name"-->
-      <!--            [slug]="product.slug"-->
-      <!--            [price]="product.price"-->
-      <!--            [discount_price]="product.discount_price"-->
-      <!--            [image]="product.image"-->
-      <!--          ></app-product-card>-->
-      <!--        </ng-template>-->
-      <!--      </p-carousel>-->
 
       <p-carousel
         class="mobile-view-block"
@@ -353,7 +303,7 @@
       <p-tabPanel header="{{ item.brand }}" *ngFor="let item of tabHeaderItems">
         <div class="flex-container div-center-m5">
           <div class="mbl-disable">
-            <img style="height: 100%" src="{{ item.imgSrc }}" />
+            <img style="height: 100%" [src]="item.imgSrc"  [alt]="item.brand"/>
           </div>
           <div style="margin: 0 2%; width: 60%">
             <div class="main-prd-tit">
@@ -362,7 +312,7 @@
             </div>
             <div>
               <p-carousel
-                [value]="productsDisplay"
+                [value]="item.products"
                 [numVisible]="3"
                 [responsiveOptions]="responsiveOptions"
                 [autoplayInterval]="3000"

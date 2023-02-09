@@ -165,31 +165,61 @@ export class HomepageComponent {
       title: "Event banner 2",
     },
   ];
-  public tabHeaderItems: Array<{ brand: string; imgSrc: string }> = [
+  public tabHeaderItems: Array<{ brand: string; imgSrc: string; products: Array<Product> }> = [
     {
       brand: "CORSX",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg",
+      products: new Array<Product>(20).fill({
+        name: "CORSX",
+        slug: "corsx",
+        price: "22,000",
+        discount_price: "18,000",
+        image: "../../../../../assets/product_1.jpg",
+      }),
     },
     {
       brand: "MISHA",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg",
+      products: new Array<Product>(20).fill({
+        name: "MISSHA",
+        slug: "missha",
+        price: "20,000",
+        discount_price: "18,000",
+        image: "../../../../../assets/product_1.jpg",
+      }),
     },
     {
       brand: "ETUDE",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg",
+      products: new Array<Product>(20).fill({
+        name: "ETUDE",
+        slug: "etude",
+        price: "18,000",
+        discount_price: "16,000",
+        image: "../../../../../assets/product_1.jpg",
+      }),
     },
     {
       brand: "Beauty of Jeason",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg",
+      products: new Array<Product>(20).fill({
+        name: "Beauty of Jeason",
+        slug: "beauty-of-jeason",
+        price: "16,000",
+        discount_price: "14,000",
+        image: "../../../../../assets/product_1.jpg",
+      }),
     },
     {
       brand: "Round Lab",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg",
+      imgSrc: "https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg",
+      products: new Array<Product>(20).fill({
+        name: "Round Lab",
+        slug: "round-lab",
+        price: "14,000",
+        discount_price: "12,000",
+        image: "../../../../../assets/product_1.jpg",
+      }),
     },
   ];
   public productsDisplay: Array<Product> = new Array<Product>(20).fill({
