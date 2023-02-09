@@ -24,7 +24,7 @@ export class HamburgerMenuComponent implements OnInit {
     });
   }
 
-  public categoryClick() {
+  public categoryClick(): void {
     this.onCategorySelected.emit();
   }
 }
