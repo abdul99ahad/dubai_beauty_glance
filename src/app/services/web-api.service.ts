@@ -36,8 +36,12 @@ export class WebApiService {
     return this.httpService.get(`${ApiRoutes.brand}/${encodeURI(brandSlug)}`);
   }
 
-  public getCategoryProducts(id: string): Observable<PaginatedResponse<Product>> {
-    return this.httpService.get(ApiRoutes.category + "/" + encodeURI(id));
+  public getCategoryProductsWithUrl(categoryCompleteUrl: string): Observable<PaginatedResponse<Product>> {
+    return this.httpService.get(categoryCompleteUrl, true);
+  }
+
+  public getCategoryProductsWithSlug(categorySlug: string): Observable<PaginatedResponse<Product>> {
+    return this.httpService.get(`${ApiRoutes.category}/${encodeURI(categorySlug)}`);
   }
 
   public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {

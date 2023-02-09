@@ -11,18 +11,15 @@ import { map, Observable } from "rxjs";
   styleUrls: ["./brand-products-listing.component.scss"],
 })
 export class BrandProductListingComponent implements OnInit {
-  @Input("title") title: string = "PRODUCTS";
+  @Input("title") public title: string = "PRODUCTS";
   public products: Array<Product> = [];
   public productPageButtons: Array<IPageButton> = [];
 
-  public constructor(
-    private route: ActivatedRoute,
-    private webApiService: WebApiService
-  ) {}
+  public constructor(private readonly route: ActivatedRoute, private readonly webApiService: WebApiService) {}
 
   public ngOnInit(): void {
-    const brandSlug = this.route.snapshot.paramMap.get("id");
-    if (!brandSlug) throw new Error("Brand id not available!");
+    const brandSlug = this.route.snapshot.paramMap.get("slug");
+    if (!brandSlug) throw new Error("Brand slug not available!");
 
     this.fetchProductsOfBrandWithSlug(brandSlug);
   }
@@ -30,17 +27,17 @@ export class BrandProductListingComponent implements OnInit {
   public fetchProductsOfBrandWithUrl(brandUrl: string): void {
     const productsObservable = this.webApiService.getBrandProductsWithUrl(brandUrl);
 
-    this.handleBrandProducts(productsObservable);
+    this.handleCategoryProducts(productsObservable);
   }
 
   public fetchProductsOfBrandWithSlug(brandSlug: string): void {
     const productsObservable = this.webApiService.getBrandProductsWithSlug(brandSlug)
 
-    this.handleBrandProducts(productsObservable);
+    this.handleCategoryProducts(productsObservable);
 
   }
 
-  private handleBrandProducts(productsObservable: Observable<PaginatedResponse<Product>>) {
+  private handleCategoryProducts(productsObservable: Observable<PaginatedResponse<Product>>): void {
     productsObservable.pipe(
       map((response: PaginatedResponse<Product>) => {
         response.data = response.data.map((product: Product) => {
