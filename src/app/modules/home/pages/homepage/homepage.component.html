@@ -122,6 +122,7 @@
 </div>
 <!-- Quick Category End -->
 
+<!-- Event Banner Start -->
 <div class="main-box2">
   <div class="main-bn-slide1">
     <div class="title">
@@ -129,83 +130,14 @@
       <a href=""> GO TO PROMOTION </a>
     </div>
     <div style="text-align: center">
-      <ngx-slick-carousel class="carousel" [config]="slideConfig">
-        <div
-          ngxSlickItem
-          *ngFor="let slide of allEventAndBgMainBanner"
-          class="slide"
-        >
+      <ngx-slick-carousel #eventCarousel="slick-carousel" class="carousel" [config]="prepareNgxCarouselConfig(3)">
+        <div ngxSlickItem *ngFor="let slide of allEventAndBgMainBanner" class="slide">
           <img src="{{ slide.image }}" alt="" />
         </div>
       </ngx-slick-carousel>
     </div>
-  </div>
-</div>
 
-<div class="main-box3 mbl-disable">
-  <div class="main-inner">
-    <div class="title">
-      <h2>BEST</h2>
-      <p>BEST ITEMS OF MONTH</p>
-    </div>
-    <div class="flex-products div-center-m5 no-flex">
-      <ngx-slick-carousel
-        class="web-view carousel"
-        [config]="bestItemsCarouselConfig"
-      >
-        <div ngxSlickItem *ngFor="let product of productsDisplay" class="slide">
-          <app-product-card
-            [name]="product.name"
-            [slug]="product.slug"
-            [price]="product.price"
-            [discount_price]="product.discount_price"
-            [image]="product.image"
-          ></app-product-card>
-        </div>
-      </ngx-slick-carousel>
-
-      <p-carousel
-        class="mobile-view-block"
-        [value]="productsDisplay"
-        [numVisible]="5"
-        [responsiveOptions]="responsiveOptions"
-        [autoplayInterval]="3000"
-        [showIndicators]="false"
-        [showNavigators]="false"
-      >
-        <ng-template let-product pTemplate="item">
-          <app-product-card
-            [name]="product.name"
-            [slug]="product.slug"
-            [price]="product.price"
-            [discount_price]="product.discount_price"
-            [image]="product.image"
-          ></app-product-card>
-        </ng-template>
-      </p-carousel>
-    </div>
-  </div>
-</div>
-
-<div style="padding: 3rem 0">
-  <div class="">
-    <div class="title">
-      <h2>BRAND SALE</h2>
-      <a href=""> GO TO PROMOTION </a>
-    </div>
-    <div class="brandsale-card flex-products promotion-flex">
-      <ngx-slick-carousel
-        #slickModalBrands="slick-carousel"
-        class="carousel"
-        [config]="slideConfigBrandSales"
-      >
-        <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
-          <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
-        </div>
-      </ngx-slick-carousel>
-    </div>
-
-    <!-- Slider -->
+    <!-- Slider Buttons Start -->
     <div class="main-brand-ctrl">
       <div class="swiper-pagination swiper-pagination-progressbar">
         <span
@@ -217,8 +149,8 @@
         ></span>
       </div>
       <div class="fraction">
-        <span class="count">{{ currentBrandSlideNumber }}</span>
-        <span class="total">&nbsp;/&nbsp;{{ totalBrandSlideNumber }}</span>
+        <span class="count">{{ eventCarousel.currentIndex + 1 }}</span>
+        <span class="total">&nbsp;/&nbsp;{{ allEventAndBgMainBanner.length }}</span>
       </div>
       <div class="main-brand-btn">
         <div
@@ -226,19 +158,131 @@
           tabindex="0"
           role="button"
           aria-label="Previous slide"
-          (click)="previousSlide(slickModalBrands)"
+          (click)="eventCarousel.slickPrev()"
         ></div>
         <div
           class="swiper-button-next"
           tabindex="0"
           role="button"
           aria-label="Next slide"
-          (click)="nextSlide(slickModalBrands)"
+          (click)="eventCarousel.slickNext()"
         ></div>
       </div>
     </div>
+    <!-- Slider Buttons End -->
   </div>
 </div>
+<!-- Event Banner Start -->
+
+<!-- Best Items Month Start -->
+<div class="main-box3 mbl-disable">
+  <div class="main-inner">
+    <div class="title">
+      <h2>BEST</h2>
+      <p>BEST ITEMS OF MONTH</p>
+    </div>
+    <div class="flex-products div-center-m5 no-flex">
+      <ngx-slick-carousel #bestItemsCarousel="slick-carousel" class="carousel" [config]="prepareNgxCarouselConfig(5)">
+        <div ngxSlickItem *ngFor="let bestItem of bestItemsOfTheMonth" class="slide">
+          <app-product-card
+            [name]="bestItem.name"
+            [slug]="bestItem.slug"
+            [price]="bestItem.price"
+            [discount_price]="bestItem.discount_price"
+            [image]="bestItem.image"
+          ></app-product-card>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+
+    <!-- Slider Buttons Start -->
+    <div class="main-brand-ctrl">
+      <div class="swiper-pagination swiper-pagination-progressbar">
+        <span
+          class="swiper-pagination-progressbar-fill"
+          style="
+            transform: translate3d(0px, 0px, 0px) scaleX(0.181818) scaleY(1);
+            transition-duration: 400ms;
+          "
+        ></span>
+      </div>
+      <div class="fraction">
+        <span class="count">{{ bestItemsCarousel.currentIndex + 1 }}</span>
+        <span class="total">&nbsp;/&nbsp;{{ bestItemsOfTheMonth.length }}</span>
+      </div>
+      <div class="main-brand-btn">
+        <div
+          class="swiper-button-prev"
+          tabindex="0"
+          role="button"
+          aria-label="Previous slide"
+          (click)="bestItemsCarousel.slickPrev()"
+        ></div>
+        <div
+          class="swiper-button-next"
+          tabindex="0"
+          role="button"
+          aria-label="Next slide"
+          (click)="bestItemsCarousel.slickNext()"
+        ></div>
+      </div>
+    </div>
+    <!-- Slider Buttons End -->
+  </div>
+</div>
+<!-- Best Items Month End -->
+
+<!-- Brand Sale Start -->
+<div style="padding: 3rem 0">
+  <div>
+    <div class="title">
+      <h2>BRAND SALE</h2>
+      <a href=""> GO TO PROMOTION </a>
+    </div>
+    <div class="brandsale-card flex-products promotion-flex">
+      <ngx-slick-carousel #brandSaleCarousel="slick-carousel" class="carousel" [config]="prepareNgxCarouselConfig(5)">
+        <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
+          <app-brandsale-card [imgSrc]="slide"></app-brandsale-card>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+
+    <!-- Slider Buttons Start -->
+    <div class="main-brand-ctrl">
+      <div class="swiper-pagination swiper-pagination-progressbar">
+        <span
+          class="swiper-pagination-progressbar-fill"
+          style="
+            transform: translate3d(0px, 0px, 0px) scaleX(0.181818) scaleY(1);
+            transition-duration: 400ms;
+          "
+        ></span>
+      </div>
+      <div class="fraction">
+        <span class="count">{{ brandSaleCarousel.currentIndex + 1 }}</span>
+        <span class="total">&nbsp;/&nbsp;{{ brandSaleImages.length }}</span>
+      </div>
+      <div class="main-brand-btn">
+        <div
+          class="swiper-button-prev"
+          tabindex="0"
+          role="button"
+          aria-label="Previous slide"
+          (click)="brandSaleCarousel.slickPrev()"
+        ></div>
+        <div
+          class="swiper-button-next"
+          tabindex="0"
+          role="button"
+          aria-label="Next slide"
+          (click)="brandSaleCarousel.slickNext()"
+        ></div>
+      </div>
+    </div>
+    <!-- Slider Buttons End -->
+  </div>
+</div>
+<!-- Brand Sale End -->
 
 <div class="main-box4"></div>
 

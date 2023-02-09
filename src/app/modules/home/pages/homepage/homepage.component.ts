@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { SlickCarouselComponent } from "ngx-slick-carousel";
 import { Product } from "src/app/interfaces/product.interface";
 
 @Component({
@@ -32,106 +31,6 @@ export class HomepageComponent {
       numScroll: 1,
     },
   ];
-
-  public slideConfig = {
-    // slidesToShow: 3,
-    // slidesToScroll: 3,
-    centerMode: true,
-    arrows: false,
-    focusOnSelect: true,
-    dots: false,
-    infinite: true,
-    speed: 300,
-    centerPadding: "60px",
-    slidesToShow: 3,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    // dots: true,
-    // infinite: true,
-    // speed: 300,
-    // adaptiveHeight: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
-  public slideConfigBrandSales = {
-    arrows: false,
-    focusOnSelect: true,
-    dots: false,
-    speed: 300,
-    slidesToShow: 5,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
-  public bestItemsCarouselConfig = {
-    // slidesToShow: 3,
-    // slidesToScroll: 3,
-    arrows: false,
-    focusOnSelect: true,
-    dots: false,
-    infinite: true,
-    speed: 300,
-    centerPadding: "60px",
-    slidesToShow: 5,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    // dots: true,
-    // infinite: true,
-    // speed: 300,
-    // adaptiveHeight: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: "40px",
-          slidesToShow: 2,
-        },
-      },
-    ],
-  };
-
-  public currentBrandSlideNumber: number = 1;
-
-  public totalBrandSlideNumber: number = this.brandSaleImages.length;
 
   public smMainBanner: Array<{ image: string; title: string }> = [
     {
@@ -225,7 +124,7 @@ export class HomepageComponent {
     },
   ];
 
-  public productsDisplay: Array<Product> = new Array<Product>(20).fill({
+  public bestItemsOfTheMonth: Array<Product> = new Array<Product>(20).fill({
     name: "MISSHA",
     slug: "missha",
     price: "22,000",
@@ -251,17 +150,38 @@ export class HomepageComponent {
     image: "../../../../../assets/product_1.jpg",
   });
 
-  public nextSlide(slickModalBrands: SlickCarouselComponent): void {
-    if (this.currentBrandSlideNumber < this.totalBrandSlideNumber) {
-      this.currentBrandSlideNumber++;
-      slickModalBrands.slickNext();
-    }
-  }
-
-  public previousSlide(slickModalBrands: SlickCarouselComponent): void {
-    if (this.currentBrandSlideNumber > 1) {
-      this.currentBrandSlideNumber--;
-      slickModalBrands.slickPrev();
-    }
+  public prepareNgxCarouselConfig(slidesToShow: number) {
+    return {
+      centerMode: true,
+      arrows: false,
+      focusOnSelect: true,
+      dots: false,
+      infinite: true,
+      speed: 300,
+      centerPadding: "60px",
+      slidesToShow,
+      autoplay: true,
+      autoplaySpeed: 3500,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            centerMode: false,
+            arrows: false,
+            centerPadding: "40px",
+            slidesToShow: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            centerMode: false,
+            arrows: false,
+            centerPadding: "40px",
+            slidesToShow: 1,
+          },
+        },
+      ],
+    };
   }
 }
