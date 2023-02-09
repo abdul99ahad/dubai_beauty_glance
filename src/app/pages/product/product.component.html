@@ -17,7 +17,7 @@
         </div>
         <div style="width: 20%; display: flex">
           <img [alt]="productDetail.brand.country_name" [src]="productDetail.brand.country_flag" style="max-width: 50%"/>
-          <p style="font-size: 18px; margin: auto">{{ productDetail.brand.country_code }}</p>
+          <p style="font-size: 18px; margin: auto">{{ productDetail.brand.country_code.toUpperCase() }}</p>
         </div>
       </div>
 
