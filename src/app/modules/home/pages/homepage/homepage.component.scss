@@ -657,8 +657,16 @@ li {
   }
 
   .main-prd-tit {
-    margin: 5%;
+    margin:2%;
     margin-top: 0;
+  }
+
+  .main-prd-tit h3 {
+    font-size: 18px;
+  }
+  
+  .main-prd-tit span {
+    font-size: 14px;
   }
 
   .title {
@@ -710,6 +718,10 @@ li {
   .w-100 {
     width: 100% !important;
     margin: 0;
+  }
+
+  .btn_wrap {
+    display: flex;
   }
 
 
