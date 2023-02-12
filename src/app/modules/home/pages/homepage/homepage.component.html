@@ -499,3 +499,9 @@
     </p-tabView>
   </div>
 </div>
+
+<div class="page-btn web-view" *ngIf="displayScrollButtons">
+  <a class="home-btn" [routerLink]="" (click)="scrollToTop()"><span></span></a>
+  <span class="top-btn" (click)="scrollToTopSmooth()"></span>
+  <span class="down-btn" style="display: none"></span>
+</div>
