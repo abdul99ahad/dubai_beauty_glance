@@ -11,7 +11,16 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 export class HomepageComponent implements OnInit {
   public displayScrollButtons: boolean = false;
   public topPosToStartShowing: number = 100;
+  public currentBestBrandItem: number = 1;
 
+  public prevBestBrandItem() {
+    if (this.currentBestBrandItem > 0) this.currentBestBrandItem--;
+  }
+
+  public nextBestBrandItem() {
+    if (this.currentBestBrandItem < this.tabHeaderItems.length)
+      this.currentBestBrandItem++;
+  }
   // region NGX Carousel Sliders
   public allEventAndBgMainBanner: Array<{ image: string; title: string }> = [
     {

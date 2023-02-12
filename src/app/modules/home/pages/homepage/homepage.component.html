@@ -469,18 +469,30 @@
             <img style="height: 100%" [src]="item.imgSrc" [alt]="item.brand" />
           </div>
           <div style="margin: 0 2%; width: 60%" class="w-100">
-            <div class="main-prd-tit">
-              <h3>BEST ITEM</h3>
-              <span>Click on a product to see more details.</span>
+            <div style="display: flex; justify-content: space-between">
+              <div class="main-prd-tit">
+                <h3>BEST ITEM</h3>
+                <span>Click on a product to see more details.</span>
+              </div>
+              <div class="btn_wrap">
+                <span class="main-prd5-prev2" (click)="prevBestBrandItem()"
+                  ><img
+                    src="	https://www.jolse.com/_dbook/img/main_slide_prev_btn3.png"
+                /></span>
+                <span class="main-prd5-next2" (click)="nextBestBrandItem()"
+                  ><img
+                    src="https://www.jolse.com/_dbook/img/main_slide_next_btn3.png"
+                /></span>
+              </div>
             </div>
             <div>
               <p-carousel
                 [value]="item.products"
                 [numVisible]="3"
                 [responsiveOptions]="responsiveOptions"
-                [autoplayInterval]="3000"
                 [showIndicators]="false"
                 [showNavigators]="false"
+                [page]="currentBestBrandItem"
               >
                 <ng-template let-product pTemplate="item">
                   <app-product-card
