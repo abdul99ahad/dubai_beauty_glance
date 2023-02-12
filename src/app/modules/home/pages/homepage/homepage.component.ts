@@ -212,14 +212,14 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  public scrollToHome() {
+  public scrollToTop() {
     window.scroll({
       top: 0,
       left: 0,
     });
   }
 
-  public scrollToTop() {
+  public scrollToTopSmooth() {
     window.scroll({
       top: 0,
       left: 0,
