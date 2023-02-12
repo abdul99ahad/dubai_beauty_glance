@@ -201,6 +201,10 @@ li {
     display: block;
 }
 
+.header-items a:hover {
+    color: #ec048c !important;
+}
+
 :host ::ng-deep p-dialog {
     .p-dialog {
         max-width: 80%;
