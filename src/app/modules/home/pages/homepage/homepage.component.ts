@@ -157,7 +157,7 @@ export class HomepageComponent implements OnInit {
       }),
     },
   ];
-  public latestProductsDisplay: Array<Product> = new Array<Product>(20).fill({
+  public latestProductsDisplay: Array<Product> = new Array<Product>(8).fill({
     name: 'MISSHA',
     slug: 'missha',
     price: '22,000',
@@ -173,6 +173,7 @@ export class HomepageComponent implements OnInit {
     discount_price: '18,000',
     image: '../../../../../assets/product_1.jpg',
   });
+
   public homePageNgxCarouselsToRender = {
     EventBannerCarousel: {
       carouselName: 'EventBannerCarousel',
@@ -252,22 +253,25 @@ export class HomepageComponent implements OnInit {
     return this.homePageNgxCarouselsState[carouselName].percentageOfSliderMoved;
   }
 
-  public moveSlideForward(
-    carouselComponent: SlickCarouselComponent,
-    carouselName: string
-  ): void {
+  public moveSlideForward(carouselComponent: SlickCarouselComponent): void {
     carouselComponent.slickNext();
-
-    this.adjustSliderStateInAccordanceWithMovement(carouselName, 'forward');
   }
 
-  public moveSlideBackward(
-    carouselComponent: SlickCarouselComponent,
-    carouselName: string
-  ): void {
+  public moveSlideBackward(carouselComponent: SlickCarouselComponent): void {
     carouselComponent.slickPrev();
+  }
 
-    this.adjustSliderStateInAccordanceWithMovement(carouselName, 'backward');
+  public adjustSliderStateInAccordanceWithMovement(
+    carouselName: string,
+    currentSlide: number
+  ): void {
+    const numOfSlidesForThisCarousel =
+      this.getCarouselTotalSlides(carouselName);
+    const newCurrentSlide = currentSlide + 1;
+    this.homePageNgxCarouselsState[carouselName].currentSlide =
+      currentSlide + 1;
+    this.homePageNgxCarouselsState[carouselName].percentageOfSliderMoved =
+      (newCurrentSlide / numOfSlidesForThisCarousel) * 100;
   }
 
   private initializeNgxCarousels(): void {
@@ -298,8 +302,8 @@ export class HomepageComponent implements OnInit {
       speed: 300,
       centerPadding: '60px',
       slidesToShow,
-      // autoplay: true,
-      // autoplaySpeed: 3500,
+      autoplay: true,
+      autoplaySpeed: 3500,
       responsive: [
         {
           breakpoint: 768,
@@ -323,31 +327,5 @@ export class HomepageComponent implements OnInit {
     };
   }
 
-  private adjustSliderStateInAccordanceWithMovement(
-    carouselName: string,
-    movement: 'forward' | 'backward'
-  ): void {
-    const numOfSlidesForThisCarousel =
-      this.homePageNgxCarouselsState[carouselName].numOfSlides;
-    const previousCurrentSlide =
-      this.homePageNgxCarouselsState[carouselName].currentSlide;
-
-    let newCurrentSlide: number;
-    if (movement === 'forward') {
-      newCurrentSlide =
-        previousCurrentSlide === numOfSlidesForThisCarousel
-          ? 1
-          : previousCurrentSlide + 1;
-    } else {
-      newCurrentSlide =
-        previousCurrentSlide === 1
-          ? numOfSlidesForThisCarousel
-          : previousCurrentSlide - 1;
-    }
-
-    this.homePageNgxCarouselsState[carouselName].currentSlide = newCurrentSlide;
-    this.homePageNgxCarouselsState[carouselName].percentageOfSliderMoved =
-      (newCurrentSlide / numOfSlidesForThisCarousel) * 100;
-  }
   // endregion
 }
