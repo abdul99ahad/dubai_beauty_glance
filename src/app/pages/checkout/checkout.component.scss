@@ -421,7 +421,7 @@ input.form-control {
         width: 100px;
     }
     .p-inputnumber-button {
-        background-color: #ff2e47;
+        background-color: #ec048c;
         border: none;
     }
 
@@ -459,9 +459,9 @@ textarea.form-control {
 }
 
 #quick-checkout-button-confirm:hover {
-    background-color: #ff2e47;
+    background-color: #ec048c;
     // color: black;
-    border: 1px solid #ff2e47;
+    border: 1px solid #ec048c;
 }
 
 .login-options {
@@ -474,7 +474,7 @@ textarea.form-control {
 }
 
 .required {
-    color: red; 
+    color: #ec048c; 
     font-weight: 500
 }
 

@@ -135,7 +135,7 @@
     </div>
     <ul class="navbar-items">
       <div style="display: flex; flex-wrap: wrap; flex-direction: row">
-        <li *ngFor="let item of navBarItemList">
+        <li *ngFor="let item of navBarItemList" class="header-items">
           <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
         </li>
       </div>
