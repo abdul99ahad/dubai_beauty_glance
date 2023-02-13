@@ -63,7 +63,7 @@
     <div class="logo-area w-100 flex">
       <i
         class="pi pi-align-justify"
-        (click)="display = true"
+        (click)="mobileDisplay = true"
         style="font-size: 1.2rem; line-height: 2; width: 30%"
       ></i>
       <a [routerLink]="['/']" style="width: 50%">
@@ -181,3 +181,98 @@
 
 <!-- <p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
 </p-sidebar> -->
+
+<p-sidebar
+  [(visible)]="mobileDisplay"
+  position="left"
+  [transitionOptions]="'300ms'"
+  [style]="{ width: '100%' }"
+>
+  <div class="side-bar-wrap2">
+    <div class="xans-element- xans-layout xans-layout-statelogoff">
+      <div class="userinfo">
+        <div class="profile">
+          <img
+            class="sp-sidebar-ico1"
+            src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
+          />
+        </div>
+        <div class="txt txt_1">
+          <b style="color: black; font-weight: 900">HELLO, GUEST</b
+          ><span class="subTxt">Please log in or sign up<span></span></span>
+        </div>
+        <div
+          class="xans-element- xans-layout xans-layout-mobilehomebutton btnarea"
+        ></div>
+      </div>
+    </div>
+    <div class="Layout_stateLogon"></div>
+  </div>
+  <div class="xans-element- xans-myshop xans-myshop-main sidetop-wrap">
+    <a
+      class="sp-sidebar-wishList wishList"
+      style="
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        text-align: center;
+      "
+    >
+      <i class="pi pi-heart" style="font-size: 1.5rem; margin: 0.2rem"></i>
+      Wish List</a
+    >
+
+    <a
+      class="sp-sidebar-wishList wishList"
+      style="
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        text-align: center;
+      "
+    >
+      <i
+        class="pi pi-shopping-cart"
+        style="font-size: 1.5rem; margin: 0.2rem"
+      ></i>
+      Cart</a
+    >
+
+    <a
+      class="sp-sidebar-wishList wishList"
+      style="
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        text-align: center;
+      "
+    >
+      <i
+        class="pi pi-shopping-bag"
+        style="font-size: 1.5rem; margin: 0.2rem"
+      ></i>
+      Orders</a
+    >
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; flex-direction: column">
+    <li
+      *ngFor="let item of navBarItemList"
+      class="header-items header-items-mobile"
+    >
+      <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
+    </li>
+  </div>
+  <div style="display: flex">
+    <app-input-button
+      class="w-50"
+      style="margin: 10px 10px"
+      buttonText="Sign In"
+    ></app-input-button>
+    <app-input-button
+      class="w-50 signup"
+      style="margin: 10px 10px"
+      buttonText="Sign Up"
+    ></app-input-button>
+  </div>
+</p-sidebar>

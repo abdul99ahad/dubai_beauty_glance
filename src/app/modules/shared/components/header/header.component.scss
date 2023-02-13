@@ -190,11 +190,11 @@ li {
 }
 
 .web-disable {
-    display: none;
+    display: none !important;
 }
 
 .mbl-disable {
-    display: flex;
+    display: flex !important;
 }
 
 .mbl-disable-block {
@@ -205,24 +205,149 @@ li {
     color: #ec048c !important;
 }
 
+.userinfo {
+    display: flex;
+}
+.side-bar-wrap2 {
+    display: flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-bottom: solid 1px #d2d2d2;
+}
+
+.side-bar-wrap2 .profile {
+    margin: 0 12px 0 0;
+}
+
+.side-bar-wrap2 .sp-sidebar-ico1 {
+    height: 100%;
+    width: 40px;
+    display: inline-block;
+}
+
+.side-bar-wrap2 .sp-sidebar-ico1::before {
+    background-image: url("https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png");
+    background-position: 0 0;
+    background-size: 100% auto;
+}
+
+.side-bar-wrap2 .sp-sidebar-ico1::before {
+    width: 42px;
+    height: 42px;
+}
+
+.side-bar-wrap2 .txt_1 {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.side-bar-wrap2 .txt {
+    float: left;
+}
+
+.side-bar-wrap2 .txt_1 .subTxt {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+.xans-myshop-main.sidetop-wrap {
+    display: flex;
+    position: relative;
+    padding: 7px 0;
+    border-bottom: solid 1px #d2d2d2;
+    background: #ffffff;
+    box-sizing: border-box;
+    align-items: stretch;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+}
+
+.xans-myshop-main.sidetop-wrap {
+    border: 0;
+}
+
+.xans-myshop-main.sidetop-wrap a.sp-sidebar-wishList {
+    width: 25%;
+    padding-top: 10px;
+    background: none;
+}
+
+.xans-myshop-main.sidetop-wrap a {
+    width: 33.33% !important;
+}
+
+.xans-myshop-main.sidetop-wrap a {
+    padding: 0;
+    color: #000000;
+    font-size: 11px;
+    font-weight: 500;
+    border: 0;
+    border-right: solid 1px #d2d2d2;
+}
+
+.xans-myshop-main a.wishList {
+    background: #4a5164 url("https://img.echosting.cafe24.com/skin/mobile_en_US/layout/bg_wish_list.png") no-repeat 50% 15px;
+}
+
+.sp-sidebar::before {
+    display: inline-block;
+    background-image: url("https://m.jolse.com/_dbook/img/sp_sidebar.png");
+    background-size: 150px 75px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    font-size: 0;
+    content: '';
+}
+
+.header-items-mobile {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 5% 5% 0 3% !important
+}
+
 :host ::ng-deep p-dialog {
     .p-dialog {
         max-width: 80%;
         max-height: 100%;
     }
   }
+
+  :host ::ng-deep app-input-button {
+    .btnLogin {
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+    .signup .btnLogin {
+        background: #ccc !important;
+        border: 1px solid #ccc !important;
+    }
+  }
+
+  :host ::ng-deep app-input-button.signup {
+    .btnLogin {
+        background: #ccc !important;
+        border: 1px solid #ccc !important;
+    }
+  }
   /* Responsive layout - makes a one column-layout instead of two-column layout */
   @media (max-width: 800px) {
+    :host ::ng-deep p-sidebar {
+        .p-sidebar .p-sidebar-content {
+            padding: 0;
+        }
+      }
 
     .mbl-disable {
-        display: none;
+        display: none !important;
     }
 
     .mbl-disable-block {
         display: none;
     }
     .web-disable {
-        display:flex
+        display:flex !important;
     }
       .flex-container {
         flex-direction: column;
