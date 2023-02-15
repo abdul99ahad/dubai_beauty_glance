@@ -9,7 +9,7 @@ import {
   Subscription,
   switchMap,
 } from 'rxjs';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 interface Product {
   name: string;
@@ -26,6 +26,7 @@ interface Product {
 })
 export class HeaderComponent implements OnInit {
   expandedState: boolean = false;
+  mobileDisplay: boolean = false;
   navBarItemList: any = [
     { page: 'NEW', url: 'products' },
     { page: 'BEST', url: 'products' },
@@ -81,7 +82,10 @@ export class HeaderComponent implements OnInit {
   public searchProductDebouncedSubject: Subject<string> = new Subject<string>();
   private coldSubscriber: Subscription;
 
-  public constructor(private readonly http: HttpClient, private readonly router: Router) {}
+  public constructor(
+    private readonly http: HttpClient,
+    private readonly router: Router
+  ) {}
 
   public navBarMobileListViewToggle(): void {
     if (this.expandedState) {
@@ -134,6 +138,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public navigateToProduct(product: Product): void {
-    this.router.navigate(['/product', product.slug])
+    this.router.navigate(['/product', product.slug]);
   }
 }
