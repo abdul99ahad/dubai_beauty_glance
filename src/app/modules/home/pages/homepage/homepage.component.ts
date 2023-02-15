@@ -226,6 +226,15 @@ export class HomepageComponent implements OnInit {
     window.scroll({
       top: 0,
       left: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  public scrollToDown() {
+    window.scroll({
+      top: document.body.scrollHeight,
+      left: 0,
+      behavior: 'smooth',
     });
   }
 
