@@ -5,7 +5,7 @@
   <div class="top-area flex-container mbl-disable">
     <div class="logo-area">
       <a [routerLink]="['/']">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
       </a>
     </div>
 
@@ -37,21 +37,21 @@
     <div class="auth">
       <div class="member-link">
         <a [routerLink]="['/login']">
-          <img src="../assets/sign_in.png" alt="" />
+          <img src="../assets/sign_in.png" alt=""/>
           <p>Sign In</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/register']">
-          <img src="../assets/sign_up.png" alt="" />
+          <img src="../assets/sign_up.png" alt=""/>
           <p>Sign Up</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/cart']">
-          <img src="../assets/cart.png" alt="" />
+          <img src="../assets/cart.png" alt=""/>
           <p>Cart</p>
         </a>
       </div>
@@ -67,7 +67,7 @@
         style="font-size: 1.2rem; line-height: 2; width: 30%"
       ></i>
       <a [routerLink]="['/']" style="width: 50%">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
       </a>
 
       <div class="flex">
@@ -127,7 +127,7 @@
 </div>
 
 <div class="mbl-disable-block">
-  <hr class="solid" style="margin-bottom: 0px" />
+  <hr class="solid" style="margin-bottom: 0px"/>
 
   <div class="flex-container" id="navbar">
     <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
@@ -143,7 +143,7 @@
     <div class="recently-viewed-container">
       <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
       <a class="recently-viewed" (click)="menu.toggle($event)"
-        >Recently Viewed
+      >Recently Viewed
         <i class="pi pi-angle-down"></i>
       </a>
     </div>
@@ -170,6 +170,7 @@
 
 <p-dialog
   [(visible)]="display"
+  [style]="{ width: '100%' }"
   [modal]="true"
   [draggable]="false"
   [resizable]="false"
@@ -178,9 +179,6 @@
     (onCategorySelected)="toggleHamBurgerMenu()"
   ></app-hamburger-menu>
 </p-dialog>
-
-<!-- <p-sidebar [(visible)]="display" [fullScreen]="true" [blockScroll]="true">
-</p-sidebar> -->
 
 <p-sidebar
   [(visible)]="mobileDisplay"
@@ -198,8 +196,8 @@
           />
         </div>
         <div class="txt txt_1">
-          <b style="color: black; font-weight: 900">HELLO, GUEST</b
-          ><span class="subTxt">Please log in or sign up<span></span></span>
+          <b style="color: black; font-weight: 900">HELLO, GUEST</b>
+          <span class="subTxt">Please log in or sign up</span>
         </div>
         <div
           class="xans-element- xans-layout xans-layout-mobilehomebutton btnarea"
@@ -219,8 +217,8 @@
       "
     >
       <i class="pi pi-heart" style="font-size: 1.5rem; margin: 0.2rem"></i>
-      Wish List</a
-    >
+      Wish List
+    </a>
 
     <a
       class="sp-sidebar-wishList wishList"
@@ -235,8 +233,8 @@
         class="pi pi-shopping-cart"
         style="font-size: 1.5rem; margin: 0.2rem"
       ></i>
-      Cart</a
-    >
+      Cart
+    </a>
 
     <a
       class="sp-sidebar-wishList wishList"
@@ -251,8 +249,8 @@
         class="pi pi-shopping-bag"
         style="font-size: 1.5rem; margin: 0.2rem"
       ></i>
-      Orders</a
-    >
+      Orders
+    </a>
   </div>
 
   <div style="display: flex; flex-wrap: wrap; flex-direction: column">
