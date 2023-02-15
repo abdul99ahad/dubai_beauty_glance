@@ -294,7 +294,7 @@ export class HomepageComponent implements OnInit {
 
   private prepareNgxCarouselConfig(slidesToShow: number) {
     return {
-      centerMode: true,
+      centerMode: false,
       arrows: false,
       focusOnSelect: true,
       dots: false,

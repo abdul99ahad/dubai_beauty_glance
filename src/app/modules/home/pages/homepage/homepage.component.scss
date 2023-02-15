@@ -432,7 +432,7 @@ li {
   display: inline-block;
   vertical-align: middle;
   position: static;
-  height: 5px;
+  height: 2px;
   width: 50%;
   background: black;
 }
@@ -573,6 +573,13 @@ li {
     object-fit: cover;
     width: 730px;
     height: 350px;
+  }
+}
+
+:host ::ng-deep ngx-slick-carousel {
+  .slick-slide {
+    background-color: white;
+    padding: 0;
   }
 }
 
