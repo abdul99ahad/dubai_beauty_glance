@@ -18,6 +18,7 @@ import { TabViewModule } from 'primeng/tabview';
 
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
+import { LightgalleryModule } from 'lightgallery/angular';
 
 // Components
 import { InputTextboxComponent } from './input-textbox/input-textbox.component';
@@ -73,6 +74,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     MenuModule,
     AutoCompleteModule,
     TabViewModule,
+    LightgalleryModule,
   ],
   exports: [
     InputTextModule,
@@ -87,6 +89,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     DialogModule,
     MenuModule,
     TabViewModule,
+    LightgalleryModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
