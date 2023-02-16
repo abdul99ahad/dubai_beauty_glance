@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit {
   };
 
   public products: Array<Product> = [];
-  public searchProductDebouncedSubject: Subject<string> = new Subject<string>();
+  public searchProductDebouncedSubject = new Subject<string>();
   private coldSubscriber: Subscription;
 
   public constructor(
@@ -124,7 +124,7 @@ export class HeaderComponent implements OnInit {
       },
     ];
 
-    this.setupColdSubscriberForLiveProductSearching();
+    this.setupColdSubjectForLiveProductSearching();
   }
 
   public searchProducts(searchString: string): void {
@@ -142,7 +142,7 @@ export class HeaderComponent implements OnInit {
     ]);
   }
 
-  private setupColdSubscriberForLiveProductSearching() {
+  private setupColdSubjectForLiveProductSearching() {
     this.coldSubscriber = this.searchProductDebouncedSubject
       .pipe(
         switchMap((searchText: string) =>

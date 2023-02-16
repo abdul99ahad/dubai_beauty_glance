@@ -127,7 +127,7 @@
 </div>
 
 <div class="mbl-disable-block">
-  <hr class="solid" style="margin-bottom: 0px"/>
+  <hr class="solid" style="margin-bottom: 0"/>
 
   <div class="flex-container" id="navbar">
     <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
@@ -135,8 +135,28 @@
     </div>
     <ul class="navbar-items">
       <div style="display: flex; flex-wrap: wrap; flex-direction: row">
-        <li *ngFor="let item of navBarItemList" class="header-items">
-          <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
+        <li class="header-items">
+          <a routerLink="/products" class="black m-15">NEW</a>
+        </li>
+        <li class="header-items">
+          <a routerLink="/products" class="black m-15">BEST</a>
+        </li>
+        <li class="header-items">
+          <a routerLink="/products" class="black m-15">TIME</a>
+        </li>
+        <li class="header-items">
+          <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
+        </li>
+        <li class="header-items">
+          <a routerLink="/brands" class="black m-15" (mouseenter)="brandHoverMenu.show($event)" (mouseleave)="brandHoverMenu.hide()">BRAND</a>
+          <p-overlayPanel #brandHoverMenu>
+            <ng-template pTemplate="content">
+              <div class="w-80-screen">Boo</div>
+            </ng-template>
+          </p-overlayPanel>
+        </li>
+        <li class="header-items">
+          <a routerLink="/products" class="black m-15">COUPON</a>
         </li>
       </div>
     </ul>
@@ -254,11 +274,23 @@
   </div>
 
   <div style="display: flex; flex-wrap: wrap; flex-direction: column">
-    <li
-      *ngFor="let item of navBarItemList"
-      class="header-items header-items-mobile"
-    >
-      <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
+    <li class="header-items header-items-mobile">
+      <a routerLink="/products" class="black m-15">NEW</a>
+    </li>
+    <li class="header-items header-items-mobile">
+      <a routerLink="/products" class="black m-15">BEST</a>
+    </li>
+    <li class="header-items header-items-mobile">
+      <a routerLink="/products" class="black m-15">TIME</a>
+    </li>
+    <li class="header-items header-items-mobile">
+      <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
+    </li>
+    <li class="header-items header-items-mobile">
+      <a routerLink="/brands" class="black m-15">BRAND</a>
+    </li>
+    <li class="header-items header-items-mobile">
+      <a routerLink="/products" class="black m-15">COUPON</a>
     </li>
   </div>
   <div style="display: flex">
