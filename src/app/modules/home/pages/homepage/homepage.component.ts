@@ -3,7 +3,8 @@ import { Product } from "src/app/interfaces/product.interface";
 import { HomepageNgxCarouselsState } from "./homepage-carousel.type";
 import { SlickCarouselComponent } from "ngx-slick-carousel";
 import { WebApiService } from "../../../../services/web-api.service";
-import { map } from "rxjs";
+import { map, Observable } from "rxjs";
+import { Brand, BrandWithProducts } from "../../../../interfaces/brand.interface";
 
 @Component({
   selector: "app-homepage",
@@ -87,72 +88,7 @@ export class HomepageComponent implements OnInit {
     },
   ];
 
-  public tabHeaderItems: Array<{
-    brand: string;
-    imgSrc: string;
-    products: Array<Product>;
-  }> = [
-    {
-      brand: "CORSX",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/e37c12611e89014de8bd973421859578.jpg",
-      products: new Array<Product>(20).fill({
-        name: "CORSX",
-        slug: "corsx",
-        price: "22,000",
-        discount_price: "18,000",
-        image: "../../../../../assets/product_1.jpg",
-      }),
-    },
-    {
-      brand: "MISHA",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/2c559b211f58a199a39b7603749136ce.jpg",
-      products: new Array<Product>(20).fill({
-        name: "MISSHA",
-        slug: "missha",
-        price: "20,000",
-        discount_price: "18,000",
-        image: "../../../../../assets/product_1.jpg",
-      }),
-    },
-    {
-      brand: "ETUDE",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/183deeb0ca7d811ef8da0a46bd67d78d.jpg",
-      products: new Array<Product>(20).fill({
-        name: "ETUDE",
-        slug: "etude",
-        price: "18,000",
-        discount_price: "16,000",
-        image: "../../../../../assets/product_1.jpg",
-      }),
-    },
-    {
-      brand: "Beauty of Jeason",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220803/c032db4033fb307edb20c17e47bb84ee.jpg",
-      products: new Array<Product>(20).fill({
-        name: "Beauty of Jeason",
-        slug: "beauty-of-jeason",
-        price: "16,000",
-        discount_price: "14,000",
-        image: "../../../../../assets/product_1.jpg",
-      }),
-    },
-    {
-      brand: "Round Lab",
-      imgSrc:
-        "https://jolse.com/web/upload/NNEditor/20220208/2869271c3dec42c062db8efb9f6b77c8.jpg",
-      products: new Array<Product>(20).fill({
-        name: "Round Lab",
-        slug: "round-lab",
-        price: "14,000",
-        discount_price: "12,000",
-        image: "../../../../../assets/product_1.jpg",
-      }),
-    },
-  ];
+  public brandTabHeaders: Array<BrandWithProducts> = [];
 
   public newArrivalsProductsDisplay: Array<Product> = [];
 
@@ -176,21 +112,33 @@ export class HomepageComponent implements OnInit {
 
   public homePageNgxCarouselsState: HomepageNgxCarouselsState = {};
 
-  public constructor(private readonly webApiService: WebApiService) {}
+  public constructor(private readonly webApiService: WebApiService) {
+  }
 
   public prevBestBrandItem(): void {
-    if (this.currentBestBrandItem > 0) this.currentBestBrandItem--;
+    if (this.currentBestBrandItem === 1) {
+      this.currentBestBrandItem = this.brandTabHeaders.length;
+      return;
+    }
+
+    this.currentBestBrandItem--;
   }
 
   public nextBestBrandItem(): void {
-    if (this.currentBestBrandItem < this.tabHeaderItems.length)
-      this.currentBestBrandItem++;
+    if (this.currentBestBrandItem === this.brandTabHeaders.length) {
+      this.currentBestBrandItem = 1;
+      return;
+    }
+
+    this.currentBestBrandItem++;
   }
 
   public ngOnInit(): void {
     this.initializeNgxCarousels();
 
     this.fetchLatestProducts();
+
+    this.fetchBestBrandsWithProducts();
   }
 
   @HostListener("window:scroll")
@@ -226,6 +174,44 @@ export class HomepageComponent implements OnInit {
       })),
     ).subscribe((products: Array<Product>) => {
       this.newArrivalsProductsDisplay = products;
+    });
+  }
+
+  public fetchBestBrandsWithProducts(): void {
+    this.webApiService.getBestBrands().pipe(
+      map(({ data }: { data: Array<Brand> }) => data),
+      map((brands: Array<Brand>) => brands.map((brand: Brand) => {
+        brand.brand_image = this.webApiService.imgUrl + brand.brand_image;
+        brand.country_flag = this.webApiService.imgUrl + brand.country_flag;
+
+        const products$ = this.webApiService.getBrandProductsWithSlugForSlider(brand.slug);
+        return {
+          brand: {
+            ...brand,
+            products: []
+          },
+          products$
+        };
+      })),
+    ).subscribe((brandWithEmptyProducts: Array<{ brand: BrandWithProducts; products$: Observable<{ data: Array<Product> }> }>) => {
+      brandWithEmptyProducts.forEach((eachBrandWithEmptyProducts: { brand: BrandWithProducts; products$: Observable<{ data: Array<Product> }> }) => {
+        eachBrandWithEmptyProducts.products$.pipe(
+          map(({ data }: { data: Array<Product> }) => data),
+          map((products: Array<Product>) => {
+            products = products.map((product: Product) => {
+              product.image = this.webApiService.imgUrl + product.image;
+
+              return product;
+            });
+
+            eachBrandWithEmptyProducts.brand.products = products;
+
+            return eachBrandWithEmptyProducts.brand;
+          }),
+        ).subscribe((brandWithProducts: BrandWithProducts) => {
+          this.brandTabHeaders = this.brandTabHeaders.concat(brandWithProducts);
+        });
+      });
     });
   }
 

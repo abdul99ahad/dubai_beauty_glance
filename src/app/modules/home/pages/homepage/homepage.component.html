@@ -42,7 +42,7 @@
     <div class="title mbl-disable">
       <h2 style="text-align: left !important">
         QUICK
-        <br />
+        <br/>
         CATEGORY
       </h2>
       <p>Find products quickly by category selection</p>
@@ -151,7 +151,7 @@
           *ngFor="let slide of allEventAndBgMainBanner"
           class="slide"
         >
-          <img src="{{ slide.image }}" alt="" />
+          <img src="{{ slide.image }}" alt=""/>
         </div>
       </ngx-slick-carousel>
     </div>
@@ -173,12 +173,12 @@
           getCarouselCurrentSlide(
             homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
           )
-        }}</span>
+          }}</span>
         <span class="total"
-          >&nbsp;/&nbsp;{{
-            getCarouselTotalSlides(
-              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-            )
+        >&nbsp;/&nbsp;{{
+          getCarouselTotalSlides(
+            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+          )
           }}</span
         >
       </div>
@@ -280,12 +280,12 @@
         getCarouselCurrentSlide(
           homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
         )
-      }}</span>
+        }}</span>
       <span class="total"
-        >&nbsp;/&nbsp;{{
-          getCarouselTotalSlides(
-            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-          )
+      >&nbsp;/&nbsp;{{
+        getCarouselTotalSlides(
+          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+        )
         }}</span
       >
     </div>
@@ -310,6 +310,7 @@
 </div>
 <!-- Brand Sale End -->
 
+<!-- New Arrivals Start -->
 <div class="main-box3">
   <div class="main-inner">
     <div class="title">
@@ -340,31 +341,37 @@
     </div>
   </div>
 </div>
+<!-- New Arrivals End -->
 
+<!-- Free Delivery Banner Start -->
 <div class="main-box8">
   <div>
-    <a href="" style="display: flex">
+    <a href="javascript:void(0)" style="display: flex">
       <img
         src="https://www.ksecret.com/images/thumbs/0005009_0201_delievery02_sub%20pc.jpeg"
         style="width: 100%"
-      />
+        alt="Free Delivery Banner"/>
     </a>
   </div>
 </div>
+<!-- Free Delivery Banner End -->
 
 <app-main-time-deal></app-main-time-deal>
 
+<!-- Brand Sale Banner Start -->
 <div class="main-box8">
   <div>
-    <a href="" style="display: flex">
+    <a href="javascript:void(0);" style="display: flex">
       <img
         src="https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5098a376fddb9bae8fce95b0584832fe.jpg"
         style="width: 100%"
-      />
+        alt="Brand Sale Banner"/>
     </a>
   </div>
 </div>
+<!-- Brand Sale Banner End -->
 
+<!-- Best Brand Start -->
 <div class="main-box3">
   <div class="main-inner">
     <div class="title">
@@ -372,31 +379,29 @@
     </div>
 
     <p-tabView styleClass="prime-tab-override">
-      <p-tabPanel header="{{ item.brand }}" *ngFor="let item of tabHeaderItems">
+      <p-tabPanel [header]="brandTabHeader.name" *ngFor="let brandTabHeader of brandTabHeaders">
         <div class="flex-container div-center-m5">
-          <div class="mbl-disable">
-            <img style="height: 100%" [src]="item.imgSrc" [alt]="item.brand" />
+          <div class="mbl-disable" style="width: 40%">
+            <img style="height: 100%" [src]="brandTabHeader.brand_image" [alt]="brandTabHeader.name"/>
           </div>
-          <div style="margin: 0 2%; width: 60%" class="w-100">
+          <div style="width: 60%">
             <div style="display: flex; justify-content: space-between">
               <div class="main-prd-tit">
                 <h3>BEST ITEM</h3>
                 <span>Click on a product to see more details.</span>
               </div>
               <div class="btn_wrap">
-                <span class="main-prd5-prev2" (click)="prevBestBrandItem()"
-                  ><img
-                    src="	https://www.jolse.com/_dbook/img/main_slide_prev_btn3.png"
-                /></span>
-                <span class="main-prd5-next2" (click)="nextBestBrandItem()"
-                  ><img
-                    src="https://www.jolse.com/_dbook/img/main_slide_next_btn3.png"
-                /></span>
+                <span class="main-prd5-prev2" (click)="prevBestBrandItem()">
+                  <img src="	https://www.jolse.com/_dbook/img/main_slide_prev_btn3.png" alt="Previous"/>
+                </span>
+                <span class="main-prd5-next2" (click)="nextBestBrandItem()">
+                  <img src="https://www.jolse.com/_dbook/img/main_slide_next_btn3.png" alt="Next"/>
+                </span>
               </div>
             </div>
             <div>
               <p-carousel
-                [value]="item.products"
+                [value]="brandTabHeader.products"
                 [numVisible]="3"
                 [responsiveOptions]="responsiveOptions"
                 [showIndicators]="false"
@@ -420,10 +425,11 @@
     </p-tabView>
   </div>
 </div>
+<!-- Best Brand End -->
 
+<!-- Page Scroll Buttons Start -->
 <div class="page-btn web-view" *ngIf="displayScrollButtons">
-  <!-- <a class="home-btn" [routerLink]="" (click)="scrollToTop()"><span></span></a> -->
-  <!-- <span class="top-btn" (click)="scrollToTopSmooth()"></span> -->
   <span class="top-btn" (click)="scrollToTop()"></span>
   <span class="down-btn" (click)="scrollToDown()"></span>
 </div>
+<!-- Page Scroll Buttons End -->

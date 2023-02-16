@@ -3,6 +3,7 @@ export const ApiRoutes = {
   products: 'products',
   product: 'product',
   brands: 'brands',
+  brandWithProducts: 'brand-with-products',
   brand: 'brand',
   category: 'category',
 } as const;
