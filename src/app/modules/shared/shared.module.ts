@@ -13,7 +13,6 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
 import { TabViewModule } from 'primeng/tabview';
 
 // Third Party Modules
@@ -37,6 +36,7 @@ import { ProductDescriptionComponent } from './components/product-description/pr
 import { HeaderComponent } from './components/header/header.component';
 import { BrandCardComponent } from './brand-card/brand-card.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { OverlayPanelModule } from "primeng/overlaypanel";
 
 @NgModule({
   declarations: [
@@ -55,25 +55,26 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     HeaderComponent,
     BrandCardComponent,
   ],
-  imports: [
-    CommonModule,
-    InputTextModule,
-    ButtonModule,
-    CarouselModule,
-    DataViewModule,
-    TableModule,
-    InputNumberModule,
-    FormsModule,
-    RouterModule,
-    NgMarqueeModule,
-    ToggleButtonModule,
-    SidebarModule,
-    DialogModule,
-    DividerModule,
-    MenuModule,
-    AutoCompleteModule,
-    TabViewModule,
-  ],
+	imports: [
+		CommonModule,
+		InputTextModule,
+		ButtonModule,
+		CarouselModule,
+		DataViewModule,
+		TableModule,
+		InputNumberModule,
+		FormsModule,
+		RouterModule,
+		NgMarqueeModule,
+		ToggleButtonModule,
+		SidebarModule,
+		DialogModule,
+		DividerModule,
+		MenuModule,
+		AutoCompleteModule,
+		TabViewModule,
+		OverlayPanelModule,
+	],
   exports: [
     InputTextModule,
     ButtonModule,
