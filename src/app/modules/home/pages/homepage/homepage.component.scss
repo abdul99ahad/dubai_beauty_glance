@@ -21,11 +21,11 @@
 
 .top-area {
   justify-content: space-around;
-  margin: 1.5rem 0rem;
+  margin: 1.5rem 0;
 }
 
 .member-link {
-  padding: 0rem 1rem
+  padding: 0 1rem
 }
 
 input[type="image"] {
@@ -564,6 +564,7 @@ li {
   line-height: 0;
   color: transparent;
 }
+
 :host ::ng-deep ngx-slick-carousel {
   .slick-slide {
     background-color: #f1f1f1;
@@ -669,14 +670,14 @@ li {
   }
 
   .main-prd-tit {
-    margin:2%;
+    margin: 2%;
     margin-top: 0;
   }
 
   .main-prd-tit h3 {
     font-size: 18px;
   }
-  
+
   .main-prd-tit span {
     font-size: 14px;
   }
@@ -738,15 +739,15 @@ li {
 
 
   :host ::ng-deep p-tabView {
-  
-    .p-tabview-title {
-       font-size: 16px; 
-  }
 
-  .p-tabview-panels {
-    padding: 0.25rem;
+    .p-tabview-title {
+      font-size: 16px;
+    }
+
+    .p-tabview-panels {
+      padding: 0.25rem;
+    }
   }
-}
 
   :host ::ng-deep app-product-card {
     .prdList .description .name a {
@@ -763,22 +764,20 @@ li {
     }
   }
 
-  :host ::ng-deep app-brandsale-card {
+  :host ::ng-deep app-brand-sale-card {
     .swiper-slide {
       margin: 0 auto;
     }
+
     .slick-slide {
       background-color: white;
       padding: 0;
-  }
+    }
   }
 
   :host ::ng-deep app-main-time-deal {
     .main-inner {
       padding: 0;
+    }
   }
-  }
-  
-
-
 }

@@ -14,7 +14,7 @@ export class HttpService {
     const header = new HttpHeaders();
     const options = {
       headers: header,
-      withCredintials: false
+      withCredentials: false
     };
     const url = environment.apiUrl + serviceName;
     return this.http.post(url, data, options);
@@ -42,14 +42,14 @@ export class HttpService {
     return this.http.put<T>(url, data, httpOptions);
   }
 
-  get<T>(serviceName: string, absolute: boolean = false): Observable<T> {
+  get<T>(url: string, absolute: boolean = false): Observable<T> {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
       }),
     };
 
-    let url = absolute ? serviceName : environment.apiUrl + serviceName;
+    url = absolute ? url : environment.apiUrl + url;
 
     return this.http.get<T>(url, httpOptions);
   }
