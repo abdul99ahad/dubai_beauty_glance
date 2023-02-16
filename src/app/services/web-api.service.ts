@@ -20,6 +20,10 @@ export class WebApiService {
     return this.httpService.get(url ?? ApiRoutes.products, !!url);
   }
 
+  public getLatestProducts(): Observable<{ data: Array<Product> }> {
+    return this.httpService.get(`${ApiRoutes.products}?paginate=0&latest=1&numOfProducts=10`);
+  }
+
   public getProductDetails(productSlug: string): Observable<{ data: ProductDetail }> {
     return this.httpService.get(`${ApiRoutes.product}/${productSlug}`);
   }

@@ -564,6 +564,7 @@ li {
   line-height: 0;
   color: transparent;
 }
+
 :host ::ng-deep ngx-slick-carousel {
   .slick-slide {
     background-color: #f1f1f1;
@@ -669,7 +670,7 @@ li {
   }
 
   .main-prd-tit {
-    margin:2%;
+    margin: 2%;
     margin-top: 0;
   }
 
@@ -740,13 +741,13 @@ li {
   :host ::ng-deep p-tabView {
 
     .p-tabview-title {
-       font-size: 16px;
-  }
+      font-size: 16px;
+    }
 
-  .p-tabview-panels {
-    padding: 0.25rem;
+    .p-tabview-panels {
+      padding: 0.25rem;
+    }
   }
-}
 
   :host ::ng-deep app-product-card {
     .prdList .description .name a {
@@ -767,18 +768,16 @@ li {
     .swiper-slide {
       margin: 0 auto;
     }
+
     .slick-slide {
       background-color: white;
       padding: 0;
-  }
+    }
   }
 
   :host ::ng-deep app-main-time-deal {
     .main-inner {
       padding: 0;
+    }
   }
-  }
-
-
-
 }

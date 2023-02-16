@@ -212,44 +212,13 @@
       <p>BEST ITEMS OF MONTH</p>
     </div>
     <div class="flex-products div-center-m5 no-flex">
-      <ngx-slick-carousel
-        (afterChange)="
-          adjustSliderStateInAccordanceWithMovement(
-            homePageNgxCarouselsToRender.BestItemsCarousel.carouselName,
-            $event.currentSlide
-          )
-        "
-        #bestItemsCarousel="slick-carousel"
-        class="carousel web-view"
-        [config]="
-          getCarouselConfiguration(
-            homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-          )
-        "
-      >
-        <div
-          ngxSlickItem
-          *ngFor="let bestItem of bestItemsOfTheMonth"
-          class="slide"
-        >
-          <app-product-card
-            [name]="bestItem.name"
-            [slug]="bestItem.slug"
-            [price]="bestItem.price"
-            [discount_price]="bestItem.discount_price"
-            [image]="bestItem.image"
-          ></app-product-card>
-        </div>
-      </ngx-slick-carousel>
-
       <p-carousel
-        class="mobile-view-block"
         [value]="bestItemsOfTheMonth"
-        [numVisible]="2"
+        [numVisible]="5"
         [responsiveOptions]="responsiveOptions"
         [autoplayInterval]="3000"
         [showIndicators]="false"
-        [showNavigators]="false"
+        [showNavigators]="true"
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
@@ -262,51 +231,6 @@
         </ng-template>
       </p-carousel>
     </div>
-
-    <!-- Slider Buttons Start -->
-    <div class="main-brand-ctrl web-view">
-      <div class="swiper-pagination-outer web-view">
-        <div
-          class="swiper-pagination-inner"
-          [style.width]="
-            getCarouselPercentageMoved(
-              homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-            ) + '%'
-          "
-        ></div>
-      </div>
-      <div class="fraction">
-        <span class="count">{{
-          getCarouselCurrentSlide(
-            homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-          )
-        }}</span>
-        <span class="total"
-          >&nbsp;/&nbsp;{{
-            getCarouselTotalSlides(
-              homePageNgxCarouselsToRender.BestItemsCarousel.carouselName
-            )
-          }}</span
-        >
-      </div>
-      <div class="main-brand-btn">
-        <div
-          class="swiper-button-prev"
-          tabindex="0"
-          role="button"
-          aria-label="Previous slide"
-          (click)="moveSlideBackward(bestItemsCarousel)"
-        ></div>
-        <div
-          class="swiper-button-next"
-          tabindex="0"
-          role="button"
-          aria-label="Next slide"
-          (click)="moveSlideForward(bestItemsCarousel)"
-        ></div>
-      </div>
-    </div>
-    <!-- Slider Buttons End -->
   </div>
 </div>
 <!-- Best Items Month End -->
@@ -386,8 +310,6 @@
 </div>
 <!-- Brand Sale End -->
 
-<div class="main-box4"></div>
-
 <div class="main-box3">
   <div class="main-inner">
     <div class="title">
@@ -408,7 +330,7 @@
     <div class="flex-products div-center-m5 mobile-view">
       <app-product-card
         id="new-arrivals"
-        *ngFor="let product of latestProductsDisplay"
+        *ngFor="let product of newArrivalsProductsDisplay"
         [name]="product.name"
         [slug]="product.slug"
         [price]="product.price"
