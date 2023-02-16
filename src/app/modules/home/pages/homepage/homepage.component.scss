@@ -21,11 +21,11 @@
 
 .top-area {
   justify-content: space-around;
-  margin: 1.5rem 0rem;
+  margin: 1.5rem 0;
 }
 
 .member-link {
-  padding: 0rem 1rem
+  padding: 0 1rem
 }
 
 input[type="image"] {
@@ -676,7 +676,7 @@ li {
   .main-prd-tit h3 {
     font-size: 18px;
   }
-  
+
   .main-prd-tit span {
     font-size: 14px;
   }
@@ -738,9 +738,9 @@ li {
 
 
   :host ::ng-deep p-tabView {
-  
+
     .p-tabview-title {
-       font-size: 16px; 
+       font-size: 16px;
   }
 
   .p-tabview-panels {
@@ -763,7 +763,7 @@ li {
     }
   }
 
-  :host ::ng-deep app-brandsale-card {
+  :host ::ng-deep app-brand-sale-card {
     .swiper-slide {
       margin: 0 auto;
     }
@@ -778,7 +778,7 @@ li {
       padding: 0;
   }
   }
-  
+
 
 
 }

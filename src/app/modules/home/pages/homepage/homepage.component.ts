@@ -197,11 +197,6 @@ export class HomepageComponent implements OnInit {
     this.initializeNgxCarousels();
   }
 
-  // @HostListener('wheel', ['$event'])
-  // public onMousewheel(event: WheelEvent): void {
-  //   this.displayScrollButtons = event.pageY > event.view!.outerHeight * 1.5;
-  // }
-
   @HostListener('window:scroll')
   checkScroll() {
     // window의 scroll top
@@ -215,11 +210,7 @@ export class HomepageComponent implements OnInit {
 
     console.log('[scroll]', scrollPosition);
 
-    if (scrollPosition >= this.topPosToStartShowing) {
-      this.displayScrollButtons = true;
-    } else {
-      this.displayScrollButtons = false;
-    }
+    this.displayScrollButtons = scrollPosition >= this.topPosToStartShowing;
   }
 
   public scrollToTop() {
@@ -308,11 +299,11 @@ export class HomepageComponent implements OnInit {
       focusOnSelect: true,
       dots: false,
       infinite: true,
-      speed: 300,
+      // speed: 300,
       centerPadding: '60px',
       slidesToShow,
-      autoplay: true,
-      autoplaySpeed: 3500,
+      // autoplay: true,
+      // autoplaySpeed: 3500,
       responsive: [
         {
           breakpoint: 768,

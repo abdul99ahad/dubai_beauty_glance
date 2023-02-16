@@ -23,7 +23,7 @@ import { InputTextboxComponent } from './input-textbox/input-textbox.component';
 import { InputButtonComponent } from './input-button/input-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.component';
+import { BrandSaleCardComponent } from './brand-sale-card/brand-sale-card.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
@@ -44,7 +44,7 @@ import { OverlayPanelModule } from "primeng/overlaypanel";
     InputButtonComponent,
     FooterComponent,
     ProductCardComponent,
-    BrandsaleCardComponent,
+    BrandSaleCardComponent,
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
@@ -92,7 +92,7 @@ import { OverlayPanelModule } from "primeng/overlaypanel";
     InputButtonComponent,
     FooterComponent,
     ProductCardComponent,
-    BrandsaleCardComponent,
+    BrandSaleCardComponent,
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
