@@ -9,17 +9,12 @@
       </div>
       <div style="margin: 10%">
         <lightgallery [settings]="settings" style="display: flex">
-          <a href="img/img1.jpg" class="product-detail-images">
-            <img
-              alt="img1"
-              src="https://cafe24img.poxo.com/jolsejolse/web/product/big/1264_shop1_143472.jpg"
-            />
-          </a>
-          <a href="img/img1.jpg" class="product-detail-images">
-            <img
-              alt="img2"
-              src="https://cafe24img.poxo.com/jolsejolse/web/product/big/1264_shop1_143472.jpg"
-            />
+          <a
+            [href]="secondaryImage"
+            class="product-detail-images"
+            *ngFor="let secondaryImage of productDetail.secondary_images"
+          >
+            <img [src]="secondaryImage" />
           </a>
         </lightgallery>
       </div>

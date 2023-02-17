@@ -43,9 +43,14 @@ export class ProductComponent implements OnInit {
         map((response: { data: ProductDetail }) => response.data),
         map((productDetail: ProductDetail) => {
           productDetail.image = this.webApiService.imgUrl + productDetail.image;
+          productDetail.secondary_images = productDetail.secondary_images.map(
+            (imgs) => this.webApiService.imgUrl + imgs
+          );
+          productDetail.secondary_images.push(productDetail.image);
           productDetail.brand.country_flag =
             this.webApiService.imgUrl + productDetail.brand.country_flag;
 
+          console.log(productDetail);
           return productDetail;
         })
       )
