@@ -1,15 +1,18 @@
-import { Component, HostListener, OnInit } from "@angular/core";
-import { Product } from "src/app/interfaces/product.interface";
-import { HomepageNgxCarouselsState } from "./homepage-carousel.type";
-import { SlickCarouselComponent } from "ngx-slick-carousel";
-import { WebApiService } from "../../../../services/web-api.service";
-import { map, Observable } from "rxjs";
-import { Brand, BrandWithProducts } from "../../../../interfaces/brand.interface";
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Product } from 'src/app/interfaces/product.interface';
+import { HomepageNgxCarouselsState } from './homepage-carousel.type';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { WebApiService } from '../../../../services/web-api.service';
+import { map, Observable } from 'rxjs';
+import {
+  Brand,
+  BrandWithProducts,
+} from '../../../../interfaces/brand.interface';
 
 @Component({
-  selector: "app-homepage",
-  templateUrl: "./homepage.component.html",
-  styleUrls: ["./homepage.component.scss"],
+  selector: 'app-homepage',
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
   public displayScrollButtons: boolean = false;
@@ -20,56 +23,75 @@ export class HomepageComponent implements OnInit {
 
   public allEventAndBgMainBanner: Array<{ image: string; title: string }> = [
     {
-      image: "../../../../../assets/slider_banner_1.jpg",
-      title: "Event Banner 1",
+      image: '../../../../../assets/slider_banner_1.jpg',
+      title: 'Event Banner 1',
     },
     {
-      image: "../../../../../assets/slider_banner_2.jpg",
-      title: "Event banner 2",
+      image: '../../../../../assets/slider_banner_2.jpg',
+      title: 'Event banner 2',
     },
     {
-      image: "../../../../../assets/slider_banner_3.jpg",
-      title: "Event banner 3",
+      image: '../../../../../assets/slider_banner_3.jpg',
+      title: 'Event banner 3',
     },
     {
-      image: "../../../../../assets/slider_banner_4.jpg",
-      title: "Event Banner 1",
+      image: '../../../../../assets/slider_banner_4.jpg',
+      title: 'Event Banner 1',
     },
     {
-      image: "../../../../../assets/slider_banner_5.jpg",
-      title: "Event banner 2",
+      image: '../../../../../assets/slider_banner_5.jpg',
+      title: 'Event banner 2',
+    },
+  ];
+
+  public allEventBanner: Array<{ image: string; title: string }> = [
+    {
+      image: '../../../../../assets/event/1.jpg',
+      title: 'Event Banner 1',
+    },
+    {
+      image: '../../../../../assets/event/2.jpg',
+      title: 'Event banner 2',
+    },
+    {
+      image: '../../../../../assets/event/3.jpg',
+      title: 'Event banner 3',
+    },
+    {
+      image: '../../../../../assets/event/4.jpg',
+      title: 'Event Banner 1',
     },
   ];
 
   public bestItemsOfTheMonth: Array<Product> = new Array<Product>(20).fill({
-    name: "MISSHA",
-    slug: "missha",
-    price: "22,000",
-    discount_price: "18,000",
-    image: "../../../../../assets/product_1.jpg",
+    name: 'MISSHA',
+    slug: 'missha',
+    price: '22,000',
+    discount_price: '18,000',
+    image: '../../../../../assets/product_1.jpg',
   });
 
   public brandSaleImages: string[] = [
-    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
-    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
-    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
-    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
-    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg",
-    "https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg",
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
+    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
   ];
 
   public responsiveOptions = [
     {
-      breakpoint: "1024px",
+      breakpoint: '1024px',
       numVisible: 5,
     },
     {
-      breakpoint: "768px",
+      breakpoint: '768px',
       numVisible: 2,
       numScroll: 1,
     },
     {
-      breakpoint: "560px",
+      breakpoint: '560px',
       numVisible: 2,
       numScroll: 1,
     },
@@ -78,13 +100,13 @@ export class HomepageComponent implements OnInit {
   public smMainBanner: Array<{ image: string; title: string }> = [
     {
       image:
-        "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg",
-      title: "Event Banner 1",
+        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/2f89727882823ef75ea70b15226edbc7.jpg',
+      title: 'Event Banner 1',
     },
     {
       image:
-        "https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg",
-      title: "Event Banner 1",
+        'https://m.jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/45574d8b11c54a7d4fbff11570d1d573.jpg',
+      title: 'Event Banner 1',
     },
   ];
 
@@ -94,17 +116,17 @@ export class HomepageComponent implements OnInit {
 
   public homePageNgxCarouselsToRender = {
     EventBannerCarousel: {
-      carouselName: "EventBannerCarousel",
+      carouselName: 'EventBannerCarousel',
       data: this.allEventAndBgMainBanner,
       carouselNumOfSlidesOnBg: 3,
     },
     BestItemsCarousel: {
-      carouselName: "BestItemsCarousel",
+      carouselName: 'BestItemsCarousel',
       data: this.bestItemsOfTheMonth,
       carouselNumOfSlidesOnBg: 5,
     },
     BrandSaleCarousel: {
-      carouselName: "BrandSaleCarousel",
+      carouselName: 'BrandSaleCarousel',
       data: this.brandSaleImages,
       carouselNumOfSlidesOnBg: 5,
     },
@@ -112,8 +134,7 @@ export class HomepageComponent implements OnInit {
 
   public homePageNgxCarouselsState: HomepageNgxCarouselsState = {};
 
-  public constructor(private readonly webApiService: WebApiService) {
-  }
+  public constructor(private readonly webApiService: WebApiService) {}
 
   public prevBestBrandItem(): void {
     if (this.currentBestBrandItem === 1) {
@@ -141,9 +162,13 @@ export class HomepageComponent implements OnInit {
     this.fetchBestBrandsWithProducts();
   }
 
-  @HostListener("window:scroll")
+  @HostListener('window:scroll')
   public checkScroll(): void {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollPosition =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
     this.displayScrollButtons = scrollPosition >= this.topPosToStartShowing;
   }
@@ -152,7 +177,7 @@ export class HomepageComponent implements OnInit {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   }
 
@@ -160,59 +185,85 @@ export class HomepageComponent implements OnInit {
     window.scroll({
       top: document.body.scrollHeight,
       left: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   }
 
   public fetchLatestProducts(): void {
-    this.webApiService.getLatestProducts().pipe(
-      map(({ data }: { data: Array<Product> }) => data),
-      map((products: Array<Product>) => products.map((product: Product) => {
-        product.image = this.webApiService.imgUrl + product.image;
+    this.webApiService
+      .getLatestProducts()
+      .pipe(
+        map(({ data }: { data: Array<Product> }) => data),
+        map((products: Array<Product>) =>
+          products.map((product: Product) => {
+            product.image = this.webApiService.imgUrl + product.image;
 
-        return product;
-      })),
-    ).subscribe((products: Array<Product>) => {
-      this.newArrivalsProductsDisplay = products;
-    });
+            return product;
+          })
+        )
+      )
+      .subscribe((products: Array<Product>) => {
+        this.newArrivalsProductsDisplay = products;
+      });
   }
 
   public fetchBestBrandsWithProducts(): void {
-    this.webApiService.getBestBrands().pipe(
-      map(({ data }: { data: Array<Brand> }) => data),
-      map((brands: Array<Brand>) => brands.map((brand: Brand) => {
-        brand.brand_image = this.webApiService.imgUrl + brand.brand_image;
-        brand.country_flag = this.webApiService.imgUrl + brand.country_flag;
+    this.webApiService
+      .getBestBrands()
+      .pipe(
+        map(({ data }: { data: Array<Brand> }) => data),
+        map((brands: Array<Brand>) =>
+          brands.map((brand: Brand) => {
+            brand.brand_image = this.webApiService.imgUrl + brand.brand_image;
+            brand.country_flag = this.webApiService.imgUrl + brand.country_flag;
 
-        const products$ = this.webApiService.getBrandProductsWithSlugForSlider(brand.slug);
-        return {
-          brand: {
-            ...brand,
-            products: []
-          },
-          products$
-        };
-      })),
-    ).subscribe((brandWithEmptyProducts: Array<{ brand: BrandWithProducts; products$: Observable<{ data: Array<Product> }> }>) => {
-      brandWithEmptyProducts.forEach((eachBrandWithEmptyProducts: { brand: BrandWithProducts; products$: Observable<{ data: Array<Product> }> }) => {
-        eachBrandWithEmptyProducts.products$.pipe(
-          map(({ data }: { data: Array<Product> }) => data),
-          map((products: Array<Product>) => {
-            products = products.map((product: Product) => {
-              product.image = this.webApiService.imgUrl + product.image;
+            const products$ =
+              this.webApiService.getBrandProductsWithSlugForSlider(brand.slug);
+            return {
+              brand: {
+                ...brand,
+                products: [],
+              },
+              products$,
+            };
+          })
+        )
+      )
+      .subscribe(
+        (
+          brandWithEmptyProducts: Array<{
+            brand: BrandWithProducts;
+            products$: Observable<{ data: Array<Product> }>;
+          }>
+        ) => {
+          brandWithEmptyProducts.forEach(
+            (eachBrandWithEmptyProducts: {
+              brand: BrandWithProducts;
+              products$: Observable<{ data: Array<Product> }>;
+            }) => {
+              eachBrandWithEmptyProducts.products$
+                .pipe(
+                  map(({ data }: { data: Array<Product> }) => data),
+                  map((products: Array<Product>) => {
+                    products = products.map((product: Product) => {
+                      product.image = this.webApiService.imgUrl + product.image;
 
-              return product;
-            });
+                      return product;
+                    });
 
-            eachBrandWithEmptyProducts.brand.products = products;
+                    eachBrandWithEmptyProducts.brand.products = products;
 
-            return eachBrandWithEmptyProducts.brand;
-          }),
-        ).subscribe((brandWithProducts: BrandWithProducts) => {
-          this.brandTabHeaders = this.brandTabHeaders.concat(brandWithProducts);
-        });
-      });
-    });
+                    return eachBrandWithEmptyProducts.brand;
+                  })
+                )
+                .subscribe((brandWithProducts: BrandWithProducts) => {
+                  this.brandTabHeaders =
+                    this.brandTabHeaders.concat(brandWithProducts);
+                });
+            }
+          );
+        }
+      );
   }
 
   public getCarouselConfiguration(carouselName: string) {
@@ -278,7 +329,7 @@ export class HomepageComponent implements OnInit {
       dots: false,
       infinite: true,
       speed: 300,
-      centerPadding: "60px",
+      centerPadding: '60px',
       slidesToShow,
       autoplay: true,
       autoplaySpeed: 3500,
@@ -288,7 +339,7 @@ export class HomepageComponent implements OnInit {
           settings: {
             centerMode: false,
             arrows: false,
-            centerPadding: "40px",
+            centerPadding: '40px',
             slidesToShow: 1,
           },
         },
@@ -297,7 +348,7 @@ export class HomepageComponent implements OnInit {
           settings: {
             centerMode: false,
             arrows: false,
-            centerPadding: "40px",
+            centerPadding: '40px',
             slidesToShow: 1,
           },
         },

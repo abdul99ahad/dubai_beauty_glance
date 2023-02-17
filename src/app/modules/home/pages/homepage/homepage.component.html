@@ -42,7 +42,7 @@
     <div class="title mbl-disable">
       <h2 style="text-align: left !important">
         QUICK
-        <br/>
+        <br />
         CATEGORY
       </h2>
       <p>Find products quickly by category selection</p>
@@ -146,12 +146,8 @@
           )
         "
       >
-        <div
-          ngxSlickItem
-          *ngFor="let slide of allEventAndBgMainBanner"
-          class="slide"
-        >
-          <img src="{{ slide.image }}" alt=""/>
+        <div ngxSlickItem *ngFor="let slide of allEventBanner" class="slide">
+          <img src="{{ slide.image }}" alt="" />
         </div>
       </ngx-slick-carousel>
     </div>
@@ -173,12 +169,12 @@
           getCarouselCurrentSlide(
             homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
           )
-          }}</span>
+        }}</span>
         <span class="total"
-        >&nbsp;/&nbsp;{{
-          getCarouselTotalSlides(
-            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-          )
+          >&nbsp;/&nbsp;{{
+            getCarouselTotalSlides(
+              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+            )
           }}</span
         >
       </div>
@@ -280,12 +276,12 @@
         getCarouselCurrentSlide(
           homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
         )
-        }}</span>
+      }}</span>
       <span class="total"
-      >&nbsp;/&nbsp;{{
-        getCarouselTotalSlides(
-          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-        )
+        >&nbsp;/&nbsp;{{
+          getCarouselTotalSlides(
+            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+          )
         }}</span
       >
     </div>
@@ -350,7 +346,8 @@
       <img
         src="https://www.ksecret.com/images/thumbs/0005009_0201_delievery02_sub%20pc.jpeg"
         style="width: 100%"
-        alt="Free Delivery Banner"/>
+        alt="Free Delivery Banner"
+      />
     </a>
   </div>
 </div>
@@ -365,7 +362,8 @@
       <img
         src="https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5098a376fddb9bae8fce95b0584832fe.jpg"
         style="width: 100%"
-        alt="Brand Sale Banner"/>
+        alt="Brand Sale Banner"
+      />
     </a>
   </div>
 </div>
@@ -379,10 +377,17 @@
     </div>
 
     <p-tabView styleClass="prime-tab-override">
-      <p-tabPanel [header]="brandTabHeader.name" *ngFor="let brandTabHeader of brandTabHeaders">
+      <p-tabPanel
+        [header]="brandTabHeader.name"
+        *ngFor="let brandTabHeader of brandTabHeaders"
+      >
         <div class="flex-container div-center-m5">
           <div class="mbl-disable" style="width: 40%">
-            <img style="height: 100%" [src]="brandTabHeader.brand_image" [alt]="brandTabHeader.name"/>
+            <img
+              style="height: 100%"
+              [src]="brandTabHeader.brand_image"
+              [alt]="brandTabHeader.name"
+            />
           </div>
           <div style="width: 60%">
             <div style="display: flex; justify-content: space-between">
@@ -392,10 +397,16 @@
               </div>
               <div class="btn_wrap">
                 <span class="main-prd5-prev2" (click)="prevBestBrandItem()">
-                  <img src="	https://www.jolse.com/_dbook/img/main_slide_prev_btn3.png" alt="Previous"/>
+                  <img
+                    src="	https://www.jolse.com/_dbook/img/main_slide_prev_btn3.png"
+                    alt="Previous"
+                  />
                 </span>
                 <span class="main-prd5-next2" (click)="nextBestBrandItem()">
-                  <img src="https://www.jolse.com/_dbook/img/main_slide_next_btn3.png" alt="Next"/>
+                  <img
+                    src="https://www.jolse.com/_dbook/img/main_slide_next_btn3.png"
+                    alt="Next"
+                  />
                 </span>
               </div>
             </div>

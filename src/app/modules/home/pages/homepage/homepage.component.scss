@@ -575,19 +575,23 @@ li {
     width: auto !important;
   }
 
-  .slick-slide img {
-    object-fit: cover;
-    width: 730px;
-    height: 350px;
+  .slick-slide .slick-cloned {
+    width: auto !important;
   }
+
+  // .slick-slide img {
+  //   object-fit: cover;
+  //   width: 730px;
+  //   height: 350px;
+  // }
 }
 
-:host ::ng-deep ngx-slick-carousel {
-  .slick-slide {
-    background-color: white;
-    padding: 0;
-  }
-}
+// :host ::ng-deep ngx-slick-carousel {
+//   .slick-slide {
+//     background-color: white;
+//     padding: 10px;
+//   }
+// }
 
 :host ::ng-deep p-tabView {
   .p-tabview-nav {
