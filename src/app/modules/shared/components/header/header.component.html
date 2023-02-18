@@ -5,7 +5,7 @@
   <div class="top-area flex-container mbl-disable">
     <div class="logo-area">
       <a [routerLink]="['/']">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
       </a>
     </div>
 
@@ -34,21 +34,21 @@
     <div class="auth">
       <div class="member-link">
         <a [routerLink]="['/login']">
-          <img src="../assets/sign_in.png" alt=""/>
+          <img src="../assets/sign_in.png" alt="" />
           <p>Sign In</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/register']">
-          <img src="../assets/sign_up.png" alt=""/>
+          <img src="../assets/sign_up.png" alt="" />
           <p>Sign Up</p>
         </a>
       </div>
 
       <div class="member-link">
         <a [routerLink]="['/cart']">
-          <img src="../assets/cart.png" alt=""/>
+          <img src="../assets/cart.png" alt="" />
           <p>Cart</p>
         </a>
       </div>
@@ -64,7 +64,7 @@
         style="font-size: 1.2rem; line-height: 2; width: 30%"
       ></i>
       <a [routerLink]="['/']" style="width: 50%">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo"/>
+        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
       </a>
 
       <div class="flex">
@@ -121,7 +121,7 @@
 </div>
 
 <div class="mbl-disable-block">
-  <hr class="solid" style="margin-bottom: 0"/>
+  <hr class="solid" style="margin-bottom: 0" />
 
   <div class="flex-container" id="navbar">
     <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
@@ -142,19 +142,43 @@
           <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
         </li>
         <li class="header-items">
-          <a routerLink="/brands" class="black m-15" (mouseenter)="brandHoverMenu.show($event)">BRAND</a>
+          <a
+            routerLink="/brands"
+            class="black m-15"
+            (mouseenter)="brandHoverMenu.show($event)"
+            >BRAND</a
+          >
           <p-overlayPanel #brandHoverMenu>
             <ng-template pTemplate="content">
-              <div (mouseenter)="brandHoverMenu.show($event)" (blur)="brandHoverMenu.hide()" class="w-screen flex flex-column justify-content-center">
+              <div
+                (mouseenter)="brandHoverMenu.show($event)"
+                (mouseleave)="brandHoverMenu.hide()"
+                class="flex flex-column justify-content-center"
+              >
                 <ul class="w-full flex flex-row justify-content-center">
-                  <li class="px-3 py-1 text-black-alpha-90 hover:text-pink-400" (mouseenter)="filterBrand(englishAlphabet)" *ngFor="let englishAlphabet of englishAlphabets">
+                  <li
+                    class="px-3 py-1 text-black-alpha-90 hover:text-pink-400"
+                    (mouseenter)="filterBrand(englishAlphabet)"
+                    *ngFor="let englishAlphabet of englishAlphabets"
+                  >
                     <b>{{ englishAlphabet }}</b>
                   </li>
                 </ul>
-                <div class="mt-4 w-full flex flex-row justify-content-center max-h-15rem overflow-y-scroll">
-                  <ul class="w-10 flex flex-row flex-wrap justify-content-start">
-                    <li class="w-20 flex flex-row justify-content-center py-2" *ngFor="let brand of filteredBrands">
-                      <a [routerLink]="['/brand', brand.slug]" class="text-black-alpha-90">{{ brand.name }}</a>
+                <div
+                  class="mt-4 w-full flex flex-row justify-content-center max-h-15rem overflow-y-scroll"
+                >
+                  <ul
+                    class="w-10 flex flex-row flex-wrap justify-content-start"
+                  >
+                    <li
+                      class="w-20 flex flex-row justify-content-center py-2"
+                      *ngFor="let brand of filteredBrands"
+                    >
+                      <a
+                        [routerLink]="['/brand', brand.slug]"
+                        class="text-black-alpha-90"
+                        >{{ brand.name }}</a
+                      >
                     </li>
                   </ul>
                 </div>
@@ -169,7 +193,8 @@
     </ul>
     <div class="recently-viewed-container">
       <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
-      <a class="recently-viewed" (click)="menu.toggle($event)">Recently Viewed
+      <a class="recently-viewed" (click)="menu.toggle($event)"
+        >Recently Viewed
         <i class="pi pi-angle-down"></i>
       </a>
       <div id="google_translate_element"></div>
@@ -220,7 +245,8 @@
           <img
             class="sp-sidebar-ico1"
             src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
-            alt="Guest"/>
+            alt="Guest"
+          />
         </div>
         <div class="txt txt_1">
           <b style="color: black; font-weight: 900">HELLO, GUEST</b>

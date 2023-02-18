@@ -321,6 +321,12 @@ li {
   }
 }
 
+.goog-te-gadget .goog-te-combo  {
+    border: none;
+    font: 0.75em "Montserrat", Arial, Verdana, sans-serif;
+    font-size: 15px;
+}
+
 :host ::ng-deep app-input-button {
   .btnLogin {
     height: 30px;
@@ -332,6 +338,12 @@ li {
     background: #ccc !important;
     border: 1px solid #ccc !important;
   }
+}
+
+:host ::ng-deep p-overlayPanel  {
+    .p-overlaypanel .p-component{
+        width: 100% !important;
+    } 
 }
 
 :host ::ng-deep app-input-button.signup {
