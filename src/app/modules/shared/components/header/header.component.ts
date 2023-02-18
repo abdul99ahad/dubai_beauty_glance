@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { Brand } from "../../../../interfaces/brand.interface";
 import { WebApiService } from "../../../../services/web-api.service";
 import { Product } from "../../../../interfaces/product.interface";
+import { Currencies, Currency } from "../../../../interfaces/currencies.interface";
 
 @Component({
   selector: "app-header",
@@ -59,7 +60,6 @@ export class HeaderComponent implements OnInit {
       url: "promotions",
     },
   ];
-  recentlyViewedItems: MenuItem[];
   display: boolean = false;
 
   public productSearchInputStyles = {
@@ -83,6 +83,10 @@ export class HeaderComponent implements OnInit {
     background: "#ededed",
   };
 
+  public selectedCurrency: Currency;
+  public availableCurrencies: Array<Currency> = [];
+
+
   public englishAlphabets: Array<string> = [];
   public brands: Array<Brand> = [];
   public filteredBrands: Array<Brand> = [];
@@ -104,37 +108,9 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.recentlyViewedItems = [
-      {
-        label: "Item 1",
-        icon: "pi pi-fw pi-plus",
-      },
-      {
-        label: "Item 2",
-        icon: "pi pi-fw pi-download",
-      },
-      {
-        label: "Item 3",
-        icon: "pi pi-fw pi-refresh",
-      },
-    ];
-
     this.setupColdSubjectForLiveProductSearching();
-    this.fillEnglishAlphabets();
-    this.fetchBrandsForHeader();
-    this.filterBrand();
-  }
-
-  public fillEnglishAlphabets(): void {
-    this.englishAlphabets = new Array(90 - 65).fill(null).map((_, index: number) => {
-      return String.fromCharCode(index + 65);
-    });
-  }
-
-  public fetchBrandsForHeader(): void {
-    this.webApiService.getBrandsForHeader().pipe(
-      map(({ data }: { data: Array<Brand> }) => data),
-    ).subscribe((brands: Array<Brand>) => this.brands = brands);
+    this.setupAvailableCurrencies();
+    this.setupBrandsForHeader();
   }
 
   public filterBrand(): void;
@@ -158,6 +134,53 @@ export class HeaderComponent implements OnInit {
       "/product",
       product.slug
     ]);
+  }
+
+  public changeSelectedCurrency(event: Event) {
+    const selectMenu = event.target as HTMLSelectElement;
+    localStorage.setItem("currency", selectMenu.value);
+    window.location.reload();
+  }
+
+  private setupAvailableCurrencies(): void {
+    this.webApiService.getCurrencyList().pipe(
+      map(({ currencies }: Currencies) => currencies),
+      map((currencies: Record<string, string>) => {
+        const currencyArray: Array<Currency> = [];
+
+        for (const [currencyCode, currencyName] of Object.entries(currencies)) {
+          currencyArray.push({ currencyCode, currencyName });
+        }
+
+        return currencyArray;
+      }),
+    ).subscribe((currencies: Array<Currency>) => {
+      const currencyCodeFromStorage = localStorage.getItem("currency") ?? "AED";
+
+      this.availableCurrencies = currencies;
+      const selectedCurrency = currencies.find((currency: Currency) => currency.currencyCode === currencyCodeFromStorage);
+
+      if (!selectedCurrency) return;
+      this.selectedCurrency = selectedCurrency;
+    });
+  }
+
+  private setupBrandsForHeader() {
+    this.fillEnglishAlphabets();
+    this.fetchBrandsForHeader();
+    this.filterBrand();
+  }
+
+  private fillEnglishAlphabets(): void {
+    this.englishAlphabets = new Array(90 - 65).fill(null).map((_, index: number) => {
+      return String.fromCharCode(index + 65);
+    });
+  }
+
+  private fetchBrandsForHeader(): void {
+    this.webApiService.getBrandsForHeader().pipe(
+      map(({ data }: { data: Array<Brand> }) => data),
+    ).subscribe((brands: Array<Brand>) => this.brands = brands);
   }
 
   private setupColdSubjectForLiveProductSearching() {

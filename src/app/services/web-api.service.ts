@@ -7,6 +7,7 @@ import { Product, ProductDetail } from "../interfaces/product.interface";
 import { PaginatedResponse } from "../interfaces/response.interface";
 import { environment } from "src/environments/environment";
 import { Brand } from "../interfaces/brand.interface";
+import { Currencies } from "../interfaces/currencies.interface";
 
 @Injectable({
   providedIn: "root",
@@ -15,6 +16,10 @@ export class WebApiService {
   imgUrl: string = environment.imgUrl;
 
   public constructor(private readonly httpService: HttpService) {
+  }
+
+  public getCurrencyList(): Observable<Currencies> {
+    return this.httpService.getWithApiKey("https://api.apilayer.com/currency_data/list", "apikey", "hgPvF4TeEqs234fLZiHZMFfJ5qq7ZMx9");
   }
 
   public getProducts(url?: string): Observable<PaginatedResponse<Product>> {

@@ -321,10 +321,14 @@ li {
   }
 }
 
-.goog-te-gadget .goog-te-combo  {
-    border: none;
-    font: 0.75em "Montserrat", Arial, Verdana, sans-serif;
-    font-size: 15px;
+.goog-te-gadget .goog-te-combo {
+  border: none;
+  font: 0.75em "Montserrat", Arial, Verdana, sans-serif;
+  font-size: 15px;
+}
+
+:host ::ng-deep #google_translate_element select {
+  background: white;
 }
 
 :host ::ng-deep app-input-button {
@@ -340,10 +344,10 @@ li {
   }
 }
 
-:host ::ng-deep p-overlayPanel  {
-    .p-overlaypanel .p-component{
-        width: 100% !important;
-    } 
+:host ::ng-deep p-overlayPanel {
+  .p-overlaypanel .p-component {
+    width: 100% !important;
+  }
 }
 
 :host ::ng-deep app-input-button.signup {
@@ -351,6 +355,10 @@ li {
     background: #ccc !important;
     border: 1px solid #ccc !important;
   }
+}
+
+select {
+  background: white;
 }
 
 /* Responsive layout - makes a one column-layout instead of two-column layout */

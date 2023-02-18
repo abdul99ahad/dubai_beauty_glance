@@ -7,10 +7,10 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class HttpService {
-  constructor(private http: HttpClient) {
+  public constructor(private readonly http: HttpClient) {
   }
 
-  loginPost(serviceName: string, data: string) {
+  public loginPost(serviceName: string, data: string) {
     const header = new HttpHeaders();
     const options = {
       headers: header,
@@ -20,7 +20,7 @@ export class HttpService {
     return this.http.post(url, data, options);
   }
 
-  post<T>(serviceName: string, data: string, token?: string) {
+  public post<T>(serviceName: string, data: string, token?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export class HttpService {
     return this.http.post<T>(url, data, httpOptions);
   }
 
-  put<T>(serviceName: string, data: any, token?: any) {
+  public put<T>(serviceName: string, data: any, token?: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export class HttpService {
     return this.http.put<T>(url, data, httpOptions);
   }
 
-  get<T>(url: string, absolute: boolean = false): Observable<T> {
+  public get<T>(url: string, absolute: boolean = false): Observable<T> {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -50,6 +50,17 @@ export class HttpService {
     };
 
     url = absolute ? url : environment.apiUrl + url;
+
+    return this.http.get<T>(url, httpOptions);
+  }
+
+  public getWithApiKey<T>(url: string, keyName: string, keyValue: string): Observable<T> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        [keyName]: keyValue,
+      }),
+    };
 
     return this.http.get<T>(url, httpOptions);
   }

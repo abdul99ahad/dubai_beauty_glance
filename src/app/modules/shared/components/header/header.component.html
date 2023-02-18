@@ -176,6 +176,7 @@
                     >
                       <a
                         [routerLink]="['/brand', brand.slug]"
+                        (click)="brandHoverMenu.hide()"
                         class="text-black-alpha-90"
                         >{{ brand.name }}</a
                       >
@@ -192,12 +193,10 @@
       </div>
     </ul>
     <div class="recently-viewed-container">
-      <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
-      <a class="recently-viewed" (click)="menu.toggle($event)"
-        >Recently Viewed
-        <i class="pi pi-angle-down"></i>
-      </a>
       <div id="google_translate_element"></div>
+      <select class="border-0" (change)="changeSelectedCurrency($event)">
+        <option *ngFor="let availableCurrency of availableCurrencies" [value]="availableCurrency.currencyCode" [selected]="selectedCurrency.currencyCode === availableCurrency.currencyCode">{{ availableCurrency.currencyName }} ({{ availableCurrency.currencyCode }})</option>
+      </select>
     </div>
   </div>
 </div>

@@ -38,6 +38,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrandCardComponent } from './brand-card/brand-card.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -56,27 +57,28 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     HeaderComponent,
     BrandCardComponent,
   ],
-  imports: [
-    CommonModule,
-    InputTextModule,
-    ButtonModule,
-    CarouselModule,
-    DataViewModule,
-    TableModule,
-    InputNumberModule,
-    FormsModule,
-    RouterModule,
-    NgMarqueeModule,
-    ToggleButtonModule,
-    SidebarModule,
-    DialogModule,
-    DividerModule,
-    MenuModule,
-    AutoCompleteModule,
-    TabViewModule,
-    LightgalleryModule,
-    OverlayPanelModule,
-  ],
+	imports: [
+		CommonModule,
+		InputTextModule,
+		ButtonModule,
+		CarouselModule,
+		DataViewModule,
+		TableModule,
+		InputNumberModule,
+		FormsModule,
+		RouterModule,
+		NgMarqueeModule,
+		ToggleButtonModule,
+		SidebarModule,
+		DialogModule,
+		DividerModule,
+		MenuModule,
+		AutoCompleteModule,
+		TabViewModule,
+		LightgalleryModule,
+		OverlayPanelModule,
+		DropdownModule,
+	],
   exports: [
     InputTextModule,
     ButtonModule,
