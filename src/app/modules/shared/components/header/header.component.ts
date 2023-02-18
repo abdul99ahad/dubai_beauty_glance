@@ -1,16 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
-import { HttpClient } from "@angular/common/http";
 import { map, Subject, Subscription, switchMap, } from "rxjs";
 import { Router } from "@angular/router";
-
-interface Product {
-  name: string;
-  slug: string;
-  price: number;
-  discount_price: number;
-  image: string;
-}
+import { Brand } from "../../../../interfaces/brand.interface";
+import { WebApiService } from "../../../../services/web-api.service";
+import { Product } from "../../../../interfaces/product.interface";
 
 @Component({
   selector: "app-header",
@@ -89,14 +83,15 @@ export class HeaderComponent implements OnInit {
     background: "#ededed",
   };
 
+  public englishAlphabets: Array<string> = [];
+  public brands: Array<Brand> = [];
+  public filteredBrands: Array<Brand> = [];
+
   public products: Array<Product> = [];
   public searchProductDebouncedSubject = new Subject<string>();
   private coldSubscriber: Subscription;
 
-  public constructor(
-    private readonly http: HttpClient,
-    private readonly router: Router
-  ) {
+  public constructor(private readonly webApiService: WebApiService, private readonly router: Router) {
   }
 
   public navBarMobileListViewToggle(): void {
@@ -125,6 +120,29 @@ export class HeaderComponent implements OnInit {
     ];
 
     this.setupColdSubjectForLiveProductSearching();
+    this.fillEnglishAlphabets();
+    this.fetchBrandsForHeader();
+    this.filterBrand();
+  }
+
+  public fillEnglishAlphabets(): void {
+    this.englishAlphabets = new Array(90 - 65).fill(null).map((_, index: number) => {
+      return String.fromCharCode(index + 65);
+    });
+  }
+
+  public fetchBrandsForHeader(): void {
+    this.webApiService.getBrandsForHeader().pipe(
+      map(({ data }: { data: Array<Brand> }) => data),
+    ).subscribe((brands: Array<Brand>) => this.brands = brands);
+  }
+
+  public filterBrand(): void;
+  public filterBrand(brandNameStartingAlphabet: string): void;
+  public filterBrand(brandNameStartingAlphabet?: string): void {
+    const startingAlphabet = brandNameStartingAlphabet ?? this.englishAlphabets[0];
+
+    this.filteredBrands = this.brands.filter((brand: Brand) => brand.name.startsWith(startingAlphabet));
   }
 
   public searchProducts(searchString: string): void {
@@ -145,12 +163,13 @@ export class HeaderComponent implements OnInit {
   private setupColdSubjectForLiveProductSearching() {
     this.coldSubscriber = this.searchProductDebouncedSubject
       .pipe(
-        switchMap((searchText: string) =>
-          this.http.get<{ data: Array<Product> }>(
-            `https://api.technosavvyllc.com/beautymallkorea/public/api/products?paginate=0&productName=${ searchText }`
-          )
-        ),
-        map(({ data }) => data)
+        switchMap((searchText: string) => this.webApiService.getSearchedProducts(searchText)),
+        map(({ data }: { data: Array<Product> }) => data),
+        map((products: Array<Product>) => products.map((product: Product) => {
+          product.image = this.webApiService.imgUrl + product.image;
+
+          return product;
+        }))
       )
       .subscribe((products: Array<Product>) => (this.products = products));
   }

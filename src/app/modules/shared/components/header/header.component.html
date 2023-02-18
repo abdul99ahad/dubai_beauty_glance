@@ -20,10 +20,7 @@
       >
         <ng-template let-product pTemplate="item">
           <img
-            [src]="
-              'https://api.technosavvyllc.com/beautymallkorea/public/' +
-              product.image
-            "
+            [src]="product.image"
             style="width: 100px"
             [alt]="product.name"
           />
@@ -108,10 +105,7 @@
           >
             <ng-template let-product pTemplate="item">
               <img
-                [src]="
-                  'https://api.technosavvyllc.com/beautymallkorea/public/' +
-                  product.image
-                "
+                [src]="product.image"
                 style="width: 100px; display: inline-block"
                 [alt]="product.name"
               />
@@ -148,10 +142,23 @@
           <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
         </li>
         <li class="header-items">
-          <a routerLink="/brands" class="black m-15" (mouseenter)="brandHoverMenu.show($event)" (mouseleave)="brandHoverMenu.hide()">BRAND</a>
+          <a routerLink="/brands" class="black m-15" (mouseenter)="brandHoverMenu.show($event)">BRAND</a>
           <p-overlayPanel #brandHoverMenu>
             <ng-template pTemplate="content">
-              <div class="w-80-screen">Boo</div>
+              <div (mouseenter)="brandHoverMenu.show($event)" (mouseleave)="brandHoverMenu.hide()" class="w-screen flex flex-column justify-content-center">
+                <ul class="w-full flex flex-row justify-content-center">
+                  <li class="px-3 py-1 text-black-alpha-90 hover:text-pink-400" (mouseenter)="filterBrand(englishAlphabet)" *ngFor="let englishAlphabet of englishAlphabets">
+                    <b>{{ englishAlphabet }}</b>
+                  </li>
+                </ul>
+                <div class="mt-4 w-full flex flex-row justify-content-center">
+                  <ul class="w-10 flex flex-row flex-wrap justify-content-start">
+                    <li class="w-20 flex flex-row justify-content-center" *ngFor="let brand of filteredBrands">
+                      <a [routerLink]="['/brand', brand.slug]">{{ brand.name }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </ng-template>
           </p-overlayPanel>
         </li>
@@ -162,10 +169,10 @@
     </ul>
     <div class="recently-viewed-container">
       <p-menu #menu [popup]="true" [model]="recentlyViewedItems"></p-menu>
-      <a class="recently-viewed" (click)="menu.toggle($event)"
-      >Recently Viewed
+      <a class="recently-viewed" (click)="menu.toggle($event)">Recently Viewed
         <i class="pi pi-angle-down"></i>
       </a>
+      <div id="google_translate_element"></div>
     </div>
   </div>
 </div>
@@ -213,7 +220,7 @@
           <img
             class="sp-sidebar-ico1"
             src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
-          />
+            alt="Guest"/>
         </div>
         <div class="txt txt_1">
           <b style="color: black; font-weight: 900">HELLO, GUEST</b>
