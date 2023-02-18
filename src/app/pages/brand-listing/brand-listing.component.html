@@ -1,0 +1,47 @@
+<div id="wrap">
+  <div id="container">
+    <div id="contents">
+      <app-ad-banner></app-ad-banner>
+
+      <div class="contactusWrap">
+        <div class="content0">
+          <h2>{{ title }}</h2>
+        </div>
+        <p-divider></p-divider>
+      </div>
+
+      <div class="card">
+        <p-dataView [value]="brands" layout="grid">
+          <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between"></div>
+          </ng-template>
+          <ng-template let-brand pTemplate="gridItem" class="parent">
+            <app-brand-card
+              class="child"
+              [title]="brand.name"
+              [imgSrc]="brand.brand_image"
+              [brandSlug]="brand.slug"
+            ></app-brand-card>
+          </ng-template>
+        </p-dataView>
+        <p-divider></p-divider>
+        <div style="display: flex; justify-content: space-evenly">
+          <ng-container *ngFor="let brandPageButton of brandPageButtons">
+            <ng-container *ngIf="!!brandPageButton.url; else elseBlock">
+              <button type="button" (click)="fetchBrands(brandPageButton.url)" class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ brandPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px"></span>
+              </button>
+            </ng-container>
+            <ng-template #elseBlock>
+              <button disabled type="submit" class="p-button p-button-outlined p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ brandPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px"></span>
+              </button>
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

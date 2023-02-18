@@ -1,14 +1,22 @@
-<div class="grid">
+<div class="grid" *ngIf="productDetail">
   <div class="col-12 md:col-12 lg:col-12">
     <app-ad-banner></app-ad-banner>
   </div>
   <div class="col-12 md:col-6 lg:col-6">
     <div class="keyImg">
       <div class="thumbnail">
-        <img
-          src="https://cafe24img.poxo.com/jolsejolse/web/product/big/202204/f6f589b0bb19b52a9d80bbdffa504c00.jpg"
-          alt=""
-        />
+        <img [src]="productDetail.image" [alt]="productDetail.name" />
+      </div>
+      <div style="margin: 10%">
+        <lightgallery [settings]="settings" style="display: flex">
+          <a
+            [href]="secondaryImage"
+            class="product-detail-images"
+            *ngFor="let secondaryImage of productDetail.secondary_images"
+          >
+            <img [src]="secondaryImage" />
+          </a>
+        </lightgallery>
       </div>
     </div>
   </div>
@@ -16,29 +24,33 @@
     <div class="infoArea">
       <div class="headingArea" style="display: flex">
         <div style="width: 80%">
-          <h2>{{ productTitle }}</h2>
+          <h2>{{ productDetail.name }}</h2>
         </div>
         <div style="width: 20%; display: flex">
           <img
-            alt="United States"
-            src="http://purecatamphetamine.github.io/country-flag-icons/3x2/{{
-              country
-            }}.svg"
+            [alt]="productDetail.brand.country_name"
+            [src]="productDetail.brand.country_flag"
             style="max-width: 50%"
           />
-          <p style="font-size: 18px; margin: auto">{{ country }}</p>
+          <p style="font-size: 18px; margin: auto">
+            {{ productDetail.brand.country_code.toUpperCase() }}
+          </p>
         </div>
       </div>
 
       <div>
-        <table summary="" class="prd-tb">
+        <table class="prd-tb">
           <tbody>
             <tr class="prd_brand_css xans-record-">
               <th scope="row">
                 <span style="font-size: 12px; color: #555555">Brand</span>
               </th>
               <td>
-                <span style="font-size: 12px; color: #555555">{{ brand }}</span>
+                <span style="font-size: 12px; color: #555555">
+                  <a [routerLink]="'/brand/' + productDetail.brand.slug">{{
+                    productDetail.brand.name
+                  }}</a>
+                </span>
               </td>
             </tr>
             <tr class="product_price_css xans-record-">
@@ -48,46 +60,51 @@
                 >
               </th>
               <td>
-                <span style="font-size: 12px; color: #555555; font-weight: bold"
-                  ><strong
-                    id="span_product_price_text"
-                    style="text-decoration: line-through"
-                    >{{ currencyUsed }} {{ floatPrice }}</strong
-                  ><input
-                    id="product_price"
-                    name="product_price"
-                    value=""
-                    type="hidden"
-                /></span>
+                <span
+                  style="font-size: 12px; color: #555555; font-weight: bold"
+                >
+                  <strong
+                    [style.text-decoration]="
+                      !productDetail.discount_price ? 'initial' : 'line-through'
+                    "
+                    >$ {{ productDetail.price }}</strong
+                  >
+                </span>
               </td>
             </tr>
-            <tr class="prd_price_sale_css xans-record-">
+            <tr
+              *ngIf="productDetail.discount_price"
+              class="prd_price_sale_css xans-record-"
+            >
               <th scope="row">
                 <span style="font-size: 12px; color: #323232"
                   >Discounted Price</span
                 >
               </th>
               <td>
-                <span
-                  ><span style="font-size: 12px; color: #323232"
-                    ><span id="span_product_price_sale"
-                      >{{ currencyUsed }} {{ floatDiscountedPrice }}
+                <span>
+                  <span style="font-size: 12px; color: #323232">
+                    <span id="span_product_price_sale"
+                      >$ {{ productDetail.discount_price }}
                       <span style="font-size: 12px; color: #555555"
-                        >({{ currencyUsed }}
-                        {{ price - discountedPrice }} discount)</span
+                        >($
+                        {{
+                          +productDetail.price - +productDetail.discount_price
+                        }}
+                        discount)</span
                       >
-                    </span></span
-                  ></span
-                >
+                    </span>
+                  </span>
+                </span>
               </td>
             </tr>
             <tr class="simple_desc_css xans-record-">
               <th scope="row">
-                <span style="font-size: 12px; color: #555555">Overview</span>
+                <span style="font-size: 12px; color: #555555">Description</span>
               </th>
               <td>
                 <span style="font-size: 12px; color: #555555">{{
-                  productDetail
+                  productDetail.description
                 }}</span>
               </td>
             </tr>
@@ -97,11 +114,16 @@
               </th>
               <td>
                 <p-toggleButton
-                  *ngFor="let item of skus"
-                  [onLabel]="item.sku"
-                  [offLabel]="item.sku"
-                  [ngModel]="item.checked"
-                  (ngModelChange)="checkSkuItemTrue(item)"
+                  *ngFor="
+                    let productOption of productDetail.optionValues;
+                    index as productOptionIndex
+                  "
+                  [onLabel]="productOption.name"
+                  [offLabel]="productOption.name"
+                  [ngModel]="checkedOptions[productOptionIndex]"
+                  (ngModelChange)="
+                    toggleProductOptionSelection(productOptionIndex)
+                  "
                 ></p-toggleButton>
               </td>
             </tr>
@@ -112,9 +134,7 @@
       </div>
       <div>
         <p class="info">
-          (Minimum Order : 1 or more<span class="displaynone">
-            / Maximum Order 0 or less</span
-          >)
+          (Minimum Order : {{ productDetail.min_order_quantity }} or more )
         </p>
       </div>
       <div id="totalProducts" class="">
@@ -122,7 +142,7 @@
         <p class="ec-base-help txtWarn txt11 displaynone">
           Product will be automatically added below when you select an option.
         </p>
-        <table summary="">
+        <table>
           <caption class="displaynone">
             Product List
           </caption>
@@ -140,59 +160,46 @@
           </thead>
           <tbody class="">
             <tr>
-              <td>
-                {{ productDetail }}
-              </td>
+              <td>{{ productDetail.description }}</td>
               <td>
                 <span class="quantity">
                   <input
                     id="quantity"
                     name="quantity_opt[]"
                     [(ngModel)]="selectedQuantity"
-                    (ngModelChange)="updatePrice(selectedQuantity)"
+                    (ngModelChange)="updateTotalPrice(selectedQuantity)"
                     type="number"
                   />
-                  <a href="javascript:;" class="up QuantityUp"
-                    ><img
+                  <a href="javascript:void(0)" class="up QuantityUp">
+                    <img
                       src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
                       alt="up"
                       (click)="quantityUp()"
-                  /></a>
-                  <a href="javascript:;" class="down QuantityDown"
-                    ><img
+                    />
+                  </a>
+                  <a href="javascript:void(0)" class="down QuantityDown">
+                    <img
                       src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
                       alt="down"
                       (click)="quantityDown()"
-                  /></a>
+                    />
+                  </a>
                 </span>
               </td>
               <td class="right">
                 <span class="quantity_price"></span>
-                {{ currencyUsed }} {{ floatPrice
-                }}<input
-                  type="hidden"
-                  name="option_box_price"
-                  class="option_box_price"
-                  value="{{ selectedQuantity }}"
-                  item_code="P000DMBZ000A"
-                />
-                <span class="mileage displaynone" style="display: none"
-                  ><img src="" /> &nbsp;<span class="mileage_price"
-                    >0</span
-                  ></span
-                >
+                $ {{ totalPrice }}
+                <span class="mileage displaynone" style="display: none">
+                  <img src="" />&nbsp;<span class="mileage_price">0 </span>
+                </span>
               </td>
             </tr>
             <tr
               id="totalProductsOption"
               class="xans-element- xans-product xans-product-option option xans-record-"
             >
-              <!--
-                    $use_per_add_option = yes
-                    $default_option = yes
-                    -->
               <td class="middle" colspan="3">
-                <table summary="" class="displaynone">
+                <table class="displaynone">
                   <caption>
                     Option Information
                   </caption>
@@ -209,19 +216,20 @@
       </div>
 
       <div id="totalPrice" class="totalPrice">
-        <strong>Price</strong>(Quantity) :
-        <span class="total"
-          ><strong
-            ><em>{{ currencyUsed }} {{ floatDiscountedPrice }}</em></strong
-          >
-          ({{ selectedQuantity }} item(s))</span
-        >
+        <strong>Price</strong>
+        (Quantity) :
+        <span class="total">
+          <strong>
+            <em>$ {{ discountedTotalPrice }}</em>
+          </strong>
+          ({{ selectedQuantity }} item(s))
+        </span>
       </div>
 
       <div style="margin: 15px 0">
         <p style="font-size: 16px; margin-bottom: 15px">
-          Free Shipping : On Bill above Rs.3,000 (else Rs.200) (Not applicable
-          for discounted items)
+          Free Shipping : On Bill above $ 3,000 (else $ 200) (Not applicable for
+          discounted items)
         </p>
         <img
           src="https://beautyglance.pk/image/catalog/icons/free-gifts.jpg"
@@ -261,7 +269,12 @@
   </div>
   <div class="col-12 md:col-12 lg:col-12 box" style="height: 500px"></div>
 
-  <p-dialog [(visible)]="display" position="bottom-left" [draggable]="false">
-    <app-product-description></app-product-description>
+  <p-dialog
+    [(visible)]="display"
+    position="bottom-left"
+    [draggable]="false"
+    class="web-view"
+  >
+    <app-product-description class="web-view"></app-product-description>
   </p-dialog>
 </div>

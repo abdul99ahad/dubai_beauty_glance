@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryWithChildren } from "../../../../interfaces/categories.interface";
+import { WebApiService } from 'src/app/services/web-api.service';
+import { Output, EventEmitter } from '@angular/core';
+import { map } from "rxjs";
 
 @Component({
   selector: 'app-hamburger-menu',
@@ -6,80 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hamburger-menu.component.scss'],
 })
 export class HamburgerMenuComponent implements OnInit {
-  subHeading: any = 'Cleansers';
-  invisible: string = '‎';
-  categoryItems: any = [
-    {
-      text: 'Face Wash',
-      url: '',
-    },
-    {
-      text: 'Face Cleanser',
-      url: '',
-    },
-    {
-      text: 'Body Wash',
-      url: '',
-    },
-    {
-      text: 'Lotions',
-      url: '',
-    },
-    {
-      text: 'Makeup Removals',
-      url: '',
-    },
-  ];
+  @Output() public onCategorySelected = new EventEmitter<string>();
 
-  categoryItemsHeirarchy: any = [
-    {
-      mainHeading: true,
-      item: 'Skincare',
-      child: [
-        {
-          item: 'Cleansers',
-          child: [
-            {
-              item: 'FaceWash',
-              child: [],
-            },
-            {
-              item: 'Exfoliators',
-              child: [],
-            },
-          ],
-        },
-        {
-          item: 'Moisturizers',
-          child: [
-            {
-              item: 'Toners',
-              child: [],
-            },
-          ],
-        },
-        {
-          item: 'Masks',
-          child: [
-            {
-              item: 'Toners',
-              child: [],
-            },
-          ],
-        },
-        {
-          item: 'Suncare',
-          child: [
-            {
-              item: 'Toners',
-              child: [],
-            },
-          ],
-        },
-      ],
-    },
-  ];
-  constructor() {}
+  public categories: Array<CategoryWithChildren> = [];
 
-  ngOnInit(): void {}
+  public constructor(private readonly webApiService: WebApiService) {}
+
+  public ngOnInit(): void {
+    this.webApiService.getCategories().pipe(
+      map(({ data }: { data: Array<CategoryWithChildren> }) => data)
+    ).subscribe((category: Array<CategoryWithChildren>) => {
+      this.categories = category;
+    });
+  }
+
+  public categoryClick(): void {
+    this.onCategorySelected.emit();
+  }
 }

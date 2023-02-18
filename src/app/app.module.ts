@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,7 +12,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { HomeModule } from './modules/home/home.module';
 import { QuickMenuComponent } from './modules/home/quick-menu/quick-menu.component';
 import { SharedModule } from './modules/shared/shared.module';
-import { HomepageComponent } from './modules/home/pages/homepage/homepage.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { TestimonialComponent } from './pages/testimonial/testimonial.component';
@@ -26,6 +24,11 @@ import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { WebApiService } from './services/web-api.service';
+import { BrandsListingComponent } from './pages/brand-listing/brand-listing.component';
+import { BrandProductListingComponent } from './pages/brand-products-listing/brand-products-listing.component';
+import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
+import { DecodeHtmlEntitiesPipe } from "./pipes/decode-html-entities.pipe";
 
 @NgModule({
   declarations: [
@@ -43,6 +46,10 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     CartComponent,
     SignUpComponent,
     CheckoutComponent,
+    BrandsListingComponent,
+    BrandProductListingComponent,
+    CategoryProductsListingComponent,
+    DecodeHtmlEntitiesPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     SharedModule,
     CarouselModule,
   ],
-  providers: [],
+  providers: [WebApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,11 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { WebApiService } from '../../services/web-api.service';
+import { map } from 'rxjs';
+import { ProductDetail } from '../../interfaces/product.interface';
+import { BeforeSlideDetail } from 'lightgallery/lg-events';
+
+type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
 @Component({
   selector: 'app-product',
@@ -6,87 +13,104 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  @Input() productTitle: string =
-    'Beauty of joseon Relief Sun Rice Probiotics 50ml'; //TODO:
-  @Input() brand: string = 'The History of WHOO';
-  @Input() currencyUsed: string = 'USD';
-  @Input() unitPrice: number = 60.0;
-  // @Input() price: number = 60.0;
-  @Input() unitDiscountedPrice: number = 51.0;
-  @Input() productDetail: string =
-    'The History of Whoo Radiant White Moisture Cushion Foundation 13g + Refill 13g #21 light beige';
-  @Input() minimumOrder: number = 1;
-  @Input() selectedQuantity: number = 1;
-  country: string = 'PK';
+  public selectedQuantity: number;
+  public totalPrice = 0.0;
+  public discountedTotalPrice = 0.0;
+
   checked: boolean = true;
   display: boolean = false;
 
-  skus: any = [
-    {
-      productId: 1,
-      sku: '2N Black',
-      checked: false,
-    },
-    {
-      productId: 1,
-      sku: '6N Light Brown',
-      checked: false,
-    },
-  ];
-  price: number = this.unitPrice;
-  discountedPrice: number = this.unitDiscountedPrice;
+  public checkedOptions: SelectedProductOption = {};
 
-  floatPrice: string = this.price.toPrecision(4);
-  floatDiscountedPrice: string = this.discountedPrice.toPrecision(4);
+  public productDetail: ProductDetail;
 
-  constructor() {}
+  public constructor(
+    private readonly route: ActivatedRoute,
+    private readonly webApiService: WebApiService
+  ) {}
 
-  ngOnInit(): void {}
-
-  @HostListener('mousewheel', ['$event'])
-  onMousewheel(event: any) {
-    // this.display = true;
-    if (event.pageY > event.view.outerHeight * 1.5) {
-      this.display = true;
-    } else {
-      this.display = false;
-    }
+  public ngOnInit(): void {
+    this.fetchProductDetails();
   }
 
-  quantityUp(): void {
+  public fetchProductDetails(): void {
+    const productSlug = this.route.snapshot.paramMap.get('slug');
+    if (!productSlug) throw new Error('Product slug unavailable!');
+
+    this.webApiService
+      .getProductDetails(productSlug)
+      .pipe(
+        map((response: { data: ProductDetail }) => response.data),
+        map((productDetail: ProductDetail) => {
+          productDetail.image = this.webApiService.imgUrl + productDetail.image;
+          productDetail.secondary_images = productDetail.secondary_images.map(
+            (imgs) => this.webApiService.imgUrl + imgs
+          );
+          productDetail.secondary_images.push(productDetail.image);
+          productDetail.brand.country_flag =
+            this.webApiService.imgUrl + productDetail.brand.country_flag;
+
+          console.log(productDetail);
+          return productDetail;
+        })
+      )
+      .subscribe((productDetail: ProductDetail) => {
+        this.productDetail = productDetail;
+
+        this.selectedQuantity = productDetail.min_order_quantity;
+        this.updateTotalPrice(this.selectedQuantity);
+      });
+  }
+
+  @HostListener('wheel', ['$event'])
+  public onMousewheel(event: WheelEvent): void {
+    this.display = event.pageY > event.view!.outerHeight * 1.5;
+  }
+
+  public quantityUp(): void {
     this.selectedQuantity++;
-    this.updatePrice(this.selectedQuantity);
+    this.updateTotalPrice(this.selectedQuantity);
   }
 
-  quantityDown(): void {
-    if (this.selectedQuantity > 1) {
+  public quantityDown(): void {
+    if (this.selectedQuantity > this.productDetail.min_order_quantity) {
       this.selectedQuantity--;
-      this.updatePrice(this.selectedQuantity);
+      this.updateTotalPrice(this.selectedQuantity);
     }
   }
 
-  checkSkuItemTrue(item: any): void {
-    // item.checked = true;
-    this.skus[0].checked = false;
-    // $('')
-  }
-  showDialog(): void {
-    this.display = true;
+  public toggleProductOptionSelection(productOptionIndex: number): void {
+    if (this.checkedOptions[productOptionIndex]) {
+      this.checkedOptions[productOptionIndex] =
+        !this.checkedOptions[productOptionIndex];
+
+      return;
+    }
+
+    this.checkedOptions[productOptionIndex] = true;
   }
 
-  private numberToFloat() {
-    this.floatPrice = this.price.toPrecision(
-      ((Math.log(this.price) * Math.LOG10E + 1) | 0) + 2
-    );
-    this.floatDiscountedPrice = this.discountedPrice.toPrecision(
-      ((Math.log(this.discountedPrice) * Math.LOG10E + 1) | 0) + 2
-    );
-  }
-
-  updatePrice(quantity: number) {
+  public updateTotalPrice(quantity: number): void {
     if (quantity <= 0) return;
-    this.price = this.unitPrice * quantity;
-    this.discountedPrice = this.unitDiscountedPrice * quantity;
-    this.numberToFloat();
+
+    const productPrice = this.productDetail.discount_price
+      ? +this.productDetail.discount_price
+      : +this.productDetail.price;
+
+    this.totalPrice = parseFloat(
+      (+this.productDetail.price * quantity).toFixed(2)
+    );
+    this.discountedTotalPrice = parseFloat(
+      (productPrice * quantity).toFixed(2)
+    );
   }
+
+  settings = {
+    counter: false,
+    // plugins: [lgZoom],
+  };
+  onBeforeSlide = (detail: BeforeSlideDetail): void => {
+    const { index, prevIndex } = detail;
+    console.log(index, prevIndex);
+  };
 }

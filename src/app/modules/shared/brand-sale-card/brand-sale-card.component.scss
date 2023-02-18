@@ -1,0 +1,13 @@
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  width: 100%;
+}
+
+.swiper-slide a img:hover {
+  transition: 250ms linear;
+  box-shadow: rgb(255 46 71) 0 0 0 4px;
+}

@@ -13,16 +13,18 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
+import { TabViewModule } from 'primeng/tabview';
+
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
+import { LightgalleryModule } from 'lightgallery/angular';
 
 // Components
 import { InputTextboxComponent } from './input-textbox/input-textbox.component';
 import { InputButtonComponent } from './input-button/input-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { BrandsaleCardComponent } from './brandsale-card/brandsale-card.component';
+import { BrandSaleCardComponent } from './brand-sale-card/brand-sale-card.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
@@ -33,6 +35,10 @@ import { MarqueeComponent } from './components/marquee/marquee.component';
 import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BrandCardComponent } from './brand-card/brand-card.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -40,7 +46,7 @@ import { HeaderComponent } from './components/header/header.component';
     InputButtonComponent,
     FooterComponent,
     ProductCardComponent,
-    BrandsaleCardComponent,
+    BrandSaleCardComponent,
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
@@ -49,24 +55,30 @@ import { HeaderComponent } from './components/header/header.component';
     HamburgerMenuComponent,
     ProductDescriptionComponent,
     HeaderComponent,
+    BrandCardComponent,
   ],
-  imports: [
-    CommonModule,
-    InputTextModule,
-    ButtonModule,
-    CarouselModule,
-    DataViewModule,
-    TableModule,
-    InputNumberModule,
-    FormsModule,
-    RouterModule,
-    NgMarqueeModule,
-    ToggleButtonModule,
-    SidebarModule,
-    DialogModule,
-    DividerModule,
-    MenuModule,
-  ],
+	imports: [
+		CommonModule,
+		InputTextModule,
+		ButtonModule,
+		CarouselModule,
+		DataViewModule,
+		TableModule,
+		InputNumberModule,
+		FormsModule,
+		RouterModule,
+		NgMarqueeModule,
+		ToggleButtonModule,
+		SidebarModule,
+		DialogModule,
+		DividerModule,
+		MenuModule,
+		AutoCompleteModule,
+		TabViewModule,
+		LightgalleryModule,
+		OverlayPanelModule,
+		DropdownModule,
+	],
   exports: [
     InputTextModule,
     ButtonModule,
@@ -79,11 +91,13 @@ import { HeaderComponent } from './components/header/header.component';
     SidebarModule,
     DialogModule,
     MenuModule,
+    TabViewModule,
+    LightgalleryModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,
     ProductCardComponent,
-    BrandsaleCardComponent,
+    BrandSaleCardComponent,
     CountdownTimerComponent,
     AdBannerComponent,
     CartListComponent,
@@ -91,6 +105,7 @@ import { HeaderComponent } from './components/header/header.component';
     HamburgerMenuComponent,
     ProductDescriptionComponent,
     HeaderComponent,
+    BrandCardComponent,
   ],
 })
 export class SharedModule {}

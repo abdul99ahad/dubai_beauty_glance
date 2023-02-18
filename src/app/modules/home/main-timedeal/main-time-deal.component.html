@@ -1,0 +1,45 @@
+<div class="main-prd3 main-timedeal">
+  <div class="main-inner">
+    <div class="top-bar">
+      <div class="title">
+        <span>ONLY TODAY</span>
+        <h2>TIME DEAL</h2>
+      </div>
+
+      <div class="timer" style="flex: 3rem">
+        <app-countdown-timer></app-countdown-timer>
+      </div>
+    </div>
+
+    <div class="main-timedeal-prd">
+      <div class="flex-products web-view">
+        <app-product-card
+          class="w-20"
+          *ngFor="let product of products"
+          [name]="product.name"
+          [slug]="product.slug"
+          [price]="product.price"
+          [discount_price]="product.discount_price"
+          [image]="product.image"
+        ></app-product-card>
+      </div>
+
+      <div class="flex-products mobile-view">
+        <app-product-card
+          class="w-20"
+          id="time-deal-products"
+          *ngFor="let product of products"
+          [name]="product.name"
+          [slug]="product.slug"
+          [price]="product.price"
+          [discount_price]="product.discount_price"
+          [image]="product.image"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-timedeal-more">
+    <a><span>MORE TIME DEAL +</span></a>
+  </div>
+</div>

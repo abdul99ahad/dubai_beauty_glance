@@ -1,29 +1,91 @@
-<div>
-  <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
+<!-- Main Banner Start -->
+<div class="web-view">
   <p-carousel
-    [value]="bannerImagesCarousel"
+    [value]="allEventAndBgMainBanner"
     [autoplayInterval]="3000"
     [circular]="true"
     [showNavigators]="false"
   >
     <ng-template let-banner pTemplate="item">
-      <img src="{{ banner.image }}" alt="banner image" width="100%" />
+      <img
+        class="main-banner"
+        src="{{ banner.image }}"
+        alt="banner image"
+        width="100%"
+      />
     </ng-template>
   </p-carousel>
-  <div class="controls">
-    <span class="prev">Prev</span>
-    <span class="next">Next</span>
-  </div>
 </div>
 
-<div class="main-inner">
+<div class="mobile-view">
+  <p-carousel
+    [value]="smMainBanner"
+    [autoplayInterval]="3000"
+    [circular]="true"
+    [showNavigators]="false"
+  >
+    <ng-template let-banner pTemplate="item">
+      <img
+        class="main-banner"
+        src="{{ banner.image }}"
+        alt="banner image"
+        width="100%"
+      />
+    </ng-template>
+  </p-carousel>
+</div>
+<!-- Main Banner End -->
+
+<!-- Quick Category Start -->
+<div class="main-inner web-view">
   <div class="main-quick-menu flex-container">
     <div class="title mbl-disable">
       <h2 style="text-align: left !important">
-        QUICK <br />
+        QUICK
+        <br />
         CATEGORY
       </h2>
       <p>Find products quickly by category selection</p>
+    </div>
+    <ul class="main-quick-list">
+      <li class="main-quick-skin">
+        <a href="javascript:void(0)">
+          <span></span>
+          <p>SKINCARE</p>
+        </a>
+      </li>
+      <li class="main-quick-makeup">
+        <a href="javascript:void(0)">
+          <span></span>
+          <p>MAKEUP</p>
+        </a>
+      </li>
+      <li class="main-quick-hair">
+        <a href="javascript:void(0)">
+          <span></span>
+          <p>HAIR & BODY</p>
+        </a>
+      </li>
+      <li class="main-quick-mask">
+        <a href="javascript:void(0)">
+          <span></span>
+          <p>MASK TRIAL KIT</p>
+        </a>
+      </li>
+      <li class="main-quick-devices">
+        <a href="javascript:void(0)">
+          <span></span>
+          <p>DEVICES & TOOLS</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="main-inner mobile-view">
+  <div class="main-quick-menu flex-container">
+    <div class="title mbl-disable">
+      <h2>QUICK CATEGORY</h2>
     </div>
     <ul class="main-quick-list">
       <li class="main-quick-skin">
@@ -59,116 +121,330 @@
     </ul>
   </div>
 </div>
+<!-- Quick Category End -->
 
+<!-- Event Banner Start -->
 <div class="main-box2">
   <div class="main-bn-slide1">
     <div class="title">
       <h2>EVENT</h2>
-      <a href=""> GO TO PROMOTION </a>
+      <a href=""> GO TO PROMOTION</a>
     </div>
     <div style="text-align: center">
-      <p-carousel
-        [value]="eventBannerCarousel"
-        [autoplayInterval]="2500"
-        [circular]="true"
+      <ngx-slick-carousel
+        (afterChange)="
+          adjustSliderStateInAccordanceWithMovement(
+            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName,
+            $event.currentSlide
+          )
+        "
+        #eventCarousel="slick-carousel"
+        class="carousel"
+        [config]="
+          getCarouselConfiguration(
+            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+          )
+        "
       >
-        <ng-template let-banner pTemplate="item">
-          <img src="{{ banner.image }}" alt="banner image" />
-        </ng-template>
-      </p-carousel>
+        <div
+          ngxSlickItem
+          *ngFor="let slide of allEventAndBgMainBanner"
+          class="slide"
+        >
+          <img src="{{ slide.image }}" alt="" />
+        </div>
+      </ngx-slick-carousel>
     </div>
+
+    <!-- Slider Buttons Start -->
+    <div class="main-brand-ctrl" style="text-align: center; color: red">
+      <div class="swiper-pagination-outer" style="display: none">
+        <div
+          class="swiper-pagination-inner"
+          [style.width]="
+            getCarouselPercentageMoved(
+              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+            ) + '%'
+          "
+        ></div>
+      </div>
+      <div class="fraction" style="display: none">
+        <span class="count">{{
+          getCarouselCurrentSlide(
+            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+          )
+        }}</span>
+        <span class="total"
+          >&nbsp;/&nbsp;{{
+            getCarouselTotalSlides(
+              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+            )
+          }}</span
+        >
+      </div>
+      <div class="main-brand-btn">
+        <div
+          class="swiper-button-prev"
+          tabindex="0"
+          role="button"
+          aria-label="Previous slide"
+          (click)="moveSlideBackward(eventCarousel)"
+        ></div>
+        <div
+          class="swiper-button-next"
+          tabindex="0"
+          role="button"
+          aria-label="Next slide"
+          (click)="moveSlideForward(eventCarousel)"
+        ></div>
+      </div>
+    </div>
+    <!-- Slider Buttons End -->
   </div>
 </div>
+<!-- Event Banner Start -->
 
+<!-- Best Items Month Start -->
 <div class="main-box3 mbl-disable">
   <div class="main-inner">
     <div class="title">
       <h2>BEST</h2>
       <p>BEST ITEMS OF MONTH</p>
     </div>
-    <div class="flex-products">
-      <!-- <app-product-card
-        *ngFor="let product of productsDisplay"
-        [title]="product.title"
-        [description]="product.description"
-        [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
-      ></app-product-card> -->
+    <div class="flex-products div-center-m5 no-flex">
       <p-carousel
-        [value]="productsDisplay"
+        [value]="bestItemsOfTheMonth"
         [numVisible]="5"
         [responsiveOptions]="responsiveOptions"
         [autoplayInterval]="3000"
         [showIndicators]="false"
+        [showNavigators]="true"
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
-            [title]="product.title"
-            [description]="product.description"
+            [name]="product.name"
+            [slug]="product.slug"
             [price]="product.price"
-            [discountedPrice]="product.discountedPrice"
-            [imgSrc]="product.imgSrc"
+            [discount_price]="product.discount_price"
+            [image]="product.image"
           ></app-product-card>
         </ng-template>
       </p-carousel>
     </div>
   </div>
 </div>
+<!-- Best Items Month End -->
 
+<!-- Brand Sale Start -->
 <div style="padding: 3rem 0">
-  <div class="">
-    <div class="title">
-      <h2>BRAND SALE</h2>
-      <a href=""> GO TO PROMOTION </a>
+  <div class="title">
+    <h2>BRAND SALE</h2>
+    <a href=""> GO TO PROMOTION</a>
+  </div>
+  <div class="brandsale-card flex-products promotion-flex">
+    <ngx-slick-carousel
+      (afterChange)="
+        adjustSliderStateInAccordanceWithMovement(
+          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName,
+          $event.currentSlide
+        )
+      "
+      #brandSaleCarousel="slick-carousel"
+      class="carousel"
+      [config]="
+        getCarouselConfiguration(
+          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+        )
+      "
+    >
+      <div ngxSlickItem *ngFor="let slide of brandSaleImages" class="slide">
+        <app-brand-sale-card [imgSrc]="slide"></app-brand-sale-card>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+
+  <!-- Slider Buttons Start -->
+  <div class="main-brand-ctrl">
+    <div class="swiper-pagination-outer web-view">
+      <div
+        class="swiper-pagination-inner transition-duration-300"
+        [style.width]="
+          getCarouselPercentageMoved(
+            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+          ) + '%'
+        "
+      ></div>
     </div>
-    <div class="brandsale-card flex-products promotion-flex">
-      <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
-      <app-brandsale-card></app-brandsale-card>
+    <div class="fraction">
+      <span class="count">{{
+        getCarouselCurrentSlide(
+          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+        )
+      }}</span>
+      <span class="total"
+        >&nbsp;/&nbsp;{{
+          getCarouselTotalSlides(
+            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+          )
+        }}</span
+      >
+    </div>
+    <div class="main-brand-btn">
+      <div
+        class="swiper-button-prev"
+        tabindex="0"
+        role="button"
+        aria-label="Previous slide"
+        (click)="moveSlideBackward(brandSaleCarousel)"
+      ></div>
+      <div
+        class="swiper-button-next"
+        tabindex="0"
+        role="button"
+        aria-label="Next slide"
+        (click)="moveSlideForward(brandSaleCarousel)"
+      ></div>
     </div>
   </div>
+  <!-- Slider Buttons End -->
 </div>
+<!-- Brand Sale End -->
 
-<div class="main-box4"></div>
-
+<!-- New Arrivals Start -->
 <div class="main-box3">
   <div class="main-inner">
     <div class="title">
       <h2>NEW ARRIVALS</h2>
     </div>
-    <div class="flex-products">
+    <div class="flex-products div-center-m5 web-view">
       <app-product-card
-        style="width: 20em"
-        *ngFor="let product of latestProductsDisplay"
-        [title]="product.title"
-        [description]="product.description"
+        class="w-20"
+        *ngFor="let product of newArrivalsProductsDisplay"
+        [name]="product.name"
+        [slug]="product.slug"
         [price]="product.price"
-        [discountedPrice]="product.discountedPrice"
-        [imgSrc]="product.imgSrc"
+        [discount_price]="product.discount_price"
+        [image]="product.image"
+      ></app-product-card>
+    </div>
+
+    <div class="flex-products div-center-m5 mobile-view">
+      <app-product-card
+        id="new-arrivals"
+        *ngFor="let product of newArrivalsProductsDisplay"
+        [name]="product.name"
+        [slug]="product.slug"
+        [price]="product.price"
+        [discount_price]="product.discount_price"
+        [image]="product.image"
       ></app-product-card>
     </div>
   </div>
 </div>
+<!-- New Arrivals End -->
 
+<!-- Free Delivery Banner Start -->
 <div class="main-box8">
   <div>
-    <a href="" style="display: flex">
+    <a href="javascript:void(0)" style="display: flex">
       <img
         src="https://www.ksecret.com/images/thumbs/0005009_0201_delievery02_sub%20pc.jpeg"
         style="width: 100%"
+        alt="Free Delivery Banner"
       />
     </a>
   </div>
 </div>
+<!-- Free Delivery Banner End -->
 
-<app-main-timedeal></app-main-timedeal>
+<app-main-time-deal></app-main-time-deal>
 
+<!-- Brand Sale Banner Start -->
 <div class="main-box8">
   <div>
-    <a href="" style="display: flex">
-      <img src="../../../../../assets/ad.jpg" style="width: 100%" />
+    <a href="javascript:void(0);" style="display: flex">
+      <img
+        src="https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5098a376fddb9bae8fce95b0584832fe.jpg"
+        style="width: 100%"
+        alt="Brand Sale Banner"
+      />
     </a>
   </div>
 </div>
+<!-- Brand Sale Banner End -->
+
+<!-- Best Brand Start -->
+<div class="main-box3">
+  <div class="main-inner">
+    <div class="title">
+      <h2>BEST BRAND</h2>
+    </div>
+
+    <p-tabView styleClass="prime-tab-override">
+      <p-tabPanel
+        [header]="brandTabHeader.name"
+        *ngFor="let brandTabHeader of brandTabHeaders"
+      >
+        <div class="flex-container div-center-m5">
+          <div class="mbl-disable" style="width: 40%">
+            <img
+              style="height: 100%"
+              [src]="brandTabHeader.brand_image"
+              [alt]="brandTabHeader.name"
+            />
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between">
+              <div class="main-prd-tit">
+                <h3>BEST ITEM</h3>
+                <span>Click on a product to see more details.</span>
+              </div>
+              <div class="btn_wrap">
+                <span class="main-prd5-prev2" (click)="prevBestBrandItem()">
+                  <img
+                    src="	https://www.jolse.com/_dbook/img/main_slide_prev_btn3.png"
+                    alt="Previous"
+                  />
+                </span>
+                <span class="main-prd5-next2" (click)="nextBestBrandItem()">
+                  <img
+                    src="https://www.jolse.com/_dbook/img/main_slide_next_btn3.png"
+                    alt="Next"
+                  />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p-carousel
+                [value]="brandTabHeader.products"
+                [numVisible]="3"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                [showNavigators]="false"
+                [page]="currentBestBrandItem"
+              >
+                <ng-template let-product pTemplate="item">
+                  <app-product-card
+                    [name]="product.name"
+                    [slug]="product.slug"
+                    [price]="product.price"
+                    [discount_price]="product.discount_price"
+                    [image]="product.image"
+                  ></app-product-card>
+                </ng-template>
+              </p-carousel>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+<!-- Best Brand End -->
+
+<!-- Page Scroll Buttons Start -->
+<div class="page-btn web-view" *ngIf="displayScrollButtons">
+  <span class="top-btn" (click)="scrollToTop()"></span>
+  <span class="down-btn" (click)="scrollToDown()"></span>
+</div>
+<!-- Page Scroll Buttons End -->

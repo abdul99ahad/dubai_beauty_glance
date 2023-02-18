@@ -1,0 +1,49 @@
+<div id="wrap">
+  <div id="container">
+    <div id="contents">
+      <app-ad-banner></app-ad-banner>
+
+      <div class="contactusWrap">
+        <div class="content0">
+          <h2>{{ title.toUpperCase() }}</h2>
+        </div>
+        <p-divider></p-divider>
+      </div>
+
+      <div class="card">
+        <p-dataView [value]="products" layout="grid">
+          <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between"></div>
+          </ng-template>
+          <ng-template let-product pTemplate="gridItem" class="parent">
+            <app-product-card
+              class="child"
+              [name]="product.name"
+              [slug]="product.slug"
+              [price]="product.price"
+              [discount_price]="product.discount_price"
+              [image]="product.image"
+            ></app-product-card>
+          </ng-template>
+        </p-dataView>
+        <p-divider></p-divider>
+        <div style="display: flex; justify-content: space-evenly">
+          <ng-container *ngFor="let productPageButton of productPageButtons">
+            <ng-container *ngIf="!!productPageButton.url; else elseBlock">
+              <button type="button" (click)="fetchProductsOfCategoryWithUrl(productPageButton.url)" class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ productPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px"></span>
+              </button>
+            </ng-container>
+            <ng-template #elseBlock>
+              <button disabled type="submit" class="p-button p-button-outlined p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted">
+                {{ productPageButton.label | decodeHtmlEntitiesPipe }}
+                <span class="p-ink" style="height: 42px; width: 42px; top: 2px; left: 5px"></span>
+              </button>
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BrandsListingComponent } from './pages/brand-listing/brand-listing.component';
+import { BrandProductListingComponent } from './pages/brand-products-listing/brand-products-listing.component';
+import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
 import {
   LoginComponent,
   HomepageComponent,
@@ -28,11 +31,14 @@ const routes: Routes = [
   { path: 'agreement', component: AgreementComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'products', component: ProductsListingComponent },
-  { path: 'product', component: ProductComponent },
+  { path: 'product/:slug', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   { path: 'register', component: SignUpComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'promotions', component: PromotionsListingComponent },
+  { path: 'brands', component: BrandsListingComponent },
+  { path: 'brand/:slug', component: BrandProductListingComponent },
+  { path: 'category/:slug', component: CategoryProductsListingComponent },
 ];
 
 @NgModule({
