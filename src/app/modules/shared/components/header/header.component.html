@@ -142,10 +142,10 @@
           <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
         </li>
         <li class="header-items">
-          <a routerLink="/brands" class="black m-15" (mouseenter)="brandHoverMenu.show($event)" (mouseleave)="brandHoverMenu.hide()">BRAND</a>
+          <a routerLink="/brands" class="black m-15" (mouseenter)="brandHoverMenu.show($event)">BRAND</a>
           <p-overlayPanel #brandHoverMenu>
             <ng-template pTemplate="content">
-              <div class="w-screen flex flex-column justify-content-center">
+              <div (mouseenter)="brandHoverMenu.show($event)" (mouseleave)="brandHoverMenu.hide()" class="w-screen flex flex-column justify-content-center">
                 <ul class="w-full flex flex-row justify-content-center">
                   <li class="px-3 py-1 text-black-alpha-90 hover:text-pink-400" (mouseenter)="filterBrand(englishAlphabet)" *ngFor="let englishAlphabet of englishAlphabets">
                     <b>{{ englishAlphabet }}</b>
