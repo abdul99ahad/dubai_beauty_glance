@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { Brand } from "../../../../interfaces/brand.interface";
 import { WebApiService } from "../../../../services/web-api.service";
 import { Product } from "../../../../interfaces/product.interface";
-import { Currencies, Currency } from "../../../../interfaces/currencies.interface";
+import { CurrencyList, Currency } from "../../../../interfaces/currencies.interface";
 import { BaseComponent } from "../../../../base/base.component";
 
 @Component({
@@ -149,7 +149,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
 
   private setupAvailableCurrencies(): Subscription {
     return this.webApiService.getCurrencyList().pipe(
-      map(({ currencies }: Currencies) => currencies),
+      map(({ currencies }: CurrencyList) => currencies),
       map((currencies: Record<string, string>) => {
         const currencyArray: Array<Currency> = [];
 
