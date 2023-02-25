@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrencyService } from "../../../../services/currency.service";
 
 @Component({
   selector: 'app-cart-list',
@@ -43,9 +44,12 @@ export class CartListComponent implements OnInit {
       totalAmount: 102.0,
     },
   ];
-  currencyUsed: string = 'USD';
   totalProductItemsCount: number = this.cartList.length;
-  constructor() {}
+  public readonly currency: string;
+
+  public constructor(private readonly currencyService: CurrencyService) {
+    this.currency = this.currencyService.selectedCurrency;
+  }
 
   ngOnInit(): void {}
 

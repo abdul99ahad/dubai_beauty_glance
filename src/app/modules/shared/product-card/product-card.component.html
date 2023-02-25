@@ -26,12 +26,10 @@
     <div class="solid"></div>
 
     <div style="text-align: center; margin: 5px 0 0 0">
-      <span class="price">{{ discount_price ? "USD " + price : "-" }}</span>
+      <span class="price">{{ discount_price ? currency + " " + price : "-" }}</span>
     </div>
     <div style="text-align: center">
-      <span class="discounted_price">{{
-        "USD " + (discount_price ?? price)
-      }}</span>
+      <span class="discounted_price">{{ currency + " " + (discount_price ?? price) }}</span>
     </div>
   </div>
 </div>

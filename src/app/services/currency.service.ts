@@ -14,6 +14,17 @@ export class CurrencyService {
     this.currentCurrency = localStorage.getItem("currency") ?? "AED";
   }
 
+  public get selectedCurrency(): string {
+    const currencyCode = localStorage.getItem("currency");
+
+    return currencyCode ?? "AED";
+  }
+
+  public set selectedCurrency(currencyCode: string) {
+    localStorage.setItem("currency", currencyCode);
+    window.location.reload();
+  }
+
   public async handleCurrency<T>(input: T, ...fields: Array<string>): Promise<T> {
     if (this.dataIsAbsent(input)) return input as T;
 
@@ -91,7 +102,8 @@ export class CurrencyService {
     const response$ = this.httpService.getWithApiKey<CurrencyConvert>(convertUrl.toString(), "apikey", CurrencyApiKey);
 
     const response = await firstValueFrom<CurrencyConvert>(response$);
+    const convertedAmount = response.result.toFixed(2);
 
-    return response.result;
+    return +convertedAmount;
   }
 }

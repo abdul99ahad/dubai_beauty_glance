@@ -21,7 +21,7 @@
           <img src="{{ item.imgSrc }}" style="width: 100px; height: 100px" />
         </td>
         <td>{{ item.productDetail }}</td>
-        <td>{{ currencyUsed }} {{ item.price }}</td>
+        <td>{{ currency }} {{ item.price }}</td>
         <td>
           <p-inputNumber
             [(ngModel)]="item.quantity"
@@ -52,7 +52,7 @@
             /></a>
           </span> -->
         </td>
-        <td>{{ currencyUsed }} {{ item.total }}</td>
+        <td>{{ currency }} {{ item.total }}</td>
         <td class="trash">
           <i
             class="pi pi-trash"
@@ -82,7 +82,7 @@
           <td>
             <div class="center">
               <p class="totalBarHeader">Merchandise</p>
-              <p class="totalBarAmount">USD {{ item.amount }}</p>
+              <p class="totalBarAmount">{{ currency }} {{ item.amount }}</p>
             </div>
           </td>
           <td class="center iconMinus">
@@ -91,7 +91,7 @@
           <td>
             <div class="center">
               <p class="totalBarHeader">Product Discounts</p>
-              <p class="totalBarAmount">USD {{ item.discountAmount }}</p>
+              <p class="totalBarAmount">{{ currency }} {{ item.discountAmount }}</p>
             </div>
           </td>
           <td class="iconEquals">
@@ -101,7 +101,7 @@
             <div class="center">
               <p class="totalBarHeader">Total Amount</p>
               <p class="totalBarAmount" style="color: #ff2d46">
-                USD {{ item.totalAmount }}
+                {{ currency }} {{ item.totalAmount }}
               </p>
             </div>
           </td>

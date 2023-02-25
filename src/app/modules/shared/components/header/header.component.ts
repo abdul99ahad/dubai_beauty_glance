@@ -6,6 +6,7 @@ import { WebApiService } from "../../../../services/web-api.service";
 import { Product } from "../../../../interfaces/product.interface";
 import { CurrencyList, Currency } from "../../../../interfaces/currencies.interface";
 import { BaseComponent } from "../../../../base/base.component";
+import { CurrencyService } from "../../../../services/currency.service";
 
 @Component({
   selector: "app-header",
@@ -93,7 +94,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
   public products: Array<Product> = [];
   public searchProductSubject = new Subject<string>();
 
-  public constructor(private readonly webApiService: WebApiService, private readonly router: Router) {
+  public constructor(private readonly currencyService: CurrencyService, private readonly webApiService: WebApiService, private readonly router: Router) {
     super();
   }
 
@@ -143,8 +144,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
 
   public changeSelectedCurrency(event: Event): void {
     const selectMenu = event.target as HTMLSelectElement;
-    localStorage.setItem("currency", selectMenu.value);
-    window.location.reload();
+    this.currencyService.selectedCurrency = selectMenu.value;
   }
 
   private setupAvailableCurrencies(): Subscription {

@@ -1,1 +1,1 @@
-export const CurrencyApiKey = "n4psPdoPqKwcz11Sokfji9WA39Oa3nwG";
+export const CurrencyApiKey = "hgPvF4TeEqs234fLZiHZMFfJ5qq7ZMx9";
