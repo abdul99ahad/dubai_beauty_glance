@@ -8,11 +8,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class CurrencyService {
-  private readonly currentCurrency: string;
-
-  public constructor(private readonly httpService: HttpService) {
-    this.currentCurrency = localStorage.getItem("currency") ?? "AED";
-  }
+  public constructor(private readonly httpService: HttpService) {}
 
   public get selectedCurrency(): string {
     const currencyCode = localStorage.getItem("currency");
@@ -95,8 +91,10 @@ export class CurrencyService {
   }
 
   private async convertCurrency(amount: string): Promise<number> {
+    if (this.selectedCurrency === "AED") return +amount;
+
     const convertUrl = new URL("https://api.apilayer.com/currency_data/convert");
-    convertUrl.searchParams.append("to", this.currentCurrency);
+    convertUrl.searchParams.append("to", this.selectedCurrency);
     convertUrl.searchParams.append("from", "AED");
     convertUrl.searchParams.append("amount", amount);
     const response$ = this.httpService.getWithApiKey<CurrencyConvert>(convertUrl.toString(), "apikey", CurrencyApiKey);
