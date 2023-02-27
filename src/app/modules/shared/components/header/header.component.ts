@@ -1,18 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { MenuItem } from "primeng/api";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { map, Subject, Subscription, switchMap, } from "rxjs";
 import { Router } from "@angular/router";
 import { Brand } from "../../../../interfaces/brand.interface";
 import { WebApiService } from "../../../../services/web-api.service";
 import { Product } from "../../../../interfaces/product.interface";
-import { Currencies, Currency } from "../../../../interfaces/currencies.interface";
+import { CurrencyList, Currency } from "../../../../interfaces/currencies.interface";
+import { BaseComponent } from "../../../../base/base.component";
+import { CurrencyService } from "../../../../services/currency.service";
 
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.scss"],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy {
   expandedState: boolean = false;
   mobileDisplay: boolean = false;
   navBarItemList: any = [
@@ -86,16 +87,15 @@ export class HeaderComponent implements OnInit {
   public selectedCurrency: Currency;
   public availableCurrencies: Array<Currency> = [];
 
-
   public englishAlphabets: Array<string> = [];
   public brands: Array<Brand> = [];
   public filteredBrands: Array<Brand> = [];
 
   public products: Array<Product> = [];
-  public searchProductDebouncedSubject = new Subject<string>();
-  private coldSubscriber: Subscription;
+  public searchProductSubject = new Subject<string>();
 
-  public constructor(private readonly webApiService: WebApiService, private readonly router: Router) {
+  public constructor(private readonly currencyService: CurrencyService, private readonly webApiService: WebApiService, private readonly router: Router) {
+    super();
   }
 
   public navBarMobileListViewToggle(): void {
@@ -108,9 +108,15 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.setupColdSubjectForLiveProductSearching();
-    this.setupAvailableCurrencies();
-    this.setupBrandsForHeader();
+    const searchSubscription = this.observeProductSearch();
+    const currencySubscription = this.setupAvailableCurrencies();
+    const brandSubscription = this.setupBrandsForHeader();
+
+    this.addSubscriptions(searchSubscription, currencySubscription, brandSubscription);
+  }
+
+  public ngOnDestroy(): void {
+    this.flushSubscriptions();
   }
 
   public filterBrand(): void;
@@ -122,7 +128,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public searchProducts(searchString: string): void {
-    this.searchProductDebouncedSubject.next(searchString);
+    this.searchProductSubject.next(searchString);
   }
 
   public toggleHamBurgerMenu(): void {
@@ -136,20 +142,22 @@ export class HeaderComponent implements OnInit {
     ]);
   }
 
-  public changeSelectedCurrency(event: Event) {
+  public changeSelectedCurrency(event: Event): void {
     const selectMenu = event.target as HTMLSelectElement;
-    localStorage.setItem("currency", selectMenu.value);
-    window.location.reload();
+    this.currencyService.selectedCurrency = selectMenu.value;
   }
 
-  private setupAvailableCurrencies(): void {
-    this.webApiService.getCurrencyList().pipe(
-      map(({ currencies }: Currencies) => currencies),
+  private setupAvailableCurrencies(): Subscription {
+    return this.webApiService.getCurrencyList().pipe(
+      map(({ currencies }: CurrencyList) => currencies),
       map((currencies: Record<string, string>) => {
         const currencyArray: Array<Currency> = [];
 
         for (const [currencyCode, currencyName] of Object.entries(currencies)) {
-          currencyArray.push({ currencyCode, currencyName });
+          currencyArray.push({
+            currencyCode,
+            currencyName
+          });
         }
 
         return currencyArray;
@@ -165,10 +173,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  private setupBrandsForHeader() {
+  private setupBrandsForHeader(): Subscription {
     this.fillEnglishAlphabets();
-    this.fetchBrandsForHeader();
+    const brandSubscription = this.fetchBrandsForHeader();
     this.filterBrand();
+
+    return brandSubscription;
   }
 
   private fillEnglishAlphabets(): void {
@@ -177,14 +187,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  private fetchBrandsForHeader(): void {
-    this.webApiService.getBrandsForHeader().pipe(
+  private fetchBrandsForHeader(): Subscription {
+    return this.webApiService.getBrandsForHeader().pipe(
       map(({ data }: { data: Array<Brand> }) => data),
     ).subscribe((brands: Array<Brand>) => this.brands = brands);
   }
 
-  private setupColdSubjectForLiveProductSearching() {
-    this.coldSubscriber = this.searchProductDebouncedSubject
+  private observeProductSearch(): Subscription {
+    return this.searchProductSubject
       .pipe(
         switchMap((searchText: string) => this.webApiService.getSearchedProducts(searchText)),
         map(({ data }: { data: Array<Product> }) => data),
