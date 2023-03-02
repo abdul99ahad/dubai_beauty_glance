@@ -275,6 +275,18 @@
     [draggable]="false"
     class="web-view"
   >
-    <app-product-description class="web-view"></app-product-description>
+    <app-product-description
+      [productTitle]="productDetail.name"
+      [brand]="productDetail.brand.name"
+      [unitPrice]="productDetail.price"
+      [unitDiscountedPrice]="productDetail.discount_price"
+      [productDetail]="productDetail.description"
+      [minimumOrder]="productDetail.min_order_quantity"
+      [selectedQuantity]="selectedQuantity"
+      [countryName]="productDetail.brand.country_name"
+      [countryFlag]="productDetail.brand.country_flag"
+      [countryCode]="productDetail.brand.country_code"
+      class="web-view"
+    ></app-product-description>
   </p-dialog>
 </div>
