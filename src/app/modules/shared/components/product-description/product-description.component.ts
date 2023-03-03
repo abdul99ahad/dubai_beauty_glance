@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { ProductDetail } from 'src/app/interfaces/product.interface';
 
 @Component({
   selector: 'app-product-description',
@@ -6,17 +7,11 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   styleUrls: ['./product-description.component.scss'],
 })
 export class ProductDescriptionComponent implements OnInit {
-  @Input() productTitle: string; //TODO:
-  @Input() brand: string;
-  @Input() currencyUsed: string = 'USD';
-  @Input() unitPrice: string = '1';
-  @Input() unitDiscountedPrice: string | null = null;
-  @Input() productDetail: string;
-  @Input() minimumOrder: number = 1;
+  @Input() currencyUsed: string = '$';
   @Input() selectedQuantity: number = 1;
-  @Input() countryName: string = '';
-  @Input() countryFlag: string = '';
-  @Input() countryCode: string = '';
+
+  @Input() totalPrice: number = 0;
+  @Input() productDetail: ProductDetail;
   country: string = 'PK';
   checked: boolean = true;
   display: boolean = false;
@@ -33,20 +28,20 @@ export class ProductDescriptionComponent implements OnInit {
       checked: false,
     },
   ];
-  price: any = parseFloat(this.unitPrice);
-  discountedPrice: any = parseFloat(
-    this.unitDiscountedPrice ? this.unitDiscountedPrice : '1'
-  );
+  price: number;
+  discountedPrice: number;
 
-  floatPrice: string = this.price.toPrecision(4);
-  floatDiscountedPrice: string = this.discountedPrice.toPrecision(4);
+  floatPrice: string;
+  floatDiscountedPrice: string;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.price = parseFloat(this.unitPrice);
+    this.price = parseFloat(this.productDetail.price);
     this.discountedPrice = parseFloat(
-      this.unitDiscountedPrice ? this.unitDiscountedPrice : '1'
+      this.productDetail.discount_price
+        ? this.productDetail.discount_price
+        : '1'
     );
 
     this.floatPrice = this.price.toPrecision(4);
@@ -57,18 +52,6 @@ export class ProductDescriptionComponent implements OnInit {
   onMousewheel(event: any) {
     if (this.display) return;
     this.display = true;
-  }
-
-  quantityUp(): void {
-    this.selectedQuantity++;
-    this.updatePrice(this.selectedQuantity);
-  }
-
-  quantityDown(): void {
-    if (this.selectedQuantity > 1) {
-      this.selectedQuantity--;
-      this.updatePrice(this.selectedQuantity);
-    }
   }
 
   checkSkuItemTrue(item: any): void {
@@ -89,10 +72,15 @@ export class ProductDescriptionComponent implements OnInit {
     );
   }
 
-  updatePrice(quantity: number) {
-    // if (quantity <= 0) return;
-    // this.price = this.unitPrice * quantity;
-    // this.discountedPrice = this.unitDiscountedPrice * quantity;
-    // this.numberToFloat();
+  public quantityUp(): void {
+    // this.selectedQuantity++;
+    // this.updateTotalPrice(this.selectedQuantity);
+  }
+
+  public quantityDown(): void {
+    // if (this.selectedQuantity > this.productDetail.min_order_quantity) {
+    //   this.selectedQuantity--;
+    //   this.updateTotalPrice(this.selectedQuantity);
+    // }
   }
 }

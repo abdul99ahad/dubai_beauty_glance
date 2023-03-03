@@ -3,12 +3,16 @@
     <div class="headingArea">
       <div class="display: flex; flex-direction: row">
         <div style="width: 80%">
-          <h2>{{ productTitle }}</h2>
+          <h2>{{ productDetail.name }}</h2>
         </div>
         <div style="width: 20%">
-          <img [alt]="countryName" [src]="countryFlag" style="max-width: 50%" />
+          <img
+            [alt]="productDetail.brand.country_name"
+            [src]="productDetail.brand.country_flag"
+            style="max-width: 50%"
+          />
           <p style="font-size: 18px; margin: auto">
-            {{ countryCode.toUpperCase() }}
+            {{ productDetail.brand.country_code.toUpperCase() }}
           </p>
         </div>
       </div>
@@ -21,7 +25,9 @@
                 <span style="font-size: 12px; color: #555555">Brand</span>
               </th>
               <td>
-                <span style="font-size: 12px; color: #555555">{{ brand }}</span>
+                <span style="font-size: 12px; color: #555555">{{
+                  productDetail.brand.name
+                }}</span>
               </td>
             </tr>
             <tr class="product_price_css xans-record-">
@@ -36,7 +42,7 @@
                 >
                   <strong
                     [style.text-decoration]="
-                      discountedPrice != '1' ? 'initial' : 'line-through'
+                      !productDetail.discount_price ? 'initial' : 'line-through'
                     "
                     >$ {{ price }}</strong
                   >
@@ -73,7 +79,7 @@
               </th>
               <td>
                 <span style="font-size: 12px; color: #555555">{{
-                  productDetail
+                  productDetail.description
                 }}</span>
               </td>
             </tr>
@@ -83,11 +89,12 @@
               </th>
               <td>
                 <p-toggleButton
-                  *ngFor="let item of skus"
-                  [onLabel]="item.sku"
-                  [offLabel]="item.sku"
-                  [ngModel]="item.checked"
-                  (ngModelChange)="checkSkuItemTrue(item)"
+                  *ngFor="
+                    let productOption of productDetail.optionValues;
+                    index as productOptionIndex
+                  "
+                  [onLabel]="productOption.name"
+                  [offLabel]="productOption.name"
                 ></p-toggleButton>
               </td>
             </tr>
@@ -126,16 +133,13 @@
           </thead>
           <tbody class="">
             <tr>
-              <td>
-                {{ productDetail }}
-              </td>
+              <td>{{ productDetail.description }}</td>
               <td>
                 <span class="quantity">
                   <input
                     id="quantity"
                     name="quantity_opt[]"
                     [(ngModel)]="selectedQuantity"
-                    (ngModelChange)="updatePrice(selectedQuantity)"
                     type="number"
                   />
                   <a href="javascript:;" class="up QuantityUp">
@@ -156,7 +160,7 @@
               </td>
               <td class="right">
                 <span class="quantity_price"></span>
-                {{ currencyUsed }} {{ floatPrice }}
+                {{ currencyUsed }} {{ totalPrice }}
                 <input
                   type="hidden"
                   name="option_box_price"
@@ -199,7 +203,7 @@
         (Quantity) :
         <span class="total">
           <strong>
-            <em>{{ currencyUsed }} {{ floatDiscountedPrice }}</em>
+            <em>{{ currencyUsed }} {{ totalPrice }}</em>
           </strong>
           ({{ selectedQuantity }} item(s))
         </span>
