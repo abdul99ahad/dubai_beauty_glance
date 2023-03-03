@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import { map, Subject, Subscription, switchMap, } from "rxjs";
 import { Router } from "@angular/router";
 import { Brand } from "../../../../interfaces/brand.interface";
@@ -7,6 +7,7 @@ import { Product } from "../../../../interfaces/product.interface";
 import { CurrencyList, Currency } from "../../../../interfaces/currencies.interface";
 import { BaseComponent } from "../../../../base/base.component";
 import { CurrencyService } from "../../../../services/currency.service";
+import {Setting} from "../../../../interfaces/setting.interface";
 
 @Component({
   selector: "app-header",
@@ -14,6 +15,7 @@ import { CurrencyService } from "../../../../services/currency.service";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy {
+  @Input() setting: Setting;
   expandedState: boolean = false;
   mobileDisplay: boolean = false;
   navBarItemList: any = [

@@ -6,4 +6,5 @@ export const ApiRoutes = {
   brandWithProducts: 'brand-with-products',
   brand: 'brand',
   category: 'category',
+  setting: 'setting',
 } as const;

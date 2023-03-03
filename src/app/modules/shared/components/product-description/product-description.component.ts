@@ -6,17 +6,17 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   styleUrls: ['./product-description.component.scss'],
 })
 export class ProductDescriptionComponent implements OnInit {
-  @Input() productTitle: string =
-    'Beauty of joseon Relief Sun Rice Probiotics 50ml'; //TODO:
-  @Input() brand: string = 'The History of WHOO';
+  @Input() productTitle: string; //TODO:
+  @Input() brand: string;
   @Input() currencyUsed: string = 'USD';
-  @Input() unitPrice: number = 60.0;
-  // @Input() price: number = 60.0;
-  @Input() unitDiscountedPrice: number = 51.0;
-  @Input() productDetail: string =
-    'The History of Whoo Radiant White Moisture Cushion Foundation 13g + Refill 13g #21 light beige';
+  @Input() unitPrice: string = '1';
+  @Input() unitDiscountedPrice: string | null = null;
+  @Input() productDetail: string;
   @Input() minimumOrder: number = 1;
   @Input() selectedQuantity: number = 1;
+  @Input() countryName: string = '';
+  @Input() countryFlag: string = '';
+  @Input() countryCode: string = '';
   country: string = 'PK';
   checked: boolean = true;
   display: boolean = false;
@@ -33,15 +33,25 @@ export class ProductDescriptionComponent implements OnInit {
       checked: false,
     },
   ];
-  price: number = this.unitPrice;
-  discountedPrice: number = this.unitDiscountedPrice;
+  price: any = parseFloat(this.unitPrice);
+  discountedPrice: any = parseFloat(
+    this.unitDiscountedPrice ? this.unitDiscountedPrice : '1'
+  );
 
   floatPrice: string = this.price.toPrecision(4);
   floatDiscountedPrice: string = this.discountedPrice.toPrecision(4);
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.price = parseFloat(this.unitPrice);
+    this.discountedPrice = parseFloat(
+      this.unitDiscountedPrice ? this.unitDiscountedPrice : '1'
+    );
+
+    this.floatPrice = this.price.toPrecision(4);
+    this.floatDiscountedPrice = this.discountedPrice.toPrecision(4);
+  }
 
   @HostListener('mousewheel', ['$event'])
   onMousewheel(event: any) {
@@ -80,9 +90,9 @@ export class ProductDescriptionComponent implements OnInit {
   }
 
   updatePrice(quantity: number) {
-    if (quantity <= 0) return;
-    this.price = this.unitPrice * quantity;
-    this.discountedPrice = this.unitDiscountedPrice * quantity;
-    this.numberToFloat();
+    // if (quantity <= 0) return;
+    // this.price = this.unitPrice * quantity;
+    // this.discountedPrice = this.unitDiscountedPrice * quantity;
+    // this.numberToFloat();
   }
 }
