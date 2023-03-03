@@ -23,23 +23,23 @@ export class HomepageComponent implements OnInit {
 
   public allEventAndBgMainBanner: Array<{ image: string; title: string }> = [
     {
-      image: '../../../../../assets/slider_banner_1.jpg',
+      image: './assets/1promotion_banner730x350.jpg',
       title: 'Event Banner 1',
     },
     {
-      image: '../../../../../assets/slider_banner_2.jpg',
+      image: './assets/2promotion_banner730x350.jpg',
       title: 'Event banner 2',
     },
     {
-      image: '../../../../../assets/slider_banner_3.jpg',
+      image: './assets/3promotion_banner730x350.jpg',
       title: 'Event banner 3',
     },
     {
-      image: '../../../../../assets/slider_banner_4.jpg',
+      image: './assets/4promotion_banner730x350.jpg',
       title: 'Event Banner 1',
     },
     {
-      image: '../../../../../assets/slider_banner_5.jpg',
+      image: './assets/5promotion_banner730x350.jpg',
       title: 'Event banner 2',
     },
   ];

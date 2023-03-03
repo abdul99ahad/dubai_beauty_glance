@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FooterItemList } from './footerbaritemlist.interface';
 import { FooterBarSocialMediaItemList } from './footerbarsocialmedialist.interface';
+import {Setting} from "../../../interfaces/setting.interface";
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +9,7 @@ import { FooterBarSocialMediaItemList } from './footerbarsocialmedialist.interfa
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
+  @Input() setting: Setting;
   footerBarItemList: FooterItemList[] = [
     {
       title: 'AGREEMENT',
