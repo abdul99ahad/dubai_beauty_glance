@@ -1,22 +1,17 @@
-<div class="grid" *ngIf="productDetail">
+<div *ngIf="productDetail" class="grid">
   <div class="col-12 md:col-12 lg:col-12">
     <app-ad-banner></app-ad-banner>
   </div>
   <div class="col-12 md:col-6 lg:col-6">
     <div class="keyImg">
       <div class="thumbnail">
-        <img [src]="productDetail.image" [alt]="productDetail.name" />
-      </div>
-      <div style="margin: 10%">
         <lightgallery [settings]="settings" style="display: flex">
-          <a
-            [href]="secondaryImage"
-            class="product-detail-images"
-            *ngFor="let secondaryImage of productDetail.secondary_images"
-          >
-            <img [src]="secondaryImage" />
-          </a>
+          <img [alt]="productDetail.name" [src]="productDetail.image"/>
         </lightgallery>
+      </div>
+      <div style="margin: 10%; display: flex">
+        <img (click)="changeMainImage(secondaryImage)" *ngFor="let secondaryImage of productDetail.secondary_images"
+             [src]="secondaryImage" class="product-detail-images"/>
       </div>
     </div>
   </div>
@@ -41,25 +36,25 @@
       <div>
         <table class="prd-tb">
           <tbody>
-            <tr class="prd_brand_css xans-record-">
-              <th scope="row">
-                <span style="font-size: 12px; color: #555555">Brand</span>
-              </th>
-              <td>
+          <tr class="prd_brand_css xans-record-">
+            <th scope="row">
+              <span style="font-size: 12px; color: #555555">Brand</span>
+            </th>
+            <td>
                 <span style="font-size: 12px; color: #555555">
                   <a [routerLink]="'/brand/' + productDetail.brand.slug">{{
                     productDetail.brand.name
-                  }}</a>
+                    }}</a>
                 </span>
-              </td>
-            </tr>
-            <tr class="product_price_css xans-record-">
-              <th scope="row">
+            </td>
+          </tr>
+          <tr class="product_price_css xans-record-">
+            <th scope="row">
                 <span style="font-size: 12px; color: #555555; font-weight: bold"
-                  >Price</span
+                >Price</span
                 >
-              </th>
-              <td>
+            </th>
+            <td>
                 <span
                   style="font-size: 12px; color: #555555; font-weight: bold"
                 >
@@ -67,66 +62,66 @@
                     [style.text-decoration]="
                       !productDetail.discount_price ? 'initial' : 'line-through'
                     "
-                    >$ {{ productDetail.price }}</strong
+                  >$ {{ productDetail.price }}</strong
                   >
                 </span>
-              </td>
-            </tr>
-            <tr
-              *ngIf="productDetail.discount_price"
-              class="prd_price_sale_css xans-record-"
-            >
-              <th scope="row">
+            </td>
+          </tr>
+          <tr
+            *ngIf="productDetail.discount_price"
+            class="prd_price_sale_css xans-record-"
+          >
+            <th scope="row">
                 <span style="font-size: 12px; color: #323232"
-                  >Discounted Price</span
+                >Discounted Price</span
                 >
-              </th>
-              <td>
+            </th>
+            <td>
                 <span>
                   <span style="font-size: 12px; color: #323232">
                     <span id="span_product_price_sale"
-                      >$ {{ productDetail.discount_price }}
+                    >$ {{ productDetail.discount_price }}
                       <span style="font-size: 12px; color: #555555"
-                        >($
+                      >($
                         {{
-                          +productDetail.price - +productDetail.discount_price
+                        +productDetail.price - +productDetail.discount_price
                         }}
                         discount)</span
                       >
                     </span>
                   </span>
                 </span>
-              </td>
-            </tr>
-            <tr class="simple_desc_css xans-record-">
-              <th scope="row">
-                <span style="font-size: 12px; color: #555555">Description</span>
-              </th>
-              <td>
+            </td>
+          </tr>
+          <tr class="simple_desc_css xans-record-">
+            <th scope="row">
+              <span style="font-size: 12px; color: #555555">Description</span>
+            </th>
+            <td>
                 <span style="font-size: 12px; color: #555555">{{
                   productDetail.description
-                }}</span>
-              </td>
-            </tr>
-            <tr class="simple_desc_css xans-record-">
-              <th scope="row">
-                <span style="font-size: 12px; color: #555555">Variants</span>
-              </th>
-              <td>
-                <p-toggleButton
-                  *ngFor="
+                  }}</span>
+            </td>
+          </tr>
+          <tr class="simple_desc_css xans-record-">
+            <th scope="row">
+              <span style="font-size: 12px; color: #555555">Variants</span>
+            </th>
+            <td>
+              <p-toggleButton
+                (ngModelChange)="
+                    toggleProductOptionSelection(productOptionIndex)
+                  "
+                *ngFor="
                     let productOption of productDetail.optionValues;
                     index as productOptionIndex
                   "
-                  [onLabel]="productOption.name"
-                  [offLabel]="productOption.name"
-                  [ngModel]="checkedOptions[productOptionIndex]"
-                  (ngModelChange)="
-                    toggleProductOptionSelection(productOptionIndex)
-                  "
-                ></p-toggleButton>
-              </td>
-            </tr>
+                [ngModel]="checkedOptions[productOptionIndex]"
+                [offLabel]="productOption.name"
+                [onLabel]="productOption.name"
+              ></p-toggleButton>
+            </td>
+          </tr>
           </tbody>
         </table>
 
@@ -137,7 +132,7 @@
           (Minimum Order : {{ productDetail.min_order_quantity }} or more )
         </p>
       </div>
-      <div id="totalProducts" class="">
+      <div class="" id="totalProducts">
         <p class="ec-base-help txtWarn txt11">Select quantity.</p>
         <p class="ec-base-help txtWarn txt11 displaynone">
           Product will be automatically added below when you select an option.
@@ -147,75 +142,75 @@
             Product List
           </caption>
           <colgroup>
-            <col style="width: auto" />
-            <col style="width: 76px" />
-            <col style="width: 150px" />
+            <col style="width: auto"/>
+            <col style="width: 76px"/>
+            <col style="width: 150px"/>
           </colgroup>
           <thead class="displaynone">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-            </tr>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+          </tr>
           </thead>
           <tbody class="">
-            <tr>
-              <td>{{ productDetail.description }}</td>
-              <td>
+          <tr>
+            <td>{{ productDetail.description }}</td>
+            <td>
                 <span class="quantity">
                   <input
+                    (ngModelChange)="updateTotalPrice(selectedQuantity)"
+                    [(ngModel)]="selectedQuantity"
                     id="quantity"
                     name="quantity_opt[]"
-                    [(ngModel)]="selectedQuantity"
-                    (ngModelChange)="updateTotalPrice(selectedQuantity)"
                     type="number"
                   />
-                  <a href="javascript:void(0)" class="up QuantityUp">
+                  <a class="up QuantityUp" href="javascript:void(0)">
                     <img
-                      src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
-                      alt="up"
                       (click)="quantityUp()"
+                      alt="up"
+                      src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
                     />
                   </a>
-                  <a href="javascript:void(0)" class="down QuantityDown">
+                  <a class="down QuantityDown" href="javascript:void(0)">
                     <img
-                      src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
-                      alt="down"
                       (click)="quantityDown()"
+                      alt="down"
+                      src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
                     />
                   </a>
                 </span>
-              </td>
-              <td class="right">
-                <span class="quantity_price"></span>
-                $ {{ totalPrice }}
-                <span class="mileage displaynone" style="display: none">
-                  <img src="" />&nbsp;<span class="mileage_price">0 </span>
+            </td>
+            <td class="right">
+              <span class="quantity_price"></span>
+              $ {{ totalPrice }}
+              <span class="mileage displaynone" style="display: none">
+                  <img src=""/>&nbsp;<span class="mileage_price">0 </span>
                 </span>
-              </td>
-            </tr>
-            <tr
-              id="totalProductsOption"
-              class="xans-element- xans-product xans-product-option option xans-record-"
-            >
-              <td class="middle" colspan="3">
-                <table class="displaynone">
-                  <caption>
-                    Option Information
-                  </caption>
-                  <colgroup>
-                    <col style="width: 105px" />
-                    <col style="width: auto" />
-                  </colgroup>
-                  <tbody></tbody>
-                </table>
-              </td>
-            </tr>
+            </td>
+          </tr>
+          <tr
+            class="xans-element- xans-product xans-product-option option xans-record-"
+            id="totalProductsOption"
+          >
+            <td class="middle" colspan="3">
+              <table class="displaynone">
+                <caption>
+                  Option Information
+                </caption>
+                <colgroup>
+                  <col style="width: 105px"/>
+                  <col style="width: auto"/>
+                </colgroup>
+                <tbody></tbody>
+              </table>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
 
-      <div id="totalPrice" class="totalPrice">
+      <div class="totalPrice" id="totalPrice">
         <strong>Price</strong>
         (Quantity) :
         <span class="total">
@@ -232,22 +227,22 @@
           discounted items)
         </p>
         <img
-          src="https://beautyglance.pk/image/catalog/icons/free-gifts.jpg"
           alt="gifts"
           class="gifts-img"
+          src="https://beautyglance.pk/image/catalog/icons/free-gifts.jpg"
         />
         <p>
           Services:
           <img
+            alt="pink"
             class="custom_features_image"
             src="https://beautyglance.pk/image/catalog/icons/checkbox-pink.jpg"
-            alt="pink"
           />
           Delivery 2-3 working days
           <img
+            alt="pink"
             class="custom_features_image"
             src="https://beautyglance.pk/image/catalog/icons/checkbox-pink.jpg"
-            alt="pink"
             style="margin-left: 10px"
           />
           Original Guaranteed
@@ -257,11 +252,11 @@
       <div>
         <app-input-button buttonText="Buy Now"></app-input-button>
         <div class="buynow_btn_wrap m_margin">
-          <a href="#none" class="btnNormal sizeL btnBasket add_cart_btn"
-            >Add to Cart</a
+          <a class="btnNormal sizeL btnBasket add_cart_btn" href="#none"
+          >Add to Cart</a
           >
-          <a href="#none" class="btnNormal sizeL btnWish add_cart_btn"
-            >Add to WishList</a
+          <a class="btnNormal sizeL btnWish add_cart_btn" href="#none"
+          >Add to WishList</a
           >
         </div>
       </div>
@@ -271,14 +266,14 @@
 
   <p-dialog
     [(visible)]="display"
-    position="bottom-left"
     [draggable]="false"
     class="web-view"
+    position="bottom-left"
   >
     <app-product-description
+      [productDetail]="productDetail"
       [selectedQuantity]="selectedQuantity"
       [totalPrice]="totalPrice"
-      [productDetail]="productDetail"
       class="web-view"
     ></app-product-description>
   </p-dialog>

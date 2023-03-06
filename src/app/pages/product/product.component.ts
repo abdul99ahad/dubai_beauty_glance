@@ -49,8 +49,6 @@ export class ProductComponent implements OnInit {
           productDetail.secondary_images.push(productDetail.image);
           productDetail.brand.country_flag =
             this.webApiService.imgUrl + productDetail.brand.country_flag;
-
-          console.log(productDetail);
           return productDetail;
         })
       )
@@ -88,6 +86,10 @@ export class ProductComponent implements OnInit {
     }
 
     this.checkedOptions[productOptionIndex] = true;
+  }
+
+  public changeMainImage(source: string) {
+    this.productDetail.image = source
   }
 
   public updateTotalPrice(quantity: number): void {
