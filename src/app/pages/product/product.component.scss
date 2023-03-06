@@ -330,6 +330,7 @@ a:hover {
     height: 65px;
     border: 1px solid #ececec;
     margin:2%;
+    cursor: pointer;
 }
 
 .custom_features_image {
@@ -353,4 +354,38 @@ a:hover {
   .keyImg {
     width: 100%;
   }
+}
+
+.main-img-product{
+  max-height: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.secondary-img-wrapper{
+  display: flex;
+  margin-top: 20px;
+  align-items: flex-start;
+  overflow-x: auto;
+}
+
+/* width */
+.secondary-img-wrapper::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+.secondary-img-wrapper::-webkit-scrollbar-track {
+  background: #f9f6f6;
+}
+
+/* Handle */
+.secondary-img-wrapper::-webkit-scrollbar-thumb {
+  background: #d7d7d7;
+}
+
+/* Handle on hover */
+.secondary-img-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #b8b8b8;
 }
