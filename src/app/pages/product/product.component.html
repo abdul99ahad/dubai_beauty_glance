@@ -6,10 +6,10 @@
     <div class="keyImg">
       <div class="thumbnail">
         <lightgallery [settings]="settings" style="display: flex">
-          <img [alt]="productDetail.name" [src]="productDetail.image"/>
+          <img [alt]="productDetail.name" [src]="productDetail.image" class="main-img-product"/>
         </lightgallery>
       </div>
-      <div style="margin: 10%; display: flex">
+      <div class="secondary-img-wrapper">
         <img (click)="changeMainImage(secondaryImage)" *ngFor="let secondaryImage of productDetail.secondary_images"
              [src]="secondaryImage" class="product-detail-images" [alt]="productDetail.name"/>
       </div>
