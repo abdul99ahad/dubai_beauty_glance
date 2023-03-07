@@ -11,7 +11,7 @@
       </div>
       <div style="margin: 10%; display: flex">
         <img (click)="changeMainImage(secondaryImage)" *ngFor="let secondaryImage of productDetail.secondary_images"
-             [src]="secondaryImage" class="product-detail-images"/>
+             [src]="secondaryImage" class="product-detail-images" [alt]="productDetail.name"/>
       </div>
     </div>
   </div>
