@@ -27,20 +27,11 @@
     <div class="footer-inner">
       <div class="footer-logo">
         <a href="/">
-          <img class="logo" src="../../../../assets/BMK_LOGO_white.png" />
+          <img class="logo" [src]="setting.footer_logo" />
         </a>
       </div>
 
-      <div class="address">
-        <ul>
-          <li>COMPANY : Barunson Co,. Ltd</li>
-          <li>LICENSE : 114-81-65451</li>
-          <li>
-            ADDRESS : 16227 Yeongtong-gu Suwon-si Gyeonggi-do Korea 5th K-Tower
-            Daehak 3-ro 1
-          </li>
-          <li>D-U-N-S® Number : 694506164</li>
-        </ul>
+      <div class="address" [innerHTML]="setting.address">
       </div>
 
       <div class="flex-container" style="justify-content: space-between">

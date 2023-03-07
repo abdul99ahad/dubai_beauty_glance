@@ -16,6 +16,7 @@ export class AppComponent extends BaseComponent implements OnInit, OnDestroy {
   display: boolean = false;
 
   public setting: Setting;
+  response: boolean = false;
 
   navBarItemList: any = [
     {page: 'NEW', url: 'products'},
@@ -25,8 +26,9 @@ export class AppComponent extends BaseComponent implements OnInit, OnDestroy {
     {page: 'BRAND', url: 'products'},
     {page: 'COUPON', url: 'products'},
   ];
+
   constructor(private readonly currencyService: CurrencyService, private primengConfig: PrimeNGConfig, private readonly webApiService: WebApiService) {
-  super();
+    super();
   }
 
   ngOnInit(): void {
@@ -38,12 +40,17 @@ export class AppComponent extends BaseComponent implements OnInit, OnDestroy {
     return this.webApiService.getSetting().pipe(
       map(({data}: { data: Setting; }) => data)
     ).subscribe((setting: Setting) => {
-      this.setting = setting;
-      this.setting.logo = this.webApiService.imgUrl + this.setting.logo;
-      this.setting.footer_logo = this.webApiService.imgUrl + this.setting.footer_logo;
-      if (!localStorage.getItem("currency"))
-        this.currencyService.selectedCurrency = this.setting.currency;
-    });
+        this.setting = setting;
+        this.setting.logo = this.webApiService.imgUrl + this.setting.logo;
+        this.setting.footer_logo = this.webApiService.imgUrl + this.setting.footer_logo;
+        if (!localStorage.getItem("currency"))
+          this.currencyService.selectedCurrency = this.setting.currency;
+        this.response = true;
+      },
+      (error) => {
+        console.error("Error: ", error)
+      }
+    );
   }
 
   ngOnDestroy() {

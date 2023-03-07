@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
 
   checked: boolean = true;
   display: boolean = false;
+  selectedIndex: number;
 
   public checkedOptions: SelectedProductOption = {};
 
@@ -88,8 +89,9 @@ export class ProductComponent implements OnInit {
     this.checkedOptions[productOptionIndex] = true;
   }
 
-  public changeMainImage(source: string) {
+  public changeMainImage(source: string, index: number): void {
     this.productDetail.image = source
+    this.selectedIndex = index;
   }
 
   public updateTotalPrice(quantity: number): void {
