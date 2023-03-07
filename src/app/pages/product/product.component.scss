@@ -326,11 +326,18 @@ a:hover {
 }
 
 .product-detail-images {
-    width: 65px;
-    height: 65px;
-    border: 1px solid #ececec;
-    margin:2%;
-    cursor: pointer;
+  width: 65px;
+  height: 65px;
+  border: 1px solid #ececec;
+  margin: 2%;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #f54a7e
+  }
+  &.active {
+    border: 1px solid #f54a7e
+  }
 }
 
 .custom_features_image {
@@ -356,13 +363,13 @@ a:hover {
   }
 }
 
-.main-img-product{
+.main-img-product {
   max-height: 300px;
   height: 300px;
   object-fit: contain;
 }
 
-.secondary-img-wrapper{
+.secondary-img-wrapper {
   display: flex;
   margin-top: 20px;
   align-items: flex-start;

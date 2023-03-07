@@ -10,8 +10,8 @@
         </lightgallery>
       </div>
       <div class="secondary-img-wrapper">
-        <img (click)="changeMainImage(secondaryImage)" *ngFor="let secondaryImage of productDetail.secondary_images"
-             [src]="secondaryImage" class="product-detail-images"/>
+        <img (click)="changeMainImage(secondaryImage, i)" *ngFor="let secondaryImage of productDetail.secondary_images; let i = index"
+             [src]="secondaryImage" class="product-detail-images" [alt]="productDetail.name" [ngClass]="{'active': selectedIndex === i}"/>
       </div>
     </div>
   </div>
