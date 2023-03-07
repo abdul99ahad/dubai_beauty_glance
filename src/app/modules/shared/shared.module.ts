@@ -39,6 +39,7 @@ import { BrandCardComponent } from './brand-card/brand-card.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from "primeng/dropdown";
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DropdownModule } from "primeng/dropdown";
     ProductDescriptionComponent,
     HeaderComponent,
     BrandCardComponent,
+    LoadingSpinnerComponent,
   ],
 	imports: [
 		CommonModule,
@@ -106,6 +108,7 @@ import { DropdownModule } from "primeng/dropdown";
     ProductDescriptionComponent,
     HeaderComponent,
     BrandCardComponent,
+    LoadingSpinnerComponent,
   ],
 })
 export class SharedModule {}

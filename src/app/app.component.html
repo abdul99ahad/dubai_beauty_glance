@@ -1,9 +1,14 @@
 <div class="container">
-  <div class="Header">
+  <div *ngIf="response; else loadingSpinner" class="Header">
     <app-header [setting]="setting"></app-header>
   </div>
-  <div class="Content"><router-outlet></router-outlet></div>
-  <div class="Footer">
+  <div class="Content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="Footer" *ngIf="response; else loadingSpinner">
     <app-footer [setting]="setting"></app-footer>
   </div>
+  <ng-template #loadingSpinner>
+    <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>
+  </ng-template>
 </div>
