@@ -51,7 +51,6 @@
   padding: 13px 0;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .prdList .description .prd-brand {
@@ -82,8 +81,8 @@
 
 .discounted_price {
   font-size: 24px;
-  color: #ec048c;
-  font-weight: bold;
+  color: #ff2e46;
+  font-weight: 700;
   line-height: 1.25;
   margin: 2px 0;
 }
@@ -114,4 +113,8 @@
 .middle i {
   margin: 0 10px;
   font-size: 2rem;
+}
+
+.prod-price{
+  margin: 0 14px 0;
 }

@@ -22,13 +22,12 @@
     </div>
   </div>
 
-  <div id="div2">
+  <div id="div2" class="prod-price">
     <div class="solid"></div>
-
-    <div style="text-align: center; margin: 5px 0 0 0">
+    <div>
       <span class="price">{{ discount_price ? currency + " " + price : "-" }}</span>
     </div>
-    <div style="text-align: center">
+    <div>
       <span class="discounted_price">{{ currency + " " + (discount_price ?? price) }}</span>
     </div>
   </div>
