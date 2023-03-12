@@ -123,6 +123,14 @@ li {
     margin:15px;
 }
 
+.nav-items-footer-top{
+    margin: 25px 25px 0;
+}
+
+.nav-items-footer-top:nth-child(1){
+    margin-left: 0;
+}
+
 .footer-top-bar {
     justify-content: space-between;
     margin: 0 10% !important;
