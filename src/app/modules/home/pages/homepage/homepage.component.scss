@@ -114,14 +114,8 @@ ul#navbar li {
 }
 
 .main-quick-menu .title {
-  display: table-cell;
-  vertical-align: middle;
-  padding-top: 8px;
-  text-align: left;
-}
-
-.title h2 {
-  text-align: center;
+margin: 0;
+text-align: left;
 }
 
 .main-quick-menu .title h2::after {
@@ -142,7 +136,7 @@ ul#navbar li {
   font-size: 32px;
   line-height: 1.1;
   color: #000;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .main-quick-menu .title p {
@@ -153,7 +147,8 @@ ul#navbar li {
 }
 
 .main-quick-list > * {
-  margin: 1rem;
+  width: 147px;
+  cursor: pointer;
 }
 
 .main-quick-menu .main-quick-list li {
@@ -169,9 +164,9 @@ li {
 
 .main-quick-menu .main-quick-list {
   display: flex;
-  width: 100%;
   flex-wrap: wrap;
   justify-content: end;
+  flex: 1;
 }
 
 .main-quick-menu .main-quick-list li a {
@@ -784,4 +779,14 @@ li {
       padding: 0;
     }
   }
+}
+
+
+// new styling
+
+.category-container{
+  max-width: 1260px;
+  margin: 25px auto 0;
+  padding: 0;
+  align-items: center;
 }
