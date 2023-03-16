@@ -55,3 +55,48 @@ li a:hover {
 .w-20 {
   width: 20%;
 }
+
+.categories-wrapper{
+  border-top: 1px solid #e9e9e9;
+
+  .parent-category{
+    display: block;
+    color: #000;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .parent-category:hover{
+    color: #ec048c;
+  }
+
+  .child-category{
+    display: inline-block;
+    padding-right: 15px;
+    margin: 0 0 20px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .child-category:hover{
+    color: #ec048c;
+  }
+  
+  .sub-child-category{
+    font-size: 16px;
+    padding: 2.5px 0;
+    color: #616161;
+    margin: 4px;
+    display: block;
+  }
+
+  .sub-child-category:hover{
+    color: #000;
+  }
+  
+}

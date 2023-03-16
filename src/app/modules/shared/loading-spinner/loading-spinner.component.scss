@@ -1,12 +1,29 @@
+.loader-parent{
+  position: fixed;
+  background: #0000002e;
+  z-index: 33333333;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .loader {
   width: 5rem;
   height: 5rem;
-  border: 5px solid #f54a7e;
+  border: 3px solid #f54a7e;
   border-bottom-color: #cccccc;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  position: fixed;
+  z-index: 333;
 }
 
 @keyframes rotation {
