@@ -321,9 +321,10 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  private prepareNgxCarouselConfig(slidesToShow: number, centerMode: boolean = false) {
+  private prepareNgxCarouselConfig(slidesToShow: number) {
     return {
       centerMode,
+      centerMode: true,
       arrows: false,
       focusOnSelect: true,
       dots: false,
@@ -331,7 +332,7 @@ export class HomepageComponent implements OnInit {
       speed: 300,
       centerPadding: '60px',
       slidesToShow,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3500,
       responsive: [
         {
