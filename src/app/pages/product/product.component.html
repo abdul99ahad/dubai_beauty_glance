@@ -6,12 +6,25 @@
     <div class="keyImg">
       <div class="thumbnail">
         <lightgallery [settings]="settings" style="display: flex">
-          <img [alt]="productDetail.name" [src]="productDetail.image" class="main-img-product"/>
+          <img
+            [alt]="productDetail.name"
+            [src]="productDetail.image"
+            class="main-img-product"
+          />
         </lightgallery>
       </div>
       <div class="secondary-img-wrapper">
-        <img (click)="changeMainImage(secondaryImage, i)" *ngFor="let secondaryImage of productDetail.secondary_images; let i = index"
-             [src]="secondaryImage" class="product-detail-images" [alt]="productDetail.name" [ngClass]="{'active': selectedIndex === i}"/>
+        <img
+          (click)="changeMainImage(secondaryImage, i)"
+          *ngFor="
+            let secondaryImage of productDetail.secondary_images;
+            let i = index
+          "
+          [src]="secondaryImage"
+          class="product-detail-images"
+          [alt]="productDetail.name"
+          [ngClass]="{ active: selectedIndex === i }"
+        />
       </div>
     </div>
   </div>
@@ -36,25 +49,25 @@
       <div>
         <table class="prd-tb">
           <tbody>
-          <tr class="prd_brand_css xans-record-">
-            <th scope="row">
-              <span style="font-size: 12px; color: #555555">Brand</span>
-            </th>
-            <td>
+            <tr class="prd_brand_css xans-record-">
+              <th scope="row">
+                <span style="font-size: 12px; color: #555555">Brand</span>
+              </th>
+              <td>
                 <span style="font-size: 12px; color: #555555">
                   <a [routerLink]="'/brand/' + productDetail.brand.slug">{{
                     productDetail.brand.name
-                    }}</a>
+                  }}</a>
                 </span>
-            </td>
-          </tr>
-          <tr class="product_price_css xans-record-">
-            <th scope="row">
+              </td>
+            </tr>
+            <tr class="product_price_css xans-record-">
+              <th scope="row">
                 <span style="font-size: 12px; color: #555555; font-weight: bold"
-                >Price</span
+                  >Price</span
                 >
-            </th>
-            <td>
+              </th>
+              <td>
                 <span
                   style="font-size: 12px; color: #555555; font-weight: bold"
                 >
@@ -62,66 +75,66 @@
                     [style.text-decoration]="
                       !productDetail.discount_price ? 'initial' : 'line-through'
                     "
-                  >$ {{ productDetail.price }}</strong
+                    >$ {{ productDetail.price }}</strong
                   >
                 </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="productDetail.discount_price"
-            class="prd_price_sale_css xans-record-"
-          >
-            <th scope="row">
+              </td>
+            </tr>
+            <tr
+              *ngIf="productDetail.discount_price"
+              class="prd_price_sale_css xans-record-"
+            >
+              <th scope="row">
                 <span style="font-size: 12px; color: #323232"
-                >Discounted Price</span
+                  >Discounted Price</span
                 >
-            </th>
-            <td>
+              </th>
+              <td>
                 <span>
                   <span style="font-size: 12px; color: #323232">
                     <span id="span_product_price_sale"
-                    >$ {{ productDetail.discount_price }}
+                      >$ {{ productDetail.discount_price }}
                       <span style="font-size: 12px; color: #555555"
-                      >($
+                        >($
                         {{
-                        +productDetail.price - +productDetail.discount_price
+                          +productDetail.price - +productDetail.discount_price
                         }}
                         discount)</span
                       >
                     </span>
                   </span>
                 </span>
-            </td>
-          </tr>
-          <tr class="simple_desc_css xans-record-">
-            <th scope="row">
-              <span style="font-size: 12px; color: #555555">Description</span>
-            </th>
-            <td>
+              </td>
+            </tr>
+            <tr class="simple_desc_css xans-record-">
+              <th scope="row">
+                <span style="font-size: 12px; color: #555555">Description</span>
+              </th>
+              <td>
                 <span style="font-size: 12px; color: #555555">{{
-                  productDetail.description
-                  }}</span>
-            </td>
-          </tr>
-          <tr class="simple_desc_css xans-record-">
-            <th scope="row">
-              <span style="font-size: 12px; color: #555555">Variants</span>
-            </th>
-            <td>
-              <p-toggleButton
-                (ngModelChange)="
+                  productDetail.name
+                }}</span>
+              </td>
+            </tr>
+            <tr class="simple_desc_css xans-record-">
+              <th scope="row">
+                <span style="font-size: 12px; color: #555555">Variants</span>
+              </th>
+              <td>
+                <p-toggleButton
+                  (ngModelChange)="
                     toggleProductOptionSelection(productOptionIndex)
                   "
-                *ngFor="
+                  *ngFor="
                     let productOption of productDetail.optionValues;
                     index as productOptionIndex
                   "
-                [ngModel]="checkedOptions[productOptionIndex]"
-                [offLabel]="productOption.name"
-                [onLabel]="productOption.name"
-              ></p-toggleButton>
-            </td>
-          </tr>
+                  [ngModel]="checkedOptions[productOptionIndex]"
+                  [offLabel]="productOption.name"
+                  [onLabel]="productOption.name"
+                ></p-toggleButton>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -142,21 +155,21 @@
             Product List
           </caption>
           <colgroup>
-            <col style="width: auto"/>
-            <col style="width: 76px"/>
-            <col style="width: 150px"/>
+            <col style="width: auto" />
+            <col style="width: 76px" />
+            <col style="width: 150px" />
           </colgroup>
           <thead class="displaynone">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-          </tr>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
           </thead>
           <tbody class="">
-          <tr>
-            <td>{{ productDetail.description }}</td>
-            <td>
+            <tr>
+              <td>{{ productDetail.name }}</td>
+              <td>
                 <span class="quantity">
                   <input
                     (ngModelChange)="updateTotalPrice(selectedQuantity)"
@@ -180,32 +193,32 @@
                     />
                   </a>
                 </span>
-            </td>
-            <td class="right">
-              <span class="quantity_price"></span>
-              $ {{ totalPrice }}
-              <span class="mileage displaynone" style="display: none">
-                  <img src=""/>&nbsp;<span class="mileage_price">0 </span>
+              </td>
+              <td class="right">
+                <span class="quantity_price"></span>
+                $ {{ totalPrice }}
+                <span class="mileage displaynone" style="display: none">
+                  <img src="" />&nbsp;<span class="mileage_price">0 </span>
                 </span>
-            </td>
-          </tr>
-          <tr
-            class="xans-element- xans-product xans-product-option option xans-record-"
-            id="totalProductsOption"
-          >
-            <td class="middle" colspan="3">
-              <table class="displaynone">
-                <caption>
-                  Option Information
-                </caption>
-                <colgroup>
-                  <col style="width: 105px"/>
-                  <col style="width: auto"/>
-                </colgroup>
-                <tbody></tbody>
-              </table>
-            </td>
-          </tr>
+              </td>
+            </tr>
+            <tr
+              class="xans-element- xans-product xans-product-option option xans-record-"
+              id="totalProductsOption"
+            >
+              <td class="middle" colspan="3">
+                <table class="displaynone">
+                  <caption>
+                    Option Information
+                  </caption>
+                  <colgroup>
+                    <col style="width: 105px" />
+                    <col style="width: auto" />
+                  </colgroup>
+                  <tbody></tbody>
+                </table>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -253,10 +266,10 @@
         <app-input-button buttonText="Buy Now"></app-input-button>
         <div class="buynow_btn_wrap m_margin">
           <a class="btnNormal sizeL btnBasket add_cart_btn" href="#none"
-          >Add to Cart</a
+            >Add to Cart</a
           >
           <a class="btnNormal sizeL btnWish add_cart_btn" href="#none"
-          >Add to WishList</a
+            >Add to WishList</a
           >
         </div>
       </div>
@@ -278,3 +291,5 @@
     ></app-product-description>
   </p-dialog>
 </div>
+
+<div id="productDescription"></div>
