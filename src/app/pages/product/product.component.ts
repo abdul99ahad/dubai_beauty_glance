@@ -34,6 +34,11 @@ export class ProductComponent implements OnInit {
     this.fetchProductDetails();
   }
 
+  public populateDescription(): void {
+    const productDescription = document.getElementById('productDescription');
+    productDescription!.innerHTML += this.productDetail.description;
+  }
+
   public fetchProductDetails(): void {
     const productSlug = this.route.snapshot.paramMap.get('slug');
     if (!productSlug) throw new Error('Product slug unavailable!');
@@ -55,7 +60,7 @@ export class ProductComponent implements OnInit {
       )
       .subscribe((productDetail: ProductDetail) => {
         this.productDetail = productDetail;
-
+        this.populateDescription();
         this.selectedQuantity = productDetail.min_order_quantity;
         this.updateTotalPrice(this.selectedQuantity);
       });
@@ -90,7 +95,7 @@ export class ProductComponent implements OnInit {
   }
 
   public changeMainImage(source: string, index: number): void {
-    this.productDetail.image = source
+    this.productDetail.image = source;
     this.selectedIndex = index;
   }
 
