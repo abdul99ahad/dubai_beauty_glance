@@ -7,6 +7,7 @@ import {
   PaginatedResponse,
 } from '../../interfaces/response.interface';
 import { map, Observable } from 'rxjs';
+import { Brand } from 'src/app/interfaces/brand.interface';
 
 @Component({
   selector: 'app-brand-products-listing',
@@ -17,6 +18,8 @@ export class BrandProductListingComponent implements OnInit {
   @Input('title') public title: string = 'PRODUCTS';
   public products: Array<Product> = [];
   public productPageButtons: Array<IPageButton> = [];
+  public brandImgUrl: string = '';
+  public brandDetail: Brand;
 
   public constructor(
     private readonly route: ActivatedRoute,
@@ -28,7 +31,13 @@ export class BrandProductListingComponent implements OnInit {
       const brandSlug = this.route.snapshot.paramMap.get('slug');
       this.title = brandSlug?.toUpperCase() || 'PRODUCTS';
       if (!brandSlug) throw new Error('Brand slug not available!');
-
+      this.fetchBrandDetails(brandSlug).subscribe(
+        (response: { data: Brand }) => {
+          this.title = response.data.name;
+          this.brandImgUrl =
+            this.webApiService.imgUrl + response.data.brand_banner_image;
+        }
+      );
       this.fetchProductsOfBrandWithSlug(brandSlug);
     });
   }
@@ -45,6 +54,10 @@ export class BrandProductListingComponent implements OnInit {
       this.webApiService.getBrandProductsWithSlug(brandSlug);
 
     this.handleCategoryProducts(productsObservable);
+  }
+
+  public fetchBrandDetails(brandSlug: string): Observable<{ data: Brand }> {
+    return this.webApiService.getBrandDetails(brandSlug);
   }
 
   private handleCategoryProducts(

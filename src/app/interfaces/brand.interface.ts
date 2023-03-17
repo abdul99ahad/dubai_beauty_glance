@@ -1,4 +1,4 @@
-import type { Product } from "./product.interface";
+import type { Product } from './product.interface';
 
 export interface Brand {
   name: string;
@@ -7,6 +7,7 @@ export interface Brand {
   country_flag: string;
   country_code: string;
   brand_image: string;
+  brand_banner_image: string;
 }
 
 export interface BrandWithProducts extends Brand {
