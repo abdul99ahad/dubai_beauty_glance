@@ -69,6 +69,15 @@ export class HomepageComponent implements OnInit {
     price: '22,000',
     discount_price: '18,000',
     image: '../../../../../assets/product_1.jpg',
+    brand: {
+      name: 'Brand 025 - 0003',
+      slug: 'brand-025-0003',
+      country_name: 'Bolivia',
+      country_code: 'bo',
+      country_flag: 'countries/images/bo.svg',
+      brand_image: 'images/brand.png',
+      brand_banner_image: 'images/brandbanner.jpg',
+    },
   });
 
   public brandSaleImages: string[] = [

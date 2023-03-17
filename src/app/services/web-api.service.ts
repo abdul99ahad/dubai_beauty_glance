@@ -74,7 +74,7 @@ export class WebApiService {
   public getLatestProducts(): Observable<{ data: Array<Product> }> {
     return this.httpService
       .get<{ data: Array<Product> }>(
-        `${ApiRoutes.products}?paginate=0&latest=1&numOfProducts=10`
+        `${ApiRoutes.products}?paginate=0&latest=1&numOfProducts=10&with[]=brand`
       )
       .pipe(
         switchMap((data: { data: Array<Product> }) => {

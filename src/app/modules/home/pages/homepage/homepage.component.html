@@ -222,6 +222,7 @@
       >
         <ng-template let-product pTemplate="item">
           <app-product-card
+            [brandName]="product.brand.name"
             [name]="product.name"
             [slug]="product.slug"
             [price]="product.price"
@@ -322,6 +323,7 @@
       <app-product-card
         class="w-20"
         *ngFor="let product of newArrivalsProductsDisplay"
+        [brandName]="product.brand.name"
         [name]="product.name"
         [slug]="product.slug"
         [price]="product.price"
@@ -334,7 +336,8 @@
       <app-product-card
         id="new-arrivals"
         *ngFor="let product of newArrivalsProductsDisplay"
-        [name]="product.name"
+        [brandName]="product.brand.name"
+        [name]="product.brand.name"
         [slug]="product.slug"
         [price]="product.price"
         [discount_price]="product.discount_price"
@@ -425,6 +428,7 @@
               >
                 <ng-template let-product pTemplate="item">
                   <app-product-card
+                    [brandName]="brandTabHeader.name"
                     [name]="product.name"
                     [slug]="product.slug"
                     [price]="product.price"
