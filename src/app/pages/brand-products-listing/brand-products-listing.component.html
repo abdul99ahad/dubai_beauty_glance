@@ -20,6 +20,7 @@
           <ng-template let-product pTemplate="gridItem" class="parent">
             <app-product-card
               class="child"
+              [brandName]="title"
               [name]="product.name"
               [slug]="product.slug"
               [price]="product.price"
