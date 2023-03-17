@@ -226,6 +226,9 @@
   [draggable]="false"
   [resizable]="false"
 >
+  <ng-template pTemplate="header">
+    <h3 class="all-categories-heading">All Categories</h3>
+  </ng-template>
   <app-hamburger-menu
     (onCategorySelected)="toggleHamBurgerMenu()"
   ></app-hamburger-menu>

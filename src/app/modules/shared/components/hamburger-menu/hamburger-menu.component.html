@@ -1,26 +1,20 @@
-<h2 class="text-left font-bold">ALL CATEGORIES</h2>
-<hr>
-<div class="flex flex-column">
+<!-- <h2 class="text-left font-bold">ALL CATEGORIES</h2> -->
+<!-- <hr> -->
+<div class="flex flex-column categories-wrapper">
   <div *ngFor="let firstLevelCategory of categories">
-    <h3>
-      <a (click)="categoryClick()" [routerLink]="['category', firstLevelCategory.slug]">
-        <span>{{ firstLevelCategory.name }}</span>
-      </a>
-    </h3>
+    <a (click)="categoryClick()" [routerLink]="['category', firstLevelCategory.slug]" class="parent-category">
+      <span>{{ firstLevelCategory.name }}</span>
+    </a>
     <div class="flex flex-row">
       <div *ngFor="let secondLevelCategory of firstLevelCategory.childrenCategories; let i = index" class="w-20">
-        <h4>
-          <a (click)="categoryClick()" [routerLink]="['category', secondLevelCategory.slug]">
-            <span>{{ secondLevelCategory.name }}</span>
-          </a>
-        </h4>
+        <a (click)="categoryClick()" [routerLink]="['category', secondLevelCategory.slug]" class="child-category">
+          <span>{{ secondLevelCategory.name }}</span>
+        </a>
         <div class="flex flex-column">
           <div class="w-full" *ngFor="let thirdLevelCategory of secondLevelCategory.childrenCategories">
-            <p class="m-1">
-              <a (click)="categoryClick()" [routerLink]="['category', thirdLevelCategory.slug]">
-                <span>{{ thirdLevelCategory.name }}</span>
-              </a>
-            </p>
+            <a (click)="categoryClick()" [routerLink]="['category', thirdLevelCategory.slug]" class="sub-child-category">
+              <span>{{ thirdLevelCategory.name }}</span>
+            </a>
           </div>
         </div>
       </div>
