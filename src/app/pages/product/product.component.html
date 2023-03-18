@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="response; else loadingSpinner">
 <div *ngIf="productDetail" class="grid">
   <div class="col-12 md:col-12 lg:col-12">
     <app-ad-banner></app-ad-banner>
@@ -101,16 +101,6 @@
                 </span>
             </td>
           </tr>
-          <!-- <tr class="simple_desc_css xans-record-">
-            <th scope="row">
-              <span style="font-size: 14px; color: #555555">Description</span>
-            </th>
-            <td>
-                <span style="font-size: 14px; color: #555555">{{
-                  productDetail.description
-                  }}</span>
-            </td>
-          </tr> -->
           <tr class="simple_desc_css xans-record-">
             <th scope="row">
               <span style="font-size: 14px; color: #555555">Variants</span>
@@ -163,9 +153,8 @@
               <th scope="col">Price</th>
             </tr>
           </thead>
-          <tbody class="">
+          <tbody>
           <tr>
-            <!-- <td>{{ productDetail.description }}</td> -->
             <td>
                 <span class="quantity">
                   <input
@@ -276,9 +265,7 @@
   <div class="col-12 md:col-12 lg:col-12">
   <p-tabView styleClass="product-details-tab">
     <p-tabPanel header="Description">
-      <div class="product-tab-content">{{
-        productDetail.description
-        }}</div>
+      <div class="product-tab-content" *ngIf="productDetail.description" [innerHTML]="productDetail.description"></div>
     </p-tabPanel>
     <p-tabPanel header="Reviews">
         Revies goes here. Section to be developed
@@ -288,7 +275,6 @@
     </p-tabPanel>
   </p-tabView>
   </div>
-  <!-- <div class="col-12 md:col-12 lg:col-12 box" style="height: 500px"></div> -->
 
   <p-dialog
     [(visible)]="display"
@@ -305,3 +291,6 @@
   </p-dialog>
 </div>
 </div>
+<ng-template #loadingSpinner>
+  <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>
+</ng-template>

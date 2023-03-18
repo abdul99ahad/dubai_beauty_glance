@@ -25,6 +25,8 @@ export class ProductComponent implements OnInit {
 
   public productDetail: ProductDetail;
 
+  response: boolean = false;
+
   public constructor(
     private readonly route: ActivatedRoute,
     private readonly webApiService: WebApiService
@@ -34,10 +36,10 @@ export class ProductComponent implements OnInit {
     this.fetchProductDetails();
   }
 
-  public populateDescription(): void {
+  /*public populateDescription(): void {
     const productDescription = document.getElementById('productDescription');
     productDescription!.innerHTML += this.productDetail.description;
-  }
+  }*/
 
   public fetchProductDetails(): void {
     const productSlug = this.route.snapshot.paramMap.get('slug');
@@ -60,9 +62,10 @@ export class ProductComponent implements OnInit {
       )
       .subscribe((productDetail: ProductDetail) => {
         this.productDetail = productDetail;
-        this.populateDescription();
+        /*this.populateDescription();
         this.selectedQuantity = productDetail.min_order_quantity;
-        this.updateTotalPrice(this.selectedQuantity);
+        this.updateTotalPrice(this.selectedQuantity);*/
+        this.response = true;
       });
   }
 

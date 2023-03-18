@@ -12,7 +12,7 @@ export interface Product {
 }
 
 export interface ProductDetail extends Product {
-  description: string;
+  description: string | null;
   meta_title: string | null;
   meta_description: string | null;
   meta_keywords: string | null;
