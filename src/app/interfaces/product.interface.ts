@@ -22,7 +22,7 @@ export interface ProductDetail extends Product {
   secondary_images: Array<string>;
   min_order_quantity: number;
   promotion_status: boolean;
-  related_products: Array<Product>;
+  relatedProducts: Array<Product>;
   brand: Brand;
   tags: Array<Tag>;
   categories: Array<Omit<Category, 'childrenCategories'>>;
