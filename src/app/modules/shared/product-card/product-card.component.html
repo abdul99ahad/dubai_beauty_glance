@@ -13,7 +13,7 @@
     </div>
 
     <div class="description">
-      <span class="prd-brand">{{ name }}</span>
+      <span class="prd-brand">{{ brandName }}</span>
       <strong class="name">
         <a [routerLink]="'/product/' + slug">
           <span>{{ name }}</span>
@@ -25,10 +25,14 @@
   <div id="div2" class="prod-price">
     <div class="solid"></div>
     <div>
-      <span class="price">{{ discount_price ? currency + " " + price : "-" }}</span>
+      <span class="price">{{
+        discount_price ? currency + " " + price : "-"
+      }}</span>
     </div>
     <div>
-      <span class="discounted_price">{{ currency + " " + (discount_price ?? price) }}</span>
+      <span class="discounted_price">{{
+        currency + " " + (discount_price ?? price)
+      }}</span>
     </div>
   </div>
 </div>

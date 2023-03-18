@@ -1,6 +1,6 @@
-import { Brand } from "./brand.interface";
-import { Tag } from "./tag.interface";
-import { Category } from "./categories.interface";
+import { Brand } from './brand.interface';
+import { Tag } from './tag.interface';
+import { Category } from './categories.interface';
 
 export interface Product {
   name: string;
@@ -8,6 +8,7 @@ export interface Product {
   price: string;
   discount_price: string | null;
   image: string;
+  brand: Brand;
 }
 
 export interface ProductDetail extends Product {
@@ -24,7 +25,7 @@ export interface ProductDetail extends Product {
   related_products: Array<Product>;
   brand: Brand;
   tags: Array<Tag>;
-  categories: Array<Omit<Category, "childrenCategories">>;
+  categories: Array<Omit<Category, 'childrenCategories'>>;
   optionValues: Array<ProductOption>;
 }
 
