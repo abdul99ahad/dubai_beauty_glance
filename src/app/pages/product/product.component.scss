@@ -44,28 +44,26 @@
 }
 
 .infoArea {
-  // float: right;
-  width: 570px;
   padding: 0 0;
   background: #fff;
   position: relative;
 }
 
 .headingArea {
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid #000;
   padding: 0 0 15px;
   margin: 0 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.headingArea h2 {
+.product-heading {
   color: #000;
-  font-size: 28px;
+  font-size: 22px;
   line-height: 1.4;
   font-weight: 500;
-  letter-spacing: 0;
-  text-align: left;
-  display: block;
-  width: 80%;
+  margin-right: 10px;
 }
 
 .infoArea table {
@@ -279,8 +277,8 @@ a:hover {
   }
 
   .p-togglebutton.p-button.p-highlight:hover {
-    background: #ec048c;
-    border-color: #ec048c;
+    background: #f54a7e;
+    border-color: #f54a7e;
     color: #ffffff;
   }
 
@@ -289,8 +287,8 @@ a:hover {
   }
 
   .p-togglebutton.p-button.p-highlight {
-    background: #ec048c;
-    border-color: #ec048c;
+    background: #f54a7e;
+    border-color: #f54a7e;
     color: #ffffff;
   }
 
@@ -395,4 +393,44 @@ a:hover {
 /* Handle on hover */
 .secondary-img-wrapper::-webkit-scrollbar-thumb:hover {
   background: #b8b8b8;
+}
+
+.main-container{
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+:host ::ng-deep p-tabView {
+
+  .p-tabview-nav {
+    justify-content: space-evenly;
+    border: none;
+  }
+
+  .p-tabview-nav li .p-tabview-nav-link{
+    justify-content: center;
+    color: #555;
+    border-bottom: solid #555;
+  }
+
+  .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+    border-color: #f54a7e;
+    color: #f54a7e;
+    // border-width: 2px 2px 0px 2px;
+    // border-bottom: none;
+  }
+
+  .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
+    border-color: #8d8d8d;
+    color: #8d8d8d;
+  }
+
+  .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: none;
+  }
+
+  .product-tab-content{
+    padding: 2rem;
+    line-height: 1.6;
+  }
 }

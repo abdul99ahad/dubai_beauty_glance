@@ -15,7 +15,7 @@ h3 {
 }
 
 .trash i:hover {
-    color:#ec048c ;
+    color:#f54a7e ;
     cursor: pointer;
 }
 
@@ -48,7 +48,7 @@ h3 {
 }
 
 .btnPoint {
-    background: #ec048c 
+    background: #f54a7e 
 }
 
 :host ::ng-deep .quantity-number.p-inputNumber {
@@ -223,7 +223,7 @@ h3 {
         width: 100px;
     }
     .p-inputnumber-button {
-        background-color: #ec048c;
+        background-color: #f54a7e;
         border: none;
     }
 
@@ -232,7 +232,7 @@ h3 {
         border: none;
     }
     .p-inputnumber-input:hover, .p-inputnumber-input:focus{
-        border-color: #ec048c; ;
+        border-color: #f54a7e; ;
         box-shadow: none;
     }
 }
