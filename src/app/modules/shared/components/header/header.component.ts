@@ -111,10 +111,10 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
 
   public ngOnInit(): void {
     const searchSubscription = this.observeProductSearch();
-    const currencySubscription = this.setupAvailableCurrencies();
+    // const currencySubscription = this.setupAvailableCurrencies();
     const brandSubscription = this.setupBrandsForHeader();
 
-    this.addSubscriptions(searchSubscription, currencySubscription, brandSubscription);
+    this.addSubscriptions(searchSubscription, brandSubscription);
   }
 
   public ngOnDestroy(): void {
@@ -149,7 +149,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
     this.currencyService.selectedCurrency = selectMenu.value;
   }
 
-  private setupAvailableCurrencies(): Subscription {
+  /*private setupAvailableCurrencies(): Subscription {
     return this.webApiService.getCurrencyList().pipe(
       map(({ currencies }: CurrencyList) => currencies),
       map((currencies: Record<string, string>) => {
@@ -173,7 +173,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
       if (!selectedCurrency) return;
       this.selectedCurrency = selectedCurrency;
     });
-  }
+  }*/
 
   private setupBrandsForHeader(): Subscription {
     this.fillEnglishAlphabets();
