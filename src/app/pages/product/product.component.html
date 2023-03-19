@@ -127,12 +127,9 @@
 
         <p-divider></p-divider>
       </div>
-      <div>
-        <p class="info">
-          (Minimum Order : {{ productDetail.min_order_quantity }} or more )
-        </p>
-      </div>
-      <div style="display: none" class="" id="totalProducts">
+      
+
+      <!-- <div style="display: none" class="" id="totalProducts">
         <p class="ec-base-help txtWarn txt11">Select quantity.</p>
         <p class="ec-base-help txtWarn txt11 displaynone">
           Product will be automatically added below when you select an option.
@@ -207,32 +204,20 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
 
-      <div style="margin: 15px 0">
-        <p style="font-size: 16px; margin-bottom: 15px">
-          Free Shipping : On Bill above $ 3,000 (else $ 200) (Not applicable for
-          discounted items)
-        </p>
-        <img
-          alt="gifts"
-          class="gifts-img"
-          src="https://beautyglance.pk/image/catalog/icons/free-gifts.jpg"
-        />
-        <p>
+
+      <div class="prod-static-content">
+        <p class="p1">(Minimum Order : {{ productDetail.min_order_quantity }} or more )</p>
+        <p class="p2">Free Shipping : On Bill above $ 3,000 (else $ 200) <span>(Not applicable for discounted items)</span></p>
+        <img alt="gifts" class="gifts-img" src="../../../assets/free-gifts.jpg" />
+
+        <p class="p3">
           Services:
-          <img
-            alt="pink"
-            class="custom_features_image"
-            src="https://beautyglance.pk/image/catalog/icons/checkbox-pink.jpg"
-          />
+          <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" />
           Delivery 2-3 working days
-          <img
-            alt="pink"
-            class="custom_features_image"
-            src="https://beautyglance.pk/image/catalog/icons/checkbox-pink.jpg"
-            style="margin-left: 10px"
-          />
+
+          <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" style="margin-left: 10px" />
           Original Guaranteed
         </p>
       </div>
@@ -268,15 +253,18 @@
         <button class="btn add-to-cart-btn">Add to Wishlist</button>
       </div>
 
-      <div class="totalPrice" id="totalPrice">
-        <strong>Price</strong>
+      <div class="prod-price" id="totalPrice">
+        <p class="prod-label">Price <small>(Quantity) </small>: </p>
+        <p class="prod-value"><strong>$ {{ discountedTotalPrice }}</strong><small>({{ selectedQuantity }} item(s))</small></p>
+
+        <!-- <strong>Price</strong>
         (Quantity) :
         <span class="total">
           <strong>
             <em>$ {{ discountedTotalPrice }}</em>
           </strong>
           ({{ selectedQuantity }} item(s))
-        </span>
+        </span> -->
       </div>
       
     </div>

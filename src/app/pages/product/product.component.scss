@@ -309,19 +309,7 @@ a:hover {
   display: none;
 }
 
-.gifts-img {
-  animation: beat 2s infinite;
-  animation-duration: 2s;
-  animation-timing-function: ease;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-fill-mode: none;
-  animation-play-state: running;
-  animation-name: beat;
-  max-width: 500px;
-  margin-bottom: 20px;
-}
+
 
 .product-detail-images {
   width: 65px;
@@ -432,6 +420,10 @@ a:hover {
   .product-tab-content{
     padding: 2rem;
     line-height: 1.6;
+
+    img {
+      width: 100%;
+    }
   }
 }
 
@@ -460,7 +452,7 @@ a:hover {
 
     input {
       width: 100%;
-      padding: 0 2px 0 3px;
+      padding: 0 2px 0 7px;
       line-height: 50px;
       border: 1px solid #d4d8d9;
       border-radius: 3px 0 0 3px;
@@ -523,4 +515,51 @@ a:hover {
     }
   }
   
+}
+
+.prod-price{
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  
+  .prod-label{
+    margin-right: 10px;
+    font-weight: 500;
+    small{
+      font-weight: 400;
+    }
+  }
+
+  .prod-value{
+    color: #f54a7e;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+
+    small{
+      color: #000;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.prod-static-content{
+  font-size: 14px;
+  margin-top: 10px;
+  .p1{
+    margin-bottom: 12px;
+  }
+
+  .p2{
+    margin-bottom: 12px;
+    span{
+      color: red;
+    }
+  }
+
+  .gifts-img {
+    max-width: 500px;
+    margin-bottom: 12px;
+  }
 }
