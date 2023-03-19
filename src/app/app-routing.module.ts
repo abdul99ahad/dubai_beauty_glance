@@ -18,6 +18,7 @@ import {
   ProductsListingComponent,
   CheckoutComponent,
   PromotionsListingComponent,
+  TagProductsListingComponent,
 } from './public-api';
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'brands', component: BrandsListingComponent },
   { path: 'brand/:slug', component: BrandProductListingComponent },
   { path: 'category/:slug', component: CategoryProductsListingComponent },
+  { path: 'tag/:slug', component: TagProductsListingComponent },
 ];
 
 @NgModule({

@@ -148,9 +148,11 @@
                 </th>
                 <td>
                   <span>
-                    <a *ngFor="let productTags of productDetail.tags">{{
-                      productTags.name
-                    }}</a>
+                    <a
+                      *ngFor="let productTags of productDetail.tags"
+                      [routerLink]="'/tag/' + productTags.slug"
+                      >{{ productTags.name }}</a
+                    >
                   </span>
                 </td>
               </tr>

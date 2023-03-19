@@ -240,6 +240,24 @@ export class WebApiService {
       );
   }
 
+  public getTagProductsWithSlug(
+    tagSlug: string
+  ): Observable<PaginatedResponse<Product>> {
+    return this.httpService
+      .get<PaginatedResponse<Product>>(`${ApiRoutes.tag}/${encodeURI(tagSlug)}`)
+      .pipe(
+        switchMap((data: PaginatedResponse<Product>) => {
+          return from(
+            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
+              data,
+              'price',
+              'discount_price'
+            )
+          );
+        })
+      );
+  }
+
   public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
     return this.httpService.get(url ?? ApiRoutes.brands, !!url);
   }
