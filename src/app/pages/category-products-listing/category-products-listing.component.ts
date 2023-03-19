@@ -7,6 +7,7 @@ import {
   IPageButton,
   PaginatedResponse,
 } from '../../interfaces/response.interface';
+import { Category } from 'src/app/interfaces/categories.interface';
 
 @Component({
   selector: 'app-category-products-listing',
@@ -17,6 +18,7 @@ export class CategoryProductsListingComponent implements OnInit {
   @Input('title') public title: string = 'PRODUCTS';
   public products: Array<Product> = [];
   public productPageButtons: Array<IPageButton> = [];
+  public categoryImgUrl: string = '';
 
   public constructor(
     private readonly route: ActivatedRoute,
@@ -28,9 +30,20 @@ export class CategoryProductsListingComponent implements OnInit {
       const categorySlug = this.route.snapshot.paramMap.get('slug');
       this.title = categorySlug || 'PRODUCTS';
       if (!categorySlug) throw new Error('Category slug not available!');
-
+      this.fetchCategoryDetails(categorySlug).subscribe(
+        (response: { data: Category }) => {
+          this.title = response.data.name;
+          this.categoryImgUrl = this.webApiService.imgUrl + response.data.image;
+        }
+      );
       this.fetchProductsOfCategoryWithSlug(categorySlug);
     });
+  }
+
+  public fetchCategoryDetails(
+    categorySlug: string
+  ): Observable<{ data: Category }> {
+    return this.webApiService.getCategoryDetails(categorySlug);
   }
 
   public fetchProductsOfCategoryWithUrl(categoryUrl: string): void {
