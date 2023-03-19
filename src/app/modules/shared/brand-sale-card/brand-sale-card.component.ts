@@ -7,4 +7,5 @@ import { Component, Input } from "@angular/core";
 })
 export class BrandSaleCardComponent {
   @Input("imgSrc") public imgSrc: string = "";
+  @Input("link") link: string = "javascript:void(0)";
 }

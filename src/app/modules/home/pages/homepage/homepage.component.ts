@@ -1,13 +1,15 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/product.interface';
-import { HomepageNgxCarouselsState } from './homepage-carousel.type';
-import { SlickCarouselComponent } from 'ngx-slick-carousel';
-import { WebApiService } from '../../../../services/web-api.service';
-import { map, Observable } from 'rxjs';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Product} from 'src/app/interfaces/product.interface';
+import {HomepageNgxCarouselsState} from './homepage-carousel.type';
+import {SlickCarouselComponent} from 'ngx-slick-carousel';
+import {WebApiService} from '../../../../services/web-api.service';
+import {map, Observable, Subscription} from 'rxjs';
 import {
   Brand,
   BrandWithProducts,
 } from '../../../../interfaces/brand.interface';
+import {Banner} from "../../../../interfaces/banner.interface";
+import {Setting} from "../../../../interfaces/setting.interface";
 
 @Component({
   selector: 'app-homepage',
@@ -20,48 +22,14 @@ export class HomepageComponent implements OnInit {
   public topPosToStartShowing: number = 100;
 
   public currentBestBrandItem: number = 1;
+  // public slider: Array<Banner>;
+  public allEventAndBgMainBanner: Array<Banner> = [];
 
-  public allEventAndBgMainBanner: Array<{ image: string; title: string }> = [
-    {
-      image: './assets/1promotion_banner730x350.jpg',
-      title: 'Event Banner 1',
-    },
-    {
-      image: './assets/2promotion_banner730x350.jpg',
-      title: 'Event banner 2',
-    },
-    {
-      image: './assets/3promotion_banner730x350.jpg',
-      title: 'Event banner 3',
-    },
-    {
-      image: './assets/4promotion_banner730x350.jpg',
-      title: 'Event Banner 1',
-    },
-    {
-      image: './assets/5promotion_banner730x350.jpg',
-      title: 'Event banner 2',
-    },
-  ];
-
-  public allEventBanner: Array<{ image: string; title: string }> = [
-    {
-      image: '../../../../../assets/event/1.jpg',
-      title: 'Event Banner 1',
-    },
-    {
-      image: '../../../../../assets/event/2.jpg',
-      title: 'Event banner 2',
-    },
-    {
-      image: '../../../../../assets/event/3.jpg',
-      title: 'Event banner 3',
-    },
-    {
-      image: '../../../../../assets/event/4.jpg',
-      title: 'Event Banner 1',
-    },
-  ];
+  public allEventBanner: Array<Banner> = [];
+  public brandSaleImages: Array<Banner> = [];
+  public deliveryBanner: Array<Banner> = [];
+  public banner: Array<Banner> = [];
+  response: boolean = false;
 
   public bestItemsOfTheMonth: Array<Product> = new Array<Product>(20).fill({
     name: 'MISSHA',
@@ -79,15 +47,6 @@ export class HomepageComponent implements OnInit {
       brand_banner_image: 'images/brandbanner.jpg',
     },
   });
-
-  public brandSaleImages: string[] = [
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/5002ef240783c3d1f77729ef94cb7a40.jpg',
-    'https://jolse.com/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/6be8c4cf1df24d699a7bc110e30f7579.jpg',
-  ];
 
   public responsiveOptions = [
     {
@@ -126,7 +85,7 @@ export class HomepageComponent implements OnInit {
   public homePageNgxCarouselsToRender = {
     EventBannerCarousel: {
       carouselName: 'EventBannerCarousel',
-      data: this.allEventAndBgMainBanner,
+      data: this.allEventBanner,
       carouselNumOfSlidesOnBg: 3,
     },
     BestItemsCarousel: {
@@ -143,7 +102,8 @@ export class HomepageComponent implements OnInit {
 
   public homePageNgxCarouselsState: HomepageNgxCarouselsState = {};
 
-  public constructor(private readonly webApiService: WebApiService) {}
+  public constructor(private readonly webApiService: WebApiService) {
+  }
 
   public prevBestBrandItem(): void {
     if (this.currentBestBrandItem === 1) {
@@ -165,10 +125,89 @@ export class HomepageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initializeNgxCarousels();
-
     this.fetchLatestProducts();
-
     this.fetchBestBrandsWithProducts();
+    this.getMainSlider()
+    this.getPromotionEvent()
+    this.getPromotionBrand()
+    this.getDeliveryBanner();
+    this.getBanner();
+    this.response = true;
+  }
+
+  getMainSlider(): Subscription {
+    return this.webApiService.getBanners('slider').pipe(
+      map(({data}: { data: Array<Banner> }) => data),
+      map((banners: Array<Banner>) =>
+        banners.map((banner: Banner) => {
+          banner.image = this.webApiService.imgUrl + banner.image;
+          return banner;
+        })
+      )
+    )
+      .subscribe((banners: Array<Banner>) => {
+        this.allEventAndBgMainBanner = banners;
+      });
+  }
+
+  getPromotionEvent(): Subscription {
+    return this.webApiService.getBanners('promotion_event').pipe(
+      map(({data}: { data: Array<Banner> }) => data),
+      map((banners: Array<Banner>) =>
+        banners.map((banner: Banner) => {
+          banner.image = this.webApiService.imgUrl + banner.image;
+          return banner;
+        })
+      )
+    )
+      .subscribe((banners: Array<Banner>) => {
+        this.allEventBanner = banners;
+      });
+  }
+
+  getPromotionBrand(): Subscription {
+    return this.webApiService.getBanners('promotion_brand').pipe(
+      map(({data}: { data: Array<Banner> }) => data),
+      map((banners: Array<Banner>) =>
+        banners.map((banner: Banner) => {
+          banner.image = this.webApiService.imgUrl + banner.image;
+          return banner;
+        })
+      )
+    )
+      .subscribe((banners: Array<Banner>) => {
+        this.brandSaleImages = banners;
+      });
+  }
+
+  getDeliveryBanner(): Subscription {
+    return this.webApiService.getBanners('delivery_banner').pipe(
+      map(({data}: { data: Array<Banner> }) => data),
+      map((banners: Array<Banner>) =>
+        banners.map((banner: Banner) => {
+          banner.image = this.webApiService.imgUrl + banner.image;
+          return banner;
+        })
+      )
+    )
+      .subscribe((banners: Array<Banner>) => {
+        this.deliveryBanner = banners;
+      });
+  }
+
+  getBanner(): Subscription {
+    return this.webApiService.getBanners('banner').pipe(
+      map(({data}: { data: Array<Banner> }) => data),
+      map((banners: Array<Banner>) =>
+        banners.map((banner: Banner) => {
+          banner.image = this.webApiService.imgUrl + banner.image;
+          return banner;
+        })
+      )
+    )
+      .subscribe((banners: Array<Banner>) => {
+        this.banner = banners;
+      });
   }
 
   @HostListener('window:scroll')
@@ -202,7 +241,7 @@ export class HomepageComponent implements OnInit {
     this.webApiService
       .getLatestProducts()
       .pipe(
-        map(({ data }: { data: Array<Product> }) => data),
+        map(({data}: { data: Array<Product> }) => data),
         map((products: Array<Product>) =>
           products.map((product: Product) => {
             product.image = this.webApiService.imgUrl + product.image;
@@ -220,7 +259,7 @@ export class HomepageComponent implements OnInit {
     this.webApiService
       .getBestBrands()
       .pipe(
-        map(({ data }: { data: Array<Brand> }) => data),
+        map(({data}: { data: Array<Brand> }) => data),
         map((brands: Array<Brand>) =>
           brands.map((brand: Brand) => {
             brand.brand_image = this.webApiService.imgUrl + brand.brand_image;
@@ -252,7 +291,7 @@ export class HomepageComponent implements OnInit {
             }) => {
               eachBrandWithEmptyProducts.products$
                 .pipe(
-                  map(({ data }: { data: Array<Product> }) => data),
+                  map(({data}: { data: Array<Product> }) => data),
                   map((products: Array<Product>) => {
                     products = products.map((product: Product) => {
                       product.image = this.webApiService.imgUrl + product.image;
@@ -337,7 +376,7 @@ export class HomepageComponent implements OnInit {
       focusOnSelect: true,
       dots: false,
       infinite: true,
-      speed: 300,
+      speed: 600,
       centerPadding: '60px',
       slidesToShow,
       autoplay: false,

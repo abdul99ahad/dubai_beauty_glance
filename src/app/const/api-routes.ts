@@ -8,4 +8,5 @@ export const ApiRoutes = {
   category: 'category',
   setting: 'setting',
   getSingleBrand: 'get-single-brand',
+  banners: 'banners'
 } as const;

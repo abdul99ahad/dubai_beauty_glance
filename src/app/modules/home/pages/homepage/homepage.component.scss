@@ -581,14 +581,14 @@ li {
   //   height: 350px;
   // }
 
-  .slick-slide > img{
+  .slick-slide img{
     padding: 10px;
   }
 
-  .slick-active >img{
+  .slick-active img{
     padding: 10px 15px ;
   }
-  .slick-center.slick-active > img {
+  .slick-center.slick-active img {
     transform: scale(1.11);
     padding: 10px;
   }

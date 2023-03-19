@@ -11,6 +11,7 @@ import { CurrencyList } from '../interfaces/currencies.interface';
 import { CurrencyApiKey } from '../const/api-key';
 import { CurrencyService } from './currency.service';
 import { Setting } from '../interfaces/setting.interface';
+import {Banner} from "../interfaces/banner.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,11 @@ export class WebApiService {
   public getSetting(): Observable<{ data: Setting }> {
     return this.httpService.get<{ data: Setting }>(`${ApiRoutes.setting}`);
   }
+
+  public getBanners(type: string): Observable<{ data: Array<Banner> }> {
+    return this.httpService.get<{ data: Array<Banner> }>(`${ApiRoutes.banners}/${type}`);
+  }
+
 
   public getCurrencyList(): Observable<CurrencyList> {
     return this.httpService.getWithApiKey(
