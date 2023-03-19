@@ -376,7 +376,7 @@ export class HomepageComponent implements OnInit {
       focusOnSelect: true,
       dots: false,
       infinite: true,
-      speed: 300,
+      speed: 600,
       centerPadding: '60px',
       slidesToShow,
       autoplay: false,
