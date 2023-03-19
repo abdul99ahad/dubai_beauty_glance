@@ -142,6 +142,18 @@
                   </div>
                 </td>
               </tr>
+              <tr class="prd_price_sale_css xans-record-">
+                <th scope="row">
+                  <span style="font-size: 14px; color: #323232">Tags</span>
+                </th>
+                <td>
+                  <span>
+                    <a *ngFor="let productTags of productDetail.tags">{{
+                      productTags.name
+                    }}</a>
+                  </span>
+                </td>
+              </tr>
             </tbody>
           </table>
 
