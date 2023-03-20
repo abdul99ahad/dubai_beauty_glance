@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { from, Observable, switchMap } from 'rxjs';
 import { HttpService } from './http.service';
 import { ApiRoutes } from 'src/app/const/api-routes';
-import { CategoryWithChildren } from '../interfaces/categories.interface';
+import {
+  Category,
+  CategoryWithChildren,
+} from '../interfaces/categories.interface';
 import { Product, ProductDetail } from '../interfaces/product.interface';
 import { PaginatedResponse } from '../interfaces/response.interface';
 import { environment } from 'src/environments/environment';
@@ -11,7 +14,7 @@ import { CurrencyList } from '../interfaces/currencies.interface';
 import { CurrencyApiKey } from '../const/api-key';
 import { CurrencyService } from './currency.service';
 import { Setting } from '../interfaces/setting.interface';
-import {Banner} from "../interfaces/banner.interface";
+import { Banner } from '../interfaces/banner.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -29,9 +32,10 @@ export class WebApiService {
   }
 
   public getBanners(type: string): Observable<{ data: Array<Banner> }> {
-    return this.httpService.get<{ data: Array<Banner> }>(`${ApiRoutes.banners}/${type}`);
+    return this.httpService.get<{ data: Array<Banner> }>(
+      `${ApiRoutes.banners}/${type}`
+    );
   }
-
 
   public getCurrencyList(): Observable<CurrencyList> {
     return this.httpService.getWithApiKey(
@@ -236,6 +240,24 @@ export class WebApiService {
       );
   }
 
+  public getTagProductsWithSlug(
+    tagSlug: string
+  ): Observable<PaginatedResponse<Product>> {
+    return this.httpService
+      .get<PaginatedResponse<Product>>(`${ApiRoutes.tag}/${encodeURI(tagSlug)}`)
+      .pipe(
+        switchMap((data: PaginatedResponse<Product>) => {
+          return from(
+            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
+              data,
+              'price',
+              'discount_price'
+            )
+          );
+        })
+      );
+  }
+
   public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
     return this.httpService.get(url ?? ApiRoutes.brands, !!url);
   }
@@ -253,6 +275,14 @@ export class WebApiService {
   public getBrandDetails(brandSlug: string): Observable<{ data: Brand }> {
     return this.httpService.get<{ data: Brand }>(
       ApiRoutes.getSingleBrand + '/' + brandSlug
+    );
+  }
+
+  public getCategoryDetails(
+    categorySlug: string
+  ): Observable<{ data: Category }> {
+    return this.httpService.get<{ data: Category }>(
+      ApiRoutes.getSingleCategory + '/' + categorySlug
     );
   }
 }

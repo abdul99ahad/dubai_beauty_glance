@@ -1,303 +1,343 @@
 <div class="main-container" *ngIf="response; else loadingSpinner">
-<div *ngIf="productDetail" class="grid">
-  <div class="col-12 md:col-12 lg:col-12">
-    <app-ad-banner></app-ad-banner>
-  </div>
-  <div class="col-12 md:col-5 lg:col-5">
-    <div class="keyImg">
-      <div class="thumbnail">
-        <lightgallery [settings]="settings" style="display: flex">
-          <img
-            [alt]="productDetail.name"
-            [src]="productDetail.image"
-            class="main-img-product"
-          />
-        </lightgallery>
-      </div>
-      <div class="secondary-img-wrapper">
-        <img
-          (click)="changeMainImage(secondaryImage, i)"
-          *ngFor="
-            let secondaryImage of productDetail.secondary_images;
-            let i = index
-          "
-          [src]="secondaryImage"
-          class="product-detail-images"
-          [alt]="productDetail.name"
-          [ngClass]="{ active: selectedIndex === i }"
-        />
-      </div>
+  <div *ngIf="productDetail" class="grid">
+    <div class="col-12 md:col-12 lg:col-12">
+      <app-ad-banner></app-ad-banner>
     </div>
-  </div>
-  <div class="col-12 md:col-7 lg:col-7">
-    <div class="infoArea">
-      <div class="headingArea">
-        <h2 class="product-heading">{{ productDetail.name }}</h2>
-        <div style="width: 20%; display: flex">
+    <div class="col-12 md:col-5 lg:col-5">
+      <div class="keyImg">
+        <div class="thumbnail">
+          <lightgallery [settings]="settings" style="display: flex">
+            <img
+              [alt]="productDetail.name"
+              [src]="productDetail.image"
+              class="main-img-product"
+            />
+          </lightgallery>
+        </div>
+        <div class="secondary-img-wrapper">
           <img
-            [alt]="productDetail.brand.country_name"
-            [src]="productDetail.brand.country_flag"
-            style="max-width: 50%"
+            (click)="changeMainImage(secondaryImage, i)"
+            *ngFor="
+              let secondaryImage of productDetail.secondary_images;
+              let i = index
+            "
+            [src]="secondaryImage"
+            class="product-detail-images"
+            [alt]="productDetail.name"
+            [ngClass]="{ active: selectedIndex === i }"
           />
-          <p style="font-size: 18px; margin: auto">
-            {{ productDetail.brand.country_code.toUpperCase() }}
-          </p>
         </div>
       </div>
+    </div>
+    <div class="col-12 md:col-7 lg:col-7">
+      <div class="infoArea">
+        <div class="headingArea">
+          <h2 class="product-heading">{{ productDetail.name }}</h2>
+          <div style="width: 20%; display: flex">
+            <img
+              [alt]="productDetail.brand.country_name"
+              [src]="productDetail.brand.country_flag"
+              style="max-width: 50%"
+            />
+            <p style="font-size: 18px; margin: auto">
+              {{ productDetail.brand.country_code.toUpperCase() }}
+            </p>
+          </div>
+        </div>
 
-      <div>
-        <table class="prd-tb">
-          <tbody>
-          <tr class="prd_brand_css xans-record-">
-            <th scope="row">
-              <span style="font-size: 14px; color: #555555">Brand</span>
-            </th>
-            <td>
-                <span style="font-size: 14px; color: #555555">
-                  <a style="color: #f54a7e" [routerLink]="'/brand/' + productDetail.brand.slug">{{ productDetail.brand.name }}</a>
-                </span>
-            </td>
-          </tr>
-          <tr class="product_price_css xans-record-">
-            <th scope="row">
-                <span style="font-size: 14px; color: #555555; font-weight: bold"
-                >Price</span>
-              </th>
-              <td>
-                <span
-                  style="font-size: 14px; color: #555555; font-weight: bold"
-                >
-                  <strong
-                    [style.text-decoration]="
-                      !productDetail.discount_price ? 'initial' : 'line-through'
-                    "
-                    >$ {{ productDetail.price }}</strong
+        <div>
+          <table class="prd-tb">
+            <tbody>
+              <tr class="prd_brand_css xans-record-">
+                <th scope="row">
+                  <span style="font-size: 14px; color: #555555">Brand</span>
+                </th>
+                <td>
+                  <span style="font-size: 14px; color: #555555">
+                    <a
+                      style="color: #f54a7e"
+                      [routerLink]="'/brand/' + productDetail.brand.slug"
+                      >{{ productDetail.brand.name }}</a
+                    >
+                  </span>
+                </td>
+              </tr>
+              <tr class="product_price_css xans-record-">
+                <th scope="row">
+                  <span
+                    style="font-size: 14px; color: #555555; font-weight: bold"
+                    >Price</span
                   >
-                </span>
-            </td>
-          </tr>
-          <tr
-            *ngIf="productDetail.discount_price"
-            class="prd_price_sale_css xans-record-"
-          >
-            <th scope="row">
-                <span style="font-size: 14px; color: #323232"
-                >Discounted Price</span>
-              </th>
-              <td>
-                <span>
-                  <span style="font-size: 14px; color: #323232">
-                    <span id="span_product_price_sale"
-                    >$ {{ productDetail.discount_price }}
-                      <span style="font-size: 14px; color: #555555"
-                      >($
-                        {{
-                          +productDetail.price - +productDetail.discount_price
-                        }}
-                        discount)</span
-                      >
+                </th>
+                <td>
+                  <span
+                    style="font-size: 14px; color: #555555; font-weight: bold"
+                  >
+                    <strong
+                      [style.text-decoration]="
+                        !productDetail.discount_price
+                          ? 'initial'
+                          : 'line-through'
+                      "
+                      >$ {{ productDetail.price }}</strong
+                    >
+                  </span>
+                </td>
+              </tr>
+              <tr
+                *ngIf="productDetail.discount_price"
+                class="prd_price_sale_css xans-record-"
+              >
+                <th scope="row">
+                  <span style="font-size: 14px; color: #323232"
+                    >Discounted Price</span
+                  >
+                </th>
+                <td>
+                  <span>
+                    <span style="font-size: 14px; color: #323232">
+                      <span id="span_product_price_sale"
+                        >$ {{ productDetail.discount_price }}
+                        <span style="font-size: 14px; color: #555555"
+                          >($
+                          {{
+                            +productDetail.price - +productDetail.discount_price
+                          }}
+                          discount)</span
+                        >
+                      </span>
                     </span>
                   </span>
-                </span>
-            </td>
-          </tr>
-          <tr class="simple_desc_css xans-record-">
-            <th scope="row">
-              <span style="font-size: 14px; color: #555555">Variants</span>
-            </th>
-            <td>
-              <p-toggleButton
-                (ngModelChange)="toggleProductOptionSelection(productOptionIndex)"
-                  *ngFor="
-                    let productOption of productDetail.optionValues;
-                    index as productOptionIndex
-                  "
-                [ngModel]="checkedOptions[productOptionIndex]"
-                [offLabel]="productOption.name"
-                [onLabel]="productOption.name"
-              ></p-toggleButton>
-              <div>
-                <img (click)="changeMainImage(secondaryImage, i)" *ngFor="let secondaryImage of productDetail.secondary_images; let i = index"
-            [src]="secondaryImage" class="product-varient-img" [alt]="productDetail.name" [ngClass]="{'active': selectedIndex === i}" title="some ranfdom "/>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-
-        <p-divider></p-divider>
-      </div>
-      
-
-      <!-- <div style="display: none" class="" id="totalProducts">
-        <p class="ec-base-help txtWarn txt11">Select quantity.</p>
-        <p class="ec-base-help txtWarn txt11 displaynone">
-          Product will be automatically added below when you select an option.
-        </p>
-        <table>
-          <caption class="displaynone">
-            Product List
-          </caption>
-          <colgroup>
-            <col style="width: auto" />
-            <col style="width: 76px" />
-            <col style="width: 150px" />
-          </colgroup>
-          <thead class="displaynone">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>
-                <span class="quantity">
-                  <input
-                    (ngModelChange)="updateTotalPrice(selectedQuantity)"
-                    [(ngModel)]="selectedQuantity"
-                    id="quantity"
-                    name="quantity_opt[]"
-                    type="number"
-                  />
-                  <a class="up QuantityUp" href="javascript:void(0)">
+                </td>
+              </tr>
+              <tr class="simple_desc_css xans-record-">
+                <th scope="row">
+                  <span style="font-size: 14px; color: #555555">Variants</span>
+                </th>
+                <td>
+                  <p-toggleButton
+                    (ngModelChange)="
+                      toggleProductOptionSelection(productOptionIndex)
+                    "
+                    *ngFor="
+                      let productOption of productDetail.optionValues;
+                      index as productOptionIndex
+                    "
+                    [ngModel]="checkedOptions[productOptionIndex]"
+                    [offLabel]="productOption.name"
+                    [onLabel]="productOption.name"
+                  ></p-toggleButton>
+                  <div>
                     <img
-                      (click)="quantityUp()"
-                      alt="up"
-                      src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
+                      (click)="changeMainImage(secondaryImage, i)"
+                      *ngFor="
+                        let secondaryImage of productDetail.secondary_images;
+                        let i = index
+                      "
+                      [src]="secondaryImage"
+                      class="product-detail-images"
+                      [alt]="productDetail.name"
+                      [ngClass]="{ active: selectedIndex === i }"
                     />
-                  </a>
-                  <a class="down QuantityDown" href="javascript:void(0)">
-                    <img
-                      (click)="quantityDown()"
-                      alt="down"
-                      src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
+                  </div>
+                </td>
+              </tr>
+              <tr class="prd_price_sale_css xans-record-">
+                <th scope="row">
+                  <span style="font-size: 14px; color: #323232">Tags</span>
+                </th>
+                <td>
+                  <span>
+                    <a
+                      *ngFor="let productTags of productDetail.tags"
+                      [routerLink]="'/tag/' + productTags.slug"
+                      >{{ productTags.name }}</a
+                    >
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p-divider></p-divider>
+        </div>
+        <div>
+          <p class="info">
+            (Minimum Order : {{ productDetail.min_order_quantity }} or more )
+          </p>
+        </div>
+        <div class="" id="totalProducts">
+          <p class="ec-base-help txtWarn txt11">Select quantity.</p>
+          <p class="ec-base-help txtWarn txt11 displaynone">
+            Product will be automatically added below when you select an option.
+          </p>
+          <table>
+            <caption class="displaynone">
+              Product List
+            </caption>
+            <colgroup>
+              <col style="width: auto" />
+              <col style="width: 76px" />
+              <col style="width: 150px" />
+            </colgroup>
+            <thead class="displaynone">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="quantity">
+                    <input
+                      (ngModelChange)="updateTotalPrice(selectedQuantity)"
+                      [(ngModel)]="selectedQuantity"
+                      id="quantity"
+                      name="quantity_opt[]"
+                      type="number"
                     />
-                  </a>
-                </span>
-              </td>
-              <td class="right">
-                <span class="quantity_price"></span>
-                $ {{ totalPrice }}
-                <span class="mileage displaynone" style="display: none">
-                  <img src="" />&nbsp;<span class="mileage_price">0 </span>
-                </span>
-              </td>
-            </tr>
-            <tr
-              class="xans-element- xans-product xans-product-option option xans-record-"
-              id="totalProductsOption"
-            >
-              <td class="middle" colspan="3">
-                <table class="displaynone">
-                  <caption>
-                    Option Information
-                  </caption>
-                  <colgroup>
-                    <col style="width: 105px" />
-                    <col style="width: auto" />
-                  </colgroup>
-                  <tbody></tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
+                    <a class="up QuantityUp" href="javascript:void(0)">
+                      <img
+                        (click)="quantityUp()"
+                        alt="up"
+                        src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
+                      />
+                    </a>
+                    <a class="down QuantityDown" href="javascript:void(0)">
+                      <img
+                        (click)="quantityDown()"
+                        alt="down"
+                        src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
+                      />
+                    </a>
+                  </span>
+                </td>
+                <td class="right">
+                  <span class="quantity_price"></span>
+                  $ {{ totalPrice }}
+                  <span class="mileage displaynone" style="display: none">
+                    <img src="" />&nbsp;<span class="mileage_price">0 </span>
+                  </span>
+                </td>
+              </tr>
+              <tr
+                class="xans-element- xans-product xans-product-option option xans-record-"
+                id="totalProductsOption"
+              >
+                <td class="middle" colspan="3">
+                  <table class="displaynone">
+                    <caption>
+                      Option Information
+                    </caption>
+                    <colgroup>
+                      <col style="width: 105px" />
+                      <col style="width: auto" />
+                    </colgroup>
+                    <tbody></tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <div class="totalPrice" id="totalPrice">
+          <strong>Price</strong>
+          (Quantity) :
+          <span class="total">
+            <strong>
+              <em>$ {{ discountedTotalPrice }}</em>
+            </strong>
+            ({{ selectedQuantity }} item(s))
+          </span>
+        </div>
 
-      <div class="prod-static-content">
-        <p class="p1">(Minimum Order : {{ productDetail.min_order_quantity }} or more )</p>
-        <p class="p2">Free Shipping : On Bill above $ 3,000 (else $ 200) <span>(Not applicable for discounted items)</span></p>
-        <img alt="gifts" class="gifts-img" src="../../../assets/free-gifts.jpg" />
-
-        <p class="p3">
-          Services:
-          <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" />
-          Delivery 2-3 working days
-
-          <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" style="margin-left: 10px" />
-          Original Guaranteed
-        </p>
-      </div>
-
-      <div class="product-btn-wrap">
-        <span class="quantity">
-          <input
-            (ngModelChange)="updateTotalPrice(selectedQuantity)"
-            [(ngModel)]="selectedQuantity"
-            id="quantity"
-            name="quantity_opt[]"
-            type="number"
+        <div style="margin: 15px 0">
+          <p style="font-size: 16px; margin-bottom: 15px">
+            Free Shipping : On Bill above $ 3,000 (else $ 200) (Not applicable
+            for discounted items)
+          </p>
+          <img
+            alt="gifts"
+            class="gifts-img"
+            src="https://beautyglance.pk/image/catalog/icons/free-gifts.jpg"
           />
-          <a class="up QuantityUp" href="javascript:void(0)">
+          <p>
+            Services:
             <img
-              (click)="quantityUp()"
-              alt="up"
-              src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
+              alt="pink"
+              class="custom_features_image"
+              src="https://beautyglance.pk/image/catalog/icons/checkbox-pink.jpg"
             />
-          </a>
-          <a class="down QuantityDown" href="javascript:void(0)">
+            Delivery 2-3 working days
             <img
-              (click)="quantityDown()"
-              alt="down"
-              src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
+              alt="pink"
+              class="custom_features_image"
+              src="https://beautyglance.pk/image/catalog/icons/checkbox-pink.jpg"
+              style="margin-left: 10px"
             />
-          </a>
-        </span>
-        <button class="btn add-to-cart-btn">Add to Cart</button>
-        <button class="btn buy-now-btn">Buy Now</button>
-        <!-- <app-input-button buttonText="Buy Now"></app-input-button> -->
-        
-        <button class="btn add-to-cart-btn">Add to Wishlist</button>
-      </div>
+            Original Guaranteed
+          </p>
+        </div>
 
-      <div class="prod-price" id="totalPrice">
-        <p class="prod-label">Price <small>(Quantity) </small>: </p>
-        <p class="prod-value"><strong>$ {{ discountedTotalPrice }}</strong><small>({{ selectedQuantity }} item(s))</small></p>
-
-        <!-- <strong>Price</strong>
-        (Quantity) :
-        <span class="total">
-          <strong>
-            <em>$ {{ discountedTotalPrice }}</em>
-          </strong>
-          ({{ selectedQuantity }} item(s))
-        </span> -->
+        <div>
+          <app-input-button buttonText="Buy Now"></app-input-button>
+          <div class="buynow_btn_wrap m_margin">
+            <a class="btnNormal sizeL btnBasket add_cart_btn" href="#none"
+              >Add to Cart</a
+            >
+            <a class="btnNormal sizeL btnWish add_cart_btn" href="#none"
+              >Add to WishList</a
+            >
+          </div>
+        </div>
       </div>
-      
     </div>
-  </div>
 
-  <div class="col-12 md:col-12 lg:col-12">
-  <p-tabView styleClass="product-details-tab">
-    <p-tabPanel header="Description">
-      <div class="product-tab-content" *ngIf="productDetail.description" [innerHTML]="productDetail.description"></div>
-    </p-tabPanel>
-    <p-tabPanel header="Reviews">
-        Revies goes here. Section to be developed
-    </p-tabPanel>
-    <p-tabPanel header="Related Products">
-        Related products to be shown here. No related product for now.
-    </p-tabPanel>
-  </p-tabView>
-  </div>
+    <div class="col-12 md:col-12 lg:col-12">
+      <p-tabView styleClass="product-details-tab">
+        <p-tabPanel header="Description">
+          <div
+            class="product-tab-content"
+            *ngIf="productDetail.description"
+            [innerHTML]="productDetail.description"
+          ></div>
+        </p-tabPanel>
+        <p-tabPanel header="Reviews">
+          Revies goes here. Section to be developed
+        </p-tabPanel>
+        <p-tabPanel header="Related Products">
+          <!-- Related products to be shown here. No related product for now. -->
+          <div *ngFor="let product of productDetail.relatedProducts">
+            <app-product-card
+              [brandName]="productDetail.brand.name"
+              [name]="product.name"
+              [slug]="product.slug"
+              [price]="product.price"
+              [discount_price]="product.discount_price"
+              [image]="product.image"
+            ></app-product-card>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
 
-  <p-dialog
-    [(visible)]="display"
-    [draggable]="false"
-    class="web-view"
-    position="bottom-left"
-  >
-    <app-product-description
-      [productDetail]="productDetail"
-      [selectedQuantity]="selectedQuantity"
-      [totalPrice]="totalPrice"
+    <p-dialog
+      [(visible)]="display"
+      [draggable]="false"
       class="web-view"
-    ></app-product-description>
-  </p-dialog>
-</div>
+      position="bottom-left"
+    >
+      <app-product-description
+        [productDetail]="productDetail"
+        [selectedQuantity]="selectedQuantity"
+        [totalPrice]="totalPrice"
+        class="web-view"
+      ></app-product-description>
+    </p-dialog>
+  </div>
 </div>
 <ng-template #loadingSpinner>
   <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>

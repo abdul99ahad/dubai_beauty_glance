@@ -28,7 +28,8 @@ import { WebApiService } from './services/web-api.service';
 import { BrandsListingComponent } from './pages/brand-listing/brand-listing.component';
 import { BrandProductListingComponent } from './pages/brand-products-listing/brand-products-listing.component';
 import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
-import { DecodeHtmlEntitiesPipe } from "./pipes/decode-html-entities.pipe";
+import { DecodeHtmlEntitiesPipe } from './pipes/decode-html-entities.pipe';
+import { TagProductsListingComponent } from './pages/tag-products-listing/tag-products-listing.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DecodeHtmlEntitiesPipe } from "./pipes/decode-html-entities.pipe";
     BrandsListingComponent,
     BrandProductListingComponent,
     CategoryProductsListingComponent,
-    DecodeHtmlEntitiesPipe
+    TagProductsListingComponent,
+    DecodeHtmlEntitiesPipe,
   ],
   imports: [
     BrowserModule,

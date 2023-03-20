@@ -7,14 +7,13 @@ import {
   IPageButton,
   PaginatedResponse,
 } from '../../interfaces/response.interface';
-import { Category } from 'src/app/interfaces/categories.interface';
 
 @Component({
-  selector: 'app-category-products-listing',
-  templateUrl: './category-products-listing.component.html',
-  styleUrls: ['./category-products-listing.component.scss'],
+  selector: 'app-tag-products-listing',
+  templateUrl: './tag-products-listing.component.html',
+  styleUrls: ['./tag-products-listing.component.scss'],
 })
-export class CategoryProductsListingComponent implements OnInit {
+export class TagProductsListingComponent implements OnInit {
   @Input('title') public title: string = 'PRODUCTS';
   public products: Array<Product> = [];
   public productPageButtons: Array<IPageButton> = [];
@@ -27,35 +26,22 @@ export class CategoryProductsListingComponent implements OnInit {
 
   public ngOnInit(): void {
     this.route.params.subscribe((val) => {
-      const categorySlug = this.route.snapshot.paramMap.get('slug');
-      this.title = categorySlug || 'PRODUCTS';
-      if (!categorySlug) throw new Error('Category slug not available!');
-      this.fetchCategoryDetails(categorySlug).subscribe(
-        (response: { data: Category }) => {
-          this.title = response.data.name;
-          this.categoryImgUrl = this.webApiService.imgUrl + response.data.image;
-        }
-      );
-      this.fetchProductsOfCategoryWithSlug(categorySlug);
+      const tagSlug = this.route.snapshot.paramMap.get('slug');
+      this.title = tagSlug || 'PRODUCTS';
+      if (!tagSlug) throw new Error('Tag slug not available!');
+      // this.fetchCategoryDetails(categorySlug).subscribe(
+      //   (response: { data: Category }) => {
+      //     this.title = response.data.name;
+      //     this.categoryImgUrl = this.webApiService.imgUrl + response.data.image;
+      //   }
+      // );
+      this.fetchProductsOfCategoryWithSlug(tagSlug);
     });
   }
 
-  public fetchCategoryDetails(
-    categorySlug: string
-  ): Observable<{ data: Category }> {
-    return this.webApiService.getCategoryDetails(categorySlug);
-  }
-
-  public fetchProductsOfCategoryWithUrl(categoryUrl: string): void {
+  public fetchProductsOfCategoryWithSlug(tagSlug: string): void {
     const productsObservable =
-      this.webApiService.getCategoryProductsWithUrl(categoryUrl);
-
-    this.handleBrandProducts(productsObservable);
-  }
-
-  public fetchProductsOfCategoryWithSlug(categorySlug: string): void {
-    const productsObservable =
-      this.webApiService.getCategoryProductsWithSlug(categorySlug);
+      this.webApiService.getTagProductsWithSlug(tagSlug);
 
     this.handleBrandProducts(productsObservable);
   }

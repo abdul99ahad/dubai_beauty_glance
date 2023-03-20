@@ -34,7 +34,6 @@
             <ng-container *ngIf="!!productPageButton.url; else elseBlock">
               <button
                 type="button"
-                (click)="fetchProductsOfCategoryWithUrl(productPageButton.url)"
                 class="p-ripple p-element p-paginator-page p-paginator-element p-link p-highlight ng-star-inserted"
               >
                 {{ productPageButton.label | decodeHtmlEntitiesPipe }}
