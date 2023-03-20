@@ -26,10 +26,17 @@ export interface ProductDetail extends Product {
   brand: Brand;
   tags: Array<Tag>;
   categories: Array<Omit<Category, 'childrenCategories'>>;
-  optionValues: Array<ProductOption>;
+  productOptions: Array<ProductOptions>;
 }
 
-export interface ProductOption {
+export interface ProductOptions {
+  quantity: number;
+  subtract_stock: number;
+  price_difference: string;
+  price_adjustment: number;
+  optionValue: OptionValue;
+}
+export interface OptionValue {
   image: null | string;
   name: string;
   option: Option;
@@ -37,4 +44,9 @@ export interface ProductOption {
 
 export interface Option {
   name: string;
+}
+
+export interface Price {
+  price: string;
+  discounted_price: string | null;
 }
