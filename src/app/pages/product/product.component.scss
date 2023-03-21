@@ -441,7 +441,7 @@ a:hover {
 .product-btn-wrap{
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 24px 0;
 
   .quantity {
     display: inline-block;
@@ -548,11 +548,11 @@ a:hover {
   font-size: 14px;
   margin-top: 10px;
   .p1{
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .p2{
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     span{
       color: red;
     }
@@ -560,6 +560,6 @@ a:hover {
 
   .gifts-img {
     max-width: 500px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 }
