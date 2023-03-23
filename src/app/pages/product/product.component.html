@@ -157,13 +157,14 @@
                   <span style="font-size: 14px; color: #323232">Tags</span>
                 </th>
                 <td>
-                  <span>
+                  <div class="tag-links-wrapper">
                     <a
+                    class="tag-link"
                       *ngFor="let productTags of productDetail.tags"
                       [routerLink]="'/tag/' + productTags.slug"
                       >{{ productTags.name }}</a
                     >
-                  </span>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -211,7 +212,7 @@
               />
             </a>
           </span>
-          <button class="btn add-to-cart-btn">Add to Cart</button>
+          <button class="btn add-to-cart-btn"><img src="../assets/cart.png" alt=""> Add to Cart</button>
           <button class="btn buy-now-btn">Buy Now</button>
           <!-- <app-input-button buttonText="Buy Now"></app-input-button> -->
           
