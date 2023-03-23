@@ -2,7 +2,7 @@
   <div class="promotion-area">
     <app-marquee></app-marquee>
   </div>
-  <div class="top-area flex-container mbl-disable">
+  <div class="top-area flex-container mbl-disable main-container mx-auto">
     <div class="logo-area">
       <a [routerLink]="['/']">
         <img [src]="setting.logo" alt="" class="logo" />
@@ -120,10 +120,9 @@
   </div>
 </div>
 
-<div class="mbl-disable-block">
-  <hr class="solid" style="margin-bottom: 0" />
+<div class="mbl-disable-block main-nav-wrapper">
 
-  <div class="flex-container" id="navbar">
+  <div class="flex-container main-container mx-auto" id="navbar">
     <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
       <span>All category</span>
     </div>
