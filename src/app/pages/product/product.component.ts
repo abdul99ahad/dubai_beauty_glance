@@ -71,6 +71,30 @@ export class ProductComponent implements OnInit {
           });
           productDetail.brand.country_flag =
             this.webApiService.imgUrl + productDetail.brand.country_flag;
+
+          productDetail.productOptions.map((productOption) => {
+            productOption.optionValue.image =
+              this.webApiService.imgUrl + productOption.optionValue.image;
+          });
+          console.log(productDetail);
+
+          //MOCK
+
+          productDetail.productOptions.push({
+            quantity: 200,
+            subtract_stock: 0,
+            price_difference: '50.00',
+            price_adjustment: 1,
+            optionValue: {
+              name: 'Skin 232',
+              image:
+                '/assets/uploads/option_values/M5BW6RBWh4u9sX6TGIvMpBen9SX20B4HGjoNd80U.jpg',
+              option: {
+                name: 'Option 100',
+              },
+            },
+          });
+          //
           return productDetail;
         })
       )
@@ -121,24 +145,33 @@ export class ProductComponent implements OnInit {
 
     const productVariant =
       this.productDetail.productOptions[productOptionIndex];
+    console.log(productVariant);
+    console.log(this.productOptions);
     if (productVariant.price_adjustment == 1) {
       // Add to base price
       this.productDetail.price = (
         parseFloat(this.productBasePrice.price) +
         parseFloat(productVariant.price_difference)
       ).toString();
-      this.totalPrice = parseFloat(this.productDetail.price);
+      this.totalPrice =
+        parseFloat(this.productDetail.price) *
+        this.productDetail.min_order_quantity;
       if (this.productBasePrice.discounted_price) {
         this.productDetail.discount_price = (
           parseFloat(this.productBasePrice.discounted_price) +
           parseFloat(productVariant.price_difference)
         ).toString();
-        this.discountedTotalPrice = parseFloat(
-          this.productDetail.discount_price
-        );
+        this.discountedTotalPrice =
+          parseFloat(this.productDetail.discount_price) *
+          this.productDetail.min_order_quantity;
       }
     }
     this.checkedOptions[productOptionIndex] = true;
+    if (productVariant.optionValue.image)
+      this.changeMainImage(
+        productVariant.optionValue.image,
+        productOptionIndex
+      );
   }
 
   public filterProductVariants(productVariantOption: {
@@ -146,6 +179,7 @@ export class ProductComponent implements OnInit {
     productOptions: ProductOptions;
   }) {
     this.productOptions = [];
+    console.log(this.productVariantOptionsUnique);
     this.productDetail.productOptions.forEach((e) => {
       if (productVariantOption.option == e.optionValue.option.name)
         this.productOptions.push({
@@ -172,7 +206,8 @@ export class ProductComponent implements OnInit {
         return;
       }
     );
-    this.filterProductVariants(this.productVariantOptionsUnique[0]);
+    console.log(this.productVariantOptionsUnique);
+    // this.filterProductVariants(this.productVariantOptionsUnique[0]);
   }
 
   public changeMainImage(source: string, index: number): void {

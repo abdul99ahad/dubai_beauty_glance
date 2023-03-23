@@ -116,40 +116,44 @@
                 </th>
                 <td>
                   <div>
-                    <a
-                      (click)="filterProductVariants(productVariantOption)"
+                    <div>
+                      <a
+                        (click)="filterProductVariants(productVariantOption)"
+                        *ngFor="
+                          let productVariantOption of this
+                            .productVariantOptionsUnique
+                        "
+                        >{{ productVariantOption.option }}</a
+                      >
+                    </div>
+                    <div
                       *ngFor="
-                        let productVariantOption of this
-                          .productVariantOptionsUnique
+                        let productOption of productOptions;
+                        index as productOptionIndex
                       "
-                      >{{ productVariantOption.option }}</a
                     >
+                      <p>
+                        {{ productOption.productOptions.optionValue.name }}
+                      </p>
+                      <!-- <p-toggleButton
+                        
+                        [ngModel]="checkedOptions[productOptionIndex]"
+                        [offLabel]="productOption.productOptions.optionValue.name"
+                        [onLabel]="productOption.productOptions.optionValue.name"
+                      ></p-toggleButton> -->
+                      <img
+                        (click)="
+                          toggleProductOptionSelection(productOptionIndex)
+                        "
+                        [src]="productOption.productOptions.optionValue.image"
+                        class="product-detail-images"
+                        [alt]="productDetail.name"
+                        [ngClass]="{
+                          active: selectedIndex === productOptionIndex
+                        }"
+                      />
+                    </div>
                   </div>
-                  <p-toggleButton
-                    (ngModelChange)="
-                      toggleProductOptionSelection(productOptionIndex)
-                    "
-                    *ngFor="
-                      let productOption of productOptions;
-                      index as productOptionIndex
-                    "
-                    [ngModel]="checkedOptions[productOptionIndex]"
-                    [offLabel]="productOption.productOptions.optionValue.name"
-                    [onLabel]="productOption.productOptions.optionValue.name"
-                  ></p-toggleButton>
-                  <!-- <div>
-                    <img
-                      (click)="changeMainImage(secondaryImage, i)"
-                      *ngFor="
-                        let secondaryImage of productDetail.secondary_images;
-                        let i = index
-                      "
-                      [src]="secondaryImage"
-                      class="product-detail-images"
-                      [alt]="productDetail.name"
-                      [ngClass]="{ active: selectedIndex === i }"
-                    />
-                  </div> -->
                 </td>
               </tr>
               <tr class="prd_price_sale_css xans-record-">
