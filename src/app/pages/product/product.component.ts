@@ -80,20 +80,20 @@ export class ProductComponent implements OnInit {
 
           //MOCK
 
-          productDetail.productOptions.push({
-            quantity: 200,
-            subtract_stock: 0,
-            price_difference: '50.00',
-            price_adjustment: 1,
-            optionValue: {
-              name: 'Skin 232',
-              image:
-                '/assets/uploads/option_values/M5BW6RBWh4u9sX6TGIvMpBen9SX20B4HGjoNd80U.jpg',
-              option: {
-                name: 'Option 100',
-              },
-            },
-          });
+          // productDetail.productOptions.push({
+          //   quantity: 200,
+          //   subtract_stock: 0,
+          //   price_difference: '50.00',
+          //   price_adjustment: 1,
+          //   optionValue: {
+          //     name: 'Skin 232',
+          //     image:
+          //       '/assets/uploads/option_values/M5BW6RBWh4u9sX6TGIvMpBen9SX20B4HGjoNd80U.jpg',
+          //     option: {
+          //       name: 'Option 100',
+          //     },
+          //   },
+          // });
           //
           return productDetail;
         })
