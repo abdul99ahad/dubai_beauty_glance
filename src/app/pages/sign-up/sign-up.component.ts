@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  title: string = 'Register';
+  title: string = 'Create an Account';
   registerFormFields: any = {
     firstName: 'First Name',
     lastName: 'Last Name',
