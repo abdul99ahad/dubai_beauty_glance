@@ -115,25 +115,20 @@
                   <span style="font-size: 14px; color: #555555">Variants</span>
                 </th>
                 <td>
-                  <div>
+                  <div
+                    *ngFor="let productVariantOption of this.test | keyvalue"
+                  >
                     <div>
-                      <a
-                        (click)="filterProductVariants(productVariantOption)"
-                        *ngFor="
-                          let productVariantOption of this
-                            .productVariantOptionsUnique
-                        "
-                        >{{ productVariantOption.option }}</a
-                      >
+                      <a>{{ productVariantOption.key }}</a>
                     </div>
                     <div
                       *ngFor="
-                        let productOption of productOptions;
+                        let productOption of productVariantOption.value;
                         index as productOptionIndex
                       "
                     >
                       <p>
-                        {{ productOption.productOptions.optionValue.name }}
+                        {{ productOption.optionValue.name }}
                       </p>
                       <!-- <p-toggleButton
                         
@@ -145,7 +140,7 @@
                         (click)="
                           toggleProductOptionSelection(productOptionIndex)
                         "
-                        [src]="productOption.productOptions.optionValue.image"
+                        [src]="productOption.optionValue.image"
                         class="product-detail-images"
                         [alt]="productDetail.name"
                         [ngClass]="{

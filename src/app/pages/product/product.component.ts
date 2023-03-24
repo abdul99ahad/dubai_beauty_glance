@@ -6,6 +6,7 @@ import {
   Price,
   ProductDetail,
   ProductOptions,
+  ProductVariantList,
 } from '../../interfaces/product.interface';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
 
@@ -40,6 +41,8 @@ export class ProductComponent implements OnInit {
     option: string;
     productOptions: ProductOptions;
   }>;
+
+  test: ProductVariantList;
 
   result: any;
   public constructor(
@@ -142,11 +145,10 @@ export class ProductComponent implements OnInit {
         !this.checkedOptions[productOptionIndex];
       return;
     }
-
     const productVariant =
       this.productDetail.productOptions[productOptionIndex];
     console.log(productVariant);
-    console.log(this.productOptions);
+    // console.log(this.productOptions);
     if (productVariant.price_adjustment == 1) {
       // Add to base price
       this.productDetail.price = (
@@ -165,7 +167,25 @@ export class ProductComponent implements OnInit {
           parseFloat(this.productDetail.discount_price) *
           this.productDetail.min_order_quantity;
       }
+    } else {
+      this.productDetail.price = (
+        parseFloat(this.productBasePrice.price) -
+        parseFloat(productVariant.price_difference)
+      ).toString();
+      this.totalPrice =
+        parseFloat(this.productDetail.price) *
+        this.productDetail.min_order_quantity;
+      if (this.productBasePrice.discounted_price) {
+        this.productDetail.discount_price = (
+          parseFloat(this.productBasePrice.discounted_price) -
+          parseFloat(productVariant.price_difference)
+        ).toString();
+        this.discountedTotalPrice =
+          parseFloat(this.productDetail.discount_price) *
+          this.productDetail.min_order_quantity;
+      }
     }
+
     this.checkedOptions[productOptionIndex] = true;
     if (productVariant.optionValue.image)
       this.changeMainImage(
@@ -190,6 +210,14 @@ export class ProductComponent implements OnInit {
   }
 
   private manipulateProductOptionsJson() {
+    console.log(
+      this.groupBy(this.productDetail.productOptions, 'optionValue.option.name')
+    );
+    this.test = this.groupBy(
+      this.productDetail.productOptions,
+      'optionValue.option.name'
+    );
+
     this.productDetail.productOptions.forEach((e) => {
       this.productOptions.push({
         option: e.optionValue.option.name,
@@ -206,8 +234,8 @@ export class ProductComponent implements OnInit {
         return;
       }
     );
-    console.log(this.productVariantOptionsUnique);
-    // this.filterProductVariants(this.productVariantOptionsUnique[0]);
+    // console.log(this.productVariantOptionsUnique);
+    this.filterProductVariants(this.productVariantOptionsUnique[0]);
   }
 
   public changeMainImage(source: string, index: number): void {
@@ -230,15 +258,37 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  private groupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
-    arr.reduce((groups, item) => {
-      (groups[key(item)] ||= []).push(item);
-      return groups;
-    }, {} as Record<K, T[]>);
+  // private groupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
+  //   arr.reduce((groups, item) => {
+  //     (groups[key(item)] ||= []).push(item);
+  //     return groups;
+  //   }, {} as Record<K, T[]>);
 
   settings = {
     counter: false,
     // plugins: [lgZoom],
+  };
+
+  private groupBy = (arrayToGroup: any, byKey: string) => {
+    const groupedMap: any = {};
+
+    const props = byKey.split('.');
+    for (let item of arrayToGroup) {
+      const valueToGroupBy = props.reduce((reducedItem, currentProp) => {
+        return reducedItem[currentProp];
+      }, item);
+
+      const groupedItemsByCurrentValue = groupedMap[valueToGroupBy];
+      if (groupedItemsByCurrentValue) {
+        groupedItemsByCurrentValue.push(item);
+
+        continue;
+      }
+
+      groupedMap[valueToGroupBy] = [item];
+    }
+
+    return groupedMap;
   };
   onBeforeSlide = (detail: BeforeSlideDetail): void => {
     const { index, prevIndex } = detail;
