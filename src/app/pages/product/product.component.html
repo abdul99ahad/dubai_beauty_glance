@@ -121,12 +121,10 @@
                       let productVariantOption of this.productVariants
                         | keyvalue
                     "
+                    class="single-variant"
                   >
-                    <div>
-                      <a class="prod-variant-name">{{ productVariantOption.key }}</a>
-                    </div>
+                      <label class="prod-variant-name">{{ productVariantOption.key }}</label>
                     <div class="prod-variant-content-wrap">
-
                     <div
                       *ngFor="
                         let productOption of productVariantOption.value;
@@ -134,9 +132,9 @@
                       "
                       class="productVariant"
                     >
-                      <!-- <p class="showOnHover">
+                      <p class="option-name">
                         {{ productOption.optionValue.name }}
-                      </p> -->
+                      </p>
                       <!-- <p-toggleButton
                         
                         [ngModel]="checkedOptions[productOptionIndex]"
@@ -151,7 +149,6 @@
                         [ngClass]="{
                           active: selectedIndex === productOptionIndex
                         }"
-                        [title]="productOption.optionValue.name"
                       />
                     </div>
                     </div>
