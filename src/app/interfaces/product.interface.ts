@@ -51,3 +51,7 @@ export interface Price {
   price: string;
   discounted_price: string | null;
 }
+
+export interface ProductVariantList {
+  [key: string]: Array<ProductOptions>;
+}

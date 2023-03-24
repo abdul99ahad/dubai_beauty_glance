@@ -257,6 +257,14 @@ a:hover {
   margin: 10px !important;
 }
 
+.showOnHover {
+  display: none;
+}
+
+.productVariant:hover .showOnHover {
+  display: block;
+}
+
 // :host ::ng-deep p-dialog {
 //   .p-dialog {
 //     opacity: 0.9;

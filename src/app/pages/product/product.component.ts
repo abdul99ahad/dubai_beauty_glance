@@ -6,9 +6,10 @@ import {
   Price,
   ProductDetail,
   ProductOptions,
+  ProductVariantList,
 } from '../../interfaces/product.interface';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
@@ -34,13 +35,7 @@ export class ProductComponent implements OnInit {
 
   response: boolean = false;
 
-  productOptions: Array<{ option: string; productOptions: ProductOptions }> =
-    [];
-
-  productVariantOptionsUnique: Array<{
-    option: string;
-    productOptions: ProductOptions;
-  }>;
+  productVariants: ProductVariantList;
 
   description: SafeHtml;
 
@@ -74,12 +69,19 @@ export class ProductComponent implements OnInit {
           });
           productDetail.brand.country_flag =
             this.webApiService.imgUrl + productDetail.brand.country_flag;
+
+          productDetail.productOptions.map((productOption) => {
+            productOption.optionValue.image =
+              this.webApiService.imgUrl + productOption.optionValue.image;
+          });
           return productDetail;
         })
       )
       .subscribe((productDetail: ProductDetail) => {
         this.productDetail = productDetail;
-        this.description = this.sanitizer.bypassSecurityTrustHtml(productDetail.description);
+        this.description = this.sanitizer.bypassSecurityTrustHtml(
+          productDetail.description
+        );
         this.selectedQuantity = productDetail.min_order_quantity;
         this.updateBasePrice(
           this.productDetail.price,
@@ -115,67 +117,52 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  public toggleProductOptionSelection(productOptionIndex: number): void {
+  public toggleProductOptionSelection(productOption: ProductOptions): void {
+    const productOptionIndex: number =
+      this.productDetail.productOptions.findIndex((x) => x == productOption);
     if (this.checkedOptions[productOptionIndex]) {
       this.checkedOptions[productOptionIndex] =
         !this.checkedOptions[productOptionIndex];
       return;
     }
 
-    const productVariant =
-      this.productDetail.productOptions[productOptionIndex];
-    if (productVariant.price_adjustment == 1) {
+    if (productOption.price_adjustment == 1) {
       // Add to base price
       this.productDetail.price = (
         parseFloat(this.productBasePrice.price) +
-        parseFloat(productVariant.price_difference)
+        parseFloat(productOption.price_difference)
       ).toString();
-      this.totalPrice = parseFloat(this.productDetail.price);
       if (this.productBasePrice.discounted_price) {
         this.productDetail.discount_price = (
           parseFloat(this.productBasePrice.discounted_price) +
-          parseFloat(productVariant.price_difference)
+          parseFloat(productOption.price_difference)
         ).toString();
-        this.discountedTotalPrice = parseFloat(
-          this.productDetail.discount_price
-        );
+      }
+    } else {
+      this.productDetail.price = (
+        parseFloat(this.productBasePrice.price) -
+        parseFloat(productOption.price_difference)
+      ).toString();
+      if (this.productBasePrice.discounted_price) {
+        this.productDetail.discount_price = (
+          parseFloat(this.productBasePrice.discounted_price) -
+          parseFloat(productOption.price_difference)
+        ).toString();
       }
     }
-    this.checkedOptions[productOptionIndex] = true;
-  }
 
-  public filterProductVariants(productVariantOption: {
-    option: string;
-    productOptions: ProductOptions;
-  }) {
-    this.productOptions = [];
-    this.productDetail.productOptions.forEach((e) => {
-      if (productVariantOption.option == e.optionValue.option.name)
-        this.productOptions.push({
-          option: e.optionValue.option.name,
-          productOptions: e,
-        });
-    });
+    this.updateTotalPrice(this.selectedQuantity);
+
+    this.checkedOptions[productOptionIndex] = true;
+    if (productOption.optionValue.image)
+      this.changeMainImage(productOption.optionValue.image, productOptionIndex);
   }
 
   private manipulateProductOptionsJson() {
-    this.productDetail.productOptions.forEach((e) => {
-      this.productOptions.push({
-        option: e.optionValue.option.name,
-        productOptions: e,
-      });
-    });
-    this.productVariantOptionsUnique = this.productOptions.filter(
-      (item, index, objects) => {
-        if (index === 0) {
-          return item;
-        } else if (item.option !== objects[index - 1].option) {
-          return item;
-        }
-        return;
-      }
+    this.productVariants = this.groupBy(
+      this.productDetail.productOptions,
+      'optionValue.option.name'
     );
-    this.filterProductVariants(this.productVariantOptionsUnique[0]);
   }
 
   public changeMainImage(source: string, index: number): void {
@@ -198,15 +185,31 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  private groupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
-    arr.reduce((groups, item) => {
-      (groups[key(item)] ||= []).push(item);
-      return groups;
-    }, {} as Record<K, T[]>);
-
   settings = {
     counter: false,
     // plugins: [lgZoom],
+  };
+
+  private groupBy = (arrayToGroup: any, byKey: string) => {
+    const groupedMap: any = {};
+
+    const props = byKey.split('.');
+    for (let item of arrayToGroup) {
+      const valueToGroupBy = props.reduce((reducedItem, currentProp) => {
+        return reducedItem[currentProp];
+      }, item);
+
+      const groupedItemsByCurrentValue = groupedMap[valueToGroupBy];
+      if (groupedItemsByCurrentValue) {
+        groupedItemsByCurrentValue.push(item);
+
+        continue;
+      }
+
+      groupedMap[valueToGroupBy] = [item];
+    }
+
+    return groupedMap;
   };
   onBeforeSlide = (detail: BeforeSlideDetail): void => {
     const { index, prevIndex } = detail;
