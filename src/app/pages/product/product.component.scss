@@ -424,6 +424,10 @@ a:hover {
     img {
       width: 100%;
     }
+
+    iframe {
+      width: 100%;
+    }
   }
 }
 
@@ -499,6 +503,12 @@ a:hover {
     color: #ffffff;
     padding: 0 30px;
 
+    img{
+      filter: invert(1);
+      width: 18px;
+      margin-right: 8px;
+    }
+
     &:hover{
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       background: #f71668;
@@ -516,20 +526,20 @@ a:hover {
       width: 18px;
       margin-right: 8px;
     }
-    
+
     &:hover{
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       background: #f71668;
     }
   }
-  
+
 }
 
 .prod-price{
   display: flex;
   align-items: center;
   font-size: 16px;
-  
+
   .prod-label{
     margin-right: 10px;
     font-weight: 500;

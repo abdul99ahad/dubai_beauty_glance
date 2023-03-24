@@ -48,28 +48,28 @@
         <div>
           <table class="prd-tb">
             <tbody>
-              <tr class="prd_brand_css xans-record-">
-                <th scope="row">
-                  <span style="font-size: 14px; color: #555555">Brand</span>
-                </th>
-                <td>
+            <tr class="prd_brand_css xans-record-">
+              <th scope="row">
+                <span style="font-size: 14px; color: #555555">Brand</span>
+              </th>
+              <td>
                   <span style="font-size: 14px; color: #555555">
                     <a
                       style="color: #f54a7e"
                       [routerLink]="'/brand/' + productDetail.brand.slug"
-                      >{{ productDetail.brand.name }}</a
+                    >{{ productDetail.brand.name }}</a
                     >
                   </span>
-                </td>
-              </tr>
-              <tr class="product_price_css xans-record-">
-                <th scope="row">
+              </td>
+            </tr>
+            <tr class="product_price_css xans-record-">
+              <th scope="row">
                   <span
                     style="font-size: 14px; color: #555555; font-weight: bold"
-                    >Price</span
+                  >Price</span
                   >
-                </th>
-                <td>
+              </th>
+              <td>
                   <span
                     style="font-size: 14px; color: #555555; font-weight: bold"
                   >
@@ -79,94 +79,94 @@
                           ? 'initial'
                           : 'line-through'
                       "
-                      >$ {{ productDetail.price }}</strong
+                    >$ {{ productDetail.price }}</strong
                     >
                   </span>
-                </td>
-              </tr>
-              <tr
-                *ngIf="productDetail.discount_price"
-                class="prd_price_sale_css xans-record-"
-              >
-                <th scope="row">
+              </td>
+            </tr>
+            <tr
+              *ngIf="productDetail.discount_price"
+              class="prd_price_sale_css xans-record-"
+            >
+              <th scope="row">
                   <span style="font-size: 14px; color: #323232"
-                    >Discounted Price</span
+                  >Discounted Price</span
                   >
-                </th>
-                <td>
+              </th>
+              <td>
                   <span>
                     <span style="font-size: 14px; color: #323232">
                       <span id="span_product_price_sale"
-                        >$ {{ productDetail.discount_price }}
+                      >$ {{ productDetail.discount_price }}
                         <span style="font-size: 14px; color: #555555"
-                          >($
+                        >($
                           {{
-                            +productDetail.price - +productDetail.discount_price
+                          +productDetail.price - +productDetail.discount_price
                           }}
                           discount)</span
                         >
                       </span>
                     </span>
                   </span>
-                </td>
-              </tr>
-              <tr class="simple_desc_css xans-record-">
-                <th scope="row">
-                  <span style="font-size: 14px; color: #555555">Variants</span>
-                </th>
-                <td>
-                  <div>
-                    <a
-                      (click)="filterProductVariants(productVariantOption)"
-                      *ngFor="
+              </td>
+            </tr>
+            <tr class="simple_desc_css xans-record-">
+              <th scope="row">
+                <span style="font-size: 14px; color: #555555">Variants</span>
+              </th>
+              <td>
+                <div>
+                  <a
+                    (click)="filterProductVariants(productVariantOption)"
+                    *ngFor="
                         let productVariantOption of this
                           .productVariantOptionsUnique
                       "
-                      >{{ productVariantOption.option }}</a
-                    >
-                  </div>
-                  <p-toggleButton
-                    (ngModelChange)="
+                  >{{ productVariantOption.option }}</a
+                  >
+                </div>
+                <p-toggleButton
+                  (ngModelChange)="
                       toggleProductOptionSelection(productOptionIndex)
                     "
-                    *ngFor="
+                  *ngFor="
                       let productOption of productOptions;
                       index as productOptionIndex
                     "
-                    [ngModel]="checkedOptions[productOptionIndex]"
-                    [offLabel]="productOption.productOptions.optionValue.name"
-                    [onLabel]="productOption.productOptions.optionValue.name"
-                  ></p-toggleButton>
-                  <!-- <div>
-                    <img
-                      (click)="changeMainImage(secondaryImage, i)"
-                      *ngFor="
-                        let secondaryImage of productDetail.secondary_images;
-                        let i = index
-                      "
-                      [src]="secondaryImage"
-                      class="product-detail-images"
-                      [alt]="productDetail.name"
-                      [ngClass]="{ active: selectedIndex === i }"
-                    />
-                  </div> -->
-                </td>
-              </tr>
-              <tr class="prd_price_sale_css xans-record-">
-                <th scope="row">
-                  <span style="font-size: 14px; color: #323232">Tags</span>
-                </th>
-                <td>
-                  <div class="tag-links-wrapper">
-                    <a
+                  [ngModel]="checkedOptions[productOptionIndex]"
+                  [offLabel]="productOption.productOptions.optionValue.name"
+                  [onLabel]="productOption.productOptions.optionValue.name"
+                ></p-toggleButton>
+                <!-- <div>
+                  <img
+                    (click)="changeMainImage(secondaryImage, i)"
+                    *ngFor="
+                      let secondaryImage of productDetail.secondary_images;
+                      let i = index
+                    "
+                    [src]="secondaryImage"
+                    class="product-detail-images"
+                    [alt]="productDetail.name"
+                    [ngClass]="{ active: selectedIndex === i }"
+                  />
+                </div> -->
+              </td>
+            </tr>
+            <tr class="prd_price_sale_css xans-record-">
+              <th scope="row">
+                <span style="font-size: 14px; color: #323232">Tags</span>
+              </th>
+              <td>
+                <div class="tag-links-wrapper">
+                  <a
                     class="tag-link"
-                      *ngFor="let productTags of productDetail.tags"
-                      [routerLink]="'/tag/' + productTags.slug"
-                      >{{ productTags.name }}</a
-                    >
-                  </div>
-                </td>
-              </tr>
+                    *ngFor="let productTags of productDetail.tags"
+                    [routerLink]="'/tag/' + productTags.slug"
+                  >{{ productTags.name }}</a
+                  >
+                </div>
+              </td>
+            </tr>
             </tbody>
           </table>
 
@@ -213,10 +213,10 @@
             </a>
           </span>
           <button class="btn add-to-cart-btn"><img src="../assets/cart.png" alt=""> Add to Cart</button>
-          <button class="btn buy-now-btn">Buy Now</button>
+          <button class="btn buy-now-btn"><img src="../assets/icons/buy.png" alt=""> Buy Now</button>
           <!-- <app-input-button buttonText="Buy Now"></app-input-button> -->
 
-          <button class="btn add-to-cart-btn">Add to Wishlist</button>
+          <button class="btn add-to-cart-btn"><img src="../assets/icons/wishlist.png" alt=""> Add to Wishlist</button>
         </div>
 
         <div class="prod-price" id="totalPrice">
@@ -233,7 +233,6 @@
         <p-tabPanel header="Description">
           <div
             class="product-tab-content"
-            *ngIf="productDetail.description"
             [innerHTML]="description"
           ></div>
         </p-tabPanel>
