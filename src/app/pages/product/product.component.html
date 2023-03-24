@@ -116,7 +116,11 @@
                 </th>
                 <td>
                   <div
-                    *ngFor="let productVariantOption of this.test | keyvalue"
+                    *ngFor="
+                      let productVariantOption of this.productVariants
+                        | keyvalue
+                    "
+                    style="display: flex"
                   >
                     <div>
                       <a>{{ productVariantOption.key }}</a>
@@ -137,9 +141,7 @@
                         [onLabel]="productOption.productOptions.optionValue.name"
                       ></p-toggleButton> -->
                       <img
-                        (click)="
-                          toggleProductOptionSelection(productOptionIndex)
-                        "
+                        (click)="toggleProductOptionSelection(productOption)"
                         [src]="productOption.optionValue.image"
                         class="product-detail-images"
                         [alt]="productDetail.name"

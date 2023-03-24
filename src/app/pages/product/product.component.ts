@@ -34,17 +34,8 @@ export class ProductComponent implements OnInit {
 
   response: boolean = false;
 
-  productOptions: Array<{ option: string; productOptions: ProductOptions }> =
-    [];
+  productVariants: ProductVariantList;
 
-  productVariantOptionsUnique: Array<{
-    option: string;
-    productOptions: ProductOptions;
-  }>;
-
-  test: ProductVariantList;
-
-  result: any;
   public constructor(
     private readonly route: ActivatedRoute,
     private readonly webApiService: WebApiService
@@ -79,25 +70,6 @@ export class ProductComponent implements OnInit {
             productOption.optionValue.image =
               this.webApiService.imgUrl + productOption.optionValue.image;
           });
-          console.log(productDetail);
-
-          //MOCK
-
-          // productDetail.productOptions.push({
-          //   quantity: 200,
-          //   subtract_stock: 0,
-          //   price_difference: '50.00',
-          //   price_adjustment: 1,
-          //   optionValue: {
-          //     name: 'Skin 232',
-          //     image:
-          //       '/assets/uploads/option_values/M5BW6RBWh4u9sX6TGIvMpBen9SX20B4HGjoNd80U.jpg',
-          //     option: {
-          //       name: 'Option 100',
-          //     },
-          //   },
-          // });
-          //
           return productDetail;
         })
       )
@@ -111,7 +83,6 @@ export class ProductComponent implements OnInit {
         this.updateTotalPrice(this.selectedQuantity);
         this.manipulateProductOptionsJson();
         this.response = true;
-        console.log(productDetail);
       });
   }
 
@@ -139,103 +110,52 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  public toggleProductOptionSelection(productOptionIndex: number): void {
+  public toggleProductOptionSelection(productOption: ProductOptions): void {
+    const productOptionIndex: number =
+      this.productDetail.productOptions.findIndex((x) => x == productOption);
     if (this.checkedOptions[productOptionIndex]) {
       this.checkedOptions[productOptionIndex] =
         !this.checkedOptions[productOptionIndex];
       return;
     }
-    const productVariant =
-      this.productDetail.productOptions[productOptionIndex];
-    console.log(productVariant);
-    // console.log(this.productOptions);
-    if (productVariant.price_adjustment == 1) {
+
+    if (productOption.price_adjustment == 1) {
       // Add to base price
       this.productDetail.price = (
         parseFloat(this.productBasePrice.price) +
-        parseFloat(productVariant.price_difference)
+        parseFloat(productOption.price_difference)
       ).toString();
-      this.totalPrice =
-        parseFloat(this.productDetail.price) *
-        this.productDetail.min_order_quantity;
       if (this.productBasePrice.discounted_price) {
         this.productDetail.discount_price = (
           parseFloat(this.productBasePrice.discounted_price) +
-          parseFloat(productVariant.price_difference)
+          parseFloat(productOption.price_difference)
         ).toString();
-        this.discountedTotalPrice =
-          parseFloat(this.productDetail.discount_price) *
-          this.productDetail.min_order_quantity;
       }
     } else {
       this.productDetail.price = (
         parseFloat(this.productBasePrice.price) -
-        parseFloat(productVariant.price_difference)
+        parseFloat(productOption.price_difference)
       ).toString();
-      this.totalPrice =
-        parseFloat(this.productDetail.price) *
-        this.productDetail.min_order_quantity;
       if (this.productBasePrice.discounted_price) {
         this.productDetail.discount_price = (
           parseFloat(this.productBasePrice.discounted_price) -
-          parseFloat(productVariant.price_difference)
+          parseFloat(productOption.price_difference)
         ).toString();
-        this.discountedTotalPrice =
-          parseFloat(this.productDetail.discount_price) *
-          this.productDetail.min_order_quantity;
       }
     }
 
-    this.checkedOptions[productOptionIndex] = true;
-    if (productVariant.optionValue.image)
-      this.changeMainImage(
-        productVariant.optionValue.image,
-        productOptionIndex
-      );
-  }
+    this.updateTotalPrice(this.selectedQuantity);
 
-  public filterProductVariants(productVariantOption: {
-    option: string;
-    productOptions: ProductOptions;
-  }) {
-    this.productOptions = [];
-    console.log(this.productVariantOptionsUnique);
-    this.productDetail.productOptions.forEach((e) => {
-      if (productVariantOption.option == e.optionValue.option.name)
-        this.productOptions.push({
-          option: e.optionValue.option.name,
-          productOptions: e,
-        });
-    });
+    this.checkedOptions[productOptionIndex] = true;
+    if (productOption.optionValue.image)
+      this.changeMainImage(productOption.optionValue.image, productOptionIndex);
   }
 
   private manipulateProductOptionsJson() {
-    console.log(
-      this.groupBy(this.productDetail.productOptions, 'optionValue.option.name')
-    );
-    this.test = this.groupBy(
+    this.productVariants = this.groupBy(
       this.productDetail.productOptions,
       'optionValue.option.name'
     );
-
-    this.productDetail.productOptions.forEach((e) => {
-      this.productOptions.push({
-        option: e.optionValue.option.name,
-        productOptions: e,
-      });
-    });
-    this.productVariantOptionsUnique = this.productOptions.filter(
-      (item, index, objects) => {
-        if (index === 0) {
-          return item;
-        } else if (item.option !== objects[index - 1].option) {
-          return item;
-        }
-        return;
-      }
-    );
-    // console.log(this.productVariantOptionsUnique);
-    this.filterProductVariants(this.productVariantOptionsUnique[0]);
   }
 
   public changeMainImage(source: string, index: number): void {
@@ -257,12 +177,6 @@ export class ProductComponent implements OnInit {
       (productPrice * quantity).toFixed(2)
     );
   }
-
-  // private groupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
-  //   arr.reduce((groups, item) => {
-  //     (groups[key(item)] ||= []).push(item);
-  //     return groups;
-  //   }, {} as Record<K, T[]>);
 
   settings = {
     counter: false,
