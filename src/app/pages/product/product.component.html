@@ -172,22 +172,22 @@
 
           <p-divider></p-divider>
         </div>
-        
+
         <div class="prod-static-content">
           <p class="p1">(Minimum Order : {{ productDetail.min_order_quantity }} or more )</p>
           <p class="p2">Free Shipping : On Bill above $ 3,000 (else $ 200) <span>(Not applicable for discounted items)</span></p>
           <img alt="gifts" class="gifts-img" src="../../../assets/free-gifts.jpg" />
-  
+
           <p class="p3">
             Services:
             <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" />
             Delivery 2-3 working days
-  
+
             <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" style="margin-left: 10px" />
             Original Guaranteed
           </p>
         </div>
-  
+
         <div class="product-btn-wrap">
           <span class="quantity">
             <input
@@ -215,15 +215,15 @@
           <button class="btn add-to-cart-btn"><img src="../assets/cart.png" alt=""> Add to Cart</button>
           <button class="btn buy-now-btn">Buy Now</button>
           <!-- <app-input-button buttonText="Buy Now"></app-input-button> -->
-          
+
           <button class="btn add-to-cart-btn">Add to Wishlist</button>
         </div>
-  
+
         <div class="prod-price" id="totalPrice">
           <p class="prod-label">Price <small>(Quantity) </small>: </p>
           <p class="prod-value"><strong>$ {{ discountedTotalPrice }}</strong><small>({{ selectedQuantity }} item(s))</small></p>
         </div>
-        
+
 
       </div>
     </div>
@@ -234,7 +234,7 @@
           <div
             class="product-tab-content"
             *ngIf="productDetail.description"
-            [innerHTML]="productDetail.description"
+            [innerHTML]="description"
           ></div>
         </p-tabPanel>
         <p-tabPanel header="Reviews">
