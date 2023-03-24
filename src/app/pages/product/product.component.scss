@@ -605,3 +605,29 @@ a:hover {
     margin-bottom: 10px;
   }
 }
+
+.variant-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+
+  .product-variant-images{
+    width: 65px;
+    height: 65px;
+    border: 1px solid #ececec;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
+  }
+
+  .prod-variant-name{
+    font-weight: 500;
+    font-size: 14px;
+    background: pink;
+    padding: 5px;
+    display: inline-block;
+    margin-top: 15px;
+  }
+
+  .prod-variant-content-wrap{
+    display: flex;
+  }
+}
