@@ -17,7 +17,8 @@
               class="flex flex-column md:flex-row md:justify-content-between"
             ></div>
           </ng-template>
-          <ng-template let-product pTemplate="gridItem" class="parent">
+          <ng-template let-product pTemplate="gridItem" class="parent grid">
+            <div class="col-3">
             <app-product-card
               class="child"
               [brandName]="title"
@@ -27,6 +28,7 @@
               [discount_price]="product.discount_price"
               [image]="product.image"
             ></app-product-card>
+          </div>
           </ng-template>
         </p-dataView>
         <p-divider></p-divider>

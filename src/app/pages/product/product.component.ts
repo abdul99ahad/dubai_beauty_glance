@@ -9,6 +9,7 @@ import {
   ProductVariantList,
 } from '../../interfaces/product.interface';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
@@ -36,9 +37,12 @@ export class ProductComponent implements OnInit {
 
   productVariants: ProductVariantList;
 
+  description: SafeHtml;
+
   public constructor(
     private readonly route: ActivatedRoute,
-    private readonly webApiService: WebApiService
+    private readonly webApiService: WebApiService,
+    private sanitizer: DomSanitizer
   ) {}
 
   public ngOnInit(): void {
@@ -75,6 +79,9 @@ export class ProductComponent implements OnInit {
       )
       .subscribe((productDetail: ProductDetail) => {
         this.productDetail = productDetail;
+        this.description = this.sanitizer.bypassSecurityTrustHtml(
+          productDetail.description
+        );
         this.selectedQuantity = productDetail.min_order_quantity;
         this.updateBasePrice(
           this.productDetail.price,

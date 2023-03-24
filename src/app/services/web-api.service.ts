@@ -47,7 +47,7 @@ export class WebApiService {
 
   public getProducts(url?: string): Observable<PaginatedResponse<Product>> {
     return this.httpService
-      .get<PaginatedResponse<Product>>(url ?? ApiRoutes.products, !!url)
+      .get<PaginatedResponse<Product>>(url ?? ApiRoutes.product, !!url)
       .pipe(
         switchMap((data: PaginatedResponse<Product>) => {
           return from(
@@ -66,7 +66,7 @@ export class WebApiService {
   ): Observable<{ data: Array<Product> }> {
     return this.httpService
       .get<{ data: Array<Product> }>(
-        `${ApiRoutes.products}?paginate=0&productName=${productName}`
+        `${ApiRoutes.product}?paginate=0&productName=${productName}`
       )
       .pipe(
         switchMap((data: { data: Array<Product> }) => {
@@ -84,7 +84,7 @@ export class WebApiService {
   public getLatestProducts(): Observable<{ data: Array<Product> }> {
     return this.httpService
       .get<{ data: Array<Product> }>(
-        `${ApiRoutes.products}?paginate=0&latest=1&numOfProducts=10&with[]=brand`
+        `${ApiRoutes.product}?paginate=0&latest=1&numOfProducts=10&with[]=brand`
       )
       .pipe(
         switchMap((data: { data: Array<Product> }) => {
@@ -110,7 +110,7 @@ export class WebApiService {
       .get<{ data: Array<Product> }>(
         `${ApiRoutes.brand}/${encodeURI(
           brandSlug
-        )}?latest=1&paginate=0&numOfProducts=10`
+        )}/${ApiRoutes.products}?latest=1&paginate=0&numOfProducts=10`
       )
       .pipe(
         switchMap((data: { data: Array<Product> }) => {
@@ -148,7 +148,7 @@ export class WebApiService {
   ): Observable<PaginatedResponse<Product>> {
     return this.httpService
       .get<PaginatedResponse<Product>>(
-        url ?? `${ApiRoutes.products}?promotional=1`,
+        url ?? `${ApiRoutes.product}?promotional=1`,
         !!url
       )
       .pipe(
@@ -225,7 +225,7 @@ export class WebApiService {
   ): Observable<PaginatedResponse<Product>> {
     return this.httpService
       .get<PaginatedResponse<Product>>(
-        `${ApiRoutes.category}/${encodeURI(categorySlug)}`
+        `${ApiRoutes.category}/${encodeURI(categorySlug)}/${ApiRoutes.products}`
       )
       .pipe(
         switchMap((data: PaginatedResponse<Product>) => {
@@ -259,22 +259,22 @@ export class WebApiService {
   }
 
   public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
-    return this.httpService.get(url ?? ApiRoutes.brands, !!url);
+    return this.httpService.get(url ?? ApiRoutes.brand, !!url);
   }
 
   public getBrandsForHeader(): Observable<{ data: Array<Brand> }> {
-    return this.httpService.get(`${ApiRoutes.brands}?paginate=0`);
+    return this.httpService.get(`${ApiRoutes.brand}?paginate=0`);
   }
 
   public getCategories(): Observable<{ data: Array<CategoryWithChildren> }> {
     return this.httpService.get<{ data: Array<CategoryWithChildren> }>(
-      ApiRoutes.categories
+      ApiRoutes.category
     );
   }
 
   public getBrandDetails(brandSlug: string): Observable<{ data: Brand }> {
     return this.httpService.get<{ data: Brand }>(
-      ApiRoutes.getSingleBrand + '/' + brandSlug
+      `${ApiRoutes.brand}/${encodeURI(brandSlug)}`
     );
   }
 
@@ -282,7 +282,7 @@ export class WebApiService {
     categorySlug: string
   ): Observable<{ data: Category }> {
     return this.httpService.get<{ data: Category }>(
-      ApiRoutes.getSingleCategory + '/' + categorySlug
+      `${ApiRoutes.category}/${encodeURI(categorySlug)}`
     );
   }
 }

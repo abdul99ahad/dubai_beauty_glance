@@ -13,7 +13,7 @@ export class CurrencyService {
   public get selectedCurrency(): string {
     const currencyCode = localStorage.getItem("currency");
 
-    return currencyCode ?? "AED";
+    return currencyCode ?? "Dhs";
   }
 
   public set selectedCurrency(currencyCode: string) {

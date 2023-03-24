@@ -257,12 +257,19 @@ a:hover {
   margin: 10px !important;
 }
 
-
-:host ::ng-deep p-dialog {
-  .p-dialog {
-    opacity: 0.9;
-  }
+.showOnHover {
+  display: none;
 }
+
+.productVariant:hover .showOnHover {
+  display: block;
+}
+
+// :host ::ng-deep p-dialog {
+//   .p-dialog {
+//     opacity: 0.9;
+//   }
+// }
 
 :host ::ng-deep p-toggleButton {
   div {
@@ -425,6 +432,10 @@ a:hover {
     img {
       width: 100%;
     }
+
+    iframe {
+      width: 100%;
+    }
   }
 }
 
@@ -442,7 +453,7 @@ a:hover {
 .product-btn-wrap{
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 24px 0;
 
   .quantity {
     display: inline-block;
@@ -491,12 +502,20 @@ a:hover {
     border: none;
     font-family: "Montserrat", "Nanum Gothic", "Malgun Gothic", Verdana, Dotum, AppleGothic, sans-serif;
     height: 50px;
+    display: flex;
+    align-items: center;
   }
 
   .buy-now-btn{
     background: #f54a7e;
     color: #ffffff;
     padding: 0 30px;
+
+    img{
+      filter: invert(1);
+      width: 18px;
+      margin-right: 8px;
+    }
 
     &:hover{
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -510,19 +529,25 @@ a:hover {
     margin: 0 10px;
     padding: 0 30px;
 
+    img{
+      filter: invert(1);
+      width: 18px;
+      margin-right: 8px;
+    }
+
     &:hover{
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       background: #f71668;
     }
   }
-  
+
 }
 
 .prod-price{
   display: flex;
   align-items: center;
   font-size: 16px;
-  
+
   .prod-label{
     margin-right: 10px;
     font-weight: 500;
@@ -549,11 +574,11 @@ a:hover {
   font-size: 14px;
   margin-top: 10px;
   .p1{
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .p2{
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     span{
       color: red;
     }
@@ -561,6 +586,22 @@ a:hover {
 
   .gifts-img {
     max-width: 500px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+  }
+}
+
+.tag-links-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+
+  .tag-link{
+    display: inline-block;
+    background: #222222;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin-bottom: 10px;
   }
 }

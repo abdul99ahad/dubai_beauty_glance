@@ -1,6 +1,7 @@
 import { Brand } from './brand.interface';
 import { Tag } from './tag.interface';
 import { Category } from './categories.interface';
+import {SafeHtml} from "@angular/platform-browser";
 
 export interface Product {
   name: string;
@@ -12,7 +13,7 @@ export interface Product {
 }
 
 export interface ProductDetail extends Product {
-  description: string | null;
+  description: string;
   meta_title: string | null;
   meta_description: string | null;
   meta_keywords: string | null;
