@@ -1,47 +1,58 @@
 p {
-    font-size: 16px; 
-    font-weight: 100; 
-    text-align: left
+  font-size: 16px;
+  font-weight: 100;
+  text-align: left
 }
 
-h3 {
-    font-size: 28px;
-    font-weight: 900;
-}
-:host ::ng-deep app-input-textbox{
-    input {
-        width: 300px !important;
-    }
+// :host ::ng-deep app-input-textbox{
+//     input {
+//         // width: 300px !important;
+//     }
+// }
+
+:host ::ng-deep app-input-button {
+  a {
+    margin: 30px 0;
+    width: 540px !important;
+    background: black !important;
+    border-color: black !important;
+  }
+
+  a:hover {
+    background: white !important;
+    color: black !important;
+  }
 }
 
-:host ::ng-deep app-input-button{
-    a {
-        margin:30px 0;
-        width: 540px !important;
-        background:black !important;
-        border-color: black !important;
-    }
 
-    a:hover {
-        background: white !important;
-        color:black !important;
-    }
-}
-
-.title {
-    margin: 10px 0;
-}
 
 .required {
-    color: red; 
-    font-weight: 500
+  color: red;
+  font-weight: 500
 }
 
-.signup-wrapper{
-
-  .heading-title{
+.signup-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  .heading-title {
     text-align: left;
     font-size: 28px;
     font-weight: 500;
+  }
+}
+
+.signup-content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  .title {
+    margin: 10px 0;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .radio-wrapper{
+    display: flex;
+    align-items: center;
   }
 }

@@ -1,66 +1,49 @@
-<div class="div-container">
-  <div class="titleArea">
-    <h2>Sign in</h2>
-  </div>
+<div class="main-container">
+  <div class="div-container">
+    <div class="titleArea">
+      <h2>Sign in</h2>
+    </div>
 
-  <div>
-    <!-- <input class="textbox" type="text" placeholder="ID or email" /> -->
-    <app-input-textbox
-      type="text"
-      placeholder="ID or email"
-    ></app-input-textbox>
-  </div>
-  <!--Password-->
-  <div>
-    <!-- <input type="password" pInputText placeholder="Password" /> -->
-    <app-input-textbox
-      type="password"
-      placeholder="Password"
-    ></app-input-textbox>
-  </div>
+    <div>
 
-  <div class="flex-display">
-    <input
-      id="member_check_save_id0"
-      name="check_save_id"
-      fw-label="Save ID"
-      type="checkbox"
-      class="checkbox"
-    />
-    <p class="flex-right">Save ID</p>
-    <p>
-      <span
-        ><img src="../../../../../assets/ico_access.png" alt="Secured Login"
-      /></span>
-      Secured Login
-    </p>
-  </div>
+      <app-input-textbox type="text" placeholder="Email"></app-input-textbox>
+    </div>
 
-  <div>
-    <!-- <button pButton type="button" label="Sign in"></button> -->
-    <app-input-button buttonText="Sign in"></app-input-button>
-  </div>
+    <div>
 
-  <div class="flex-display">
-    <a href="/" class="forget-pwd">Forgot ID | </a>
-    <a href="/" class="forget-pwd">Forgot Password</a>
-  </div>
+      <app-input-textbox type="password" placeholder="Password"></app-input-textbox>
+    </div>
 
-  <div class="m-btm-20">
-    <!-- <button pButton type="button" label="Login with Facebook"></button> -->
-    <a href="">
-      <img
-        class="facebook_login"
-        src="../../../../../assets/facebook_login.png"
-        alt="Login with Facebook"
-      />
-    </a>
-  </div>
+    <div class="flex-display">
+      <input id="member_check_save_id0" name="check_save_id" fw-label="Save ID" type="checkbox" class="checkbox" />
+      <p class="flex-right">Save ID</p>
+      <p>
+        <span><img src="../../../../../assets/ico_access.png" alt="Secured Login" /></span>
+        Secured Login
+      </p>
+    </div>
 
-  <hr />
+    <div>
 
-  <div>
-    <!-- <button pButton type="button" label="Sign Up"></button> -->
-    <a href="/" class="sign-up">Sign Up</a>
+      <app-input-button buttonText="Sign in"></app-input-button>
+    </div>
+
+    <div class="flex-display">
+      <a href="/" class="forget-pwd">Forgot ID | </a>
+      <a href="/" class="forget-pwd">Forgot Password</a>
+    </div>
+
+    <div class="m-btm-20">
+
+      <a href="">
+        <img class="facebook_login" src="../../../../../assets/facebook_login.png" alt="Login with Facebook" />
+      </a>
+    </div>
+
+    <hr />
+
+    <div>
+      <a [routerLink]="['/register']" class="sign-up">Create an account</a>
+    </div>
   </div>
 </div>

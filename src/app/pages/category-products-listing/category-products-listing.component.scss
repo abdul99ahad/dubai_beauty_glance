@@ -228,3 +228,13 @@ p {
 .mb-15{
   margin-bottom: 15px;
 }
+
+.category-navigation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin-right: 10px;
+  }
+}

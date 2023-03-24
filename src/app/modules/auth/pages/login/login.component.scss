@@ -7,14 +7,13 @@
 }
 .titleArea {
     text-align: center;
-    margin: 20px 0 40px;
+    margin: 20px 0;
 }
 .titleArea h2 {
-    color: #3b3b3b;
-    font-size: 26px;
-    font-weight: 500;
-    line-height: 1.1;
+    color: #000;
     font-family: 'Montserrat','Arial';
+    font-size: 28px;
+    font-weight: 500;
 }
 
 .checkbox {
@@ -27,7 +26,8 @@
     color: #868686;
     font-size: 14px;
     font-weight: 300;
-    margin: 0 35%;
+    margin: 0 auto;
+    max-width: 500PX;
 }
 
 .flex-right {

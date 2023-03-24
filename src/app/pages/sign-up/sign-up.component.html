@@ -5,124 +5,107 @@
     <h2 class="heading-title">{{ title }}</h2>
     <p-divider></p-divider>
   </div>
-  <div>
-    <table>
-      <h3 class="title">Personal Details</h3>
-      <tbody>
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.firstName }}
-              <span class="required">*</span>
-            </p>
-          </th>
-          <td>
-            <app-input-textbox
-              type="text"
-              [placeholder]="registerFormFields.firstName"
-            ></app-input-textbox>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.lastName }}
-              <span class="required">*</span>
-            </p>
-          </th>
-          <td>
-            <app-input-textbox
-              type="text"
-              [placeholder]="registerFormFields.lastName"
-            ></app-input-textbox>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.email }} <span class="required">*</span>
-            </p>
-          </th>
-          <td>
-            <app-input-textbox
-              type="text"
-              [placeholder]="registerFormFields.email"
-            ></app-input-textbox>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.contactNo }}
-              <span class="required">*</span>
-            </p>
-          </th>
-          <td>
-            <app-input-textbox
-              type="text"
-              [placeholder]="registerFormFields.contactNo"
-            ></app-input-textbox>
-          </td>
-        </tr>
+  <div class="signup-content-wrapper">
+    <h3 class="title">Personal Details</h3>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.firstName }}
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" [placeholder]="registerFormFields.firstName"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.lastName }}
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" [placeholder]="registerFormFields.lastName"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.email }} <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" [placeholder]="registerFormFields.email"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.contactNo }}
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" [placeholder]="registerFormFields.contactNo"></app-input-textbox>
+      </div>
+    </div>
 
-        <h3 class="title">Password</h3>
+    <h3 class="title">Password</h3>
 
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.password }}
-              <span class="required">*</span>
-            </p>
-          </th>
-          <td>
-            <app-input-textbox
-              type="password"
-              [placeholder]="registerFormFields.password"
-            ></app-input-textbox>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.confirmPassword }}
-              <span class="required">*</span>
-            </p>
-          </th>
-          <td>
-            <app-input-textbox
-              type="password"
-              [placeholder]="registerFormFields.confirmPassword"
-            ></app-input-textbox>
-          </td>
-        </tr>
-        <h3 class="title">Newsletter</h3>
-        <tr>
-          <th scope="row">
-            <p>
-              {{ registerFormFields.subscribeNewsLetter }}
-            </p>
-          </th>
-          <td></td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <div style="display: flex">
-              <input type="checkbox" style="margin-right: 0.2rem" />
-              <p style="font-size: 12px">
-                I have read and agree to the Terms & Condition
-              </p>
-            </div>
-
-          </th>
-          <td>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.password }}
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="password" [placeholder]="registerFormFields.password"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.confirmPassword }}
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="password" [placeholder]="registerFormFields.confirmPassword"></app-input-textbox>
+      </div>
+    </div>
+    <h3 class="title">Newsletter</h3>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          {{ registerFormFields.subscribeNewsLetter }}
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <div class="radio-wrapper">
+          <!-- <div> -->
+            <input type="radio" id="yes" name="newsletter" value="Yes">
+            <label for="yes" class="mr-5 ml-2">Yes</label>
+          <!-- </div>
+          <div> -->
+            <input type="radio" id="no" name="newsletter" value="No">
+            <label for="no" class="ml-2">No</label>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="grid mt-3">
+      <div class="col-12 md:col-12 lg:col-12">
+        <div style="display: flex">
+          <input type="checkbox" id="read" style="margin-right: 10px" />
+          <label for="read" style="font-size: 12px"> I have read and agree to the Terms & Condition.</label>
+        </div>
+      </div>
+    </div>
 
     <div>
       <app-input-button buttonText="Register"></app-input-button>
     </div>
   </div>
 </div>
-
