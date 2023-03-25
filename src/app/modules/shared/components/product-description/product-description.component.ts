@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ProductDetail } from 'src/app/interfaces/product.interface';
+import {CurrencyService} from "../../../../services/currency.service";
 
 @Component({
   selector: 'app-product-description',
@@ -33,8 +34,11 @@ export class ProductDescriptionComponent implements OnInit {
 
   floatPrice: string;
   floatDiscountedPrice: string;
+  public readonly currency: string;
 
-  constructor() {}
+  constructor(private readonly currencyService: CurrencyService) {
+    this.currency = this.currencyService.selectedCurrency;
+  }
 
   ngOnInit(): void {
     this.price = parseFloat(this.productDetail.price);

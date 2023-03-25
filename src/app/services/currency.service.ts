@@ -21,7 +21,7 @@ export class CurrencyService {
     window.location.reload();
   }
 
-  public async handleCurrency<T>(input: T, ...fields: Array<string>): Promise<T> {
+  /*public async handleCurrency<T>(input: T, ...fields: Array<string>): Promise<T> {
     if (this.dataIsAbsent(input)) return input as T;
 
     if (Array.isArray(input)) return await this.handleArrayData(input, fields) as unknown as T;
@@ -50,10 +50,10 @@ export class CurrencyService {
         continue;
       }
 
-      if (fields.includes(objectKey)) {
+      /!*if (fields.includes(objectKey)) {
         currentObject[objectKey] = await this.convertCurrency(objectValue as string);
         continue;
-      }
+      }*!/
 
       currentObject[objectKey] = objectValue;
     }
@@ -88,9 +88,9 @@ export class CurrencyService {
 
   private dataIsAbsent(input: unknown): input is null | undefined {
     return input === null || input === undefined;
-  }
+  }*/
 
-  private async convertCurrency(amount: string): Promise<number> {
+  /*private async convertCurrency(amount: string): Promise<number> {
     if (this.selectedCurrency === "AED") return +amount;
 
     const convertUrl = new URL("https://api.apilayer.com/currency_data/convert");
@@ -103,5 +103,5 @@ export class CurrencyService {
     const convertedAmount = response.result.toFixed(2);
 
     return +convertedAmount;
-  }
+  }*/
 }
