@@ -48,7 +48,7 @@
                       ? 'initial'
                       : 'line-through'
                   "
-                  >$ {{ productDetail.price }}</strong
+                  >{{ currency + " " + productDetail.price }}</strong
                 >
               </span>
             </td>
@@ -66,9 +66,9 @@
               <span>
                 <span style="font-size: 14px; color: #323232">
                   <span id="span_product_price_sale"
-                    >$ {{ productDetail.discount_price }}
+                    >{{ currency + " " + productDetail.discount_price }}
                     <span style="font-size: 14px; color: #555555"
-                      >($
+                      >({{ currency }}
                       {{
                         +productDetail.price - +productDetail.discount_price
                       }}
@@ -141,7 +141,7 @@
 
       <p-divider></p-divider>
     </div>
-    
+
     <div class="prod-static-content">
       <p class="p1">(Minimum Order : {{ productDetail.min_order_quantity }} or more )</p>
       <p class="p2">Free Shipping : On Bill above $ 3,000 (else $ 200) <span>(Not applicable for discounted items)</span></p>
@@ -184,15 +184,15 @@
       <button class="btn add-to-cart-btn">Add to Cart</button>
       <button class="btn buy-now-btn">Buy Now</button>
       <!-- <app-input-button buttonText="Buy Now"></app-input-button> -->
-      
+
       <button class="btn add-to-cart-btn">Add to Wishlist</button>
     </div>
 
     <div class="prod-price" id="totalPrice">
       <p class="prod-label">Price <small>(Quantity) </small>: </p>
-      <p class="prod-value"><strong>$ {{ selectedQuantity }}</strong><small>({{ selectedQuantity }} item(s))</small></p>
+      <p class="prod-value"><strong>{{ currency +" "+ selectedQuantity }}</strong><small>({{ selectedQuantity }} item(s))</small></p>
     </div>
-    
+
 
   </div>
 </div>

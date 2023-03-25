@@ -79,7 +79,7 @@
                           ? 'initial'
                           : 'line-through'
                       "
-                      >$ {{ productDetail.price }}</strong
+                      >{{ currency + " " + productDetail.price }}</strong
                     >
                   </span>
                 </td>
@@ -97,11 +97,10 @@
                   <span>
                     <span style="font-size: 14px; color: #323232">
                       <span id="span_product_price_sale"
-                        >$ {{ productDetail.discount_price }}
+                        >{{ currency + " " + productDetail.discount_price }}
                         <span style="font-size: 14px; color: #555555"
-                          >($
-                          {{
-                            +productDetail.price - +productDetail.discount_price
+                          >({{ currency}}
+                          {{+productDetail.price - +productDetail.discount_price
                           }}
                           discount)</span
                         >
@@ -136,7 +135,7 @@
                         {{ productOption.optionValue.name }}
                       </p>
                       <!-- <p-toggleButton
-                        
+
                         [ngModel]="checkedOptions[productOptionIndex]"
                         [offLabel]="productOption.productOptions.optionValue.name"
                         [onLabel]="productOption.productOptions.optionValue.name"
@@ -252,7 +251,7 @@
         <div class="prod-price" id="totalPrice">
           <p class="prod-label">Price <small>(Quantity) </small>:</p>
           <p class="prod-value">
-            <strong>$ {{ discountedTotalPrice }}</strong
+            <strong>{{ currency + " " + discountedTotalPrice }}</strong
             ><small>({{ selectedQuantity }} item(s))</small>
           </p>
         </div>

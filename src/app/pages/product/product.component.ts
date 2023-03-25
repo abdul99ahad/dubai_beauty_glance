@@ -10,6 +10,7 @@ import {
 } from '../../interfaces/product.interface';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {CurrencyService} from "../../services/currency.service";
 
 type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
@@ -38,12 +39,16 @@ export class ProductComponent implements OnInit {
   productVariants: ProductVariantList;
 
   description: SafeHtml;
+  public readonly currency: string;
 
   public constructor(
     private readonly route: ActivatedRoute,
     private readonly webApiService: WebApiService,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private readonly currencyService: CurrencyService
+  ) {
+    this.currency = this.currencyService.selectedCurrency;
+  }
 
   public ngOnInit(): void {
     this.fetchProductDetails();

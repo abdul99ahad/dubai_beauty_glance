@@ -10,8 +10,8 @@ import { Product, ProductDetail } from '../interfaces/product.interface';
 import { PaginatedResponse } from '../interfaces/response.interface';
 import { environment } from 'src/environments/environment';
 import { Brand } from '../interfaces/brand.interface';
-import { CurrencyList } from '../interfaces/currencies.interface';
-import { CurrencyApiKey } from '../const/api-key';
+/*import { CurrencyList } from '../interfaces/currencies.interface';
+import { CurrencyApiKey } from '../const/api-key';*/
 import { CurrencyService } from './currency.service';
 import { Setting } from '../interfaces/setting.interface';
 import { Banner } from '../interfaces/banner.interface';
@@ -37,28 +37,17 @@ export class WebApiService {
     );
   }
 
-  public getCurrencyList(): Observable<CurrencyList> {
+  /*public getCurrencyList(): Observable<CurrencyList> {
     return this.httpService.getWithApiKey(
       'https://api.apilayer.com/currency_data/list',
       'apikey',
       CurrencyApiKey
     );
-  }
+  }*/
 
   public getProducts(url?: string): Observable<PaginatedResponse<Product>> {
     return this.httpService
-      .get<PaginatedResponse<Product>>(url ?? ApiRoutes.product, !!url)
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
-      );
+      .get<PaginatedResponse<Product>>(url ?? ApiRoutes.product, !!url);
   }
 
   public getSearchedProducts(
@@ -67,17 +56,6 @@ export class WebApiService {
     return this.httpService
       .get<{ data: Array<Product> }>(
         `${ApiRoutes.product}?paginate=0&productName=${productName}`
-      )
-      .pipe(
-        switchMap((data: { data: Array<Product> }) => {
-          return from(
-            this.currencyService.handleCurrency<{ data: Array<Product> }>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
       );
   }
 
@@ -85,17 +63,6 @@ export class WebApiService {
     return this.httpService
       .get<{ data: Array<Product> }>(
         `${ApiRoutes.product}?paginate=0&latest=1&numOfProducts=10&with[]=brand`
-      )
-      .pipe(
-        switchMap((data: { data: Array<Product> }) => {
-          return from(
-            this.currencyService.handleCurrency<{ data: Array<Product> }>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
       );
   }
 
@@ -111,17 +78,6 @@ export class WebApiService {
         `${ApiRoutes.brand}/${encodeURI(
           brandSlug
         )}/${ApiRoutes.products}?latest=1&paginate=0&numOfProducts=10`
-      )
-      .pipe(
-        switchMap((data: { data: Array<Product> }) => {
-          return from(
-            this.currencyService.handleCurrency<{ data: Array<Product> }>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
       );
   }
 
@@ -129,18 +85,7 @@ export class WebApiService {
     productSlug: string
   ): Observable<{ data: ProductDetail }> {
     return this.httpService
-      .get<{ data: ProductDetail }>(`${ApiRoutes.product}/${productSlug}`)
-      .pipe(
-        switchMap((data: { data: ProductDetail }) => {
-          return from(
-            this.currencyService.handleCurrency<{ data: ProductDetail }>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
-      );
+      .get<{ data: ProductDetail }>(`${ApiRoutes.product}/${productSlug}`);
   }
 
   public getPromotionalProducts(
@@ -150,17 +95,6 @@ export class WebApiService {
       .get<PaginatedResponse<Product>>(
         url ?? `${ApiRoutes.product}?promotional=1`,
         !!url
-      )
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
       );
   }
 
@@ -168,18 +102,7 @@ export class WebApiService {
     brandCompleteUrl: string
   ): Observable<PaginatedResponse<Product>> {
     return this.httpService
-      .get<PaginatedResponse<Product>>(brandCompleteUrl, true)
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
-      );
+      .get<PaginatedResponse<Product>>(brandCompleteUrl, true);
   }
 
   public getBrandProductsWithSlug(
@@ -188,17 +111,6 @@ export class WebApiService {
     return this.httpService
       .get<PaginatedResponse<Product>>(
         `${ApiRoutes.brand}/${encodeURI(brandSlug)}`
-      )
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
       );
   }
 
@@ -206,18 +118,7 @@ export class WebApiService {
     categoryCompleteUrl: string
   ): Observable<PaginatedResponse<Product>> {
     return this.httpService
-      .get<PaginatedResponse<Product>>(categoryCompleteUrl, true)
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
-      );
+      .get<PaginatedResponse<Product>>(categoryCompleteUrl, true);
   }
 
   public getCategoryProductsWithSlug(
@@ -226,17 +127,6 @@ export class WebApiService {
     return this.httpService
       .get<PaginatedResponse<Product>>(
         `${ApiRoutes.category}/${encodeURI(categorySlug)}/${ApiRoutes.products}`
-      )
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
       );
   }
 
@@ -244,18 +134,7 @@ export class WebApiService {
     tagSlug: string
   ): Observable<PaginatedResponse<Product>> {
     return this.httpService
-      .get<PaginatedResponse<Product>>(`${ApiRoutes.tag}/${encodeURI(tagSlug)}`)
-      .pipe(
-        switchMap((data: PaginatedResponse<Product>) => {
-          return from(
-            this.currencyService.handleCurrency<PaginatedResponse<Product>>(
-              data,
-              'price',
-              'discount_price'
-            )
-          );
-        })
-      );
+      .get<PaginatedResponse<Product>>(`${ApiRoutes.tag}/${encodeURI(tagSlug)}`);
   }
 
   public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
