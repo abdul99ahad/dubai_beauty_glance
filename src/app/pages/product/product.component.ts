@@ -10,7 +10,7 @@ import {
 } from '../../interfaces/product.interface';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {CurrencyService} from "../../services/currency.service";
+import { CurrencyService } from '../../services/currency.service';
 
 type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
@@ -27,6 +27,7 @@ export class ProductComponent implements OnInit {
   checked: boolean = true;
   display: boolean = false;
   selectedIndex: number;
+  variantSelectedIndex: number;
 
   public checkedOptions: SelectedProductOption = {};
 
@@ -125,11 +126,11 @@ export class ProductComponent implements OnInit {
   public toggleProductOptionSelection(productOption: ProductOptions): void {
     const productOptionIndex: number =
       this.productDetail.productOptions.findIndex((x) => x == productOption);
-    if (this.checkedOptions[productOptionIndex]) {
-      this.checkedOptions[productOptionIndex] =
-        !this.checkedOptions[productOptionIndex];
-      return;
-    }
+    // if (this.checkedOptions[productOptionIndex]) {
+    //   this.checkedOptions[productOptionIndex] =
+    //     !this.checkedOptions[productOptionIndex];
+    //   return;
+    // }
 
     if (productOption.price_adjustment == 1) {
       // Add to base price
@@ -172,7 +173,7 @@ export class ProductComponent implements OnInit {
 
   public changeMainImage(source: string, index: number): void {
     this.productDetail.image = source;
-    this.selectedIndex = index;
+    this.variantSelectedIndex = index;
   }
 
   public updateTotalPrice(quantity: number): void {
