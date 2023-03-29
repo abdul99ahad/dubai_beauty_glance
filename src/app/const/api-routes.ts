@@ -4,6 +4,7 @@ export const ApiRoutes = {
   brandWithProducts: 'brand/product/slider',
   brand: 'brand',
   category: 'category',
+  quickCategories: 'quick-categories',
   tag: 'tag',
   setting: 'setting',
   banners: 'banners',

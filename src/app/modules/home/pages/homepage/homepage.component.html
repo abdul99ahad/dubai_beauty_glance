@@ -51,34 +51,10 @@
         <p>Find products quickly by category selection</p>
       </div>
       <ul class="main-quick-list">
-        <li class="main-quick-skin">
-          <a href="javascript:void(0)">
-            <span></span>
-            <p>SKINCARE</p>
-          </a>
-        </li>
-        <li class="main-quick-makeup">
-          <a href="javascript:void(0)">
-            <span></span>
-            <p>MAKEUP</p>
-          </a>
-        </li>
-        <li class="main-quick-hair">
-          <a href="javascript:void(0)">
-            <span></span>
-            <p>HAIR & BODY</p>
-          </a>
-        </li>
-        <li class="main-quick-mask">
-          <a href="javascript:void(0)">
-            <span></span>
-            <p>MASK TRIAL KIT</p>
-          </a>
-        </li>
-        <li class="main-quick-devices">
-          <a href="javascript:void(0)">
-            <span></span>
-            <p>DEVICES & TOOLS</p>
+        <li class="main-quick-skin" *ngFor="let quickCategory of quickCategories">
+          <a href="{{ quickCategory.link }}">
+            <span style="background-image :url('{{quickCategory.image}}')"></span>
+            <p>{{ quickCategory.name }}</p>
           </a>
         </li>
       </ul>
