@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
-import { from, Observable, switchMap } from 'rxjs';
-import { HttpService } from './http.service';
-import { ApiRoutes } from 'src/app/const/api-routes';
+import {Injectable} from '@angular/core';
+import {from, Observable, switchMap} from 'rxjs';
+import {HttpService} from './http.service';
+import {ApiRoutes} from 'src/app/const/api-routes';
 import {
   Category,
   CategoryWithChildren,
 } from '../interfaces/categories.interface';
-import { Product, ProductDetail } from '../interfaces/product.interface';
-import { PaginatedResponse } from '../interfaces/response.interface';
-import { environment } from 'src/environments/environment';
-import { Brand } from '../interfaces/brand.interface';
+import {Product, ProductDetail} from '../interfaces/product.interface';
+import {PaginatedResponse} from '../interfaces/response.interface';
+import {environment} from 'src/environments/environment';
+import {Brand} from '../interfaces/brand.interface';
 /*import { CurrencyList } from '../interfaces/currencies.interface';
 import { CurrencyApiKey } from '../const/api-key';*/
-import { CurrencyService } from './currency.service';
-import { Setting } from '../interfaces/setting.interface';
-import { Banner } from '../interfaces/banner.interface';
+import {CurrencyService} from './currency.service';
+import {Setting} from '../interfaces/setting.interface';
+import {Banner} from '../interfaces/banner.interface';
+import {QuickCategory} from "../interfaces/quick-categories.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class WebApiService {
   public constructor(
     private readonly httpService: HttpService,
     private readonly currencyService: CurrencyService
-  ) {}
+  ) {
+  }
 
   public getSetting(): Observable<{ data: Setting }> {
     return this.httpService.get<{ data: Setting }>(`${ApiRoutes.setting}`);
@@ -35,6 +37,10 @@ export class WebApiService {
     return this.httpService.get<{ data: Array<Banner> }>(
       `${ApiRoutes.banners}/${type}`
     );
+  }
+
+  public getQuickCategories(): Observable<{ data: Array<QuickCategory> }> {
+    return this.httpService.get<{ data: Array<QuickCategory> }>(ApiRoutes.quickCategories)
   }
 
   /*public getCurrencyList(): Observable<CurrencyList> {
