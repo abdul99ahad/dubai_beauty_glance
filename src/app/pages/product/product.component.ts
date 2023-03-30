@@ -108,17 +108,23 @@ export class ProductComponent implements OnInit {
   }
 
   public AddtoCart() {
-    this.cartService.addItem(
-      new ProductCartItem({
-        id: this.productDetail.sku,
-        name: this.productDetail.name,
-        image: this.productDetail.image,
-        price: this.productDetail.price,
-        quantity: this.selectedQuantity,
-        discount_price: this.productDetail.discount_price,
-        min_quantity: this.productDetail.min_order_quantity,
-      })
-    );
+    // If already exists, increase the quantity
+    if (this.cartService.getItem(this.productDetail.sku)) {
+      const product = this.cartService.getItem(this.productDetail.sku);
+      product.setQuantity(product.quantity + this.selectedQuantity);
+    } else {
+      this.cartService.addItem(
+        new ProductCartItem({
+          id: this.productDetail.sku,
+          name: this.productDetail.name,
+          image: this.productDetail.image,
+          price: this.productDetail.price,
+          quantity: this.selectedQuantity,
+          discount_price: this.productDetail.discount_price,
+          min_quantity: this.productDetail.min_order_quantity,
+        })
+      );
+    }
   }
 
   public updateBasePrice(price: string, discounted_price: string | null) {
