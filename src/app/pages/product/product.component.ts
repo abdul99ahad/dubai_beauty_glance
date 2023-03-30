@@ -11,6 +11,8 @@ import {
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CurrencyService } from '../../services/currency.service';
+import { CartService } from 'ng-shopping-cart';
+import { ProductCartItem } from 'src/app/utilities/productCartItem';
 
 type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
@@ -46,7 +48,8 @@ export class ProductComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly webApiService: WebApiService,
     private sanitizer: DomSanitizer,
-    private readonly currencyService: CurrencyService
+    private readonly currencyService: CurrencyService,
+    private cartService: CartService<ProductCartItem>
   ) {
     this.currency = this.currencyService.selectedCurrency;
   }
@@ -102,6 +105,20 @@ export class ProductComponent implements OnInit {
   @HostListener('wheel', ['$event'])
   public onMousewheel(event: WheelEvent): void {
     this.display = event.pageY > event.view!.outerHeight * 1.5;
+  }
+
+  public AddtoCart() {
+    this.cartService.addItem(
+      new ProductCartItem({
+        id: this.productDetail.sku,
+        name: this.productDetail.name,
+        image: this.productDetail.image,
+        price: this.productDetail.price,
+        quantity: this.selectedQuantity,
+        discount_price: this.productDetail.discount_price,
+        min_quantity: this.productDetail.min_order_quantity,
+      })
+    );
   }
 
   public updateBasePrice(price: string, discounted_price: string | null) {

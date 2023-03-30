@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { ShoppingCartModule } from 'ng-shopping-cart';
 
 import { CarouselModule } from 'primeng/carousel';
 import { HomeModule } from './modules/home/home.module';
@@ -30,6 +31,7 @@ import { BrandProductListingComponent } from './pages/brand-products-listing/bra
 import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
 import { DecodeHtmlEntitiesPipe } from './pipes/decode-html-entities.pipe';
 import { TagProductsListingComponent } from './pages/tag-products-listing/tag-products-listing.component';
+import { ProductCartItem } from './utilities/productCartItem';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,14 @@ import { TagProductsListingComponent } from './pages/tag-products-listing/tag-pr
     HomeModule,
     SharedModule,
     CarouselModule,
+    ShoppingCartModule.forRoot({
+      itemType: ProductCartItem, // <-- Configuration is optional
+      serviceType: 'localStorage',
+      serviceOptions: {
+        storageKey: 'NgShoppingCart',
+        clearOnError: true,
+      },
+    }),
   ],
   providers: [WebApiService],
   bootstrap: [AppComponent],
