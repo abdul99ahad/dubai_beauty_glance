@@ -10,7 +10,9 @@ import {
 } from '../../interfaces/product.interface';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {CurrencyService} from "../../services/currency.service";
+import { CurrencyService } from '../../services/currency.service';
+import { CartService } from 'ng-shopping-cart';
+import { ProductCartItem } from 'src/app/utilities/productCartItem';
 
 type SelectedProductOption = { [productOptionIndex: number]: boolean };
 
@@ -27,6 +29,7 @@ export class ProductComponent implements OnInit {
   checked: boolean = true;
   display: boolean = false;
   selectedIndex: number;
+  variantSelectedIndex: number;
 
   public checkedOptions: SelectedProductOption = {};
 
@@ -37,6 +40,7 @@ export class ProductComponent implements OnInit {
   response: boolean = false;
 
   productVariants: ProductVariantList;
+  productVariantName: string;
 
   description: SafeHtml;
   public readonly currency: string;
@@ -45,7 +49,8 @@ export class ProductComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly webApiService: WebApiService,
     private sanitizer: DomSanitizer,
-    private readonly currencyService: CurrencyService
+    private readonly currencyService: CurrencyService,
+    private cartService: CartService<ProductCartItem>
   ) {
     this.currency = this.currencyService.selectedCurrency;
   }
@@ -103,6 +108,30 @@ export class ProductComponent implements OnInit {
     this.display = event.pageY > event.view!.outerHeight * 1.5;
   }
 
+  public AddtoCart() {
+    // If already exists, increase the quantity
+    if (
+      this.cartService.getItem(this.productDetail.sku + this.productVariantName)
+    ) {
+      const product = this.cartService.getItem(
+        this.productDetail.sku + this.productVariantName
+      );
+      product.setQuantity(product.quantity + this.selectedQuantity);
+    } else {
+      this.cartService.addItem(
+        new ProductCartItem({
+          id: this.productDetail.sku + this.productVariantName,
+          name: this.productDetail.name,
+          image: this.productDetail.image,
+          price: this.productDetail.price,
+          quantity: this.selectedQuantity,
+          discount_price: this.productDetail.discount_price,
+          min_quantity: this.productDetail.min_order_quantity,
+        })
+      );
+    }
+  }
+
   public updateBasePrice(price: string, discounted_price: string | null) {
     this.productBasePrice = {
       price,
@@ -125,11 +154,11 @@ export class ProductComponent implements OnInit {
   public toggleProductOptionSelection(productOption: ProductOptions): void {
     const productOptionIndex: number =
       this.productDetail.productOptions.findIndex((x) => x == productOption);
-    if (this.checkedOptions[productOptionIndex]) {
-      this.checkedOptions[productOptionIndex] =
-        !this.checkedOptions[productOptionIndex];
-      return;
-    }
+    // if (this.checkedOptions[productOptionIndex]) {
+    //   this.checkedOptions[productOptionIndex] =
+    //     !this.checkedOptions[productOptionIndex];
+    //   return;
+    // }
 
     if (productOption.price_adjustment == 1) {
       // Add to base price
@@ -157,7 +186,7 @@ export class ProductComponent implements OnInit {
     }
 
     this.updateTotalPrice(this.selectedQuantity);
-
+    this.productVariantName = productOption.optionValue.name;
     this.checkedOptions[productOptionIndex] = true;
     if (productOption.optionValue.image)
       this.changeMainImage(productOption.optionValue.image, productOptionIndex);
@@ -172,7 +201,7 @@ export class ProductComponent implements OnInit {
 
   public changeMainImage(source: string, index: number): void {
     this.productDetail.image = source;
-    this.selectedIndex = index;
+    this.variantSelectedIndex = index;
   }
 
   public updateTotalPrice(quantity: number): void {

@@ -606,20 +606,21 @@ a:hover {
   }
 }
 
+.product-variant-images{
+  width: 65px;
+  height: 65px;
+  border: 1px solid #ececec;
+  margin: 10px 10px 10px 0;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &.active{
+    border: 1px solid red; 
+  }
+}
+
 .variant-wrapper{
 
-  .product-variant-images{
-    width: 65px;
-    height: 65px;
-    border: 1px solid #ececec;
-    margin: 10px 10px 10px 0;
-    cursor: pointer;
-    border-radius: 4px;
-
-    &.active{
-      border: 1px solid red;
-    }
-  }
 
   .prod-variant-name{
     font-weight: 500;
