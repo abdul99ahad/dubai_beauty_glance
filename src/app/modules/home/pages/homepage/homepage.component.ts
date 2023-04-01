@@ -10,6 +10,7 @@ import {
 } from '../../../../interfaces/brand.interface';
 import {Banner} from "../../../../interfaces/banner.interface";
 import {Setting} from "../../../../interfaces/setting.interface";
+import {QuickCategory} from "../../../../interfaces/quick-categories.interface";
 
 @Component({
   selector: 'app-homepage',
@@ -22,6 +23,7 @@ export class HomepageComponent implements OnInit {
   public topPosToStartShowing: number = 100;
 
   public currentBestBrandItem: number = 1;
+  public readonly skinIcon: string = '../../../../../assets/main_cote1_off.png';
   // public slider: Array<Banner>;
   public allEventAndBgMainBanner: Array<Banner> = [];
 
@@ -29,6 +31,7 @@ export class HomepageComponent implements OnInit {
   public brandSaleImages: Array<Banner> = [];
   public deliveryBanner: Array<Banner> = [];
   public banner: Array<Banner> = [];
+  public quickCategories: Array<QuickCategory> = [];
   response: boolean = false;
 
   public bestItemsOfTheMonth: Array<Product> = new Array<Product>(20).fill({
@@ -132,7 +135,22 @@ export class HomepageComponent implements OnInit {
     this.getPromotionBrand()
     this.getDeliveryBanner();
     this.getBanner();
+    this.getQuickCategories();
     this.response = true;
+  }
+
+  getQuickCategories(): Subscription {
+    return this.webApiService.getQuickCategories().pipe(
+      map(({data}: { data: Array<QuickCategory> }) => data),
+      map((quickCategories: Array<QuickCategory>) =>
+        quickCategories.map((quickCategory: QuickCategory) => {
+          quickCategory.image = this.webApiService.imgUrl + quickCategory.image;
+          return quickCategory;
+        }))
+    )
+      .subscribe((quickCategories: Array<QuickCategory>) => {
+        this.quickCategories = quickCategories;
+      })
   }
 
   getMainSlider(): Subscription {
