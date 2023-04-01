@@ -40,6 +40,7 @@ export class ProductComponent implements OnInit {
   response: boolean = false;
 
   productVariants: ProductVariantList;
+  productVariantName: string;
 
   description: SafeHtml;
   public readonly currency: string;
@@ -109,13 +110,15 @@ export class ProductComponent implements OnInit {
 
   public AddtoCart() {
     // If already exists, increase the quantity
-    if (this.cartService.getItem(this.productDetail.sku)) {
+    if (
+      this.cartService.getItem(this.productDetail.sku + this.productVariantName)
+    ) {
       const product = this.cartService.getItem(this.productDetail.sku);
       product.setQuantity(product.quantity + this.selectedQuantity);
     } else {
       this.cartService.addItem(
         new ProductCartItem({
-          id: this.productDetail.sku,
+          id: this.productDetail.sku + this.productVariantName,
           name: this.productDetail.name,
           image: this.productDetail.image,
           price: this.productDetail.price,
@@ -181,7 +184,7 @@ export class ProductComponent implements OnInit {
     }
 
     this.updateTotalPrice(this.selectedQuantity);
-
+    this.productVariantName = productOption.optionValue.name;
     this.checkedOptions[productOptionIndex] = true;
     if (productOption.optionValue.image)
       this.changeMainImage(productOption.optionValue.image, productOptionIndex);
