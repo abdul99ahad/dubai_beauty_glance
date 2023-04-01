@@ -113,7 +113,9 @@ export class ProductComponent implements OnInit {
     if (
       this.cartService.getItem(this.productDetail.sku + this.productVariantName)
     ) {
-      const product = this.cartService.getItem(this.productDetail.sku);
+      const product = this.cartService.getItem(
+        this.productDetail.sku + this.productVariantName
+      );
       product.setQuantity(product.quantity + this.selectedQuantity);
     } else {
       this.cartService.addItem(
