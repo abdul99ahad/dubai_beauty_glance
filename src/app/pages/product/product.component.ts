@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
   checked: boolean = true;
   display: boolean = false;
   selectedIndex: number;
-  variantSelectedIndex: number;
+  variantSelectedIndex: number = -1;
 
   public checkedOptions: SelectedProductOption = {};
 
@@ -43,6 +43,7 @@ export class ProductComponent implements OnInit {
   productVariantName: string;
 
   description: SafeHtml;
+  private previousElement: HTMLElement;
   public readonly currency: string;
 
   public constructor(
@@ -159,6 +160,7 @@ export class ProductComponent implements OnInit {
     //     !this.checkedOptions[productOptionIndex];
     //   return;
     // }
+    // this.variantSelectedIndex = productOptionIndex;
 
     if (productOption.price_adjustment == 1) {
       // Add to base price
@@ -204,6 +206,16 @@ export class ProductComponent implements OnInit {
     this.variantSelectedIndex = index;
   }
 
+  public updateCss(event: Event): void {
+    const clickedElement = event.target as HTMLElement;
+    // If a previous element exists, revert its CSS back to the original state
+    if (this.previousElement) {
+      this.previousElement.style.border = 'none';
+    }
+    clickedElement.style.border = '1px solid red';
+
+    this.previousElement = clickedElement;
+  }
   public updateTotalPrice(quantity: number): void {
     if (quantity <= 0) return;
 

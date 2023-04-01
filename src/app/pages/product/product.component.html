@@ -149,11 +149,8 @@
                             "
                             [src]="productOption.optionValue.image"
                             class="product-variant-images"
+                            (click)="updateCss($event)"
                             [alt]="productDetail.name"
-                            [ngClass]="{
-                              active:
-                                variantSelectedIndex === productOptionIndex
-                            }"
                           />
                         </div>
                       </div>
