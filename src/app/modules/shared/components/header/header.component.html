@@ -2,58 +2,65 @@
   <div class="promotion-area">
     <app-marquee></app-marquee>
   </div>
-  <div class="top-area flex-container mbl-disable main-container mx-auto">
-    <div class="logo-area">
-      <a [routerLink]="['/']">
-        <img [src]="setting.logo" alt="" class="logo" />
-      </a>
-    </div>
-
-    <div class="search-bar" style="width: 100%">
-      <p-autoComplete
-        (onSelect)="navigateToProduct($event)"
-        field="name"
-        [style]="{ width: '100%' }"
-        [inputStyle]="productSearchInputStyles"
-        [suggestions]="products"
-        (completeMethod)="searchProducts($event.query)"
-      >
-        <ng-template let-product pTemplate="item">
-          <img
-            [src]="product.image"
-            style="width: 100px"
-            [alt]="product.name"
-          />
-          <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
-            {{ product.name }}
-          </div>
-        </ng-template>
-      </p-autoComplete>
-    </div>
-
-    <div class="auth">
-      <div class="member-link">
-        <a [routerLink]="['/login']">
-          <img src="../assets/sign_in.png" alt="" />
-          <p>Sign In</p>
-        </a>
-      </div>
-
-      <div class="member-link">
-        <a [routerLink]="['/register']">
-          <img src="../assets/sign_up.png" alt="" />
-          <p>Sign Up</p>
-        </a>
-      </div>
-
-      <div class="member-link">
-        <a [routerLink]="['/cart']">
-          <img src="../assets/cart.png" alt="" />
-          <p>Cart</p>
-          <p>{{cartItemsQuantity}}</p>
+  <div class="header-mid mbl-disable main-container mx-auto grid">
+    <div class="col-3 md:col-3 pl-0">
+      <div class="logo-area">
+        <a [routerLink]="['/']">
+          <img [src]="setting.logo" alt="" class="logo" />
         </a>
       </div>
     </div>
+
+    <div class="col-6 md:col-6">
+      <div class="search-bar">
+        <p-autoComplete
+          (onSelect)="navigateToProduct($event)"
+          field="name"
+          [style]="{ width: '100%' }"
+          [inputStyle]="productSearchInputStyles"
+          [suggestions]="products"
+          (completeMethod)="searchProducts($event.query)"
+        >
+          <ng-template let-product pTemplate="item">
+            <img
+              [src]="product.image"
+              style="width: 100px"
+              [alt]="product.name"
+            />
+            <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
+              {{ product.name }}
+            </div>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+    </div>
+
+    <div class="col-3 md:col-3 pr-0">
+      <div class="auth">
+        <div class="member-link-web">
+          <a [routerLink]="['/login']">
+            <img src="../assets/sign_in.png" alt="" />
+            <p>Sign In</p>
+          </a>
+        </div>
+  
+        <div class="member-link-web">
+          <a [routerLink]="['/register']">
+            <img src="../assets/sign_up.png" alt="" />
+            <p>Sign Up</p>
+          </a>
+        </div>
+  
+        <div class="member-link-web">
+          <a [routerLink]="['/cart']">
+            <img src="../assets/cart.png" alt="" />
+              <p>Cart</p>
+              <p class="cart-qty">{{cartItemsQuantity}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!--Mobile View-->

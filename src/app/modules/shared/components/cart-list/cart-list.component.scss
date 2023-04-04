@@ -9,9 +9,12 @@
 }
 
 h3 {
-    font-size: 20px;
-    color: #353535;
-    font-weight: 400;
+  font-size: 18px;
+  color: black;
+  font-weight: 400;
+  b{
+    margin-left: 3px;
+  }
 }
 
 .trash i:hover {
@@ -136,7 +139,7 @@ h3 {
 .icoDel:before {
     width: 15px;
     height: 21px;
-    background-image: url(https://jolse.com/_dbook/img/ico_renewal/remove.png);
+    background-image: url(../../../../../assets/icons/remove.png);
 }
 
 .icoDel:before {
@@ -235,4 +238,68 @@ h3 {
         border-color: #f54a7e; ;
         box-shadow: none;
     }
+}
+
+:host ::ng-deep p-table .p-datatable-thead {
+  tr {
+    th{
+      background: transparent;
+      font-weight: 500;
+      color: black;
+      font-size: 16px;
+    }
+  }
+}
+
+.cart-item-img{
+  width: 90px;
+  height: 90px;
+}
+
+.btn-shop {
+  font-weight: 500;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  border: 1px solid black;
+  background: #fff;
+  padding: 10px;
+  cursor: pointer;
+  display: block;
+  transition: all .3 ease-in-out;
+
+  &:hover{
+    background: #000;
+    color: #fff;
+  }
+}
+
+.cart-action-btns-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+:host ::ng-deep .cart-action-btns-wrap app-simple-button{
+  a{
+    display: block;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+
+    &:hover{
+      background: #ff2d46;
+      color: #fff;
+      border: 1px solid #ff2d46;
+    }
+  }
+}
+.cart-calculation-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 25px 0px 0;
 }
