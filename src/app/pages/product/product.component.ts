@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
 
   checked: boolean = true;
   display: boolean = false;
+  cartDisplay: boolean = false;
   selectedIndex: number;
   variantSelectedIndex: number = -1;
 
@@ -41,6 +42,7 @@ export class ProductComponent implements OnInit {
 
   productVariants: ProductVariantList;
   productVariantName: string;
+  slug: string;
 
   description: SafeHtml;
   private previousElement: HTMLElement;
@@ -62,6 +64,7 @@ export class ProductComponent implements OnInit {
 
   public fetchProductDetails(): void {
     const productSlug = this.route.snapshot.paramMap.get('slug');
+    this.slug = productSlug ? productSlug : '';
     if (!productSlug) throw new Error('Product slug unavailable!');
 
     this.webApiService
@@ -110,6 +113,7 @@ export class ProductComponent implements OnInit {
   }
 
   public AddtoCart() {
+    this.cartDisplay = true;
     // If already exists, increase the quantity
     if (
       this.cartService.getItem(this.productDetail.sku + this.productVariantName)

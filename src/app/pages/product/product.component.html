@@ -306,3 +306,19 @@
 <ng-template #loadingSpinner>
   <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>
 </ng-template>
+
+<p-dialog
+  [(visible)]="cartDisplay"
+  [draggable]="false"
+  class="web-view"
+  position="top-right"
+>
+  <img [src]="productDetail.image" />
+  <p>{{ productDetail.name }}</p>
+  <p>Success: You have added</p>
+  <a [routerLink]="'/product/' + slug">{{ productDetail.name }}</a>
+  <p>to your <a [routerLink]="['cart']">shopping cart</a></p>
+
+  <button [routerLink]="['cart']">View Cart</button>
+  <button [routerLink]="['checkout']">Checkout</button>
+</p-dialog>
