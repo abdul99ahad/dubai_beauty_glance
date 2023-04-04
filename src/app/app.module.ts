@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { ShoppingCartModule } from 'ng-shopping-cart';
 
 import { CarouselModule } from 'primeng/carousel';
 import { HomeModule } from './modules/home/home.module';
@@ -36,6 +37,7 @@ import { AddressBookComponent } from './pages/address-book/address-book.componen
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 import { NewsletterSwitchComponent } from './pages/newsletter-switch/newsletter-switch.component';
+import { ProductCartItem } from './utilities/productCartItem';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,14 @@ import { NewsletterSwitchComponent } from './pages/newsletter-switch/newsletter-
     HomeModule,
     SharedModule,
     CarouselModule,
+    ShoppingCartModule.forRoot({
+      itemType: ProductCartItem, // <-- Configuration is optional
+      serviceType: 'localStorage',
+      serviceOptions: {
+        storageKey: 'NgShoppingCart',
+        clearOnError: true,
+      },
+    }),
   ],
   providers: [WebApiService],
   bootstrap: [AppComponent],
