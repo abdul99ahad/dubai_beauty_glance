@@ -99,8 +99,9 @@
                       <span id="span_product_price_sale"
                         >{{ currency + " " + productDetail.discount_price }}
                         <span style="font-size: 14px; color: #555555"
-                          >({{ currency}}
-                          {{+productDetail.price - +productDetail.discount_price
+                          >({{ currency }}
+                          {{
+                            +productDetail.price - +productDetail.discount_price
                           }}
                           discount)</span
                         >
@@ -110,51 +111,51 @@
                 </td>
               </tr>
               <tr class="simple_desc_css xans-record-">
-                <th scope="row" style="vertical-align: top;">
+                <th scope="row" style="vertical-align: top">
                   <span style="font-size: 14px; color: #555555">Variants</span>
                 </th>
                 <td>
                   <div class="variant-wrapper">
-                  <div
-                    *ngFor="
-                      let productVariantOption of this.productVariants
-                        | keyvalue
-                    "
-                    class="single-variant"
-                  >
-                      <label class="prod-variant-name">{{ productVariantOption.key }}</label>
-                    <div class="prod-variant-content-wrap">
                     <div
                       *ngFor="
-                        let productOption of productVariantOption.value;
-                        index as productOptionIndex
+                        let productVariantOption of this.productVariants
+                          | keyvalue
                       "
-                      class="productVariant"
+                      class="single-variant"
                     >
-                      <p class="option-name">
-                        {{ productOption.optionValue.name }}
-                      </p>
-                      <!-- <p-toggleButton
+                      <label class="prod-variant-name">{{
+                        productVariantOption.key
+                      }}</label>
+                      <div class="prod-variant-content-wrap">
+                        <div
+                          *ngFor="
+                            let productOption of productVariantOption.value;
+                            index as productOptionIndex
+                          "
+                          class="productVariant"
+                        >
+                          <p class="option-name">
+                            {{ productOption.optionValue.name }}
+                          </p>
+                          <!-- <p-toggleButton
 
                         [ngModel]="checkedOptions[productOptionIndex]"
                         [offLabel]="productOption.productOptions.optionValue.name"
                         [onLabel]="productOption.productOptions.optionValue.name"
                       ></p-toggleButton> -->
-                      <img
-                        (click)="toggleProductOptionSelection(productOption)"
-                        [src]="productOption.optionValue.image"
-                        class="product-variant-images"
-                        [alt]="productDetail.name"
-                        [ngClass]="{
-                          active: selectedIndex === productOptionIndex
-                        }"
-                      />
+                          <img
+                            (click)="
+                              toggleProductOptionSelection(productOption)
+                            "
+                            [src]="productOption.optionValue.image"
+                            class="product-variant-images"
+                            (click)="updateCss($event)"
+                            [alt]="productDetail.name"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    </div>
-
                   </div>
-                </div>
-
                 </td>
               </tr>
               <tr class="prd_price_sale_css xans-record-">
@@ -164,7 +165,7 @@
                 <td>
                   <div class="tag-links-wrapper">
                     <a
-                    class="tag-link"
+                      class="tag-link"
                       *ngFor="let productTags of productDetail.tags"
                       [routerLink]="'/tag/' + productTags.slug"
                       >{{ productTags.name }}</a
@@ -235,7 +236,7 @@
               />
             </a>
           </span>
-          <button class="btn add-to-cart-btn">
+          <button class="btn add-to-cart-btn" (click)="AddtoCart()">
             <img src="../assets/cart.png" alt="" /> Add to Cart
           </button>
           <button class="btn buy-now-btn">
