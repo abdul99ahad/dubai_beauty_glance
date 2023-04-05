@@ -1,1 +1,57 @@
-<p>edit-account-information works!</p>
+<div class="main-container">
+  <app-ad-banner></app-ad-banner>
+
+  <div class="signup-wrapper">
+    <h2 class="heading-title">Edit Account</h2>
+    <p-divider></p-divider>
+  </div>
+  <div class="signup-content-wrapper">
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          First Name
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" placeholder="First Name"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          Last Name
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" placeholder="Last Name"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          Email <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" placeholder="Email"></app-input-textbox>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-3 lg:col-3">
+        <p>
+          Contact Number
+          <span class="required">*</span>
+        </p>
+      </div>
+      <div class="col-12 md:col-9 lg:col-9">
+        <app-input-textbox type="text" placeholder="Contact Number"></app-input-textbox>
+      </div>
+    </div>
+
+    <div>
+      <app-input-button buttonText="Continue"></app-input-button>
+    </div>
+  </div>
+</div>
