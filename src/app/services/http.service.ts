@@ -1,30 +1,29 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HttpService {
-  public constructor(private readonly http: HttpClient) {
-  }
+  public constructor(private readonly http: HttpClient) {}
 
   public loginPost(serviceName: string, data: string) {
     const header = new HttpHeaders();
     const options = {
       headers: header,
-      withCredentials: false
+      withCredentials: false,
     };
     const url = environment.apiUrl + serviceName;
     return this.http.post(url, data, options);
   }
 
-  public post<T>(serviceName: string, data: string, token?: string) {
+  public post<T>(serviceName: string, data: any, token?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
       }),
     };
     const url = environment.apiUrl + serviceName;
@@ -34,8 +33,8 @@ export class HttpService {
   public put<T>(serviceName: string, data: any, token?: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
       }),
     };
     const url = environment.apiUrl + serviceName;
@@ -45,7 +44,7 @@ export class HttpService {
   public get<T>(url: string, absolute: boolean = false): Observable<T> {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       }),
     };
 
@@ -54,10 +53,14 @@ export class HttpService {
     return this.http.get<T>(url, httpOptions);
   }
 
-  public getWithApiKey<T>(url: string, keyName: string, keyValue: string): Observable<T> {
+  public getWithApiKey<T>(
+    url: string,
+    keyName: string,
+    keyValue: string
+  ): Observable<T> {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         [keyName]: keyValue,
       }),
     };

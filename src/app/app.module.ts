@@ -24,6 +24,7 @@ import { PromotionsListingComponent } from './pages/promotions-listing/promotion
 import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { LoginComponent } from './pages/login/login.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { WebApiService } from './services/web-api.service';
 import { BrandsListingComponent } from './pages/brand-listing/brand-listing.component';
@@ -54,6 +55,7 @@ import { ProductCartItem } from './utilities/productCartItem';
     ProductComponent,
     CartComponent,
     SignUpComponent,
+    LoginComponent,
     CheckoutComponent,
     BrandsListingComponent,
     BrandProductListingComponent,
