@@ -77,67 +77,33 @@
             <ul>
               <li class="cart-products">
                 <table class="cart-items table">
-                  <tr class="single-item">
+                  <tr class="single-item" *ngFor="let cartItem of cartList">
                     <td class="text-center item-image">
                       <a href="#">
-                        <img
-                          src="https://api.seoulbeautie.com/images/avatar/avatar-4.png"
-                        />
+                        <img [src]="cartItem.image" />
                       </a>
                     </td>
                     <td class="text-left item-name">
-                      <a href="#">I'M FROM - Ginseng Mask 120g</a>
+                      <a>{{ cartItem.name }}</a>
                     </td>
-                    <td class="text-right item-qty">x 1</td>
-                    <td class="text-right item-total">Rs. 2,399</td>
+                    <td class="text-right item-qty">
+                      x {{ cartItem.quantity }}
+                    </td>
+                    <td class="text-right item-total">
+                      {{ currency }}
+                      {{
+                        cartItem.discount_price
+                          ? cartItem.discount_price
+                          : cartItem.price
+                      }}
+                    </td>
                     <td class="item-remove">
-                      <button type="button" title="Remove" class="cart-remove">
-                        <i class="pi pi-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr class="single-item">
-                    <td class="text-center item-image">
-                      <a href="#">
-                        <img
-                          src="https://api.seoulbeautie.com/images/avatar/avatar-4.png"
-                        />
-                      </a>
-                    </td>
-                    <td class="text-left item-name">
-                      <a href="#"
-                        >TRUE ISLAND - Honey Bee Collagen Wrinkle Solution Eye
-                        Cream 30ml</a
+                      <button
+                        type="button"
+                        title="Remove"
+                        class="cart-remove"
+                        (click)="deleteItemFromCart(cartItem.id)"
                       >
-                    </td>
-                    <td class="text-right item-qty">x 1</td>
-                    <td class="text-right item-total">Rs. 2,399</td>
-                    <td class="item-remove">
-                      <button type="button" title="Remove" class="cart-remove">
-                        <i class="pi pi-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr class="single-item">
-                    <td class="text-center item-image">
-                      <a href="#">
-                        <img
-                          src="https://api.seoulbeautie.com/images/avatar/avatar-4.png"
-                        />
-                      </a>
-                    </td>
-                    <td class="text-left item-name">
-                      <a href="#"
-                        >HOPE GIRL - Pocket In Hope Daily Palette (#01 True
-                        Moment)</a
-                      >
-                    </td>
-                    <td class="text-right item-qty">x 1</td>
-                    <td class="text-right item-total">Rs. 2,399</td>
-                    <td class="item-remove">
-                      <button type="button" title="Remove" class="cart-remove">
                         <i class="pi pi-times"></i>
                       </button>
                     </td>
@@ -150,11 +116,15 @@
                   <div class="cart-total">
                     <div class="single-row">
                       <label class="text-right sr-total-title">Sub-Total</label>
-                      <label class="text-right sr-total-text">Rs. 8,597</label>
+                      <label class="text-right sr-total-text"
+                        >{{ currency }} {{ cost }}</label
+                      >
                     </div>
                     <div class="single-row">
                       <label class="text-right sr-total-title">Total</label>
-                      <label class="text-right sr-total-text">Rs. 8,597</label>
+                      <label class="text-right sr-total-text"
+                        >{{ currency }} {{ cost }}</label
+                      >
                     </div>
                   </div>
                   <div class="cart-buttons">

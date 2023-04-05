@@ -114,6 +114,9 @@ export class HeaderComponent
 
   public products: Array<Product> = [];
   public searchProductSubject = new Subject<string>();
+  cartList: ProductCartItem[];
+  cost: number;
+  currency: string;
 
   public constructor(
     private readonly currencyService: CurrencyService,
@@ -124,11 +127,24 @@ export class HeaderComponent
   ) {
     super();
     this.cartItemsQuantity = cartService.itemCount();
+    this.currency = this.currencyService.selectedCurrency;
+    this.updateCartList();
     this.cartService.onItemsChanged.subscribe({
       next: (event: Event) => {
         this.cartItemsQuantity = cartService.itemCount();
+        this.updateCartList();
       },
     });
+  }
+
+  public updateCartList() {
+    this.cartList = this.cartService.getItems();
+    this.cost = this.cartService.cost();
+  }
+
+  deleteItemFromCart(id: number): void {
+    this.cartService.removeItem(id);
+    this.updateCartList();
   }
 
   public navBarMobileListViewToggle(): void {
