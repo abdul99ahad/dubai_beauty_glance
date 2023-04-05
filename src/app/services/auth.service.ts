@@ -5,6 +5,7 @@ import { Token } from '../interfaces/token';
 import { UserLogin } from '../interfaces/user-login.interface';
 import { HttpService } from './http.service';
 import moment from 'moment';
+import { UserRegister } from '../interfaces/user-register.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,9 @@ export class AuthService {
     return this.httpService.post<{ data: Token }>(ApiRoutes.signin, user);
   }
 
-  public signUp() {}
+  public signUp(user: UserRegister) {
+    return this.httpService.post<{ data: Token }>(ApiRoutes.signup, user);
+  }
 
   public setSession(authResult: Token, userData: UserLogin) {
     // const expiresAt = moment().add(authResult.expiresIn, 'second');

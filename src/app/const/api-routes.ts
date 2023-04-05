@@ -9,4 +9,5 @@ export const ApiRoutes = {
   setting: 'setting',
   banners: 'banners',
   signin: 'auth/sign-in',
+  signup: 'auth/sign-up',
 } as const;
