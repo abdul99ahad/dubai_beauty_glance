@@ -809,3 +809,47 @@ li {
     background-color: #f54a7e;
   }
 }
+
+
+:host ::ng-deep .best-items-products p-carousel{
+  .p-carousel .p-carousel-content{
+    overflow: visible;
+
+    .p-carousel-container{
+      position: relative;
+
+      .p-carousel-prev, .p-carousel-next{
+        width: 60px;
+        height: 60px;
+        border: 1px solid black;
+        margin: 0;
+        color: black;
+        position: absolute;
+        z-index: 444;
+        background: white;
+
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      .p-carousel-prev{
+        left: -15px;
+      }
+      .p-carousel-next{
+        right: -15px;
+      }
+    }
+  }
+}
+
+.brand-sale-section{
+  padding: 75px 0 95px;
+  background: #f1f1f1;
+
+}
+
+:host ::ng-deep .brand-sale-section ngx-slick-carousel {
+  .slick-list{
+    padding: 0 20px !important;
+  }
+}

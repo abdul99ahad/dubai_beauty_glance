@@ -19,6 +19,12 @@ import {
   CheckoutComponent,
   PromotionsListingComponent,
   TagProductsListingComponent,
+  EditAccountInformationComponent,
+  ChangePasswordComponent,
+  NewsletterSwitchComponent,
+  AddressBookComponent,
+  OrderHistoryComponent,
+  WishlistComponent,
 } from './public-api';
 
 const routes: Routes = [
@@ -41,6 +47,12 @@ const routes: Routes = [
   { path: 'brand/:slug', component: BrandProductListingComponent },
   { path: 'category/:slug', component: CategoryProductsListingComponent },
   { path: 'tag/:slug', component: TagProductsListingComponent },
+  { path: 'edit', component: EditAccountInformationComponent },
+  { path: 'changepassword', component: ChangePasswordComponent },
+  { path: 'newsletterswitch', component: NewsletterSwitchComponent },
+  { path: 'addressbook', component: AddressBookComponent },
+  { path: 'orderhistory', component: OrderHistoryComponent },
+  { path: 'wishlist', component: WishlistComponent },
 ];
 
 @NgModule({

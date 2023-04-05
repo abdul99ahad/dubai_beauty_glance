@@ -32,6 +32,12 @@ import { BrandProductListingComponent } from './pages/brand-products-listing/bra
 import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
 import { DecodeHtmlEntitiesPipe } from './pipes/decode-html-entities.pipe';
 import { TagProductsListingComponent } from './pages/tag-products-listing/tag-products-listing.component';
+import { EditAccountInformationComponent } from './pages/edit-account-information/edit-account-information.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { AddressBookComponent } from './pages/address-book/address-book.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+import { NewsletterSwitchComponent } from './pages/newsletter-switch/newsletter-switch.component';
 import { ProductCartItem } from './utilities/productCartItem';
 
 @NgModule({
@@ -56,6 +62,12 @@ import { ProductCartItem } from './utilities/productCartItem';
     CategoryProductsListingComponent,
     TagProductsListingComponent,
     DecodeHtmlEntitiesPipe,
+    EditAccountInformationComponent,
+    ChangePasswordComponent,
+    AddressBookComponent,
+    WishlistComponent,
+    OrderHistoryComponent,
+    NewsletterSwitchComponent,
   ],
   imports: [
     BrowserModule,

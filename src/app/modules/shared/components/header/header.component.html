@@ -2,363 +2,512 @@
   <div class="promotion-area">
     <app-marquee></app-marquee>
   </div>
-  <div class="top-area flex-container mbl-disable main-container mx-auto">
-    <div class="logo-area">
-      <a [routerLink]="['/']">
-        <img [src]="setting.logo" alt="" class="logo" />
-      </a>
-    </div>
-
-    <div class="search-bar" style="width: 100%">
-      <p-autoComplete
-        (onSelect)="navigateToProduct($event)"
-        field="name"
-        [style]="{ width: '100%' }"
-        [inputStyle]="productSearchInputStyles"
-        [suggestions]="products"
-        (completeMethod)="searchProducts($event.query)"
-      >
-        <ng-template let-product pTemplate="item">
-          <img
-            [src]="product.image"
-            style="width: 100px"
-            [alt]="product.name"
-          />
-          <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
-            {{ product.name }}
-          </div>
-        </ng-template>
-      </p-autoComplete>
-    </div>
-
-    <div class="auth">
-      <div *ngIf="!email" class="member-link">
-        <a [routerLink]="['/login']">
-          <img src="../assets/sign_in.png" alt="" />
-          <p>Sign In</p>
-        </a>
-      </div>
-
-      <div *ngIf="!email" class="member-link">
-        <a [routerLink]="['/register']">
-          <img src="../assets/sign_up.png" alt="" />
-          <p>Sign Up</p>
-        </a>
-      </div>
-
-      <div *ngIf="email" class="member-link">
-        <a [routerLink]="['/']" (click)="signOut()">
-          <i class="pi pi-sign-out" style="font-size: 2rem"></i>
-          <p>Sign Out</p>
-        </a>
-      </div>
-
-      <div *ngIf="email" class="member-link">
+  <div class="header-mid mbl-disable main-container mx-auto grid">
+    <div class="col-3 md:col-3 pl-0">
+      <div class="logo-area">
         <a [routerLink]="['/']">
-          <i class="pi pi-user" style="font-size: 2rem"></i>
-          <p>My Account</p>
-        </a>
-      </div>
-
-      <div class="member-link">
-        <a [routerLink]="['/cart']">
-          <img src="../assets/cart.png" alt="" />
-          <p>Cart</p>
-          <p>{{ cartItemsQuantity }}</p>
+          <img [src]="setting.logo" alt="" class="logo" />
         </a>
       </div>
     </div>
-  </div>
 
-  <!--Mobile View-->
-  <div class="top-area flex-container web-disable">
-    <div class="logo-area w-100 flex">
-      <i
-        class="pi pi-align-justify"
-        (click)="mobileDisplay = true"
-        style="font-size: 1.2rem; line-height: 2; width: 30%"
-      ></i>
-      <a [routerLink]="['/']" style="width: 50%">
-        <img src="../../../../../assets/BMK_LOGO.png" alt="" class="logo" />
-      </a>
-
-      <div class="flex">
-        <div class="member-link">
-          <a [routerLink]="['/cart']">
-            <img
-              src="../assets/cart.png"
-              alt=""
-              class="w-50"
-              style="padding-top: 15%"
-            />
-          </a>
-        </div>
-
-        <div class="member-link">
-          <a [routerLink]="['/login']">
-            <img
-              src="../assets/sign_up.png"
-              alt=""
-              class="w-50"
-              style="padding-top: 15%"
-            />
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="top-search">
-      <div class="xans-element- xans-search xans-search-form top-search-wrap">
-        <div>
-          <p-autoComplete
-            (onSelect)="navigateToProduct($event)"
-            field="name"
-            [style]="{ width: '100%' }"
-            [inputStyle]="productSearchMobileViewInputStyles"
-            [suggestions]="products"
-            (completeMethod)="searchProducts($event.query)"
-          >
-            <ng-template let-product pTemplate="item">
-              <img
-                [src]="product.image"
-                style="width: 100px; display: inline-block"
-                [alt]="product.name"
-              />
-              <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
-                {{ product.name }}
-              </div>
-            </ng-template>
-          </p-autoComplete>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="mbl-disable-block main-nav-wrapper">
-  <div class="flex-container main-container mx-auto" id="navbar">
-    <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
-      <span>All category</span>
-    </div>
-    <ul class="navbar-items">
-      <!-- <div style="display: flex; flex-wrap: wrap; flex-direction: row"> -->
-      <li class="header-items">
-        <a routerLink="/products" class="black m-15">NEW</a>
-      </li>
-      <li class="header-items">
-        <a routerLink="/products" class="black m-15">BEST</a>
-      </li>
-      <li class="header-items">
-        <a routerLink="/products" class="black m-15">TIME</a>
-      </li>
-      <li class="header-items">
-        <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
-      </li>
-      <li class="header-items">
-        <a
-          routerLink="/brands"
-          class="black m-15"
-          (mouseenter)="brandHoverMenu.show($event)"
-          >BRAND</a
+    <div class="col-6 md:col-6">
+      <div class="search-bar">
+        <p-autoComplete
+          (onSelect)="navigateToProduct($event)"
+          field="name"
+          [style]="{ width: '100%' }"
+          [inputStyle]="productSearchInputStyles"
+          [suggestions]="products"
+          (completeMethod)="searchProducts($event.query)"
         >
-        <p-overlayPanel #brandHoverMenu>
-          <ng-template pTemplate="content">
-            <div
-              (mouseenter)="brandHoverMenu.show($event)"
-              (mouseleave)="brandHoverMenu.hide()"
-              class="flex flex-column justify-content-center"
-            >
-              <ul class="w-full flex flex-row justify-content-center">
-                <li
-                  class="px-3 py-1 text-black-alpha-90 hover:text-pink-400"
-                  (mouseenter)="filterBrand(englishAlphabet)"
-                  *ngFor="let englishAlphabet of englishAlphabets"
-                >
-                  <b>{{ englishAlphabet }}</b>
-                </li>
-              </ul>
-              <div
-                class="mt-4 w-full flex flex-row justify-content-center max-h-15rem overflow-y-scroll"
-              >
-                <ul class="w-10 flex flex-row flex-wrap justify-content-start">
-                  <li
-                    class="w-20 flex flex-row justify-content-center py-2"
-                    *ngFor="let brand of filteredBrands"
-                  >
-                    <a
-                      [routerLink]="['/brand', brand.slug]"
-                      (click)="brandHoverMenu.hide()"
-                      class="text-black-alpha-90"
-                      >{{ brand.name }}</a
-                    >
-                  </li>
-                </ul>
-              </div>
+          <ng-template let-product pTemplate="item">
+            <img
+              [src]="product.image"
+              style="width: 100px"
+              [alt]="product.name"
+            />
+            <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
+              {{ product.name }}
             </div>
           </ng-template>
-        </p-overlayPanel>
-      </li>
-      <li class="header-items">
-        <a routerLink="/products" class="black m-15">COUPON</a>
-      </li>
-      <!-- </div> -->
-    </ul>
-    <div class="recently-viewed-container">
-      <div id="google_translate_element"></div>
-      <select class="border-0" (change)="changeSelectedCurrency($event)">
-        <option
-          *ngFor="let availableCurrency of availableCurrencies"
-          [value]="availableCurrency.currencyCode"
-          [selected]="
-            selectedCurrency.currencyCode === availableCurrency.currencyCode
-          "
-        >
-          {{ availableCurrency.currencyName }} ({{
-            availableCurrency.currencyCode
-          }})
-        </option>
-      </select>
+        </p-autoComplete>
+      </div>
+    </div>
+
+    <div class="col-3 md:col-3 pr-0">
+      <div class="auth">
+        <div class="member-link-web">
+          <a [routerLink]="['/login']">
+            <img src="../assets/sign_in.png" alt="" />
+            <p>Sign In</p>
+          </a>
+        </div>
+
+        <div class="member-link-web">
+          <a [routerLink]="['/register']">
+            <img src="../assets/sign_up.png" alt="" />
+            <p>Sign Up</p>
+          </a>
+        </div>
+
+        <div class="member-link-web cart-dropdown">
+          <a [routerLink]="['/cart']">
+            <img src="../assets/cart.png" alt="" />
+            <p>Cart</p>
+            <p class="cart-qty">{{ cartItemsQuantity }}</p>
+          </a>
+
+          <!-- dropdown content  -->
+          <div class="dropdown-content">
+            <ul>
+              <li class="cart-products">
+                <table class="cart-items table">
+                  <tr class="single-item">
+                    <td class="text-center item-image">
+                      <a href="#">
+                        <img
+                          src="https://api.seoulbeautie.com/images/avatar/avatar-4.png"
+                        />
+                      </a>
+                    </td>
+                    <td class="text-left item-name">
+                      <a href="#">I'M FROM - Ginseng Mask 120g</a>
+                    </td>
+                    <td class="text-right item-qty">x 1</td>
+                    <td class="text-right item-total">Rs. 2,399</td>
+                    <td class="item-remove">
+                      <button type="button" title="Remove" class="cart-remove">
+                        <i class="pi pi-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="single-item">
+                    <td class="text-center item-image">
+                      <a href="#">
+                        <img
+                          src="https://api.seoulbeautie.com/images/avatar/avatar-4.png"
+                        />
+                      </a>
+                    </td>
+                    <td class="text-left item-name">
+                      <a href="#"
+                        >TRUE ISLAND - Honey Bee Collagen Wrinkle Solution Eye
+                        Cream 30ml</a
+                      >
+                    </td>
+                    <td class="text-right item-qty">x 1</td>
+                    <td class="text-right item-total">Rs. 2,399</td>
+                    <td class="item-remove">
+                      <button type="button" title="Remove" class="cart-remove">
+                        <i class="pi pi-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="single-item">
+                    <td class="text-center item-image">
+                      <a href="#">
+                        <img
+                          src="https://api.seoulbeautie.com/images/avatar/avatar-4.png"
+                        />
+                      </a>
+                    </td>
+                    <td class="text-left item-name">
+                      <a href="#"
+                        >HOPE GIRL - Pocket In Hope Daily Palette (#01 True
+                        Moment)</a
+                      >
+                    </td>
+                    <td class="text-right item-qty">x 1</td>
+                    <td class="text-right item-total">Rs. 2,399</td>
+                    <td class="item-remove">
+                      <button type="button" title="Remove" class="cart-remove">
+                        <i class="pi pi-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </li>
+
+              <li class="cart-actions">
+                <div>
+                  <div class="cart-total">
+                    <div class="single-row">
+                      <label class="text-right sr-total-title">Sub-Total</label>
+                      <label class="text-right sr-total-text">Rs. 8,597</label>
+                    </div>
+                    <div class="single-row">
+                      <label class="text-right sr-total-title">Total</label>
+                      <label class="text-right sr-total-text">Rs. 8,597</label>
+                    </div>
+                  </div>
+                  <div class="cart-buttons">
+                    <a class="btn-cart btn" [routerLink]="['/cart']"
+                      ><i class="pi pi-shopping-bag"></i>
+                      <span>View Cart</span></a
+                    >
+                    <a class="btn-checkout btn" [routerLink]="['/checkout']"
+                      ><span>Checkout</span><i class="pi pi-arrow-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="auth">
+            <div *ngIf="!email" class="member-link">
+              <a [routerLink]="['/login']">
+                <img src="../assets/sign_in.png" alt="" />
+                <p>Sign In</p>
+              </a>
+            </div>
+
+            <div *ngIf="!email" class="member-link">
+              <a [routerLink]="['/register']">
+                <img src="../assets/sign_up.png" alt="" />
+                <p>Sign Up</p>
+              </a>
+            </div>
+
+            <div *ngIf="email" class="member-link">
+              <a [routerLink]="['/']" (click)="signOut()">
+                <i class="pi pi-sign-out" style="font-size: 2rem"></i>
+                <p>Sign Out</p>
+              </a>
+            </div>
+
+            <div *ngIf="email" class="member-link">
+              <a [routerLink]="['/']">
+                <i class="pi pi-user" style="font-size: 2rem"></i>
+                <p>My Account</p>
+              </a>
+            </div>
+
+            <div class="member-link">
+              <a [routerLink]="['/cart']">
+                <img src="../assets/cart.png" alt="" />
+                <p>Cart</p>
+                <p>{{ cartItemsQuantity }}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!--Mobile View-->
+        <div class="top-area flex-container web-disable">
+          <div class="logo-area w-100 flex">
+            <i
+              class="pi pi-align-justify"
+              (click)="mobileDisplay = true"
+              style="font-size: 1.2rem; line-height: 2; width: 30%"
+            ></i>
+            <a [routerLink]="['/']" style="width: 50%">
+              <img
+                src="../../../../../assets/BMK_LOGO.png"
+                alt=""
+                class="logo"
+              />
+            </a>
+
+            <div class="flex">
+              <div class="member-link">
+                <a [routerLink]="['/cart']">
+                  <img
+                    src="../assets/cart.png"
+                    alt=""
+                    class="w-50"
+                    style="padding-top: 15%"
+                  />
+                </a>
+              </div>
+
+              <div class="member-link">
+                <a [routerLink]="['/login']">
+                  <img
+                    src="../assets/sign_up.png"
+                    alt=""
+                    class="w-50"
+                    style="padding-top: 15%"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="top-search">
+            <div
+              class="xans-element- xans-search xans-search-form top-search-wrap"
+            >
+              <div>
+                <p-autoComplete
+                  (onSelect)="navigateToProduct($event)"
+                  field="name"
+                  [style]="{ width: '100%' }"
+                  [inputStyle]="productSearchMobileViewInputStyles"
+                  [suggestions]="products"
+                  (completeMethod)="searchProducts($event.query)"
+                >
+                  <ng-template let-product pTemplate="item">
+                    <img
+                      [src]="product.image"
+                      style="width: 100px; display: inline-block"
+                      [alt]="product.name"
+                    />
+                    <div
+                      style="
+                        font-size: 18px;
+                        float: right;
+                        margin: 10px 10px 0 0;
+                      "
+                    >
+                      {{ product.name }}
+                    </div>
+                  </ng-template>
+                </p-autoComplete>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mbl-disable-block main-nav-wrapper">
+        <div class="flex-container main-container mx-auto" id="navbar">
+          <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
+            <span>All category</span>
+          </div>
+          <ul class="navbar-items">
+            <!-- <div style="display: flex; flex-wrap: wrap; flex-direction: row"> -->
+            <li class="header-items">
+              <a routerLink="/products" class="black m-15">NEW</a>
+            </li>
+            <li class="header-items">
+              <a routerLink="/products" class="black m-15">BEST</a>
+            </li>
+            <li class="header-items">
+              <a routerLink="/products" class="black m-15">TIME</a>
+            </li>
+            <li class="header-items">
+              <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
+            </li>
+            <li class="header-items">
+              <a
+                routerLink="/brands"
+                class="black m-15"
+                (mouseenter)="brandHoverMenu.show($event)"
+                >BRAND</a
+              >
+              <p-overlayPanel #brandHoverMenu>
+                <ng-template pTemplate="content">
+                  <div
+                    (mouseenter)="brandHoverMenu.show($event)"
+                    (mouseleave)="brandHoverMenu.hide()"
+                    class="flex flex-column justify-content-center"
+                  >
+                    <ul class="w-full flex flex-row justify-content-center">
+                      <li
+                        class="px-3 py-1 text-black-alpha-90 hover:text-pink-400"
+                        (mouseenter)="filterBrand(englishAlphabet)"
+                        *ngFor="let englishAlphabet of englishAlphabets"
+                      >
+                        <b>{{ englishAlphabet }}</b>
+                      </li>
+                    </ul>
+                    <div
+                      class="mt-4 w-full flex flex-row justify-content-center max-h-15rem overflow-y-scroll"
+                    >
+                      <ul
+                        class="w-10 flex flex-row flex-wrap justify-content-start"
+                      >
+                        <li
+                          class="w-20 flex flex-row justify-content-center py-2"
+                          *ngFor="let brand of filteredBrands"
+                        >
+                          <a
+                            [routerLink]="['/brand', brand.slug]"
+                            (click)="brandHoverMenu.hide()"
+                            class="text-black-alpha-90"
+                            >{{ brand.name }}</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-overlayPanel>
+            </li>
+            <li class="header-items">
+              <a routerLink="/products" class="black m-15">COUPON</a>
+            </li>
+            <!-- </div> -->
+          </ul>
+          <div class="recently-viewed-container">
+            <div id="google_translate_element"></div>
+            <select class="border-0" (change)="changeSelectedCurrency($event)">
+              <option
+                *ngFor="let availableCurrency of availableCurrencies"
+                [value]="availableCurrency.currencyCode"
+                [selected]="
+                  selectedCurrency.currencyCode ===
+                  availableCurrency.currencyCode
+                "
+              >
+                {{ availableCurrency.currencyName }} ({{
+                  availableCurrency.currencyCode
+                }})
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!--Mobile View-->
+      <div class="web-disable">
+        <div class="flex-container" id="navbar">
+          <ul class="navbar-items flex">
+            <div style="display: flex; flex-wrap: wrap; flex-direction: row">
+              <li *ngFor="let item of navBarItemListMobile">
+                <a [routerLink]="[item.url]" class="black m-15">{{
+                  item.page
+                }}</a>
+              </li>
+            </div>
+            <i
+              class="pi pi-angle-down"
+              style="line-height: 1.6"
+              (click)="navBarMobileListViewToggle()"
+            ></i>
+          </ul>
+        </div>
+      </div>
+
+      <p-dialog
+        [(visible)]="display"
+        [style]="{ width: '100%' }"
+        [modal]="true"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <ng-template pTemplate="header">
+          <h3 class="all-categories-heading">All Categories</h3>
+        </ng-template>
+        <app-hamburger-menu
+          (onCategorySelected)="toggleHamBurgerMenu()"
+        ></app-hamburger-menu>
+      </p-dialog>
+
+      <p-sidebar
+        [(visible)]="mobileDisplay"
+        position="left"
+        [transitionOptions]="'300ms'"
+        [style]="{ width: '100%' }"
+      >
+        <div class="side-bar-wrap2">
+          <div class="xans-element- xans-layout xans-layout-statelogoff">
+            <div class="userinfo">
+              <div class="profile">
+                <img
+                  class="sp-sidebar-ico1"
+                  src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
+                  alt="Guest"
+                />
+              </div>
+              <div class="txt txt_1">
+                <b style="color: black; font-weight: 900">HELLO, GUEST</b>
+                <span class="subTxt">Please log in or sign up</span>
+              </div>
+              <div
+                class="xans-element- xans-layout xans-layout-mobilehomebutton btnarea"
+              ></div>
+            </div>
+          </div>
+          <div class="Layout_stateLogon"></div>
+        </div>
+        <div class="xans-element- xans-myshop xans-myshop-main sidetop-wrap">
+          <a
+            class="sp-sidebar-wishList wishList"
+            style="
+              display: flex;
+              flex-direction: column;
+              font-size: 14px;
+              text-align: center;
+            "
+          >
+            <i
+              class="pi pi-heart"
+              style="font-size: 1.5rem; margin: 0.2rem"
+            ></i>
+            Wish List
+          </a>
+
+          <a
+            class="sp-sidebar-wishList wishList"
+            style="
+              display: flex;
+              flex-direction: column;
+              font-size: 14px;
+              text-align: center;
+            "
+          >
+            <i
+              class="pi pi-shopping-cart"
+              style="font-size: 1.5rem; margin: 0.2rem"
+            ></i>
+            Cart
+          </a>
+
+          <a
+            class="sp-sidebar-wishList wishList"
+            style="
+              display: flex;
+              flex-direction: column;
+              font-size: 14px;
+              text-align: center;
+            "
+          >
+            <i
+              class="pi pi-shopping-bag"
+              style="font-size: 1.5rem; margin: 0.2rem"
+            ></i>
+            Orders
+          </a>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; flex-direction: column">
+          <li class="header-items header-items-mobile">
+            <a routerLink="/products" class="black m-15">NEW</a>
+          </li>
+          <li class="header-items header-items-mobile">
+            <a routerLink="/products" class="black m-15">BEST</a>
+          </li>
+          <li class="header-items header-items-mobile">
+            <a routerLink="/products" class="black m-15">TIME</a>
+          </li>
+          <li class="header-items header-items-mobile">
+            <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
+          </li>
+          <li class="header-items header-items-mobile">
+            <a routerLink="/brands" class="black m-15">BRAND</a>
+          </li>
+          <li class="header-items header-items-mobile">
+            <a routerLink="/products" class="black m-15">COUPON</a>
+          </li>
+        </div>
+        <div style="display: flex">
+          <app-input-button
+            class="w-50"
+            style="margin: 10px 10px"
+            buttonText="Sign In"
+          ></app-input-button>
+          <app-input-button
+            class="w-50 signup"
+            style="margin: 10px 10px"
+            buttonText="Sign Up"
+          ></app-input-button>
+        </div>
+      </p-sidebar>
     </div>
   </div>
 </div>
-
-<!--Mobile View-->
-<div class="web-disable">
-  <div class="flex-container" id="navbar">
-    <ul class="navbar-items flex">
-      <div style="display: flex; flex-wrap: wrap; flex-direction: row">
-        <li *ngFor="let item of navBarItemListMobile">
-          <a [routerLink]="[item.url]" class="black m-15">{{ item.page }}</a>
-        </li>
-      </div>
-      <i
-        class="pi pi-angle-down"
-        style="line-height: 1.6"
-        (click)="navBarMobileListViewToggle()"
-      ></i>
-    </ul>
-  </div>
-</div>
-
-<p-dialog
-  [(visible)]="display"
-  [style]="{ width: '100%' }"
-  [modal]="true"
-  [draggable]="false"
-  [resizable]="false"
->
-  <ng-template pTemplate="header">
-    <h3 class="all-categories-heading">All Categories</h3>
-  </ng-template>
-  <app-hamburger-menu
-    (onCategorySelected)="toggleHamBurgerMenu()"
-  ></app-hamburger-menu>
-</p-dialog>
-
-<p-sidebar
-  [(visible)]="mobileDisplay"
-  position="left"
-  [transitionOptions]="'300ms'"
-  [style]="{ width: '100%' }"
->
-  <div class="side-bar-wrap2">
-    <div class="xans-element- xans-layout xans-layout-statelogoff">
-      <div class="userinfo">
-        <div class="profile">
-          <img
-            class="sp-sidebar-ico1"
-            src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
-            alt="Guest"
-          />
-        </div>
-        <div class="txt txt_1">
-          <b style="color: black; font-weight: 900">HELLO, GUEST</b>
-          <span class="subTxt">Please log in or sign up</span>
-        </div>
-        <div
-          class="xans-element- xans-layout xans-layout-mobilehomebutton btnarea"
-        ></div>
-      </div>
-    </div>
-    <div class="Layout_stateLogon"></div>
-  </div>
-  <div class="xans-element- xans-myshop xans-myshop-main sidetop-wrap">
-    <a
-      class="sp-sidebar-wishList wishList"
-      style="
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
-        text-align: center;
-      "
-    >
-      <i class="pi pi-heart" style="font-size: 1.5rem; margin: 0.2rem"></i>
-      Wish List
-    </a>
-
-    <a
-      class="sp-sidebar-wishList wishList"
-      style="
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
-        text-align: center;
-      "
-    >
-      <i
-        class="pi pi-shopping-cart"
-        style="font-size: 1.5rem; margin: 0.2rem"
-      ></i>
-      Cart
-    </a>
-
-    <a
-      class="sp-sidebar-wishList wishList"
-      style="
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
-        text-align: center;
-      "
-    >
-      <i
-        class="pi pi-shopping-bag"
-        style="font-size: 1.5rem; margin: 0.2rem"
-      ></i>
-      Orders
-    </a>
-  </div>
-
-  <div style="display: flex; flex-wrap: wrap; flex-direction: column">
-    <li class="header-items header-items-mobile">
-      <a routerLink="/products" class="black m-15">NEW</a>
-    </li>
-    <li class="header-items header-items-mobile">
-      <a routerLink="/products" class="black m-15">BEST</a>
-    </li>
-    <li class="header-items header-items-mobile">
-      <a routerLink="/products" class="black m-15">TIME</a>
-    </li>
-    <li class="header-items header-items-mobile">
-      <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
-    </li>
-    <li class="header-items header-items-mobile">
-      <a routerLink="/brands" class="black m-15">BRAND</a>
-    </li>
-    <li class="header-items header-items-mobile">
-      <a routerLink="/products" class="black m-15">COUPON</a>
-    </li>
-  </div>
-  <div style="display: flex">
-    <app-input-button
-      class="w-50"
-      style="margin: 10px 10px"
-      buttonText="Sign In"
-    ></app-input-button>
-    <app-input-button
-      class="w-50 signup"
-      style="margin: 10px 10px"
-      buttonText="Sign Up"
-    ></app-input-button>
-  </div>
-</p-sidebar>
