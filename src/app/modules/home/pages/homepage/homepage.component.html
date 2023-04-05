@@ -187,12 +187,12 @@
 
   <!-- Best Items Month Start -->
   <div class="main-box3 mbl-disable">
-    <div class="main-inner">
+    <div class="main-inner main-container">
       <div class="title">
         <h2>BEST</h2>
         <p>BEST ITEMS OF MONTH</p>
       </div>
-      <div class="flex-products div-center-m5 no-flex">
+      <div class="flex-products no-flex best-items-products">
         <p-carousel
           [autoplayInterval]="3000"
           [numVisible]="5"
@@ -218,12 +218,12 @@
   <!-- Best Items Month End -->
 
   <!-- Brand Sale Start -->
-  <div style="padding: 3rem 0">
+  <div class="brand-sale-section">
     <div class="title">
       <h2>BRAND SALE</h2>
-      <a href=""> GO TO PROMOTION</a>
+      <a [routerLink]="['/promotions']"> GO TO PROMOTION</a>
     </div>
-    <div class="brandsale-card flex-products promotion-flex">
+    <div class="flex-products promotion-flex">
       <ngx-slick-carousel
         #brandSaleCarousel="slick-carousel"
         (afterChange)="
