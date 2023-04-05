@@ -141,7 +141,10 @@ export class HeaderComponent
   }
 
   public ngOnInit(): void {
-    this.email = localStorage.getItem('user_email');
+    this.authService.navItem$.subscribe((data) => {
+      if (data != '') this.email = data;
+      else this.email = localStorage.getItem('user_email');
+    });
     const searchSubscription = this.observeProductSearch();
     // const currencySubscription = this.setupAvailableCurrencies();
     const brandSubscription = this.setupBrandsForHeader();

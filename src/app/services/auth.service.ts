@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiRoutes } from '../const/api-routes';
 import { Token } from '../interfaces/token';
 import { UserLogin } from '../interfaces/user-login.interface';
@@ -10,6 +10,9 @@ import moment from 'moment';
   providedIn: 'root',
 })
 export class AuthService {
+  private isUserLoggedInSubject = new BehaviorSubject<string>('');
+  navItem$ = this.isUserLoggedInSubject.asObservable();
+
   constructor(private readonly httpService: HttpService) {}
 
   public signIn(user: UserLogin): Observable<{ data: Token }> {
@@ -23,7 +26,7 @@ export class AuthService {
     localStorage.setItem('token', authResult.accessToken);
     localStorage.setItem('user_email', userData.email);
     // localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-    console.log('local storage set');
+    this.isUserLoggedInSubject.next(userData.email);
   }
 
   logout() {
@@ -31,6 +34,12 @@ export class AuthService {
     localStorage.removeItem('user_email');
   }
 
+  public isUserLoggedIn(): boolean {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());
   }
