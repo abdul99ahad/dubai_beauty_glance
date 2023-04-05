@@ -1,0 +1,76 @@
+<div class="main-container">
+  <div class="div-container">
+    <div class="titleArea">
+      <h2>Sign in</h2>
+    </div>
+
+    <div>
+      <input
+        [(ngModel)]="user.email"
+        class="textbox"
+        type="text"
+        placeholder="Email"
+        (blur)="ValidateEmail()"
+      />
+      <p *ngIf="emailInvalid" style="color: red">Email is invalid</p>
+    </div>
+
+    <div>
+      <input
+        [(ngModel)]="user.password"
+        class="textbox"
+        type="password"
+        placeholder="Password"
+        (blur)="ValidatePassword()"
+      />
+      <p *ngIf="passwordInvalid" style="color: red">
+        Password length should be greater than 6
+      </p>
+    </div>
+
+    <div class="flex-display">
+      <input
+        id="member_check_save_id0"
+        name="check_save_id"
+        fw-label="Save ID"
+        type="checkbox"
+        class="checkbox"
+      />
+      <p class="flex-right">Save ID</p>
+      <p>
+        <span
+          ><img src="../../../../../assets/ico_access.png" alt="Secured Login"
+        /></span>
+        Secured Login
+      </p>
+    </div>
+
+    <div>
+      <app-input-button
+        (click)="Login()"
+        buttonText="Sign in"
+      ></app-input-button>
+    </div>
+
+    <div class="flex-display">
+      <a href="/" class="forget-pwd">Forgot ID | </a>
+      <a href="/" class="forget-pwd">Forgot Password</a>
+    </div>
+
+    <div class="m-btm-20">
+      <a href="">
+        <img
+          class="facebook_login"
+          src="../../../../../assets/facebook_login.png"
+          alt="Login with Facebook"
+        />
+      </a>
+    </div>
+
+    <hr />
+
+    <div>
+      <a [routerLink]="['/register']" class="sign-up">Create an account</a>
+    </div>
+  </div>
+</div>

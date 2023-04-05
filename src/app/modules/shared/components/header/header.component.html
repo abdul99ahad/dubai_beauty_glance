@@ -32,17 +32,31 @@
     </div>
 
     <div class="auth">
-      <div class="member-link">
+      <div *ngIf="!email" class="member-link">
         <a [routerLink]="['/login']">
           <img src="../assets/sign_in.png" alt="" />
           <p>Sign In</p>
         </a>
       </div>
 
-      <div class="member-link">
+      <div *ngIf="!email" class="member-link">
         <a [routerLink]="['/register']">
           <img src="../assets/sign_up.png" alt="" />
           <p>Sign Up</p>
+        </a>
+      </div>
+
+      <div *ngIf="email" class="member-link">
+        <a [routerLink]="['/']" (click)="signOut()">
+          <i class="pi pi-sign-out" style="font-size: 2rem"></i>
+          <p>Sign Out</p>
+        </a>
+      </div>
+
+      <div *ngIf="email" class="member-link">
+        <a [routerLink]="['/']">
+          <i class="pi pi-user" style="font-size: 2rem"></i>
+          <p>My Account</p>
         </a>
       </div>
 
@@ -50,7 +64,7 @@
         <a [routerLink]="['/cart']">
           <img src="../assets/cart.png" alt="" />
           <p>Cart</p>
-          <p>{{cartItemsQuantity}}</p>
+          <p>{{ cartItemsQuantity }}</p>
         </a>
       </div>
     </div>
@@ -122,80 +136,87 @@
 </div>
 
 <div class="mbl-disable-block main-nav-wrapper">
-
   <div class="flex-container main-container mx-auto" id="navbar">
     <div class="cate-all-btn-open" (click)="toggleHamBurgerMenu()">
       <span>All category</span>
     </div>
     <ul class="navbar-items">
       <!-- <div style="display: flex; flex-wrap: wrap; flex-direction: row"> -->
-        <li class="header-items">
-          <a routerLink="/products" class="black m-15">NEW</a>
-        </li>
-        <li class="header-items">
-          <a routerLink="/products" class="black m-15">BEST</a>
-        </li>
-        <li class="header-items">
-          <a routerLink="/products" class="black m-15">TIME</a>
-        </li>
-        <li class="header-items">
-          <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
-        </li>
-        <li class="header-items">
-          <a
-            routerLink="/brands"
-            class="black m-15"
-            (mouseenter)="brandHoverMenu.show($event)"
-            >BRAND</a
-          >
-          <p-overlayPanel #brandHoverMenu>
-            <ng-template pTemplate="content">
+      <li class="header-items">
+        <a routerLink="/products" class="black m-15">NEW</a>
+      </li>
+      <li class="header-items">
+        <a routerLink="/products" class="black m-15">BEST</a>
+      </li>
+      <li class="header-items">
+        <a routerLink="/products" class="black m-15">TIME</a>
+      </li>
+      <li class="header-items">
+        <a routerLink="/promotions" class="black m-15">PROMOTIONS</a>
+      </li>
+      <li class="header-items">
+        <a
+          routerLink="/brands"
+          class="black m-15"
+          (mouseenter)="brandHoverMenu.show($event)"
+          >BRAND</a
+        >
+        <p-overlayPanel #brandHoverMenu>
+          <ng-template pTemplate="content">
+            <div
+              (mouseenter)="brandHoverMenu.show($event)"
+              (mouseleave)="brandHoverMenu.hide()"
+              class="flex flex-column justify-content-center"
+            >
+              <ul class="w-full flex flex-row justify-content-center">
+                <li
+                  class="px-3 py-1 text-black-alpha-90 hover:text-pink-400"
+                  (mouseenter)="filterBrand(englishAlphabet)"
+                  *ngFor="let englishAlphabet of englishAlphabets"
+                >
+                  <b>{{ englishAlphabet }}</b>
+                </li>
+              </ul>
               <div
-                (mouseenter)="brandHoverMenu.show($event)"
-                (mouseleave)="brandHoverMenu.hide()"
-                class="flex flex-column justify-content-center"
+                class="mt-4 w-full flex flex-row justify-content-center max-h-15rem overflow-y-scroll"
               >
-                <ul class="w-full flex flex-row justify-content-center">
+                <ul class="w-10 flex flex-row flex-wrap justify-content-start">
                   <li
-                    class="px-3 py-1 text-black-alpha-90 hover:text-pink-400"
-                    (mouseenter)="filterBrand(englishAlphabet)"
-                    *ngFor="let englishAlphabet of englishAlphabets"
+                    class="w-20 flex flex-row justify-content-center py-2"
+                    *ngFor="let brand of filteredBrands"
                   >
-                    <b>{{ englishAlphabet }}</b>
+                    <a
+                      [routerLink]="['/brand', brand.slug]"
+                      (click)="brandHoverMenu.hide()"
+                      class="text-black-alpha-90"
+                      >{{ brand.name }}</a
+                    >
                   </li>
                 </ul>
-                <div
-                  class="mt-4 w-full flex flex-row justify-content-center max-h-15rem overflow-y-scroll"
-                >
-                  <ul
-                    class="w-10 flex flex-row flex-wrap justify-content-start"
-                  >
-                    <li
-                      class="w-20 flex flex-row justify-content-center py-2"
-                      *ngFor="let brand of filteredBrands"
-                    >
-                      <a
-                        [routerLink]="['/brand', brand.slug]"
-                        (click)="brandHoverMenu.hide()"
-                        class="text-black-alpha-90"
-                        >{{ brand.name }}</a
-                      >
-                    </li>
-                  </ul>
-                </div>
               </div>
-            </ng-template>
-          </p-overlayPanel>
-        </li>
-        <li class="header-items">
-          <a routerLink="/products" class="black m-15">COUPON</a>
-        </li>
+            </div>
+          </ng-template>
+        </p-overlayPanel>
+      </li>
+      <li class="header-items">
+        <a routerLink="/products" class="black m-15">COUPON</a>
+      </li>
       <!-- </div> -->
     </ul>
     <div class="recently-viewed-container">
       <div id="google_translate_element"></div>
       <select class="border-0" (change)="changeSelectedCurrency($event)">
-        <option *ngFor="let availableCurrency of availableCurrencies" [value]="availableCurrency.currencyCode" [selected]="selectedCurrency.currencyCode === availableCurrency.currencyCode">{{ availableCurrency.currencyName }} ({{ availableCurrency.currencyCode }})</option>
+        <option
+          *ngFor="let availableCurrency of availableCurrencies"
+          [value]="availableCurrency.currencyCode"
+          [selected]="
+            selectedCurrency.currencyCode === availableCurrency.currencyCode
+          "
+        >
+          {{ availableCurrency.currencyName }} ({{
+            availableCurrency.currencyCode
+          }})
+        </option>
       </select>
     </div>
   </div>

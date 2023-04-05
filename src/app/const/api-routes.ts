@@ -8,4 +8,5 @@ export const ApiRoutes = {
   tag: 'tag',
   setting: 'setting',
   banners: 'banners',
+  signin: 'auth/sign-in',
 } as const;

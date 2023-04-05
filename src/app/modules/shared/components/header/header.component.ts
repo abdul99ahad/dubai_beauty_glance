@@ -1,4 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { map, Subject, Subscription, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { Brand } from '../../../../interfaces/brand.interface';
@@ -13,6 +21,7 @@ import { CurrencyService } from '../../../../services/currency.service';
 import { Setting } from '../../../../interfaces/setting.interface';
 import { CartService } from 'ng-shopping-cart';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +36,7 @@ export class HeaderComponent
   cartItemsQuantity: number = 0;
   expandedState: boolean = false;
   mobileDisplay: boolean = false;
+  public email: string | null;
   navBarItemList: any = [
     {
       page: 'NEW',
@@ -108,6 +118,7 @@ export class HeaderComponent
   public constructor(
     private readonly currencyService: CurrencyService,
     private readonly webApiService: WebApiService,
+    private readonly authService: AuthService,
     private readonly router: Router,
     private cartService: CartService<ProductCartItem>
   ) {
@@ -130,6 +141,7 @@ export class HeaderComponent
   }
 
   public ngOnInit(): void {
+    this.email = localStorage.getItem('user_email');
     const searchSubscription = this.observeProductSearch();
     // const currencySubscription = this.setupAvailableCurrencies();
     const brandSubscription = this.setupBrandsForHeader();
@@ -139,6 +151,11 @@ export class HeaderComponent
 
   public ngOnDestroy(): void {
     this.flushSubscriptions();
+  }
+
+  public signOut() {
+    this.email = null;
+    this.authService.logout();
   }
 
   public filterBrand(): void;
