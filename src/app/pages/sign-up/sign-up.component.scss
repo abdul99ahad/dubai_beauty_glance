@@ -26,7 +26,9 @@ p {
   font-family: 'Montserrat','Arial';
 }
 
-
+.error {
+  color: red;
+}
 // :host ::ng-deep app-input-textbox{
 //     input {
 //         // width: 300px !important;
