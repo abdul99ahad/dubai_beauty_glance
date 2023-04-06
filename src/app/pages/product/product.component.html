@@ -310,15 +310,25 @@
 <p-dialog
   [(visible)]="cartDisplay"
   [draggable]="false"
-  class="web-view"
+  class="prod-added-dialog"
   position="top-right"
+  [style]="{ width: '400px'}"
 >
-  <img [src]="productDetail.image" />
-  <p>{{ productDetail.name }}</p>
-  <p>Success: You have added</p>
-  <a [routerLink]="'/product/' + slug">{{ productDetail.name }}</a>
-  <p>to your <a [routerLink]="['cart']">shopping cart</a></p>
-
-  <button [routerLink]="['cart']">View Cart</button>
-  <button [routerLink]="['checkout']">Checkout</button>
+  <div class="popup-wrap">
+    <img [src]="productDetail.image" />
+    <div>
+      <h6 class="prod-name">{{ productDetail.name }}</h6>
+      <p>Success: You have added <a [routerLink]="'/product/' + slug">{{ productDetail.name }}</a> to your <a [routerLink]="['/cart']">shopping cart.</a></p>
+    </div>
+  </div>
+  <div class="btns-wrap">
+    <a class="view-cart-btn btn" [routerLink]="['/cart']">
+      <i class="pi pi-shopping-bag"></i>
+      <span>View Cart</span>
+    </a>
+    <a class="checkout-btn btn" [routerLink]="['/checkout']">
+      <span>Checkout</span>
+      <i class="pi pi-arrow-right"></i>
+    </a>
+  </div>
 </p-dialog>
