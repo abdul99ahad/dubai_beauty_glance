@@ -688,3 +688,18 @@ select {
     }
   }
 }
+
+.search-result-wrap{
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  img{
+    max-width: 70px;
+    margin-right: 10px;
+  }
+
+  p{
+    font-size: 14px;
+    color: black;
+  }
+}
