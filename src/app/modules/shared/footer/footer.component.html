@@ -3,7 +3,7 @@
     <div>
       <ul class="navbar-items flex-container" id="navbar">
         <li *ngFor="let item of footerBarItemList" class="nav-items-footer-top">
-          <a href="{{ item.url }}" class="black">{{ item.title }}</a>
+          <a [routerLink]="item.url" class="black">{{ item.title }}</a>
         </li>
       </ul>
     </div>
@@ -26,7 +26,7 @@
   <div class="footer-area">
     <div class="footer-inner">
       <div class="footer-logo">
-        <a href="/">
+        <a [routerLink]="['/']">
           <img class="logo" [src]="setting.footer_logo" />
         </a>
       </div>

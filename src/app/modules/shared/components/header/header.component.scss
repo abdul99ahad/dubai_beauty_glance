@@ -21,9 +21,9 @@
   padding: 1.3em 0;
 }
 
-.search-bar {
+// .search-bar {
   // width: 140%;
-}
+// }
 
 .logo-area {
   width: 40%;
@@ -223,7 +223,7 @@ li {
 }
 
 .side-bar-wrap2 .sp-sidebar-ico1::before {
-  background-image: url("https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png");
+  background-image: url("../../../../../assets/icons/ico_guest.png");
   background-position: 0 0;
   background-size: 100% auto;
 }
@@ -283,12 +283,12 @@ li {
 }
 
 .xans-myshop-main a.wishList {
-  background: #4a5164 url("https://img.echosting.cafe24.com/skin/mobile_en_US/layout/bg_wish_list.png") no-repeat 50% 15px;
+  background: #4a5164 url("../../../../../assets/bg_wish_list.png") no-repeat 50% 15px;
 }
 
 .sp-sidebar::before {
   display: inline-block;
-  background-image: url("https://m.jolse.com/_dbook/img/sp_sidebar.png");
+  background-image: url("../../../../../assets/sp_sidebar.png");
   background-size: 150px 75px;
   background-repeat: no-repeat;
   vertical-align: middle;
@@ -476,9 +476,9 @@ select {
 .header-mid{
   padding: 18px 0 10px;
   align-items: center;
-  .search-bar{
+  // .search-bar{
 
-  }
+  // }
 
 }
 
