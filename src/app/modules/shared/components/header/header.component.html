@@ -117,13 +117,13 @@
                     <div class="single-row">
                       <label class="text-right sr-total-title">Sub-Total</label>
                       <label class="text-right sr-total-text"
-                        >{{ currency }} {{ cost }}</label
+                        >{{ currency }} {{ cost | number : "1.2-2" }}</label
                       >
                     </div>
                     <div class="single-row">
                       <label class="text-right sr-total-title">Total</label>
                       <label class="text-right sr-total-text"
-                        >{{ currency }} {{ cost }}</label
+                        >{{ currency }} {{ cost | number : "1.2-2" }}</label
                       >
                     </div>
                   </div>
