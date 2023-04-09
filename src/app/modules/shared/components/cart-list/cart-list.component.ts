@@ -75,6 +75,7 @@ export class CartListComponent implements OnInit {
 
   updateItem(item: ProductCartItem): void {
     item.setQuantity(item.quantity);
+    item.updateTotalPrice(item.quantity);
     this.updateCartItems();
   }
 
@@ -106,6 +107,10 @@ export class CartListComponent implements OnInit {
         (item.price - item.discount_price) * item.quantity;
       this.cost.totalAmount += item.discount_price * item.quantity;
     });
+
+    this.cost.amount = parseFloat(this.cost.amount.toFixed(2));
+    this.cost.discountAmount = parseFloat(this.cost.discountAmount.toFixed(2));
+    this.cost.totalAmount = parseFloat(this.cost.totalAmount.toFixed(2));
   }
 
   private updateCartItems(): void {

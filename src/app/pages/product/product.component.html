@@ -102,6 +102,7 @@
                           >({{ currency }}
                           {{
                             +productDetail.price - +productDetail.discount_price
+                              | number : "1.2-2"
                           }}
                           discount)</span
                         >
@@ -312,13 +313,17 @@
   [draggable]="false"
   class="prod-added-dialog"
   position="top-right"
-  [style]="{ width: '400px'}"
+  [style]="{ width: '400px' }"
 >
   <div class="popup-wrap">
     <img [src]="productDetail.image" />
     <div>
       <h6 class="prod-name">{{ productDetail.name }}</h6>
-      <p>Success: You have added <a [routerLink]="'/product/' + slug">{{ productDetail.name }}</a> to your <a [routerLink]="['/cart']">shopping cart.</a></p>
+      <p>
+        Success: You have added
+        <a [routerLink]="'/product/' + slug">{{ productDetail.name }}</a> to
+        your <a [routerLink]="['/cart']">shopping cart.</a>
+      </p>
     </div>
   </div>
   <div class="btns-wrap">
