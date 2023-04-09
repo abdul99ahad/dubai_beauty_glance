@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
   title: string = 'Contact Us';
-  adImgUrl: string = 'https://jolse.com/web/images/topbanner08552.jpg';
+  adImgUrl: string = '../../../assets/topbanner08552.jpg';
   constructor() {}
 
   ngOnInit(): void {}

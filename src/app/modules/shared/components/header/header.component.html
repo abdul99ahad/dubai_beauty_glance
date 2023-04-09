@@ -22,13 +22,12 @@
           (completeMethod)="searchProducts($event.query)"
         >
           <ng-template let-product pTemplate="item">
-            <img
-              [src]="product.image"
-              style="width: 100px"
-              [alt]="product.name"
-            />
-            <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
-              {{ product.name }}
+            <div class="search-result-wrap">
+              <img
+                [src]="product.image"
+                [alt]="product.name"
+              />
+              <p>{{ product.name }}</p>
             </div>
           </ng-template>
         </p-autoComplete>
@@ -342,7 +341,7 @@
         <div class="profile">
           <img
             class="sp-sidebar-ico1"
-            src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
+            src="../../../../../assets/icons/ico_guest.png"
             alt="Guest"
           />
         </div>

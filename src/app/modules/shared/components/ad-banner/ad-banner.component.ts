@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AdBannerComponent implements OnInit {
   @Input('adImgUrl') adImgUrl: string =
-    'https://jolse.com/web/images/topbanner08552.jpg'; //TODO:
+    '../../../../../assets/topbanner08552.jpg'; //TODO:
   constructor() {}
 
   ngOnInit(): void {}
