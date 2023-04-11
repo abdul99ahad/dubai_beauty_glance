@@ -39,6 +39,7 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 import { NewsletterSwitchComponent } from './pages/newsletter-switch/newsletter-switch.component';
 import { ProductCartItem } from './utilities/productCartItem';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ProductCartItem } from './utilities/productCartItem';
     WishlistComponent,
     OrderHistoryComponent,
     NewsletterSwitchComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,

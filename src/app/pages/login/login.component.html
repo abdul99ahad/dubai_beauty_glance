@@ -7,25 +7,45 @@
     <div class="mb-3">
       <input
         [(ngModel)]="user.email"
+        name="email"
+        id="email"
+        #email="ngModel"
         class="textbox"
         type="text"
         placeholder="Email"
+        required
         (blur)="ValidateEmail()"
       />
       <p *ngIf="emailInvalid" style="color: red">Email is invalid</p>
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert"
+      >
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+      </div>
     </div>
 
     <div>
       <input
         [(ngModel)]="user.password"
+        name="password"
+        #password="ngModel"
         class="textbox"
         type="password"
         placeholder="Password"
+        required
+        minlength="6"
         (blur)="ValidatePassword()"
       />
-      <p *ngIf="passwordInvalid" style="color: red">
+      <!-- <p *ngIf="passwordInvalid" style="color: red">
         Password length should be greater than 6
-      </p>
+      </p> -->
+      <div *ngIf="password.invalid && password.touched" class="alert">
+        <div *ngIf="password.errors?.['required']">Password is required.</div>
+        <div *ngIf="password.errors?.['minlength']">
+          Password length should be greater than 6.
+        </div>
+      </div>
     </div>
 
     <div class="flex-display">
@@ -46,10 +66,17 @@
     </div>
 
     <div>
-      <app-input-button
+      <!-- <app-input-button
         (click)="Login()"
         buttonText="Sign in"
-      ></app-input-button>
+      ></app-input-button> -->
+
+      <button
+        class="btnLogin"
+        [disabled]="email.invalid || password.invalid || emailInvalid"
+      >
+        Sign In
+      </button>
     </div>
 
     <div class="flex-display">
