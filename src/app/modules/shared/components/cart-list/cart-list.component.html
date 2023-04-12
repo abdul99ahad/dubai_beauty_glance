@@ -18,9 +18,17 @@
     <ng-template pTemplate="body" let-item>
       <tr>
         <td>
-          <img src="{{ item.image }}" class="cart-item-img" />
+          <img
+            [routerLink]="'/product/' + item.slug"
+            src="{{ item.image }}"
+            class="cart-item-img"
+          />
         </td>
-        <td>{{ item.name }}</td>
+        <td>
+          <a [routerLink]="'/product/' + item.slug">
+            {{ item.name }}
+          </a>
+        </td>
         <td>
           {{ currency }}
           {{ item.discount_price ? item.discount_price : item.price }}
