@@ -141,6 +141,7 @@ export class ProductComponent implements OnInit {
           quantity: this.selectedQuantity,
           discount_price: this.productDetail.discount_price,
           min_quantity: this.productDetail.min_order_quantity,
+          slug: this.slug,
         })
       );
     }

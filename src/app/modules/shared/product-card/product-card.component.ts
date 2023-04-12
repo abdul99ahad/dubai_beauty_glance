@@ -53,6 +53,7 @@ export class ProductCardComponent {
             quantity: detail.min_order_quantity,
             discount_price: this.discount_price,
             min_quantity: detail.min_order_quantity,
+            slug: this.slug,
           })
         );
       }
