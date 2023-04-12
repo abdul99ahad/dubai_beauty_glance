@@ -40,6 +40,11 @@ export class ProductComponent implements OnInit {
 
   response: boolean = false;
 
+  ItemAddedToCartProduct: { name: string; image: string } = {
+    name: '',
+    image: '',
+  };
+
   productVariants: ProductVariantList;
   productVariantName: string;
   slug: string;
@@ -112,8 +117,12 @@ export class ProductComponent implements OnInit {
     this.display = event.pageY > event.view!.outerHeight * 1.5;
   }
 
-  public AddtoCart() {
+  public AddtoCart(productDetail: ProductDetail) {
     this.cartDisplay = true;
+    this.ItemAddedToCartProduct = {
+      name: productDetail.name,
+      image: productDetail.image,
+    };
     // If already exists, increase the quantity
     if (
       this.cartService.getItem(this.productDetail.sku + this.productVariantName)
