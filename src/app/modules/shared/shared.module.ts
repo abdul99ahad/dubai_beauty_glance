@@ -38,8 +38,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrandCardComponent } from './brand-card/brand-card.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { DropdownModule } from "primeng/dropdown";
+import { DropdownModule } from 'primeng/dropdown';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+
+//Directives
+import { EmailValidationDirective } from './directives/email-validation.directive';
 
 @NgModule({
   declarations: [
@@ -58,29 +62,31 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     HeaderComponent,
     BrandCardComponent,
     LoadingSpinnerComponent,
+    EmailValidationDirective,
+    WishListComponent,
   ],
-	imports: [
-		CommonModule,
-		InputTextModule,
-		ButtonModule,
-		CarouselModule,
-		DataViewModule,
-		TableModule,
-		InputNumberModule,
-		FormsModule,
-		RouterModule,
-		NgMarqueeModule,
-		ToggleButtonModule,
-		SidebarModule,
-		DialogModule,
-		DividerModule,
-		MenuModule,
-		AutoCompleteModule,
-		TabViewModule,
-		LightgalleryModule,
-		OverlayPanelModule,
-		DropdownModule,
-	],
+  imports: [
+    CommonModule,
+    InputTextModule,
+    ButtonModule,
+    CarouselModule,
+    DataViewModule,
+    TableModule,
+    InputNumberModule,
+    FormsModule,
+    RouterModule,
+    NgMarqueeModule,
+    ToggleButtonModule,
+    SidebarModule,
+    DialogModule,
+    DividerModule,
+    MenuModule,
+    AutoCompleteModule,
+    TabViewModule,
+    LightgalleryModule,
+    OverlayPanelModule,
+    DropdownModule,
+  ],
   exports: [
     InputTextModule,
     ButtonModule,
@@ -109,6 +115,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     HeaderComponent,
     BrandCardComponent,
     LoadingSpinnerComponent,
+    WishListComponent,
+    EmailValidationDirective,
   ],
 })
 export class SharedModule {}

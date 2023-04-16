@@ -22,12 +22,13 @@
           (completeMethod)="searchProducts($event.query)"
         >
           <ng-template let-product pTemplate="item">
-            <div class="search-result-wrap">
-              <img
-                [src]="product.image"
-                [alt]="product.name"
-              />
-              <p>{{ product.name }}</p>
+            <img
+              [src]="product.image"
+              style="width: 100px"
+              [alt]="product.name"
+            />
+            <div style="font-size: 18px; float: right; margin: 10px 10px 0 0">
+              {{ product.name }}
             </div>
           </ng-template>
         </p-autoComplete>
@@ -341,7 +342,7 @@
         <div class="profile">
           <img
             class="sp-sidebar-ico1"
-            src="../../../../../assets/icons/ico_guest.png"
+            src="https://m.jolse.com/_dbook/img/ico_renewal/ico_guest.png"
             alt="Guest"
           />
         </div>
@@ -436,3 +437,35 @@
     ></app-input-button>
   </div>
 </p-sidebar>
+
+<p-dialog
+  [(visible)]="cartDisplay"
+  [draggable]="false"
+  class="prod-added-dialog"
+  position="top-right"
+  [style]="{ width: '400px' }"
+>
+  <div class="popup-wrap">
+    <img [src]="cartProduct.image" />
+    <div>
+      <h6 class="prod-name">{{ cartProduct.name }}</h6>
+      <p>
+        Success: You have added
+        <a [routerLink]="'/product/' + cartProduct.slug">{{
+          cartProduct.name
+        }}</a>
+        to your <a [routerLink]="['/cart']">shopping cart.</a>
+      </p>
+    </div>
+  </div>
+  <div class="btns-wrap">
+    <a class="view-cart-btn btn" [routerLink]="['/cart']">
+      <i class="pi pi-shopping-bag"></i>
+      <span>View Cart</span>
+    </a>
+    <a class="checkout-btn btn" [routerLink]="['/checkout']">
+      <span>Checkout</span>
+      <i class="pi pi-arrow-right"></i>
+    </a>
+  </div>
+</p-dialog>

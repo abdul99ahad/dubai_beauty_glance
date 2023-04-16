@@ -1,4 +1,4 @@
-<div class="col-12 md:col-12 lg:col-12" style="opacity: 1">
+<div class="col-12">
   <div class="infoArea">
     <div class="headingArea">
       <h2 class="product-heading">{{ productDetail.name }}</h2>
@@ -33,20 +33,15 @@
           </tr>
           <tr class="product_price_css xans-record-">
             <th scope="row">
-              <span
-                style="font-size: 14px; color: #555555; font-weight: bold"
+              <span style="font-size: 14px; color: #555555; font-weight: bold"
                 >Price</span
               >
             </th>
             <td>
-              <span
-                style="font-size: 14px; color: #555555; font-weight: bold"
-              >
+              <span style="font-size: 14px; color: #555555; font-weight: bold">
                 <strong
                   [style.text-decoration]="
-                    !productDetail.discount_price
-                      ? 'initial'
-                      : 'line-through'
+                    !productDetail.discount_price ? 'initial' : 'line-through'
                   "
                   >{{ currency + " " + productDetail.price }}</strong
                 >
@@ -71,6 +66,7 @@
                       >({{ currency }}
                       {{
                         +productDetail.price - +productDetail.discount_price
+                          | number : "1.2-2"
                       }}
                       discount)</span
                     >
@@ -79,46 +75,59 @@
               </span>
             </td>
           </tr>
-          <tr class="simple_desc_css xans-record-">
+          <tr class="prd_price_sale_css xans-record-">
             <th scope="row">
+              <span style="font-size: 14px; color: #323232">Stock</span>
+            </th>
+            <td>
+              <span>
+                {{ productDetail.quantity > 0 ? "IN STOCK" : "OUT OF STOCK" }}
+              </span>
+            </td>
+          </tr>
+          <tr class="simple_desc_css xans-record-">
+            <th scope="row" style="vertical-align: top">
               <span style="font-size: 14px; color: #555555">Variants</span>
             </th>
             <td>
-              <div>
-                <!-- <a
-                  (click)="filterProductVariants(productVariantOption)"
+              <div class="variant-wrapper">
+                <div
                   *ngFor="
-                    let productVariantOption of this
-                      .productVariantOptionsUnique
+                    let productVariantOption of this.productVariants | keyvalue
                   "
-                  >{{ productVariantOption.option }}</a
-                > -->
+                  class="single-variant"
+                >
+                  <label class="prod-variant-name">{{
+                    productVariantOption.key
+                  }}</label>
+                  <div class="prod-variant-content-wrap">
+                    <div
+                      *ngFor="
+                        let productOption of productVariantOption.value;
+                        index as productOptionIndex
+                      "
+                      class="productVariant"
+                    >
+                      <p class="option-name">
+                        {{ productOption.optionValue.name }}
+                      </p>
+                      <!-- <p-toggleButton
+
+                    [ngModel]="checkedOptions[productOptionIndex]"
+                    [offLabel]="productOption.productOptions.optionValue.name"
+                    [onLabel]="productOption.productOptions.optionValue.name"
+                  ></p-toggleButton> -->
+                      <img
+                        (click)="toggleProductOptionSelection(productOption)"
+                        [src]="productOption.optionValue.image"
+                        class="product-variant-images"
+                        (click)="updateCss($event)"
+                        [alt]="productDetail.name"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <!-- <p-toggleButton
-                (ngModelChange)="
-                  toggleProductOptionSelection(productOptionIndex)
-                "
-                *ngFor="
-                  let productOption of productOptions;
-                  index as productOptionIndex
-                "
-                [ngModel]="checkedOptions[productOptionIndex]"
-                [offLabel]="productOption.productOptions.optionValue.name"
-                [onLabel]="productOption.productOptions.optionValue.name"
-              ></p-toggleButton> -->
-              <!-- <div>
-                <img
-                  (click)="changeMainImage(secondaryImage, i)"
-                  *ngFor="
-                    let secondaryImage of productDetail.secondary_images;
-                    let i = index
-                  "
-                  [src]="secondaryImage"
-                  class="product-detail-images"
-                  [alt]="productDetail.name"
-                  [ngClass]="{ active: selectedIndex === i }"
-                />
-              </div> -->
             </td>
           </tr>
           <tr class="prd_price_sale_css xans-record-">
@@ -128,7 +137,7 @@
             <td>
               <div class="tag-links-wrapper">
                 <a
-                class="tag-link"
+                  class="tag-link"
                   *ngFor="let productTags of productDetail.tags"
                   [routerLink]="'/tag/' + productTags.slug"
                   >{{ productTags.name }}</a
@@ -143,16 +152,30 @@
     </div>
 
     <div class="prod-static-content">
-      <p class="p1">(Minimum Order : {{ productDetail.min_order_quantity }} or more )</p>
-      <p class="p2">Free Shipping : On Bill above $ 3,000 (else $ 200) <span>(Not applicable for discounted items)</span></p>
+      <p class="p1">
+        (Minimum Order : {{ productDetail.min_order_quantity }} or more )
+      </p>
+      <p class="p2">
+        Free Shipping : On Bill above $ 3,000 (else $ 200)
+        <span>(Not applicable for discounted items)</span>
+      </p>
       <img alt="gifts" class="gifts-img" src="../../../assets/free-gifts.jpg" />
 
       <p class="p3">
         Services:
-        <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" />
+        <img
+          alt="pink"
+          class="custom_features_image"
+          src="../../../assets/icons/checkbox-pink.jpg"
+        />
         Delivery 2-3 working days
 
-        <img alt="pink" class="custom_features_image" src="../../../assets/icons/checkbox-pink.jpg" style="margin-left: 10px" />
+        <img
+          alt="pink"
+          class="custom_features_image"
+          src="../../../assets/icons/checkbox-pink.jpg"
+          style="margin-left: 10px"
+        />
         Original Guaranteed
       </p>
     </div>
@@ -160,39 +183,52 @@
     <div class="product-btn-wrap">
       <span class="quantity">
         <input
-          (ngModelChange)="{}"
+          (ngModelChange)="updateTotalPrice(selectedQuantity)"
           [(ngModel)]="selectedQuantity"
           id="quantity"
           name="quantity_opt[]"
           type="number"
         />
-        <a class="up QuantityUp" href="javascript:void(0)">
+        <a
+          class="up QuantityUp"
+          href="javascript:void(0)"
+          (click)="quantityUp()"
+        >
           <img
-            (click)="quantityUp()"
             alt="up"
             src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_up.gif"
           />
         </a>
-        <a class="down QuantityDown" href="javascript:void(0)">
+        <a
+          class="down QuantityDown"
+          href="javascript:void(0)"
+          (click)="quantityDown()"
+        >
           <img
-            (click)="quantityDown()"
             alt="down"
             src="//img.echosting.cafe24.com/skin/base_en_US/product/btn_count_down.gif"
           />
         </a>
       </span>
-      <button class="btn add-to-cart-btn">Add to Cart</button>
-      <button class="btn buy-now-btn">Buy Now</button>
+      <button class="btn add-to-cart-btn" (click)="AddtoCart(productDetail)">
+        <img src="../assets/cart.png" alt="" /> Add to Cart
+      </button>
+      <button class="btn buy-now-btn">
+        <img src="../assets/icons/buy.png" alt="" /> Buy Now
+      </button>
       <!-- <app-input-button buttonText="Buy Now"></app-input-button> -->
 
-      <button class="btn add-to-cart-btn">Add to Wishlist</button>
+      <button class="btn add-to-cart-btn">
+        <img src="../assets/icons/wishlist.png" alt="" /> Add to Wishlist
+      </button>
     </div>
 
     <div class="prod-price" id="totalPrice">
-      <p class="prod-label">Price <small>(Quantity) </small>: </p>
-      <p class="prod-value"><strong>{{ currency +" "+ selectedQuantity }}</strong><small>({{ selectedQuantity }} item(s))</small></p>
+      <p class="prod-label">Price <small>(Quantity) </small>:</p>
+      <p class="prod-value">
+        <strong>{{ currency + " " + discountedTotalPrice }}</strong
+        ><small>({{ selectedQuantity }} item(s))</small>
+      </p>
     </div>
-
-
   </div>
 </div>

@@ -20,7 +20,14 @@
           type="text"
           [placeholder]="registerFormFields.firstName"
           [(ngModel)]="user.first_name"
+          #firstName="ngModel"
+          required
         />
+        <div *ngIf="firstName.invalid && firstName.touched" class="alert">
+          <div *ngIf="firstName.errors?.['required']">
+            First Name is required.
+          </div>
+        </div>
       </div>
     </div>
     <div class="grid">
@@ -36,7 +43,14 @@
           type="text"
           [placeholder]="registerFormFields.lastName"
           [(ngModel)]="user.last_name"
+          required
+          #lastName="ngModel"
         />
+        <div *ngIf="lastName.invalid && lastName.touched" class="alert">
+          <div *ngIf="lastName.errors?.['required']">
+            Last Name is required.
+          </div>
+        </div>
       </div>
     </div>
     <div class="grid">
@@ -47,10 +61,15 @@
         <input
           class="textbox"
           type="text"
+          #email="ngModel"
           [placeholder]="registerFormFields.email"
           [(ngModel)]="user.email"
+          required
           (blur)="ValidateEmail()"
         />
+        <div *ngIf="email.invalid && email.touched" class="alert">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+        </div>
         <p *ngIf="emailValidation" class="error">Email is invalid</p>
       </div>
     </div>
@@ -67,8 +86,15 @@
           type="text"
           [placeholder]="registerFormFields.contactNo"
           [(ngModel)]="user.contact"
+          required
+          #contact="ngModel"
           (keypress)="numberOnly($event)"
         />
+        <div *ngIf="contact.invalid && contact.touched" class="alert">
+          <div *ngIf="contact.errors?.['required']">
+            Contact No is required.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -85,8 +111,10 @@
         <input
           class="textbox"
           type="password"
+          #password="ngModel"
           [placeholder]="registerFormFields.password"
           [(ngModel)]="user.password"
+          required
         />
       </div>
     </div>
@@ -101,8 +129,10 @@
         <input
           class="textbox"
           type="password"
+          #confirmPassword="ngModel"
           [placeholder]="registerFormFields.confirmPassword"
           [(ngModel)]="user.password_confirmation"
+          required
           (blur)="comparePassword()"
         />
         <p *ngIf="passwordValidation" class="error">Passwords do not match</p>
@@ -140,10 +170,27 @@
     </div>
 
     <div>
-      <app-input-button
+      <!-- <app-input-button
         (click)="SignUp()"
         buttonText="Register"
-      ></app-input-button>
+      ></app-input-button> -->
+
+      <button
+        (click)="SignUp()"
+        class="btnLogin"
+        [disabled]="
+          firstName.invalid ||
+          lastName.invalid ||
+          email.invalid ||
+          password.invalid ||
+          confirmPassword.invalid ||
+          contact.invalid ||
+          emailValidation ||
+          passwordValidation
+        "
+      >
+        Register
+      </button>
     </div>
   </div>
 </div>

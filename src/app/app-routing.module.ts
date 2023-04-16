@@ -25,6 +25,7 @@ import {
   AddressBookComponent,
   OrderHistoryComponent,
   WishlistComponent,
+  ForgetPasswordComponent,
 } from './public-api';
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'tag/:slug', component: TagProductsListingComponent },
   { path: 'edit', component: EditAccountInformationComponent },
   { path: 'changepassword', component: ChangePasswordComponent },
+  { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newsletterswitch', component: NewsletterSwitchComponent },
   { path: 'addressbook', component: AddressBookComponent },
   { path: 'orderhistory', component: OrderHistoryComponent },

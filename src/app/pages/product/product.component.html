@@ -111,6 +111,18 @@
                   </span>
                 </td>
               </tr>
+              <tr class="prd_price_sale_css xans-record-">
+                <th scope="row">
+                  <span style="font-size: 14px; color: #323232">Stock</span>
+                </th>
+                <td>
+                  <span>
+                    {{
+                      productDetail.quantity > 0 ? "IN STOCK" : "OUT OF STOCK"
+                    }}
+                  </span>
+                </td>
+              </tr>
               <tr class="simple_desc_css xans-record-">
                 <th scope="row" style="vertical-align: top">
                   <span style="font-size: 14px; color: #555555">Variants</span>
@@ -237,7 +249,10 @@
               />
             </a>
           </span>
-          <button class="btn add-to-cart-btn" (click)="AddtoCart()">
+          <button
+            class="btn add-to-cart-btn"
+            (click)="AddtoCart(productDetail)"
+          >
             <img src="../assets/cart.png" alt="" /> Add to Cart
           </button>
           <button class="btn buy-now-btn">
@@ -307,7 +322,7 @@
 <ng-template #loadingSpinner>
   <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>
 </ng-template>
-
+<!-- 
 <p-dialog
   [(visible)]="cartDisplay"
   [draggable]="false"
@@ -316,13 +331,15 @@
   [style]="{ width: '400px' }"
 >
   <div class="popup-wrap">
-    <img [src]="productDetail.image" />
+    <img [src]="ItemAddedToCartProduct.image" />
     <div>
-      <h6 class="prod-name">{{ productDetail.name }}</h6>
+      <h6 class="prod-name">{{ ItemAddedToCartProduct.name }}</h6>
       <p>
         Success: You have added
-        <a [routerLink]="'/product/' + slug">{{ productDetail.name }}</a> to
-        your <a [routerLink]="['/cart']">shopping cart.</a>
+        <a [routerLink]="'/product/' + slug">{{
+          ItemAddedToCartProduct.name
+        }}</a>
+        to your <a [routerLink]="['/cart']">shopping cart.</a>
       </p>
     </div>
   </div>
@@ -336,4 +353,4 @@
       <i class="pi pi-arrow-right"></i>
     </a>
   </div>
-</p-dialog>
+</p-dialog> -->

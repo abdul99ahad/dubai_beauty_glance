@@ -22,6 +22,7 @@ import { Setting } from '../../../../interfaces/setting.interface';
 import { CartService } from 'ng-shopping-cart';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { AuthService } from 'src/app/services/auth.service';
+import { CartProduct } from 'src/app/interfaces/cart-product.interface';
 
 @Component({
   selector: 'app-header',
@@ -117,6 +118,12 @@ export class HeaderComponent
   cartList: ProductCartItem[];
   cost: number;
   currency: string;
+  public cartDisplay: boolean;
+  public cartProduct: CartProduct = {
+    name: '',
+    image: '',
+    slug: '',
+  };
 
   public constructor(
     private readonly currencyService: CurrencyService,
@@ -129,12 +136,23 @@ export class HeaderComponent
     this.cartItemsQuantity = cartService.itemCount();
     this.currency = this.currencyService.selectedCurrency;
     this.updateCartList();
-    this.cartService.onItemsChanged.subscribe({
+    this.cartService.onChange.subscribe({
       next: (event: Event) => {
         this.cartItemsQuantity = cartService.itemCount();
         this.updateCartList();
+        if (this.cartList.length > 0)
+          this.displayCartPopUp(this.cartList.slice(-1)[0]);
       },
     });
+  }
+
+  private displayCartPopUp(product: ProductCartItem) {
+    this.cartDisplay = true;
+    this.cartProduct = {
+      name: product.name,
+      image: product.image,
+      slug: product.slug,
+    };
   }
 
   public updateCartList() {
