@@ -40,6 +40,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 //Directives
 import { EmailValidationDirective } from './directives/email-validation.directive';
@@ -62,6 +63,7 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     BrandCardComponent,
     LoadingSpinnerComponent,
     EmailValidationDirective,
+    WishListComponent,
   ],
   imports: [
     CommonModule,
@@ -113,6 +115,7 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     HeaderComponent,
     BrandCardComponent,
     LoadingSpinnerComponent,
+    WishListComponent,
     EmailValidationDirective,
   ],
 })

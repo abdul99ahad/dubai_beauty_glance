@@ -1,0 +1,68 @@
+<div *ngIf="totalProductItemsCount >= 1">
+  <div class="xans-element- xans-order xans-order-normoverseatitle title">
+    <h3>
+      PRODUCTS - <b>{{ totalProductItemsCount }}</b>
+    </h3>
+  </div>
+  <p-table [value]="cartList">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Model</th>
+        <th>Stock</th>
+        <th>Unit Price</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>
+          <img
+            [routerLink]="'/product/' + item.slug"
+            src="{{ item.image }}"
+            class="cart-item-img"
+          />
+        </td>
+        <td>
+          <a [routerLink]="'/product/' + item.slug">
+            {{ item.name }}
+          </a>
+        </td>
+        <td>Model Name here</td>
+        <td>In Stock</td>
+        <td>
+          {{ currency }}
+          {{ item.discount_price ? item.discount_price : item.price }}
+        </td>
+        <td class="trash">
+          <i
+            class="pi pi-shopping-bag"
+            style="font-size: 1.2rem"
+            (click)="deleteItemFromCart(item.id)"
+          ></i>
+        </td>
+        <td class="trash">
+          <i
+            class="pi pi-trash"
+            style="font-size: 1.2rem"
+            (click)="deleteItemFromCart(item.id)"
+          ></i>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="tblList">
+    <div style="margin-top: 20px; text-align: center">
+      <a [routerLink]="['/checkout']" class="checkout">CONTINUE</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="totalProductItemsCount == 0">
+  <div class="xans-element- xans-order xans-order-empty emptyArea">
+    <p>YOUR WISHLIST IS EMPTY.</p>
+    <a [routerLink]="['/']" class="btnBase btnPoint">Continue Shopping</a>
+  </div>
+</div>
