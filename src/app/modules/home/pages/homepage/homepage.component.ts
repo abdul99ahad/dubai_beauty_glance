@@ -22,7 +22,7 @@ export class HomepageComponent implements OnInit {
 
   public topPosToStartShowing: number = 100;
 
-  public currentBestBrandItem: number = 1;
+  public currentBestBrandItem: number = 0;
   public readonly skinIcon: string = '../../../../../assets/main_cote1_off.png';
   // public slider: Array<Banner>;
   public allEventAndBgMainBanner: Array<Banner> = [];
@@ -107,18 +107,19 @@ export class HomepageComponent implements OnInit {
 
   public constructor(private readonly webApiService: WebApiService) {}
 
-  public prevBestBrandItem(): void {
-    if (this.currentBestBrandItem === 1) {
-      this.currentBestBrandItem = this.brandTabHeaders.length;
+  public prevBestBrandItem(count: number): void {
+    if (this.currentBestBrandItem === 0) {
+      this.currentBestBrandItem = Math.ceil(count / 3) - 1; // 3 represents the numVisible in p-carousel
       return;
     }
 
     this.currentBestBrandItem--;
   }
 
-  public nextBestBrandItem(): void {
-    if (this.currentBestBrandItem === this.brandTabHeaders.length) {
-      this.currentBestBrandItem = 1;
+  public nextBestBrandItem(count: number): void {
+    if (this.currentBestBrandItem === Math.ceil(count / 3) - 1) {
+      // 3 represents the numVisible in p-carousel
+      this.currentBestBrandItem = 0;
       return;
     }
 

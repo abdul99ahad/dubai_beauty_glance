@@ -45,15 +45,20 @@
       <div class="title mbl-disable">
         <h2 style="text-align: left !important">
           QUICK
-          <br/>
+          <br />
           CATEGORY
         </h2>
         <p>Find products quickly by category selection</p>
       </div>
       <ul class="main-quick-list">
-        <li class="main-quick-skin" *ngFor="let quickCategory of quickCategories">
+        <li
+          class="main-quick-skin"
+          *ngFor="let quickCategory of quickCategories"
+        >
           <a href="{{ quickCategory.link }}">
-            <span style="background-image :url('{{quickCategory.image}}')"></span>
+            <span
+              style="background-image :url('{{ quickCategory.image }}')"
+            ></span>
             <p>{{ quickCategory.name }}</p>
           </a>
         </li>
@@ -113,25 +118,21 @@
         <ngx-slick-carousel
           #eventCarousel="slick-carousel"
           (afterChange)="
-          adjustSliderStateInAccordanceWithMovement(
-            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName,
-            $event.currentSlide
-          )
-        "
+            adjustSliderStateInAccordanceWithMovement(
+              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName,
+              $event.currentSlide
+            )
+          "
           [config]="
-          getCarouselConfiguration(
-            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-          )
-        "
+            getCarouselConfiguration(
+              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+            )
+          "
           class="carousel"
         >
-          <div
-            *ngFor="let slide of allEventBanner"
-            class="slide"
-            ngxSlickItem
-          >
+          <div *ngFor="let slide of allEventBanner" class="slide" ngxSlickItem>
             <a href="{{ slide.link }}">
-              <img alt="{{ slide.title }}" src="{{ slide.image }}"/>
+              <img alt="{{ slide.title }}" src="{{ slide.image }}" />
             </a>
           </div>
         </ngx-slick-carousel>
@@ -142,24 +143,24 @@
         <div class="swiper-pagination-outer" style="display: none">
           <div
             [style.width]="
-            getCarouselPercentageMoved(
-              homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-            ) + '%'
-          "
+              getCarouselPercentageMoved(
+                homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+              ) + '%'
+            "
             class="swiper-pagination-inner"
           ></div>
         </div>
         <div class="fraction" style="display: none">
-        <span class="count">{{
-          getCarouselCurrentSlide(
-            homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
-          )
-          }}</span>
-          <span class="total"
-          >&nbsp;/&nbsp;{{
-            getCarouselTotalSlides(
+          <span class="count">{{
+            getCarouselCurrentSlide(
               homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
             )
+          }}</span>
+          <span class="total"
+            >&nbsp;/&nbsp;{{
+              getCarouselTotalSlides(
+                homePageNgxCarouselsToRender.EventBannerCarousel.carouselName
+              )
             }}</span
           >
         </div>
@@ -227,20 +228,23 @@
       <ngx-slick-carousel
         #brandSaleCarousel="slick-carousel"
         (afterChange)="
-        adjustSliderStateInAccordanceWithMovement(
-          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName,
-          $event.currentSlide
-        )
-      "
+          adjustSliderStateInAccordanceWithMovement(
+            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName,
+            $event.currentSlide
+          )
+        "
         [config]="
-        getCarouselConfiguration(
-          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-        )
-      "
+          getCarouselConfiguration(
+            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+          )
+        "
         class="carousel"
       >
         <div *ngFor="let slide of brandSaleImages" class="slide" ngxSlickItem>
-          <app-brand-sale-card [imgSrc]="slide.image" [link]="slide.link"></app-brand-sale-card>
+          <app-brand-sale-card
+            [imgSrc]="slide.image"
+            [link]="slide.link"
+          ></app-brand-sale-card>
         </div>
       </ngx-slick-carousel>
     </div>
@@ -250,24 +254,24 @@
       <div class="swiper-pagination-outer web-view">
         <div
           [style.width]="
-          getCarouselPercentageMoved(
-            homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-          ) + '%'
-        "
+            getCarouselPercentageMoved(
+              homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+            ) + '%'
+          "
           class="swiper-pagination-inner transition-duration-300"
         ></div>
       </div>
       <div class="fraction">
-      <span class="count">{{
-        getCarouselCurrentSlide(
-          homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
-        )
-        }}</span>
-        <span class="total"
-        >&nbsp;/&nbsp;{{
-          getCarouselTotalSlides(
+        <span class="count">{{
+          getCarouselCurrentSlide(
             homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
           )
+        }}</span>
+        <span class="total"
+          >&nbsp;/&nbsp;{{
+            getCarouselTotalSlides(
+              homePageNgxCarouselsToRender.BrandSaleCarousel.carouselName
+            )
           }}</span
         >
       </div>
@@ -332,11 +336,12 @@
   <!-- Free Delivery Banner Start -->
   <div class="main-box8">
     <div>
-      <a *ngFor="let slide of deliveryBanner" href="{{ slide.link }}" style="display: flex">
-        <img [src]="slide.image"
-             alt="{{ slide.title }}"
-             style="width: 100%"
-        />
+      <a
+        *ngFor="let slide of deliveryBanner"
+        href="{{ slide.link }}"
+        style="display: flex"
+      >
+        <img [src]="slide.image" alt="{{ slide.title }}" style="width: 100%" />
       </a>
     </div>
   </div>
@@ -345,12 +350,12 @@
   <!-- Brand Sale Banner Start -->
   <div class="main-box8">
     <div>
-      <a *ngFor="let slide of banner" href="{{ slide.link }}" style="display: flex">
-        <img
-          [src]="slide.image"
-          alt="{{ slide.title }}"
-          style="width: 100%"
-        />
+      <a
+        *ngFor="let slide of banner"
+        href="{{ slide.link }}"
+        style="display: flex"
+      >
+        <img [src]="slide.image" alt="{{ slide.title }}" style="width: 100%" />
       </a>
     </div>
   </div>
@@ -383,26 +388,33 @@
                   <span>Click on a product to see more details.</span>
                 </div>
                 <div class="btn_wrap">
-                <span (click)="prevBestBrandItem()" class="main-prd5-prev2">
-                  <img
-                    alt="Previous"
-                    src="../../../../../assets/icons/main_slide_prev_btn3.png"
-                  />
-                </span>
-                  <span (click)="nextBestBrandItem()" class="main-prd5-next2">
-                  <img
-                    alt="Next"
-                    src="../../../../../assets/icons/main_slide_next_btn3.png"
-                  />
-                </span>
+                  <span
+                    (click)="prevBestBrandItem(brandTabHeader.products.length)"
+                    class="main-prd5-prev2"
+                  >
+                    <img
+                      alt="Previous"
+                      src="../../../../../assets/icons/main_slide_prev_btn3.png"
+                    />
+                  </span>
+                  <span
+                    (click)="nextBestBrandItem(brandTabHeader.products.length)"
+                    class="main-prd5-next2"
+                  >
+                    <img
+                      alt="Next"
+                      src="../../../../../assets/icons/main_slide_next_btn3.png"
+                    />
+                  </span>
                 </div>
               </div>
               <div>
                 <p-carousel
                   [numVisible]="3"
+                  [numScroll]="1"
                   [page]="currentBestBrandItem"
                   [responsiveOptions]="responsiveOptions"
-                  [showIndicators]="false"
+                  [showIndicators]="true"
                   [showNavigators]="false"
                   [value]="brandTabHeader.products"
                 >
