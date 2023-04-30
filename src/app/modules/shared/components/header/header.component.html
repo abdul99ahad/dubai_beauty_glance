@@ -141,6 +141,14 @@
             </ul>
           </div>
         </div>
+
+        <div class="member-link">
+          <a [routerLink]="['/wishlist']">
+            <i class="pi pi-heart" style="font-size: 2rem"></i>
+            <p>Wishlist</p>
+            <p>{{ wishListItemsQuantity }}</p>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -440,6 +448,38 @@
 
 <p-dialog
   [(visible)]="cartDisplay"
+  [draggable]="false"
+  class="prod-added-dialog"
+  position="top-right"
+  [style]="{ width: '400px' }"
+>
+  <div class="popup-wrap">
+    <img [src]="cartProduct.image" />
+    <div>
+      <h6 class="prod-name">{{ cartProduct.name }}</h6>
+      <p>
+        Success: You have added
+        <a [routerLink]="'/product/' + cartProduct.slug">{{
+          cartProduct.name
+        }}</a>
+        to your <a [routerLink]="['/cart']">shopping cart.</a>
+      </p>
+    </div>
+  </div>
+  <div class="btns-wrap">
+    <a class="view-cart-btn btn" [routerLink]="['/cart']">
+      <i class="pi pi-shopping-bag"></i>
+      <span>View Cart</span>
+    </a>
+    <a class="checkout-btn btn" [routerLink]="['/checkout']">
+      <span>Checkout</span>
+      <i class="pi pi-arrow-right"></i>
+    </a>
+  </div>
+</p-dialog>
+
+<p-dialog
+  [(visible)]="wishListDisplay"
   [draggable]="false"
   class="prod-added-dialog"
   position="top-right"
