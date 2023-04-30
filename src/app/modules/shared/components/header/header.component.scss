@@ -486,6 +486,10 @@ select {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  i {
+    color: #000;
+  }
   
   .member-link-web{
     text-align: center;

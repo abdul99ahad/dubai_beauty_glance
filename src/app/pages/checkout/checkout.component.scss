@@ -244,7 +244,7 @@ input.form-control:hover{
     box-shadow: 0 5px 20px -5px rgb(0 0 0 / 10%);
 }
 
-input.form-control {
+input.form-control, select.form-control {
     color: rgba(51, 51, 51, 1) !important;
     background: rgba(250, 250, 250, 1) !important;
     border-width: 1px !important;
@@ -495,11 +495,11 @@ input#input-payment-company {
     width: 100%;
 }
 
-input {
+input, select {
     padding: 10px;
 }
 
-select .form-control {
+select.form-control {
     color: rgba(51, 51, 51, 1) !important;
     background: rgba(250, 250, 250, 1) !important;
     border-width: 1px !important;
@@ -507,6 +507,7 @@ select .form-control {
     border-color: rgba(221, 221, 221, 1) !important;
     border-radius: 2px !important;
     max-width: 500px;
+    width: 100%;
 }
 
 select.form-control:hover {
@@ -517,3 +518,21 @@ select.form-control:hover {
 select.form-control:focus, select.form-control:active {
     border-color: rgba(247, 22, 104, 1) !important;
 }
+
+.checkout-cart-row{
+    img{
+     max-width: 80px;   
+    }
+}
+
+.table {
+    tbody, tfoot, thead {
+        > tr {
+            td,th{
+                padding: 8px 14px;
+                border-top-color: transparent;
+                vertical-align: middle;
+            }
+        }
+    }
+} 
