@@ -21,3 +21,5 @@ export * from './pages/newsletter-switch/newsletter-switch.component';
 export * from './pages/wishlist/wishlist.component';
 export * from './pages/order-history/order-history.component';
 export * from './pages/forget-password/forget-password.component';
+export * from './pages/profile/profile.component';
+export * from './pages/address/address.component';

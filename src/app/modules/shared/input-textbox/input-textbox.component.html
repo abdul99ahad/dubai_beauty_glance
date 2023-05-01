@@ -1,1 +1,7 @@
-<input class="textbox" [type]="type" [placeholder]="placeholder" />
+<input
+  class="textbox"
+  [type]="type"
+  [placeholder]="placeholder"
+  [(ngModel)]="name"
+  (input)="nameChanging()"
+/>

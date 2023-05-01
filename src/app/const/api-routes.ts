@@ -10,4 +10,5 @@ export const ApiRoutes = {
   banners: 'banners',
   signin: 'auth/sign-in',
   signup: 'auth/sign-up',
+  createAddress: 'address/create',
 } as const;

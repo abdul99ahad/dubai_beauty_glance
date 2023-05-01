@@ -26,6 +26,8 @@ import {
   OrderHistoryComponent,
   WishlistComponent,
   ForgetPasswordComponent,
+  ProfileComponent,
+  AddressComponent,
 } from './public-api';
 
 const routes: Routes = [
@@ -52,9 +54,11 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangePasswordComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newsletterswitch', component: NewsletterSwitchComponent },
-  { path: 'addressbook', component: AddressBookComponent },
+  { path: 'profile/address/addressbook', component: AddressBookComponent },
   { path: 'orderhistory', component: OrderHistoryComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/address', component: AddressComponent },
 ];
 
 @NgModule({

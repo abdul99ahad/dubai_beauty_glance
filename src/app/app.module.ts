@@ -40,6 +40,8 @@ import { OrderHistoryComponent } from './pages/order-history/order-history.compo
 import { NewsletterSwitchComponent } from './pages/newsletter-switch/newsletter-switch.component';
 import { ProductCartItem } from './utilities/productCartItem';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AddressComponent } from './pages/address/address.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
     OrderHistoryComponent,
     NewsletterSwitchComponent,
     ForgetPasswordComponent,
+    ProfileComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,

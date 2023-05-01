@@ -8,10 +8,20 @@
   <div class="signup-content-wrapper">
     <div class="grid">
       <div class="col-12 md:col-3 lg:col-3">
-        <p>First Name <span class="required">*</span> </p>
+        <p>First Name <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="First Name"></app-input-textbox>
+        <!-- <app-input-textbox
+          [name]="firstName"
+          (nameChange)="handler($event, firstName)"
+          type="text"
+          placeholder="First Name"
+        ></app-input-textbox> -->
+        <input
+          type="text"
+          placeholder="First Name"
+          [(ngModel)]="addressBook.first_name"
+        />
       </div>
     </div>
     <div class="grid">
@@ -19,25 +29,36 @@
         <p>Last Name <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="Last Name"></app-input-textbox>
+        <input
+          type="text"
+          placeholder="Last Name"
+          [(ngModel)]="addressBook.last_name"
+        />
       </div>
     </div>
 
-    <div class="grid">
+    <!-- <div class="grid">
       <div class="col-12 md:col-3 lg:col-3">
-        <p>Company </p>
+        <p>Company</p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="Company"></app-input-textbox>
+        <app-input-textbox
+          type="text"
+          placeholder="Company"
+        ></app-input-textbox>
       </div>
-    </div>
+    </div> -->
 
     <div class="grid">
       <div class="col-12 md:col-3 lg:col-3">
         <p>Address 1 <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="Address 1"></app-input-textbox>
+        <input
+          type="text"
+          placeholder="Address Line 1"
+          [(ngModel)]="addressBook.address_line_one"
+        />
       </div>
     </div>
 
@@ -46,7 +67,15 @@
         <p>Address 2</p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="Address 2"></app-input-textbox>
+        <!-- <app-input-textbox
+          type="text"
+          placeholder="Address 2"
+        ></app-input-textbox> -->
+        <input
+          type="text"
+          placeholder="Address Line 2"
+          [(ngModel)]="addressBook.address_line_two"
+        />
       </div>
     </div>
 
@@ -55,16 +84,24 @@
         <p>City <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="City"></app-input-textbox>
+        <input
+          type="text"
+          placeholder="City"
+          [(ngModel)]="addressBook.address_city"
+        />
       </div>
     </div>
 
     <div class="grid">
       <div class="col-12 md:col-3 lg:col-3">
-        <p>Postal Code </p>
+        <p>Postal Code</p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox type="text" placeholder="Postal Code"></app-input-textbox>
+        <input
+          type="text"
+          placeholder="Postal Code"
+          [(ngModel)]="addressBook.address_zip_code"
+        />
       </div>
     </div>
 
@@ -99,16 +136,17 @@
       </div>
       <div class="col-12 md:col-9 lg:col-9">
         <div class="radio-wrapper">
-          <input type="radio" id="yes" name="newsletter" value="Yes">
+          <input type="radio" id="yes" name="newsletter" value="Yes" />
           <label for="yes" class="mr-5 ml-2">Yes</label>
-          <input type="radio" id="no" name="newsletter" value="No">
+          <input type="radio" id="no" name="newsletter" value="No" />
           <label for="no" class="ml-2">No</label>
         </div>
       </div>
     </div>
 
     <div>
-      <app-input-button buttonText="Continue"></app-input-button>
+      <!-- <app-input-button buttonText="Continue"></app-input-button> -->
+      <a (click)="createAddress()"></a>
     </div>
   </div>
 </div>
