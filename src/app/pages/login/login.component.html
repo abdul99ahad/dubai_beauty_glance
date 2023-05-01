@@ -73,6 +73,7 @@
 
       <button
         class="btnLogin"
+        (click)="Login()"
         [disabled]="email.invalid || password.invalid || emailInvalid"
       >
         Sign In

@@ -23,6 +23,7 @@ import { CartService } from 'ng-shopping-cart';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartProduct } from 'src/app/interfaces/cart-product.interface';
+import { WishListService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-header',
@@ -35,6 +36,7 @@ export class HeaderComponent
 {
   @Input() setting: Setting;
   cartItemsQuantity: number = 0;
+  wishListItemsQuantity: number = 0;
   expandedState: boolean = false;
   mobileDisplay: boolean = false;
   public email: string | null;
@@ -116,10 +118,19 @@ export class HeaderComponent
   public products: Array<Product> = [];
   public searchProductSubject = new Subject<string>();
   cartList: ProductCartItem[];
+  wishList: ProductCartItem[];
   cost: number;
   currency: string;
   public cartDisplay: boolean;
+  public wishListDisplay: boolean;
+  public isUserLoggedIn: boolean;
   public cartProduct: CartProduct = {
+    name: '',
+    image: '',
+    slug: '',
+  };
+
+  public wishListProduct: CartProduct = {
     name: '',
     image: '',
     slug: '',
@@ -130,12 +141,21 @@ export class HeaderComponent
     private readonly webApiService: WebApiService,
     private readonly authService: AuthService,
     private readonly router: Router,
-    private cartService: CartService<ProductCartItem>
+    private cartService: CartService<ProductCartItem>,
+    private wishListService: WishListService<ProductCartItem>
   ) {
     super();
+    this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.cartItemsQuantity = cartService.itemCount();
+    this.wishListItemsQuantity = wishListService.itemCount();
     this.currency = this.currencyService.selectedCurrency;
     this.updateCartList();
+    this.wishListService.onChange.subscribe((itemCount) => {
+      this.wishListItemsQuantity = itemCount;
+    });
+    this.wishListService.addItemBehaviorObservable.subscribe((data) => {
+      this.displayWishListPopUp(JSON.parse(data || ''));
+    });
     this.cartService.onChange.subscribe({
       next: (event: Event) => {
         this.cartItemsQuantity = cartService.itemCount();
@@ -144,6 +164,15 @@ export class HeaderComponent
           this.displayCartPopUp(this.cartList.slice(-1)[0]);
       },
     });
+  }
+
+  private displayWishListPopUp(product: ProductCartItem) {
+    this.wishListDisplay = true;
+    this.wishListProduct = {
+      name: product.name,
+      image: product.image,
+      slug: product.slug,
+    };
   }
 
   private displayCartPopUp(product: ProductCartItem) {
@@ -158,6 +187,11 @@ export class HeaderComponent
   public updateCartList() {
     this.cartList = this.cartService.getItems();
     this.cost = this.cartService.cost();
+  }
+
+  public updateWishList() {
+    this.wishList = this.wishListService.getItems();
+    // this.cost = this.cartService.cost();
   }
 
   deleteItemFromCart(id: number): void {

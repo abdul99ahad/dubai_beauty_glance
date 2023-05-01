@@ -14,6 +14,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import { MenuModule } from 'primeng/menu';
 import { TabViewModule } from 'primeng/tabview';
+import { MessagesModule } from 'primeng/messages';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
@@ -86,6 +88,8 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     LightgalleryModule,
     OverlayPanelModule,
     DropdownModule,
+    MessagesModule,
+    RadioButtonModule,
   ],
   exports: [
     InputTextModule,
@@ -100,7 +104,10 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     DialogModule,
     MenuModule,
     TabViewModule,
+    DropdownModule,
+    RadioButtonModule,
     LightgalleryModule,
+    MessagesModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,

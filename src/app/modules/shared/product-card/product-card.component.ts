@@ -3,6 +3,7 @@ import { CartService } from 'ng-shopping-cart';
 import { map, Observable } from 'rxjs';
 import { ProductDetail } from 'src/app/interfaces/product.interface';
 import { WebApiService } from 'src/app/services/web-api.service';
+import { WishListService } from 'src/app/services/wishlist.service';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { CurrencyService } from '../../../services/currency.service';
 
@@ -25,6 +26,7 @@ export class ProductCardComponent {
   public constructor(
     private readonly currencyService: CurrencyService,
     private cartService: CartService<ProductCartItem>,
+    private wishListService: WishListService<ProductCartItem>,
     private webApiService: WebApiService
   ) {
     this.currency = this.currencyService.selectedCurrency;
@@ -57,6 +59,43 @@ export class ProductCardComponent {
           })
         );
       }
+    });
+  }
+
+  public AddtoWishList() {
+    // If already exists, increase the quantity
+    this.getProductDetail().subscribe((detail) => {
+      // this.productDetail = detail;
+      // if (this.wishListService.getItem(detail.sku)) {
+      //   return;
+      //   // const product = this.cartService.getItem(detail.sku);
+      //   // product.setQuantity(product.quantity + detail.min_order_quantity);
+      // } else {
+      //   this.wishListService.addItem(
+      //     new ProductCartItem({
+      //       id: detail.sku,
+      //       name: detail.name,
+      //       image: this.image,
+      //       price: this.price,
+      //       quantity: detail.min_order_quantity,
+      //       discount_price: this.discount_price,
+      //       min_quantity: detail.min_order_quantity,
+      //       slug: this.slug,
+      //     })
+      //   );
+      // }
+      this.wishListService.addItem(
+        new ProductCartItem({
+          id: detail.sku,
+          name: detail.name,
+          image: this.image,
+          price: this.price,
+          quantity: detail.min_order_quantity,
+          discount_price: this.discount_price,
+          min_quantity: detail.min_order_quantity,
+          slug: this.slug,
+        })
+      );
     });
   }
 }

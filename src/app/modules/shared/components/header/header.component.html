@@ -58,8 +58,8 @@
           </a>
         </div>
 
-        <div *ngIf="email" class="member-link text-center">
-          <a [routerLink]="['/']">
+        <div *ngIf="email" class="member-link">
+          <a [routerLink]="['/profile']">
             <i class="pi pi-user" style="font-size: 2rem"></i>
             <p>My Account</p>
           </a>
@@ -140,6 +140,14 @@
               </li>
             </ul>
           </div>
+        </div>
+
+        <div class="member-link">
+          <a [routerLink]="['/wishlist']">
+            <i class="pi pi-heart" style="font-size: 2rem"></i>
+            <p>Wishlist</p>
+            <p>{{ wishListItemsQuantity }}</p>
+          </a>
         </div>
       </div>
     </div>
@@ -467,5 +475,51 @@
       <span>Checkout</span>
       <i class="pi pi-arrow-right"></i>
     </a>
+  </div>
+</p-dialog>
+
+<p-dialog
+  [(visible)]="wishListDisplay"
+  [draggable]="false"
+  class="prod-added-dialog"
+  position="top-right"
+  [style]="{ width: '400px' }"
+>
+  <div class="popup-wrap">
+    <img [src]="wishListProduct.image" />
+    <div *ngIf="!isUserLoggedIn">
+      <h6 class="prod-name">
+        <a [routerLink]="'/product/' + wishListProduct.slug">{{
+          wishListProduct.name
+        }}</a>
+      </h6>
+      <p>
+        You must <a routerLink="['/login']">login</a> or
+        <a routerLink="['/register']"> create an account </a> to save
+      </p>
+
+      <p>
+        <a [routerLink]="'/product/' + wishListProduct.slug">{{
+          wishListProduct.name
+        }}</a>
+      </p>
+      <p>to your <a routerLink="['/wishlist']">wishlist</a>!</p>
+    </div>
+
+    <div *ngIf="isUserLoggedIn">
+      <h6 class="prod-name">
+        <a [routerLink]="'/product/' + wishListProduct.slug">{{
+          wishListProduct.name
+        }}</a>
+      </h6>
+      <p>
+        Success: You have added
+        <a [routerLink]="'/product/' + wishListProduct.slug">{{
+          wishListProduct.name
+        }}</a>
+      </p>
+
+      <p>to your <a routerLink="['/wishlist']">wishlist</a>!</p>
+    </div>
   </div>
 </p-dialog>

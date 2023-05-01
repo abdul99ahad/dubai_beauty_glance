@@ -1,21 +1,22 @@
-import {Injectable} from '@angular/core';
-import {from, Observable, switchMap} from 'rxjs';
-import {HttpService} from './http.service';
-import {ApiRoutes} from 'src/app/const/api-routes';
+import { Injectable } from '@angular/core';
+import { from, Observable, switchMap } from 'rxjs';
+import { HttpService } from './http.service';
+import { ApiRoutes } from 'src/app/const/api-routes';
 import {
   Category,
   CategoryWithChildren,
 } from '../interfaces/categories.interface';
-import {Product, ProductDetail} from '../interfaces/product.interface';
-import {PaginatedResponse} from '../interfaces/response.interface';
-import {environment} from 'src/environments/environment';
-import {Brand} from '../interfaces/brand.interface';
+import { Product, ProductDetail } from '../interfaces/product.interface';
+import { PaginatedResponse } from '../interfaces/response.interface';
+import { environment } from 'src/environments/environment';
+import { Brand } from '../interfaces/brand.interface';
 /*import { CurrencyList } from '../interfaces/currencies.interface';
 import { CurrencyApiKey } from '../const/api-key';*/
-import {CurrencyService} from './currency.service';
-import {Setting} from '../interfaces/setting.interface';
-import {Banner} from '../interfaces/banner.interface';
-import {QuickCategory} from "../interfaces/quick-categories.interface";
+import { CurrencyService } from './currency.service';
+import { Setting } from '../interfaces/setting.interface';
+import { Banner } from '../interfaces/banner.interface';
+import { QuickCategory } from '../interfaces/quick-categories.interface';
+import { AddressBook } from '../interfaces/address-book.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,7 @@ export class WebApiService {
   public constructor(
     private readonly httpService: HttpService,
     private readonly currencyService: CurrencyService
-  ) {
-  }
+  ) {}
 
   public getSetting(): Observable<{ data: Setting }> {
     return this.httpService.get<{ data: Setting }>(`${ApiRoutes.setting}`);
@@ -40,7 +40,9 @@ export class WebApiService {
   }
 
   public getQuickCategories(): Observable<{ data: Array<QuickCategory> }> {
-    return this.httpService.get<{ data: Array<QuickCategory> }>(ApiRoutes.quickCategories)
+    return this.httpService.get<{ data: Array<QuickCategory> }>(
+      ApiRoutes.quickCategories
+    );
   }
 
   /*public getCurrencyList(): Observable<CurrencyList> {
@@ -52,24 +54,24 @@ export class WebApiService {
   }*/
 
   public getProducts(url?: string): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(url ?? ApiRoutes.product, !!url);
+    return this.httpService.get<PaginatedResponse<Product>>(
+      url ?? ApiRoutes.product,
+      !!url
+    );
   }
 
   public getSearchedProducts(
     productName: string
   ): Observable<{ data: Array<Product> }> {
-    return this.httpService
-      .get<{ data: Array<Product> }>(
-        `${ApiRoutes.product}?paginate=0&productName=${productName}`
-      );
+    return this.httpService.get<{ data: Array<Product> }>(
+      `${ApiRoutes.product}?paginate=0&productName=${productName}`
+    );
   }
 
   public getLatestProducts(): Observable<{ data: Array<Product> }> {
-    return this.httpService
-      .get<{ data: Array<Product> }>(
-        `${ApiRoutes.product}?paginate=0&latest=1&numOfProducts=10&with[]=brand`
-      );
+    return this.httpService.get<{ data: Array<Product> }>(
+      `${ApiRoutes.product}?paginate=0&latest=1&numOfProducts=10&with[]=brand`
+    );
   }
 
   public getBestBrands(): Observable<{ data: Array<Brand> }> {
@@ -79,68 +81,70 @@ export class WebApiService {
   public getBrandProductsWithSlugForSlider(
     brandSlug: string
   ): Observable<{ data: Array<Product> }> {
-    return this.httpService
-      .get<{ data: Array<Product> }>(
-        `${ApiRoutes.brand}/${encodeURI(
-          brandSlug
-        )}/${ApiRoutes.products}?latest=1&paginate=0&numOfProducts=10`
-      );
+    return this.httpService.get<{ data: Array<Product> }>(
+      `${ApiRoutes.brand}/${encodeURI(brandSlug)}/${
+        ApiRoutes.products
+      }?latest=1&paginate=0&numOfProducts=10`
+    );
   }
 
   public getProductDetails(
     productSlug: string
   ): Observable<{ data: ProductDetail }> {
-    return this.httpService
-      .get<{ data: ProductDetail }>(`${ApiRoutes.product}/${productSlug}`);
+    return this.httpService.get<{ data: ProductDetail }>(
+      `${ApiRoutes.product}/${productSlug}`
+    );
   }
 
   public getPromotionalProducts(
     url?: string
   ): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(
-        url ?? `${ApiRoutes.product}?promotional=1`,
-        !!url
-      );
+    return this.httpService.get<PaginatedResponse<Product>>(
+      url ?? `${ApiRoutes.product}?promotional=1`,
+      !!url
+    );
   }
 
   public getBrandProductsWithUrl(
     brandCompleteUrl: string
   ): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(brandCompleteUrl, true);
+    return this.httpService.get<PaginatedResponse<Product>>(
+      brandCompleteUrl,
+      true
+    );
   }
 
   public getBrandProductsWithSlug(
     brandSlug: string
   ): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(
-        `${ApiRoutes.brand}/${encodeURI(brandSlug)}`
-      );
+    return this.httpService.get<PaginatedResponse<Product>>(
+      `${ApiRoutes.brand}/${encodeURI(brandSlug)}`
+    );
   }
 
   public getCategoryProductsWithUrl(
     categoryCompleteUrl: string
   ): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(categoryCompleteUrl, true);
+    return this.httpService.get<PaginatedResponse<Product>>(
+      categoryCompleteUrl,
+      true
+    );
   }
 
   public getCategoryProductsWithSlug(
     categorySlug: string
   ): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(
-        `${ApiRoutes.category}/${encodeURI(categorySlug)}/${ApiRoutes.products}`
-      );
+    return this.httpService.get<PaginatedResponse<Product>>(
+      `${ApiRoutes.category}/${encodeURI(categorySlug)}/${ApiRoutes.products}`
+    );
   }
 
   public getTagProductsWithSlug(
     tagSlug: string
   ): Observable<PaginatedResponse<Product>> {
-    return this.httpService
-      .get<PaginatedResponse<Product>>(`${ApiRoutes.tag}/${encodeURI(tagSlug)}`);
+    return this.httpService.get<PaginatedResponse<Product>>(
+      `${ApiRoutes.tag}/${encodeURI(tagSlug)}`
+    );
   }
 
   public getBrands(url?: string): Observable<PaginatedResponse<Brand>> {
@@ -168,6 +172,21 @@ export class WebApiService {
   ): Observable<{ data: Category }> {
     return this.httpService.get<{ data: Category }>(
       `${ApiRoutes.category}/${encodeURI(categorySlug)}`
+    );
+  }
+
+  public createAddress(
+    address: AddressBook
+  ): Observable<{ data: AddressBook }> {
+    return this.httpService.post<{ data: AddressBook }>(
+      ApiRoutes.createAddress,
+      address
+    );
+  }
+
+  public getAddressses(): Observable<{ data: Array<AddressBook> }> {
+    return this.httpService.get<{ data: Array<AddressBook> }>(
+      ApiRoutes.address
     );
   }
 }

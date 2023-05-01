@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'ng-shopping-cart';
 import { Cost } from 'src/app/interfaces/cost.interface';
+import { WishListService } from 'src/app/services/wishlist.service';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { CurrencyService } from '../../../../services/currency.service';
 
@@ -58,18 +59,18 @@ export class WishListComponent implements OnInit {
 
   public constructor(
     private readonly currencyService: CurrencyService,
-    private cartService: CartService<ProductCartItem>
+    private wishListService: WishListService<ProductCartItem>
   ) {
     this.currency = this.currencyService.selectedCurrency;
   }
 
   ngOnInit(): void {
     this.updateCartItems();
-    console.log(this.cartService.getItems()); // <-- works
+    console.log(this.wishListService.getItems()); // <-- works
   }
 
-  deleteItemFromCart(id: number): void {
-    this.cartService.removeItem(id);
+  deleteItemFromWishList(item: ProductCartItem): void {
+    this.wishListService.deleteItem(item);
     this.updateCartItems();
   }
 
@@ -79,10 +80,10 @@ export class WishListComponent implements OnInit {
     this.updateCartItems();
   }
 
-  emptyCart(): void {
-    this.cartService.clear();
-    this.updateCartItems();
-  }
+  // emptyCart(): void {
+  //   this.wishListService.clear();
+  //   this.updateCartItems();
+  // }
 
   // calculateTotalBill(): void {
   //   let totalPrice: number = 0;
@@ -114,8 +115,9 @@ export class WishListComponent implements OnInit {
   }
 
   private updateCartItems(): void {
-    this.cartList = this.cartService.getItems();
-    this.totalProductItemsCount = this.cartService.itemCount();
+    this.cartList = this.wishListService.getItems();
+    console.log(this.cartList);
+    this.totalProductItemsCount = this.wishListService.itemCount();
     this.costCalculation();
   }
 }

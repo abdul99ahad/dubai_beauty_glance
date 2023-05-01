@@ -20,6 +20,7 @@ export class HttpService {
   }
 
   public post<T>(serviceName: string, data: any, token?: string) {
+    token = localStorage.getItem('token') || undefined;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -41,10 +42,16 @@ export class HttpService {
     return this.http.put<T>(url, data, httpOptions);
   }
 
-  public get<T>(url: string, absolute: boolean = false): Observable<T> {
+  public get<T>(
+    url: string,
+    token?: any,
+    absolute: boolean = false
+  ): Observable<T> {
+    token = localStorage.getItem('token') || undefined;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
       }),
     };
 

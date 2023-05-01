@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardGuard as AuthGuard } from './auth-guard.guard';
 import { BrandsListingComponent } from './pages/brand-listing/brand-listing.component';
 import { BrandProductListingComponent } from './pages/brand-products-listing/brand-products-listing.component';
 import { CategoryProductsListingComponent } from './pages/category-products-listing/category-products-listing.component';
@@ -26,7 +27,10 @@ import {
   OrderHistoryComponent,
   WishlistComponent,
   ForgetPasswordComponent,
+  ProfileComponent,
+  AddressComponent,
 } from './public-api';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -48,13 +52,39 @@ const routes: Routes = [
   { path: 'brand/:slug', component: BrandProductListingComponent },
   { path: 'category/:slug', component: CategoryProductsListingComponent },
   { path: 'tag/:slug', component: TagProductsListingComponent },
-  { path: 'edit', component: EditAccountInformationComponent },
-  { path: 'changepassword', component: ChangePasswordComponent },
-  { path: 'forgetpassword', component: ForgetPasswordComponent },
+  {
+    path: 'profile/edit',
+    component: EditAccountInformationComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'changepassword',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'forgetpassword',
+    component: ForgetPasswordComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'newsletterswitch', component: NewsletterSwitchComponent },
-  { path: 'addressbook', component: AddressBookComponent },
-  { path: 'orderhistory', component: OrderHistoryComponent },
+  {
+    path: 'profile/address/addressbook',
+    component: AddressBookComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'orderhistory',
+    component: OrderHistoryComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'profile/address',
+    component: AddressComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

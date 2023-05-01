@@ -1,0 +1,23 @@
+<h2>Address Book Entries</h2>
+<p-messages [enableService]="true" [closable]="false"></p-messages>
+<p *ngIf="!addresses">You have no addresses in your account.</p>
+
+<div *ngIf="addresses">
+  <div class="addressBlock" *ngFor="let address of addresses">
+    <div>
+      <p>{{ address.address_line_one }}</p>
+      <p>{{ address.address_line_two }}</p>
+      <p>{{ address.address_city }}</p>
+      <p>{{ address.address_zip_code }}</p>
+      <p>{{ address.address_state }}</p>
+      <p>{{ address.address_country }}</p>
+    </div>
+
+    <div>
+      <a (click)="showSuccessMessage()">Edit</a>
+      <a>Delete</a>
+    </div>
+  </div>
+</div>
+<button>Back</button>
+<a [routerLink]="['/profile/address/addressbook']">NEW ADDRESS </a>
