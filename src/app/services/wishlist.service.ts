@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProductCartItem } from '../utilities/productCartItem';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +13,25 @@ export class WishListService<T> {
 
   private addItemBehavior = new BehaviorSubject('');
   addItemBehaviorObservable = this.addItemBehavior.asObservable();
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   addItem(item: T): void {
-    this.wishList.push(item);
-    this.onChangeItemCount.next(this.itemCount());
-    localStorage.setItem('wishlist', JSON.stringify(this.wishList));
-    this.addItemBehavior.next(JSON.stringify(item));
+    if (this.authService.isUserLoggedIn()) {
+      this.wishList.push(item);
+      this.onChangeItemCount.next(this.itemCount());
+      localStorage.setItem('wishlist', JSON.stringify(this.wishList));
+      this.addItemBehavior.next(JSON.stringify(item));
+    }
   }
 
   //   getItem(id: number) : ProductCartItem {
   //   }
 
   getItems(): Array<T> {
-    this.wishList = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    this.onChangeItemCount.next(this.itemCount());
+    if (this.authService.isUserLoggedIn()) {
+      this.wishList = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      this.onChangeItemCount.next(this.itemCount());
+    }
     return this.wishList;
   }
 
