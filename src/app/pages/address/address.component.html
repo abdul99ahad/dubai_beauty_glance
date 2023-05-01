@@ -1,7 +1,8 @@
 <h2>Address Book Entries</h2>
-<p *ngIf="addresses.length == 0">You have no addresses in your account.</p>
+<p-messages [enableService]="true" [closable]="false"></p-messages>
+<p *ngIf="!addresses">You have no addresses in your account.</p>
 
-<div *ngIf="addresses.length > 0">
+<div *ngIf="addresses">
   <div class="addressBlock" *ngFor="let address of addresses">
     <div>
       <p>{{ address.address_line_one }}</p>
@@ -13,7 +14,7 @@
     </div>
 
     <div>
-      <a>Edit</a>
+      <a (click)="showSuccessMessage()">Edit</a>
       <a>Delete</a>
     </div>
   </div>

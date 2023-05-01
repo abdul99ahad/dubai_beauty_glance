@@ -104,10 +104,10 @@
         <p>Country <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <select>
-          <option value="Select">--- Select ---</option>
-          <option value="pak">Pakistan</option>
-        </select>
+        <p-dropdown
+          [options]="countries"
+          [(ngModel)]="addressBook.address_country"
+        ></p-dropdown>
       </div>
     </div>
 
@@ -116,11 +116,10 @@
         <p>State/Region <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <select>
-          <option value="Select">--- Select ---</option>
-          <option value="pak">Punjab</option>
-          <option value="pak">Sindh</option>
-        </select>
+        <p-dropdown
+          [options]="states"
+          [(ngModel)]="addressBook.address_state"
+        ></p-dropdown>
       </div>
     </div>
 
@@ -130,9 +129,17 @@
       </div>
       <div class="col-12 md:col-9 lg:col-9">
         <div class="radio-wrapper">
-          <input type="radio" id="yes" name="newsletter" value="Yes" />
+          <p-radioButton
+            name="yes"
+            value="true"
+            [(ngModel)]="addressBook.is_default"
+          ></p-radioButton>
           <label for="yes" class="mr-5 ml-2">Yes</label>
-          <input type="radio" id="no" name="newsletter" value="No" />
+          <p-radioButton
+            name="no"
+            value="false"
+            [(ngModel)]="addressBook.is_default"
+          ></p-radioButton>
           <label for="no" class="ml-2">No</label>
         </div>
       </div>

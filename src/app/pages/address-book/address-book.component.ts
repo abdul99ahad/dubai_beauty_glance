@@ -9,6 +9,15 @@ import { WebApiService } from 'src/app/services/web-api.service';
   styleUrls: ['./address-book.component.scss'],
 })
 export class AddressBookComponent implements OnInit {
+  public countries: Array<string> = ['Pakistan'];
+  public states: Array<string> = [
+    'Sindh',
+    'Punjab',
+    'Khyber Pakhtunkhwa',
+    'Balochistan',
+    'Gilgit-Baltistan',
+    'Azad Jammu and Kashmir',
+  ];
   public addressBook: AddressBook = {
     first_name: '',
     last_name: '',
@@ -21,12 +30,6 @@ export class AddressBookComponent implements OnInit {
     is_default: false,
   };
 
-  // public mockAddress = {
-  //   ...this.addressBook,
-  //   address_state: 'Sindh',
-  //   address_country: 'Pakistan',
-  // };
-
   constructor(private webApiService: WebApiService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -34,8 +37,9 @@ export class AddressBookComponent implements OnInit {
   public createAddress() {
     this.webApiService.createAddress(this.addressBook).subscribe((data) => {
       if (data) {
-        this.router.navigate(['/profile/address']);
-        // alert('Address created successfully');
+        this.router.navigate(['/profile/address'], {
+          state: { status: 'Success' },
+        });
       }
     });
   }
