@@ -1,6 +1,7 @@
 export interface AddressBook {
-  first_name: string;
-  last_name: string;
+  id?: number;
+  first_name?: string;
+  last_name?: string;
   address_line_one: string;
   address_line_two: string;
   address_city: string;

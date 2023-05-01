@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AddressBook } from 'src/app/interfaces/address-book.interface';
 import { WebApiService } from 'src/app/services/web-api.service';
 
@@ -14,26 +15,27 @@ export class AddressBookComponent implements OnInit {
     address_line_one: '',
     address_line_two: '',
     address_city: '',
-    address_state: '',
-    address_country: '',
+    address_state: 'Sindh',
+    address_country: 'Pakistan',
     address_zip_code: '',
     is_default: false,
   };
 
-  public mockAddress = {
-    ...this.addressBook,
-    address_state: 'Sindh',
-    address_country: 'Pakistan',
-  };
+  // public mockAddress = {
+  //   ...this.addressBook,
+  //   address_state: 'Sindh',
+  //   address_country: 'Pakistan',
+  // };
 
-  constructor(private webApiService: WebApiService) {}
+  constructor(private webApiService: WebApiService, private router: Router) {}
 
   ngOnInit(): void {}
 
   public createAddress() {
-    this.webApiService.createAddress(this.mockAddress).subscribe((data) => {
+    this.webApiService.createAddress(this.addressBook).subscribe((data) => {
       if (data) {
-        alert('Address created successfully');
+        this.router.navigate(['/profile/address']);
+        // alert('Address created successfully');
       }
     });
   }

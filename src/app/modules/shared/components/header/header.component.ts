@@ -123,6 +123,7 @@ export class HeaderComponent
   currency: string;
   public cartDisplay: boolean;
   public wishListDisplay: boolean;
+  public isUserLoggedIn: boolean;
   public cartProduct: CartProduct = {
     name: '',
     image: '',
@@ -144,6 +145,7 @@ export class HeaderComponent
     private wishListService: WishListService<ProductCartItem>
   ) {
     super();
+    this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.cartItemsQuantity = cartService.itemCount();
     this.wishListItemsQuantity = wishListService.itemCount();
     this.currency = this.currencyService.selectedCurrency;
@@ -171,7 +173,6 @@ export class HeaderComponent
       image: product.image,
       slug: product.slug,
     };
-    debugger;
   }
 
   private displayCartPopUp(product: ProductCartItem) {

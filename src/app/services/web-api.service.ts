@@ -183,4 +183,10 @@ export class WebApiService {
       address
     );
   }
+
+  public getAddressses(): Observable<{ data: Array<AddressBook> }> {
+    return this.httpService.get<{ data: Array<AddressBook> }>(
+      ApiRoutes.address
+    );
+  }
 }

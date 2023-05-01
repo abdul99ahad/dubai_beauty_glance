@@ -487,7 +487,7 @@
 >
   <div class="popup-wrap">
     <img [src]="wishListProduct.image" />
-    <div>
+    <div *ngIf="!isUserLoggedIn">
       <h6 class="prod-name">
         <a [routerLink]="'/product/' + wishListProduct.slug">{{
           wishListProduct.name
@@ -503,6 +503,22 @@
           wishListProduct.name
         }}</a>
       </p>
+      <p>to your <a routerLink="['/wishlist']">wishlist</a>!</p>
+    </div>
+
+    <div *ngIf="isUserLoggedIn">
+      <h6 class="prod-name">
+        <a [routerLink]="'/product/' + wishListProduct.slug">{{
+          wishListProduct.name
+        }}</a>
+      </h6>
+      <p>
+        Success: You have added
+        <a [routerLink]="'/product/' + wishListProduct.slug">{{
+          wishListProduct.name
+        }}</a>
+      </p>
+
       <p>to your <a routerLink="['/wishlist']">wishlist</a>!</p>
     </div>
   </div>
