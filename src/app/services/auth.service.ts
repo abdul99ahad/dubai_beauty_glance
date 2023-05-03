@@ -6,7 +6,7 @@ import { UserLogin } from '../interfaces/user-login.interface';
 import { HttpService } from './http.service';
 import moment from 'moment';
 import { UserRegister } from '../interfaces/user-register.interface';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',

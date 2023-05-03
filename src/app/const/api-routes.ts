@@ -12,4 +12,6 @@ export const ApiRoutes = {
   signup: 'auth/sign-up',
   address: 'address',
   createAddress: 'address/create',
+  updateAddress: 'address/update',
+  deleteAddress: 'address/delete',
 } as const;

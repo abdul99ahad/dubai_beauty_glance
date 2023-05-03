@@ -184,6 +184,21 @@ export class WebApiService {
     );
   }
 
+  public updateAddress(
+    address: AddressBook
+  ): Observable<{ data: AddressBook }> {
+    return this.httpService.patch<{ data: AddressBook }>(
+      ApiRoutes.updateAddress + '/' + address.id,
+      address
+    );
+  }
+
+  public deleteAddress(address: AddressBook): Observable<{ data: boolean }> {
+    return this.httpService.delete<{ data: boolean }>(
+      ApiRoutes.deleteAddress + '/' + address.id
+    );
+  }
+
   public getAddressses(): Observable<{ data: Array<AddressBook> }> {
     return this.httpService.get<{ data: Array<AddressBook> }>(
       ApiRoutes.address
