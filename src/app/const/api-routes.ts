@@ -14,6 +14,7 @@ export const ApiRoutes = {
   createAddress: 'address/create',
   updateAddress: 'address/update',
   deleteAddress: 'address/delete',
-  paymentMethods: 'order-processing/payment-method',
-  shippingMethods: 'order-processing/shipping-method',
+  paymentMethods: 'enum/payment-method',
+  shippingMethods: 'enum/shipping-method',
+  checkoutIdentifiedOrder: 'order/checkout/identified',
 } as const;

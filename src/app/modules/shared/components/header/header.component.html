@@ -92,9 +92,10 @@
                     <td class="text-right item-total">
                       {{ currency }}
                       {{
-                        cartItem.discount_price
+                        (cartItem.discount_price
                           ? cartItem.discount_price
                           : cartItem.price
+                        ) | number : "1.2-2"
                       }}
                     </td>
                     <td class="item-remove">

@@ -11,7 +11,7 @@ export interface Checkout {
 export interface OrderItem {
   slug: string;
   quantity: number;
-  option_id: number;
+  option_id: number | null;
 }
 
 interface ReceiverDetails {

@@ -18,6 +18,7 @@ import { Banner } from '../interfaces/banner.interface';
 import { QuickCategory } from '../interfaces/quick-categories.interface';
 import { AddressBook } from '../interfaces/address-book.interface';
 import { Enum } from '../interfaces/enum.interface';
+import { Checkout } from '../interfaces/checkout.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -215,6 +216,13 @@ export class WebApiService {
   public getShippingMethods(): Observable<{ data: Array<Enum> }> {
     return this.httpService.get<{ data: Array<Enum> }>(
       ApiRoutes.shippingMethods
+    );
+  }
+
+  public createOrder(order: Checkout): Observable<{ data: Checkout }> {
+    return this.httpService.post<{ data: Checkout }>(
+      ApiRoutes.checkoutIdentifiedOrder,
+      order
     );
   }
 }

@@ -7,6 +7,10 @@ import { HttpService } from './http.service';
 import moment from 'moment';
 import { UserRegister } from '../interfaces/user-register.interface';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { UserInfo } from '../interfaces/user-info.interface';
+import jwt_decode from 'jwt-decode';
+import { JwtDecode } from '../interfaces/jwt-decode.interface';
+import { PersonalDetails } from '../interfaces/personaldetails.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +18,6 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 export class AuthService {
   private isUserLoggedInSubject = new BehaviorSubject<string>('');
   navItem$ = this.isUserLoggedInSubject.asObservable();
-
   constructor(
     private readonly httpService: HttpService,
     private jwtHelper: JwtHelperService
@@ -55,6 +58,16 @@ export class AuthService {
   // isLoggedOut() {
   //   return !this.isLoggedIn();
   // }
+
+  public getUserLoginInfo(): PersonalDetails {
+    const token = localStorage.getItem('token');
+    return this.DecodeToken(token ? token : '').customer;
+    //return null;
+  }
+
+  private DecodeToken(token: string): JwtDecode {
+    return jwt_decode(token);
+  }
 
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');

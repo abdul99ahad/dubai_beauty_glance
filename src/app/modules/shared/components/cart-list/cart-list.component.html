@@ -31,7 +31,10 @@
         </td>
         <td>
           {{ currency }}
-          {{ item.discount_price ? item.discount_price : item.price }}
+          {{
+            (item.discount_price ? item.discount_price : item.price)
+              | number : "1.2-2"
+          }}
         </td>
         <td>
           <p-inputNumber
@@ -63,7 +66,7 @@
             /></a>
           </span> -->
         </td>
-        <td>{{ currency }} {{ item.total_price }}</td>
+        <td>{{ currency }} {{ item.total_price | number : "1.2-2" }}</td>
         <td class="trash">
           <i
             class="pi pi-trash"
@@ -93,14 +96,18 @@
     <div class="cart-calculation-wrap">
       <div class="center">
         <p class="totalBarHeader">Merchandise</p>
-        <p class="totalBarAmount">{{ currency }} {{ cost.amount }}</p>
+        <p class="totalBarAmount">
+          {{ currency }} {{ cost.amount | number : "1.2-2" }}
+        </p>
       </div>
       <div class="iconMinus">
         <i class="pi pi-minus-circle" style="font-size: 2rem"></i>
       </div>
       <div class="center">
         <p class="totalBarHeader">Product Discounts</p>
-        <p class="totalBarAmount">{{ currency }} {{ cost.discountAmount }}</p>
+        <p class="totalBarAmount">
+          {{ currency }} {{ cost.discountAmount | number : "1.2-2" }}
+        </p>
       </div>
       <div class="iconEquals">
         <i class="pi pi-pause iconEqualsInner"></i>
@@ -108,7 +115,7 @@
       <div class="center">
         <p class="totalBarHeader">Total Amount</p>
         <p class="totalBarAmount" style="color: #ff2d46">
-          {{ currency }} {{ cost.totalAmount }}
+          {{ currency }} {{ cost.totalAmount | number : "1.2-2" }}
         </p>
       </div>
     </div>

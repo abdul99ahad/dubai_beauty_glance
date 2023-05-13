@@ -56,7 +56,7 @@
                       placeholder="First Name"
                       id="input-payment-company"
                       class="form-control"
-                      [disabled]="billingDetailsSameAsShippingDetails"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
                     />
                   </td>
                 </tr>
@@ -75,7 +75,7 @@
                       placeholder="Last Name"
                       id="input-payment-company"
                       class="form-control"
-                      [disabled]="billingDetailsSameAsShippingDetails"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
                     />
                   </td>
                 </tr>
@@ -94,7 +94,7 @@
                       placeholder="Email"
                       id="input-payment-company"
                       class="form-control"
-                      [disabled]="billingDetailsSameAsShippingDetails"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
                     />
                   </td>
                 </tr>
@@ -113,7 +113,7 @@
                       placeholder="Contact No"
                       id="input-payment-company"
                       class="form-control"
-                      [disabled]="billingDetailsSameAsShippingDetails"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
                     />
                   </td>
                 </tr>
@@ -151,11 +151,12 @@
                   <td>
                     <input
                       type="text"
-                      name="firstName"
+                      name="shippingfirstName"
                       [(ngModel)]="shippingDetailsForm.first_name"
                       placeholder="First Name"
                       id="input-payment-company"
                       class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
                     />
                   </td>
                 </tr>
@@ -169,11 +170,12 @@
                   <td>
                     <input
                       type="text"
-                      name="lastName"
+                      name="shippinglastName"
                       [(ngModel)]="shippingDetailsForm.last_name"
                       placeholder="Last Name"
                       id="input-payment-company"
                       class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
                     />
                   </td>
                 </tr>
@@ -187,11 +189,12 @@
                   <td>
                     <input
                       type="text"
-                      name="email"
+                      name="shippingemail"
                       [(ngModel)]="shippingDetailsForm.email"
                       placeholder="Email"
                       id="input-payment-company"
                       class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
                     />
                   </td>
                 </tr>
@@ -205,11 +208,12 @@
                   <td>
                     <input
                       type="text"
-                      name="contactNo"
+                      name="shippingcontactNo"
                       [(ngModel)]="shippingDetailsForm.contact"
                       placeholder="Contact No"
                       id="input-payment-company"
                       class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
                     />
                   </td>
                 </tr>
@@ -221,6 +225,24 @@
         <div class="checkout-section payment-address">
           <div class="title section-title">Billing Address</div>
           <div class="section-body">
+            <!-- Existing Addresses-->
+            <div>
+              <div
+                *ngFor="let address of existingAddresses"
+                class="field-checkbox"
+              >
+                <p-radioButton
+                  [inputId]="address.address_line_one"
+                  name="addresses"
+                  [value]="address"
+                  [(ngModel)]="selectedAddress"
+                  (ngModelChange)="setAddressDetails(address)"
+                ></p-radioButton>
+                <label [for]="address.address_line_one" class="ml-2">{{
+                  address.address_line_one
+                }}</label>
+              </div>
+            </div>
             <table summary="">
               <tbody>
                 <tr>
@@ -342,7 +364,7 @@
                   <td>
                     <input
                       type="text"
-                      name="address_1"
+                      name="shippingaddress_1"
                       [(ngModel)]="shippingAddressForm.address_line_one"
                       placeholder="Address 1"
                       id="input-payment-company"
@@ -358,7 +380,7 @@
                   <td>
                     <input
                       type="text"
-                      name="address_2"
+                      name="shippingaddress_2"
                       [(ngModel)]="shippingAddressForm.address_line_two"
                       placeholder="Address 2"
                       id="input-payment-company"
@@ -374,7 +396,7 @@
                   <td>
                     <input
                       type="text"
-                      name="city"
+                      name="shippingcity"
                       [(ngModel)]="shippingAddressForm.address_city"
                       placeholder="City"
                       id="input-payment-company"
@@ -390,7 +412,7 @@
                   <td>
                     <p-dropdown
                       placeholder="Select a Country"
-                      name="shippingCountryList"
+                      name="shippingshippingCountryList"
                       [options]="countryList"
                       [(ngModel)]="shippingAddressForm.address_country"
                       [disabled]="billingAddressSameAsShippingAddress"
@@ -404,7 +426,7 @@
                   <td>
                     <input
                       type="text"
-                      name="state"
+                      name="shippingstate"
                       [(ngModel)]="shippingAddressForm.address_state"
                       placeholder="State"
                       id="input-payment-company"
@@ -420,7 +442,7 @@
                   <td>
                     <input
                       type="text"
-                      name="zip_code"
+                      name="shippingzip_code"
                       [(ngModel)]="shippingAddressForm.address_zip_code"
                       placeholder="Zip Code"
                       id="input-payment-company"
@@ -456,6 +478,7 @@
                         [(ngModel)]="selectedShippingMethod"
                         [value]="shippingMethod"
                         [inputId]="shippingMethod.name"
+                        (ngModelChange)="setShippingCharges(shippingMethod)"
                       ></p-radioButton>
                       <label [for]="shippingMethod.name">{{
                         shippingMethod.name | titlecase
@@ -628,16 +651,18 @@
                     >
                       {{ currency }}
                       {{
-                        cartListItem.discount_price
+                        (cartListItem.discount_price
                           ? cartListItem.discount_price
                           : cartListItem.price
+                        ) | number : "1.2-2"
                       }}
                     </td>
                     <td
                       data-text="Total price"
                       class="text-right td-total cc-totalprice"
                     >
-                      {{ currency }} {{ cartListItem.total_price }}
+                      {{ currency }}
+                      {{ cartListItem.total_price | number : "1.2-2" }}
                     </td>
                   </tr>
                 </tbody>
@@ -650,21 +675,22 @@
                     <strong>Sub-Total:</strong>
                   </td>
                   <td class="text-right">
-                    {{ currency }} {{ cost.totalAmount }}
+                    {{ currency }} {{ cost.totalAmount | number : "1.2-2" }}
                   </td>
                 </tr>
                 <tr>
                   <td colspan="7" class="text-right">
                     <strong>Flat Shipping Rate:</strong>
                   </td>
-                  <td class="text-right">{{ currency }} TBD</td>
+                  <td class="text-right">{{ currency }} {{ shippingCost }}</td>
                 </tr>
                 <tr>
                   <td colspan="7" class="text-right">
                     <strong>Total:</strong>
                   </td>
                   <td class="text-right">
-                    {{ currency }} {{ cost.totalAmount }}
+                    {{ currency }}
+                    {{ cost.totalAmount + shippingCost | number : "1.2-2" }}
                   </td>
                 </tr>
               </tfoot>
@@ -723,6 +749,19 @@
                   id="quick-checkout-button-confirm"
                   class="btn btn-primary"
                   (click)="confirmOrder()"
+                  [disabled]="
+                    (!selectedPaymentMethod && !selectedShippingMethod) ||
+                    billingAddressForm.address_line_one == '' ||
+                    shippingAddressForm.address_line_one == '' ||
+                    billingDetailsForm.first_name == '' ||
+                    billingDetailsForm.last_name == '' ||
+                    billingDetailsForm.email == '' ||
+                    billingDetailsForm.contact == '' ||
+                    shippingDetailsForm.first_name == '' ||
+                    shippingDetailsForm.last_name == '' ||
+                    shippingDetailsForm.email == '' ||
+                    shippingDetailsForm.contact == ''
+                  "
                 >
                   <span>Confirm Order</span>
                 </button>
