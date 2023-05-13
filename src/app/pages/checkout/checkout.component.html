@@ -2,7 +2,8 @@
   <div class="grid mt-5">
     <div class="col-4 md:col-4 lg:col-4 sm:col-12 pl-0">
       <form>
-        <div class="checkout-section section-login">
+        <!--Login Section -->
+        <!-- <div class="checkout-section section-login">
           <div class="title section-title">Login or Register</div>
           <div class="section-body">
             <div class="form-group login-options">
@@ -32,7 +33,9 @@
             </div>
             <div class="login-form"></div>
           </div>
-        </div>
+        </div> -->
+
+        <!-- Personal/Billing Details -->
         <div class="checkout-section section-register">
           <div class="title section-title">Your Personal Details</div>
           <div class="section-body">
@@ -49,7 +52,107 @@
                     <input
                       type="text"
                       name="firstName"
-                      value=""
+                      [(ngModel)]="billingDetailsForm.first_name"
+                      placeholder="First Name"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>
+                      {{ registerFormFields.lastName }}
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="lastName"
+                      [(ngModel)]="billingDetailsForm.last_name"
+                      placeholder="Last Name"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>
+                      {{ registerFormFields.email }}
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="email"
+                      [(ngModel)]="billingDetailsForm.email"
+                      placeholder="Email"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>
+                      {{ registerFormFields.contactNo }}
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="contactNo"
+                      [(ngModel)]="billingDetailsForm.contact"
+                      placeholder="Contact No"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingDetailsSameAsShippingDetails"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Shipping Details -->
+        <div class="checkout-section section-register">
+          <div class="title section-title">Your Shipping Details</div>
+          <div class="section-body">
+            <div>
+              <p-checkbox
+                [(ngModel)]="billingDetailsSameAsShippingDetails"
+                name="billingDetailsSameAsShippingDetailsCheckbox"
+                [binary]="true"
+                inputId="billingDetailsSameAsShippingDetails"
+                (ngModelChange)="updateBillingAndShippingDetails()"
+              ></p-checkbox>
+              <label for="billingDetailsSameAsShippingDetails"
+                >My shipping details are the same as billing details</label
+              >
+            </div>
+
+            <table summary="">
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <p>
+                      {{ registerFormFields.firstName }}
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="firstName"
+                      [(ngModel)]="shippingDetailsForm.first_name"
                       placeholder="First Name"
                       id="input-payment-company"
                       class="form-control"
@@ -67,7 +170,7 @@
                     <input
                       type="text"
                       name="lastName"
-                      value=""
+                      [(ngModel)]="shippingDetailsForm.last_name"
                       placeholder="Last Name"
                       id="input-payment-company"
                       class="form-control"
@@ -85,7 +188,7 @@
                     <input
                       type="text"
                       name="email"
-                      value=""
+                      [(ngModel)]="shippingDetailsForm.email"
                       placeholder="Email"
                       id="input-payment-company"
                       class="form-control"
@@ -103,44 +206,8 @@
                     <input
                       type="text"
                       name="contactNo"
-                      value=""
+                      [(ngModel)]="shippingDetailsForm.contact"
                       placeholder="Contact No"
-                      id="input-payment-company"
-                      class="form-control"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <p>
-                      {{ registerFormFields.password }}
-                      <span class="required">*</span>
-                    </p>
-                  </th>
-                  <td>
-                    <input
-                      type="password"
-                      name="password"
-                      value=""
-                      placeholder="Password"
-                      id="input-payment-company"
-                      class="form-control"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <p>
-                      {{ registerFormFields.confirmPassword }}
-                      <span class="required">*</span>
-                    </p>
-                  </th>
-                  <td>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      value=""
-                      placeholder="Confirm Password"
                       id="input-payment-company"
                       class="form-control"
                     />
@@ -150,26 +217,12 @@
             </table>
           </div>
         </div>
+        <!--Billing Address-->
         <div class="checkout-section payment-address">
           <div class="title section-title">Billing Address</div>
           <div class="section-body">
             <table summary="">
               <tbody>
-                <tr>
-                  <th scope="row">
-                    <p>Company</p>
-                  </th>
-                  <td>
-                    <input
-                      type="text"
-                      name="company"
-                      value=""
-                      placeholder="Company"
-                      id="input-payment-company"
-                      class="form-control"
-                    />
-                  </td>
-                </tr>
                 <tr>
                   <th scope="row">
                     <p>Address 1</p>
@@ -178,7 +231,7 @@
                     <input
                       type="text"
                       name="address_1"
-                      value=""
+                      [(ngModel)]="billingAddressForm.address_line_one"
                       placeholder="Address 1"
                       id="input-payment-company"
                       class="form-control"
@@ -193,7 +246,7 @@
                     <input
                       type="text"
                       name="address_2"
-                      value=""
+                      [(ngModel)]="billingAddressForm.address_line_two"
                       placeholder="Address 2"
                       id="input-payment-company"
                       class="form-control"
@@ -208,7 +261,7 @@
                     <input
                       type="text"
                       name="city"
-                      value=""
+                      [(ngModel)]="billingAddressForm.address_city"
                       placeholder="City"
                       id="input-payment-company"
                       class="form-control"
@@ -220,14 +273,12 @@
                     <p>Country</p>
                   </th>
                   <td>
-                    <select
-                      name="country_id"
-                      id="input-payment-company"
-                      class="form-control"
-                    >
-                      <option value="">--- Please Select ---</option>
-                      <option value="162">Pakistan</option>
-                    </select>
+                    <p-dropdown
+                      placeholder="Select a Country"
+                      [options]="countryList"
+                      name="countryList"
+                      [(ngModel)]="billingAddressForm.address_country"
+                    ></p-dropdown>
                   </td>
                 </tr>
                 <tr>
@@ -235,34 +286,151 @@
                     <p>Region/State</p>
                   </th>
                   <td>
-                    <select
-                      name="zone_id"
-                      id="input-payment-zone"
+                    <input
+                      type="text"
+                      name="state"
+                      [(ngModel)]="billingAddressForm.address_state"
+                      placeholder="State"
+                      id="input-payment-company"
                       class="form-control"
-                    >
-                      <option value="">--- Please Select ---</option>
-                      <!---->
-                      <option value="4239">Azad Kashmir</option>
-                      <option value="2457">Balochistan</option>
-                      <option value="2458">
-                        Federally Administered Tribal Areas
-                      </option>
-                      <option value="4240">Gilgit - Baltistan</option>
-                      <option value="2459">Islamabad Capital Territory</option>
-                      <option value="4242">Khyber Pakhtunkhwa (KPK)</option>
-                      <option value="2461">Punjab</option>
-                      <option value="2462">Sindh</option>
-                    </select>
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>Zip Code</p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="zip_code"
+                      [(ngModel)]="billingAddressForm.address_zip_code"
+                      placeholder="Zip Code"
+                      id="input-payment-company"
+                      class="form-control"
+                    />
                   </td>
                 </tr>
               </tbody>
             </table>
-            <div class="checkbox checkout-same-address">
-              <label
-                ><input type="checkbox" /> My delivery and billing addresses are
-                the same.</label
+          </div>
+        </div>
+        <!---->
+
+        <!--Shipping Address-->
+        <div class="checkout-section payment-address">
+          <div class="title section-title">Shipping Address</div>
+          <div class="section-body">
+            <div>
+              <p-checkbox
+                [(ngModel)]="billingAddressSameAsShippingAddress"
+                name="billingAddressSameAsShippingAddressCheckbox"
+                [binary]="true"
+                inputId="billingAddressSameAsShippingAddress"
+                (ngModelChange)="updateBillingAndShippingAddress()"
+              ></p-checkbox>
+              <label for="billingAddressSameAsShippingAddress"
+                >My shipping address is the same as billing address</label
               >
             </div>
+            <table summary="">
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <p>Address 1</p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="address_1"
+                      [(ngModel)]="shippingAddressForm.address_line_one"
+                      placeholder="Address 1"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingAddressSameAsShippingAddress"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>Address 2</p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="address_2"
+                      [(ngModel)]="shippingAddressForm.address_line_two"
+                      placeholder="Address 2"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingAddressSameAsShippingAddress"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>City</p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="city"
+                      [(ngModel)]="shippingAddressForm.address_city"
+                      placeholder="City"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingAddressSameAsShippingAddress"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>Country</p>
+                  </th>
+                  <td>
+                    <p-dropdown
+                      placeholder="Select a Country"
+                      name="shippingCountryList"
+                      [options]="countryList"
+                      [(ngModel)]="shippingAddressForm.address_country"
+                      [disabled]="billingAddressSameAsShippingAddress"
+                    ></p-dropdown>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>Region/State</p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="state"
+                      [(ngModel)]="shippingAddressForm.address_state"
+                      placeholder="State"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingAddressSameAsShippingAddress"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>Zip Code</p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="zip_code"
+                      [(ngModel)]="shippingAddressForm.address_zip_code"
+                      placeholder="Zip Code"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="billingAddressSameAsShippingAddress"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <!---->

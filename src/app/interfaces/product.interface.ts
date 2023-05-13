@@ -1,7 +1,7 @@
 import { Brand } from './brand.interface';
 import { Tag } from './tag.interface';
 import { Category } from './categories.interface';
-import {SafeHtml} from "@angular/platform-browser";
+import { SafeHtml } from '@angular/platform-browser';
 
 export interface Product {
   name: string;
@@ -31,6 +31,7 @@ export interface ProductDetail extends Product {
 }
 
 export interface ProductOptions {
+  id: number;
   quantity: number;
   subtract_stock: number;
   price_difference: string;

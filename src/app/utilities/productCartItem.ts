@@ -5,6 +5,7 @@ export class ProductCartItem extends BaseCartItem {
   public min_quantity: number;
   public total_price: number;
   public slug: string;
+  public option_id: number;
   public getDiscountedPrice() {
     return this.discount_price;
   }
@@ -23,6 +24,7 @@ export class ProductCartItem extends BaseCartItem {
       (this.discount_price * itemData.quantity).toFixed(2)
     );
     this.slug = itemData.slug;
+    this.option_id = itemData.option_id;
   }
 
   updateTotalPrice(quantity: number): void {
