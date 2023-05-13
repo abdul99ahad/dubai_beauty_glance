@@ -1,1 +1,53 @@
-<p>order-history works!</p>
+<div *ngFor="let checkoutItem of orderDetails" class="order_history_class">
+  <div class="m-4">
+    <h3>Billing Details</h3>
+
+    <h4>Personal Details</h4>
+    <p>Name: {{ checkoutItem.first_name }} {{ checkoutItem.last_name }}</p>
+    <p>Email: {{ checkoutItem.email }}</p>
+    <p>Contact: {{ checkoutItem.contact }}</p>
+
+    <h4>Billing Address</h4>
+    <p>{{ checkoutItem.billing_address.addressLineOne }}</p>
+    <p>{{ checkoutItem.billing_address.addressLineTwo }}</p>
+    <p>{{ checkoutItem.billing_address.addressCity }}</p>
+    <p>{{ checkoutItem.billing_address.addressState }}</p>
+  </div>
+
+  <div class="m-4">
+    <h3>Shipping Details</h3>
+    <h4>Personal Details</h4>
+    <p>
+      Name: {{ checkoutItem.shipping_first_name }}
+      {{ checkoutItem.shipping_last_name }}
+    </p>
+    <p>Email: {{ checkoutItem.shipping_email }}</p>
+    <p>Contact: {{ checkoutItem.shipping_contact }}</p>
+    <h4>Shipping Address</h4>
+    <p>{{ checkoutItem.shipping_address.addressLineOne }}</p>
+    <p>{{ checkoutItem.shipping_address.addressLineTwo }}</p>
+    <p>{{ checkoutItem.shipping_address.addressCity }}</p>
+    <p>{{ checkoutItem.shipping_address.addressState }}</p>
+  </div>
+
+  <!--Order Details-->
+  <div class="m-4">
+    <h3>Order Details</h3>
+    <div *ngFor="let order of checkoutItem.orderItems">
+      <img [src]="order.product_image" />
+      <p>{{ order.product_name }}</p>
+      <p>Quantity {{ order.product_quantity }}</p>
+      <p>Variant {{ order.product_option_name.optionValueName }}</p>
+      <p>Unit Price {{ order.product_price }}</p>
+      <p>Total Price {{ order.product_total_price }}</p>
+    </div>
+  </div>
+
+  <div class="m-4">
+    <p>Comments: {{ checkoutItem.order_comment }}</p>
+    <p>Order Status: {{ checkoutItem.order_status }}</p>
+    <p>Payment Method: {{ checkoutItem.payment_method }}</p>
+    <p>Total Order Amount:</p>
+    <h3>{{ checkoutItem.total_amount }}</h3>
+  </div>
+</div>

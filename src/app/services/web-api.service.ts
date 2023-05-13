@@ -18,7 +18,8 @@ import { Banner } from '../interfaces/banner.interface';
 import { QuickCategory } from '../interfaces/quick-categories.interface';
 import { AddressBook } from '../interfaces/address-book.interface';
 import { Enum } from '../interfaces/enum.interface';
-import { Checkout } from '../interfaces/checkout.interface';
+import { Checkout, OrderDetails } from '../interfaces/checkout.interface';
+import { OrderDetailsHistory } from '../interfaces/order-details.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -223,6 +224,12 @@ export class WebApiService {
     return this.httpService.post<{ data: Checkout }>(
       ApiRoutes.checkoutIdentifiedOrder,
       order
+    );
+  }
+
+  public getOrderHistory(): Observable<{ data: Array<OrderDetailsHistory> }> {
+    return this.httpService.get<{ data: Array<OrderDetailsHistory> }>(
+      ApiRoutes.orderHistory
     );
   }
 }

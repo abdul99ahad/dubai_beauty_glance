@@ -17,4 +17,5 @@ export const ApiRoutes = {
   paymentMethods: 'enum/payment-method',
   shippingMethods: 'enum/shipping-method',
   checkoutIdentifiedOrder: 'order/checkout/identified',
+  orderHistory: 'order',
 } as const;
