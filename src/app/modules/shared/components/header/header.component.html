@@ -37,28 +37,28 @@
 
     <div class="col-3 md:col-3 pr-0">
       <div class="auth">
-        <div *ngIf="!email" class="member-link-web">
+        <div *ngIf="!isUserLoggedIn" class="member-link-web">
           <a [routerLink]="['/login']">
             <img src="../assets/sign_in.png" alt="" />
             <p>Sign In</p>
           </a>
         </div>
 
-        <div *ngIf="!email" class="member-link-web">
+        <div *ngIf="!isUserLoggedIn" class="member-link-web">
           <a [routerLink]="['/register']">
             <img src="../assets/sign_up.png" alt="" />
             <p>Sign Up</p>
           </a>
         </div>
 
-        <div *ngIf="email" class="member-link text-center">
+        <div *ngIf="email && isUserLoggedIn" class="member-link text-center">
           <a [routerLink]="['/']" (click)="signOut()">
             <i class="pi pi-sign-out" style="font-size: 2rem"></i>
             <p>Sign Out</p>
           </a>
         </div>
 
-        <div *ngIf="email" class="member-link">
+        <div *ngIf="email && isUserLoggedIn" class="member-link">
           <a [routerLink]="['/profile']">
             <i class="pi pi-user" style="font-size: 2rem"></i>
             <p>My Account</p>
