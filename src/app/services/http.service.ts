@@ -19,6 +19,30 @@ export class HttpService {
     return this.http.post(url, data, options);
   }
 
+  public patch<T>(serviceName: string, data: any, token?: string) {
+    token = localStorage.getItem('token') || undefined;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+    const url = environment.apiUrl + serviceName;
+    return this.http.patch<T>(url, data, httpOptions);
+  }
+
+  public delete<T>(serviceName: string, token?: string) {
+    token = localStorage.getItem('token') || undefined;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+    const url = environment.apiUrl + serviceName;
+    return this.http.delete<T>(url, httpOptions);
+  }
+
   public post<T>(serviceName: string, data: any, token?: string) {
     token = localStorage.getItem('token') || undefined;
     const httpOptions = {

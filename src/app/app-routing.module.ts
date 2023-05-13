@@ -85,6 +85,11 @@ const routes: Routes = [
     component: AddressComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'profile/address/addressbook/:id',
+    component: AddressBookComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

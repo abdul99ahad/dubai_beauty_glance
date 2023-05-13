@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { map } from 'rxjs';
 import { AddressBook } from 'src/app/interfaces/address-book.interface';
 import { WebApiService } from 'src/app/services/web-api.service';
 
@@ -30,7 +31,19 @@ export class AddressBookComponent implements OnInit {
     is_default: false,
   };
 
-  constructor(private webApiService: WebApiService, private router: Router) {}
+  public isEdit: boolean = false;
+
+  constructor(
+    private webApiService: WebApiService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    const addressState = this.router.getCurrentNavigation()?.extras?.state;
+    if (addressState) {
+      this.addressBook = addressState['address'];
+      this.isEdit = true;
+    }
+  }
 
   ngOnInit(): void {}
 
@@ -39,6 +52,16 @@ export class AddressBookComponent implements OnInit {
       if (data) {
         this.router.navigate(['/profile/address'], {
           state: { status: 'Success' },
+        });
+      }
+    });
+  }
+
+  public updateAddress() {
+    this.webApiService.updateAddress(this.addressBook).subscribe((data) => {
+      if (data) {
+        this.router.navigate(['/profile/address'], {
+          state: { status: 'Edit success' },
         });
       }
     });

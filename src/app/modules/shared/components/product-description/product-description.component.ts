@@ -109,6 +109,7 @@ export class ProductDescriptionComponent implements OnInit {
 
   productVariantName: string;
   slug: string;
+  selectedProductOptionId: number;
 
   private previousElement: HTMLElement;
 
@@ -137,6 +138,7 @@ export class ProductDescriptionComponent implements OnInit {
           discount_price: this.productDetail.discount_price,
           min_quantity: this.productDetail.min_order_quantity,
           slug: this.slug,
+          option_id: this.selectedProductOptionId,
         })
       );
     }
@@ -162,6 +164,7 @@ export class ProductDescriptionComponent implements OnInit {
   }
 
   public toggleProductOptionSelection(productOption: ProductOptions): void {
+    this.selectedProductOptionId = productOption.id;
     const productOptionIndex: number =
       this.productDetail.productOptions.findIndex((x) => x == productOption);
     // if (this.checkedOptions[productOptionIndex]) {

@@ -12,4 +12,10 @@ export const ApiRoutes = {
   signup: 'auth/sign-up',
   address: 'address',
   createAddress: 'address/create',
+  updateAddress: 'address/update',
+  deleteAddress: 'address/delete',
+  paymentMethods: 'enum/payment-method',
+  shippingMethods: 'enum/shipping-method',
+  checkoutIdentifiedOrder: 'order/checkout/identified',
+  orderHistory: 'order',
 } as const;

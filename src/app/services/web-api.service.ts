@@ -17,6 +17,9 @@ import { Setting } from '../interfaces/setting.interface';
 import { Banner } from '../interfaces/banner.interface';
 import { QuickCategory } from '../interfaces/quick-categories.interface';
 import { AddressBook } from '../interfaces/address-book.interface';
+import { Enum } from '../interfaces/enum.interface';
+import { Checkout, OrderDetails } from '../interfaces/checkout.interface';
+import { OrderDetailsHistory } from '../interfaces/order-details.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -184,9 +187,49 @@ export class WebApiService {
     );
   }
 
+  public updateAddress(
+    address: AddressBook
+  ): Observable<{ data: AddressBook }> {
+    return this.httpService.patch<{ data: AddressBook }>(
+      ApiRoutes.updateAddress + '/' + address.id,
+      address
+    );
+  }
+
+  public deleteAddress(address: AddressBook): Observable<{ data: boolean }> {
+    return this.httpService.delete<{ data: boolean }>(
+      ApiRoutes.deleteAddress + '/' + address.id
+    );
+  }
+
   public getAddressses(): Observable<{ data: Array<AddressBook> }> {
     return this.httpService.get<{ data: Array<AddressBook> }>(
       ApiRoutes.address
+    );
+  }
+
+  public getPaymentMethods(): Observable<{ data: Array<Enum> }> {
+    return this.httpService.get<{ data: Array<Enum> }>(
+      ApiRoutes.paymentMethods
+    );
+  }
+
+  public getShippingMethods(): Observable<{ data: Array<Enum> }> {
+    return this.httpService.get<{ data: Array<Enum> }>(
+      ApiRoutes.shippingMethods
+    );
+  }
+
+  public createOrder(order: Checkout): Observable<{ data: Checkout }> {
+    return this.httpService.post<{ data: Checkout }>(
+      ApiRoutes.checkoutIdentifiedOrder,
+      order
+    );
+  }
+
+  public getOrderHistory(): Observable<{ data: Array<OrderDetailsHistory> }> {
+    return this.httpService.get<{ data: Array<OrderDetailsHistory> }>(
+      ApiRoutes.orderHistory
     );
   }
 }

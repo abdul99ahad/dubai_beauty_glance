@@ -42,6 +42,7 @@ import { ProductCartItem } from './utilities/productCartItem';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AddressComponent } from './pages/address/address.component';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,11 @@ import { AddressComponent } from './pages/address/address.component';
       },
     }),
   ],
-  providers: [WebApiService],
+  providers: [
+    WebApiService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -16,6 +16,7 @@ import { MenuModule } from 'primeng/menu';
 import { TabViewModule } from 'primeng/tabview';
 import { MessagesModule } from 'primeng/messages';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { CheckboxModule } from 'primeng/checkbox';
 
 // Third Party Modules
 import { NgMarqueeModule } from 'ng-marquee';
@@ -90,6 +91,7 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     DropdownModule,
     MessagesModule,
     RadioButtonModule,
+    CheckboxModule,
   ],
   exports: [
     InputTextModule,
@@ -108,6 +110,7 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     RadioButtonModule,
     LightgalleryModule,
     MessagesModule,
+    CheckboxModule,
     InputTextboxComponent,
     InputButtonComponent,
     FooterComponent,

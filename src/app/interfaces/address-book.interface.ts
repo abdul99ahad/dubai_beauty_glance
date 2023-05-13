@@ -8,5 +8,5 @@ export interface AddressBook {
   address_state: string;
   address_country: string;
   address_zip_code: string;
-  is_default: boolean;
+  is_default?: boolean;
 }

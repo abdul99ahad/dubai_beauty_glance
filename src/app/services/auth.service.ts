@@ -6,6 +6,11 @@ import { UserLogin } from '../interfaces/user-login.interface';
 import { HttpService } from './http.service';
 import moment from 'moment';
 import { UserRegister } from '../interfaces/user-register.interface';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { UserInfo } from '../interfaces/user-info.interface';
+import jwt_decode from 'jwt-decode';
+import { JwtDecode } from '../interfaces/jwt-decode.interface';
+import { PersonalDetails } from '../interfaces/personaldetails.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +18,10 @@ import { UserRegister } from '../interfaces/user-register.interface';
 export class AuthService {
   private isUserLoggedInSubject = new BehaviorSubject<string>('');
   navItem$ = this.isUserLoggedInSubject.asObservable();
-
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private jwtHelper: JwtHelperService
+  ) {}
 
   public signIn(user: UserLogin): Observable<{ data: Token }> {
     return this.httpService.post<{ data: Token }>(ApiRoutes.signin, user);
@@ -38,17 +45,28 @@ export class AuthService {
   }
 
   public isUserLoggedIn(): boolean {
-    if (localStorage.getItem('token')) {
-      return true;
-    }
-    return false;
-  }
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+    const token = localStorage.getItem('token');
+    // Check whether the token is expired and return
+    // true or false
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
+  // public isLoggedIn() {
+  //   return moment().isBefore(this.getExpiration());
+  // }
+
+  // isLoggedOut() {
+  //   return !this.isLoggedIn();
+  // }
+
+  public getUserLoginInfo(): PersonalDetails {
+    const token = localStorage.getItem('token');
+    return this.DecodeToken(token ? token : '').customer;
+    //return null;
+  }
+
+  private DecodeToken(token: string): JwtDecode {
+    return jwt_decode(token);
   }
 
   getExpiration() {
