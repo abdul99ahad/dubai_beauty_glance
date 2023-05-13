@@ -436,6 +436,7 @@
         <!---->
       </form>
     </div>
+
     <div class="col-8 md:col-8 lg:col-8 sm:col-12 pr-0">
       <div class="right">
         <div class="checkout-section shipping-payment">
@@ -446,20 +447,19 @@
               <div>
                 <div class="shippings">
                   <div class="ship-wrapper">
-                    <p>Flat Rate</p>
-                    <div class="radio">
-                      <i class="pi pi-car"></i>
-                      <label
-                        ><input
-                          type="radio"
-                          name="shipping_method"
-                          value="flat.flat"
-                        />
-                        <span class="shipping-quote-title"
-                          >Flat Shipping Rate - Rs. 199</span
-                        >
-                        <!----></label
-                      >
+                    <div
+                      *ngFor="let shippingMethod of shippingMethods"
+                      class="field-checkbox"
+                    >
+                      <p-radioButton
+                        name="group"
+                        [(ngModel)]="selectedShippingMethod"
+                        [value]="shippingMethod"
+                        [inputId]="shippingMethod.name"
+                      ></p-radioButton>
+                      <label [for]="shippingMethod.name">{{
+                        shippingMethod.name | titlecase
+                      }}</label>
                     </div>
                   </div>
                 </div>
@@ -469,8 +469,22 @@
           <div class="section-payment">
             <div class="title section-title">Payment Method</div>
             <div class="section-body">
+              <div
+                *ngFor="let paymentMethod of paymentMethods"
+                class="field-checkbox"
+              >
+                <p-radioButton
+                  name="group"
+                  [(ngModel)]="selectedPaymentMethod"
+                  [value]="paymentMethod"
+                  [inputId]="paymentMethod.name"
+                ></p-radioButton>
+                <label [for]="paymentMethod.name">{{
+                  paymentMethod.name | titlecase
+                }}</label>
+              </div>
               <!---->
-              <div>
+              <!-- <div>
                 <i class="pi pi-home"></i>
                 <div class="radio">
                   <label
@@ -507,7 +521,7 @@
                     <span>Bank Transfer / JazzCash / Easypaisa</span></label
                   >
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -683,6 +697,7 @@
               <textarea
                 placeholder="Add Comments About Your Order"
                 class="form-control"
+                [(ngModel)]="orderDetails.comment"
               ></textarea>
             </div>
             <div class="checkbox">
@@ -707,6 +722,7 @@
                   data-loading-text="<span>Confirm Order</span>"
                   id="quick-checkout-button-confirm"
                   class="btn btn-primary"
+                  (click)="confirmOrder()"
                 >
                   <span>Confirm Order</span>
                 </button>

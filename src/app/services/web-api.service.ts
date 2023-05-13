@@ -17,6 +17,7 @@ import { Setting } from '../interfaces/setting.interface';
 import { Banner } from '../interfaces/banner.interface';
 import { QuickCategory } from '../interfaces/quick-categories.interface';
 import { AddressBook } from '../interfaces/address-book.interface';
+import { Enum } from '../interfaces/enum.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -202,6 +203,18 @@ export class WebApiService {
   public getAddressses(): Observable<{ data: Array<AddressBook> }> {
     return this.httpService.get<{ data: Array<AddressBook> }>(
       ApiRoutes.address
+    );
+  }
+
+  public getPaymentMethods(): Observable<{ data: Array<Enum> }> {
+    return this.httpService.get<{ data: Array<Enum> }>(
+      ApiRoutes.paymentMethods
+    );
+  }
+
+  public getShippingMethods(): Observable<{ data: Array<Enum> }> {
+    return this.httpService.get<{ data: Array<Enum> }>(
+      ApiRoutes.shippingMethods
     );
   }
 }
