@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
       this.authService.signIn(this.user).subscribe(
         (token) => {
           this.authService.setSession(token.data, this.user);
-          this.router.navigate(['/']);
+          //this.router.navigate(['/']);
+          window.location.href = '/';
         },
         (error) => {
           alert('Warning: No match for E-Mail Address and/or Password.');
