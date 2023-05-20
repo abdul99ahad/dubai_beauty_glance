@@ -36,7 +36,10 @@
         </div> -->
 
         <!-- Personal/Billing Details -->
-        <div class="checkout-section section-register">
+        <div
+          *ngIf="!loggedInUserPersonalDetailsFetched"
+          class="checkout-section section-register"
+        >
           <div class="title section-title">Your Personal Details</div>
           <div class="section-body">
             <table summary="">
@@ -123,7 +126,10 @@
         </div>
 
         <!-- Shipping Details -->
-        <div class="checkout-section section-register">
+        <div
+          *ngIf="!loggedInUserPersonalDetailsFetched"
+          class="checkout-section section-register"
+        >
           <div class="title section-title">Your Shipping Details</div>
           <div class="section-body">
             <div>
@@ -225,9 +231,36 @@
         <div class="checkout-section payment-address">
           <div class="title section-title">Billing Address</div>
           <div class="section-body">
-            <!-- Existing Addresses-->
             <div>
-              <div
+              <div class="field-checkbox">
+                <p-radioButton
+                  name="wantToUseExistingAddressBoolean"
+                  [value]="true"
+                  [(ngModel)]="wantToUseExistingAddressBoolean"
+                  (ngModelChange)="setAddressDetails(selectedAddress)"
+                ></p-radioButton>
+                <label>I want to use an existing address</label>
+              </div>
+
+              <p-dropdown
+                *ngIf="wantToUseExistingAddressBoolean"
+                [options]="existingAddresses"
+                [ngModel]="selectedAddress"
+                optionLabel="address_line_one"
+                (onChange)="onExistingAddressChange($event)"
+                (ngModelChange)="setAddressDetails(selectedAddress)"
+              ></p-dropdown>
+
+              <div class="field-checkbox">
+                <p-radioButton
+                  name="wantToUseExistingAddressBoolean"
+                  [value]="false"
+                  [(ngModel)]="wantToUseExistingAddressBoolean"
+                  (ngModelChange)="resetBillingDetailsForm()"
+                ></p-radioButton>
+                <label>I want to use a new address</label>
+              </div>
+              <!-- <div
                 *ngFor="let address of existingAddresses"
                 class="field-checkbox"
               >
@@ -241,9 +274,9 @@
                 <label [for]="address.address_line_one" class="ml-2">{{
                   address.address_line_one
                 }}</label>
-              </div>
+              </div> -->
             </div>
-            <table summary="">
+            <table *ngIf="!wantToUseExistingAddressBoolean" summary="">
               <tbody>
                 <tr>
                   <th scope="row">
@@ -253,12 +286,19 @@
                     <input
                       type="text"
                       name="address_1"
+                      #address_1="ngModel"
                       [(ngModel)]="billingAddressForm.address_line_one"
                       placeholder="Address 1"
                       id="input-payment-company"
                       class="form-control"
+                      required
                     />
                   </td>
+                  <div *ngIf="address_1.invalid && checkOnSubmit" class="alert">
+                    <div *ngIf="address_1.errors?.['required']">
+                      Address is required.
+                    </div>
+                  </div>
                 </tr>
                 <tr>
                   <th scope="row">
@@ -283,12 +323,19 @@
                     <input
                       type="text"
                       name="city"
+                      #city="ngModel"
                       [(ngModel)]="billingAddressForm.address_city"
                       placeholder="City"
                       id="input-payment-company"
                       class="form-control"
+                      required
                     />
                   </td>
+                  <div *ngIf="city.invalid && checkOnSubmit" class="alert">
+                    <div *ngIf="city.errors?.['required']">
+                      City is required.
+                    </div>
+                  </div>
                 </tr>
                 <tr>
                   <th scope="row">
@@ -298,6 +345,7 @@
                     <p-dropdown
                       placeholder="Select a Country"
                       [options]="countryList"
+                      #country="ngModel"
                       name="countryList"
                       [(ngModel)]="billingAddressForm.address_country"
                     ></p-dropdown>
@@ -315,8 +363,15 @@
                       placeholder="State"
                       id="input-payment-company"
                       class="form-control"
+                      #state="ngModel"
+                      required
                     />
                   </td>
+                  <div *ngIf="state.invalid && checkOnSubmit" class="alert">
+                    <div *ngIf="state.errors?.['required']">
+                      State/Region is required.
+                    </div>
+                  </div>
                 </tr>
                 <tr>
                   <th scope="row">
@@ -326,23 +381,22 @@
                     <input
                       type="text"
                       name="zip_code"
+                      #zip_code="ngModel"
                       [(ngModel)]="billingAddressForm.address_zip_code"
                       placeholder="Zip Code"
                       id="input-payment-company"
                       class="form-control"
+                      required
                     />
                   </td>
+                  <div *ngIf="zip_code.invalid && checkOnSubmit" class="alert">
+                    <div *ngIf="zip_code.errors?.['required']">
+                      Zip code is required.
+                    </div>
+                  </div>
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-        <!---->
-
-        <!--Shipping Address-->
-        <div class="checkout-section payment-address">
-          <div class="title section-title">Shipping Address</div>
-          <div class="section-body">
             <div>
               <p-checkbox
                 [(ngModel)]="billingAddressSameAsShippingAddress"
@@ -355,7 +409,46 @@
                 >My shipping address is the same as billing address</label
               >
             </div>
-            <table summary="">
+          </div>
+        </div>
+        <!---->
+
+        <!--Shipping Address-->
+        <div
+          *ngIf="!billingAddressSameAsShippingAddress"
+          class="checkout-section payment-address"
+        >
+          <div class="title section-title">Shipping Address</div>
+          <div class="section-body">
+            <div>
+              <div class="field-checkbox">
+                <p-radioButton
+                  name="wantToUseExistingShippingAddressBoolean"
+                  [value]="true"
+                  [(ngModel)]="wantToUseExistingShippingAddressBoolean"
+                ></p-radioButton>
+                <label>I want to use an existing address</label>
+              </div>
+
+              <p-dropdown
+                *ngIf="wantToUseExistingShippingAddressBoolean"
+                [options]="existingAddresses"
+                [ngModel]="selectedAddress"
+                (onChange)="onExistingShippingAddressChange($event)"
+                optionLabel="address_line_one"
+              ></p-dropdown>
+
+              <div class="field-checkbox">
+                <p-radioButton
+                  name="wantToUseExistingShippingAddressBoolean"
+                  [value]="false"
+                  [(ngModel)]="wantToUseExistingShippingAddressBoolean"
+                  (ngModelChange)="resetShippingAddressDetailsForm()"
+                ></p-radioButton>
+                <label>I want to use a new address</label>
+              </div>
+            </div>
+            <table *ngIf="!wantToUseExistingShippingAddressBoolean" summary="">
               <tbody>
                 <tr>
                   <th scope="row">
@@ -365,13 +458,23 @@
                     <input
                       type="text"
                       name="shippingaddress_1"
+                      #shippingaddress_1="ngModel"
                       [(ngModel)]="shippingAddressForm.address_line_one"
                       placeholder="Address 1"
                       id="input-payment-company"
                       class="form-control"
                       [disabled]="billingAddressSameAsShippingAddress"
+                      required
                     />
                   </td>
+                  <div
+                    *ngIf="shippingaddress_1.invalid && checkOnSubmit"
+                    class="alert"
+                  >
+                    <div *ngIf="shippingaddress_1.errors?.['required']">
+                      Shipping Address is required.
+                    </div>
+                  </div>
                 </tr>
                 <tr>
                   <th scope="row">
@@ -397,13 +500,23 @@
                     <input
                       type="text"
                       name="shippingcity"
+                      #shippingcity="ngModel"
                       [(ngModel)]="shippingAddressForm.address_city"
                       placeholder="City"
                       id="input-payment-company"
                       class="form-control"
                       [disabled]="billingAddressSameAsShippingAddress"
+                      required
                     />
                   </td>
+                  <div
+                    *ngIf="shippingcity.invalid && checkOnSubmit"
+                    class="alert"
+                  >
+                    <div *ngIf="shippingcity.errors?.['required']">
+                      Shipping City is required.
+                    </div>
+                  </div>
                 </tr>
                 <tr>
                   <th scope="row">
@@ -427,13 +540,23 @@
                     <input
                       type="text"
                       name="shippingstate"
+                      #shippingstate="ngModel"
                       [(ngModel)]="shippingAddressForm.address_state"
                       placeholder="State"
                       id="input-payment-company"
                       class="form-control"
                       [disabled]="billingAddressSameAsShippingAddress"
+                      required
                     />
                   </td>
+                  <div
+                    *ngIf="shippingstate.invalid && checkOnSubmit"
+                    class="alert"
+                  >
+                    <div *ngIf="shippingstate.errors?.['required']">
+                      Shipping state is required.
+                    </div>
+                  </div>
                 </tr>
                 <tr>
                   <th scope="row">
@@ -443,13 +566,23 @@
                     <input
                       type="text"
                       name="shippingzip_code"
+                      #shippingzip_code="ngModel"
                       [(ngModel)]="shippingAddressForm.address_zip_code"
                       placeholder="Zip Code"
                       id="input-payment-company"
                       class="form-control"
                       [disabled]="billingAddressSameAsShippingAddress"
+                      required
                     />
                   </td>
+                  <div
+                    *ngIf="shippingzip_code.invalid && checkOnSubmit"
+                    class="alert"
+                  >
+                    <div *ngIf="shippingzip_code.errors?.['required']">
+                      Zip Code is required.
+                    </div>
+                  </div>
                 </tr>
               </tbody>
             </table>
@@ -560,28 +693,6 @@
                   type="text"
                   placeholder="Enter your coupon here"
                   id="input-coupon"
-                  class="form-control"
-                />
-                <span class="input-group-btn"
-                  ><button
-                    type="button"
-                    data-loading-text="Processing..."
-                    class="btn btn-primary"
-                  >
-                    <span>Submit</span>
-                  </button></span
-                >
-              </div>
-            </div>
-            <div class="form-group form-voucher">
-              <label for="input-voucher" class="control-label"
-                >Enter your gift certificate code here</label
-              >
-              <div class="input-group">
-                <input
-                  type="text"
-                  placeholder="Enter your gift certificate code here"
-                  id="input-voucher"
                   class="form-control"
                 />
                 <span class="input-group-btn"
@@ -734,12 +845,22 @@
             </div>
             <div class="checkbox">
               <label
-                ><input type="checkbox" />I have read and agree to the
+                ><input
+                  type="checkbox"
+                  [(ngModel)]="termsAndConditionsChecked"
+                />I have read and agree to the
                 <a href="#" class="agree"
                   ><b>Terms &amp; Conditions</b></a
                 ></label
               >
               <!---->
+
+              <div
+                *ngIf="!termsAndConditionsChecked && checkOnSubmit"
+                class="alert"
+              >
+                You have to agree to terms and conditions.
+              </div>
             </div>
             <div class="buttons confirm-buttons">
               <div class="pull-right">
@@ -749,19 +870,6 @@
                   id="quick-checkout-button-confirm"
                   class="btn btn-primary"
                   (click)="confirmOrder()"
-                  [disabled]="
-                    (!selectedPaymentMethod && !selectedShippingMethod) ||
-                    billingAddressForm.address_line_one == '' ||
-                    shippingAddressForm.address_line_one == '' ||
-                    billingDetailsForm.first_name == '' ||
-                    billingDetailsForm.last_name == '' ||
-                    billingDetailsForm.email == '' ||
-                    billingDetailsForm.contact == '' ||
-                    shippingDetailsForm.first_name == '' ||
-                    shippingDetailsForm.last_name == '' ||
-                    shippingDetailsForm.email == '' ||
-                    shippingDetailsForm.contact == ''
-                  "
                 >
                   <span>Confirm Order</span>
                 </button>
@@ -773,3 +881,7 @@
     </div>
   </div>
 </div>
+<div *ngIf="response; else loadingSpinner"></div>
+<ng-template #loadingSpinner>
+  <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>
+</ng-template>
