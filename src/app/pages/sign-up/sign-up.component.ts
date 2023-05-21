@@ -39,7 +39,8 @@ export class SignUpComponent implements OnInit {
     this.authService.signUp(this.user).subscribe(
       (token) => {
         this.authService.setSession(token.data, this.user);
-        this.router.navigate(['/']);
+        window.location.href = '/';
+        //this.router.navigate(['/']);
       },
       (error) => {
         alert('Error has occured');

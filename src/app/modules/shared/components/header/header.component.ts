@@ -227,6 +227,7 @@ export class HeaderComponent
   public signOut() {
     this.email = null;
     this.authService.logout();
+    window.location.href = '/';
   }
 
   public filterBrand(): void;

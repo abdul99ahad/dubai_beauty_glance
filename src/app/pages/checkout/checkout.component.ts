@@ -15,6 +15,7 @@ import {
 } from 'src/app/interfaces/checkout.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddressBook } from 'src/app/interfaces/address-book.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -50,7 +51,7 @@ export class CheckoutComponent implements OnInit {
     address_line_one: '',
     address_line_two: '',
     address_city: '',
-    address_country: '',
+    address_country: 'Pakistan',
     address_state: '',
     address_zip_code: '',
   };
@@ -59,15 +60,21 @@ export class CheckoutComponent implements OnInit {
     address_line_one: '',
     address_line_two: '',
     address_city: '',
-    address_country: '',
+    address_country: 'Pakistan',
     address_state: '',
     address_zip_code: '',
   };
 
+  response: boolean = true;
+  orderSuccessDialogBox: boolean = false;
+  wantToUseExistingAddressBoolean: boolean = true;
+  wantToUseExistingShippingAddressBoolean: boolean = true;
+
+  checkOnSubmit: boolean = false;
   existingAddresses: Array<AddressBook> = [];
   selectedAddress: AddressBook;
   billingDetailsSameAsShippingDetails: boolean = false;
-  billingAddressSameAsShippingAddress: boolean = false;
+  billingAddressSameAsShippingAddress: boolean = true;
 
   public cost: Cost = {
     amount: 0,
@@ -96,15 +103,18 @@ export class CheckoutComponent implements OnInit {
     payment_method: 0,
   };
 
+  termsAndConditionsChecked: boolean = false;
   loggedInUserPersonalDetailsFetched: boolean = false;
   constructor(
     private cartService: CartService<ProductCartItem>,
     private currencyService: CurrencyService,
     private webApiService: WebApiService,
+    private router: Router,
     private authService: AuthService
   ) {
     this.currency = this.currencyService.selectedCurrency;
     this.billingDetailsForm = this.autoPopulateUserData();
+    this.shippingDetailsForm = this.autoPopulateUserData(); //TODO
     this.autoPopulateAddressData();
   }
 
@@ -120,11 +130,16 @@ export class CheckoutComponent implements OnInit {
     this.costCalculation();
     this.webApiService.getPaymentMethods().subscribe((response) => {
       this.paymentMethods = response.data;
+      this.selectedPaymentMethod = this.paymentMethods[0];
     });
     this.webApiService.getShippingMethods().subscribe((response) => {
       this.shippingMethods = response.data;
+      this.selectedShippingMethod = this.shippingMethods[0];
     });
-
+    if (this.authService.isUserLoggedIn()) {
+      this.updateBillingAndShippingDetails(); // In case of user logged in.
+      this.setAddressDetails(this.existingAddresses[0]);
+    }
     // User details auto populate in case of login
   }
 
@@ -191,16 +206,58 @@ export class CheckoutComponent implements OnInit {
     };
   }
 
+  public resetBillingDetailsForm(): void {
+    this.billingAddressForm = {
+      address_line_one: '',
+      address_line_two: '',
+      address_city: '',
+      address_country: 'Pakistan',
+      address_state: '',
+      address_zip_code: '',
+    };
+  }
+
+  public resetShippingAddressDetailsForm(): void {
+    this.shippingAddressForm = {
+      address_line_one: '',
+      address_line_two: '',
+      address_city: '',
+      address_country: 'Pakistan',
+      address_state: '',
+      address_zip_code: '',
+    };
+  }
+
   private autoPopulateAddressData(): void {
     if (this.authService.isUserLoggedIn()) {
       this.webApiService.getAddressses().subscribe((response) => {
         this.existingAddresses = response.data;
-        console.log(this.existingAddresses);
+        // console.log(this.existingAddresses);
+        this.setAddressDetails(this.existingAddresses[0]);
       });
     }
   }
 
+  public onExistingAddressChange(e: {
+    originalEvent: any;
+    value: AddressBook;
+  }) {
+    this.billingAddressForm = e.value;
+    // this.setAddressDetails();
+  }
+
+  public onExistingShippingAddressChange(e: {
+    originalEvent: any;
+    value: AddressBook;
+  }) {
+    this.shippingAddressForm = e.value;
+    // this.setAddressDetails();
+  }
+
   public setAddressDetails(address: AddressBook) {
+    if (address == undefined) {
+      address = this.existingAddresses[0];
+    }
     this.billingAddressForm = address;
     if (this.billingAddressSameAsShippingAddress)
       this.updateBillingAndShippingAddress();
@@ -211,6 +268,25 @@ export class CheckoutComponent implements OnInit {
   }
 
   public confirmOrder() {
+    if (
+      this.billingAddressForm.address_line_one == '' ||
+      this.billingAddressForm.address_city == '' ||
+      this.billingAddressForm.address_state == '' ||
+      this.billingAddressForm.address_zip_code == '' ||
+      this.shippingAddressForm.address_line_one == '' ||
+      this.shippingAddressForm.address_city == '' ||
+      this.shippingAddressForm.address_state == '' ||
+      this.shippingAddressForm.address_zip_code == '' ||
+      !this.termsAndConditionsChecked
+    ) {
+      this.checkOnSubmit = true;
+      console.log('Form incomplete');
+      return;
+    }
+    this.response = false;
+    console.log(this.termsAndConditionsChecked);
+    if (this.billingAddressSameAsShippingAddress)
+      this.updateBillingAndShippingAddress();
     this.orderDetails.payment_method = this.selectedPaymentMethod.value;
     this.orderDetails.shipping_method = this.selectedShippingMethod.value;
 
@@ -232,7 +308,11 @@ export class CheckoutComponent implements OnInit {
 
     // Send to API
     this.webApiService.createOrder(this.checkoutOrder).subscribe((response) => {
+      this.response = true;
+      this.orderSuccessDialogBox = true;
+      this.cartService.clear();
       console.log(response);
+      this.router.navigate(['/']);
     });
   }
 }
