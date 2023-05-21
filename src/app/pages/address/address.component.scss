@@ -1,6 +1,92 @@
-.addressBlock {
-    border: 1px solid black;
-    margin:20px;
+.address {
+  margin-top: 10px;
+
+  &__inner{
+    border: 1px solid #9b9b9b;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    padding: 20px;
+    margin-top: 30px;
+
+    p{
+      font-size: 16px;
+      color: black;
+      margin-bottom: 3px;
+      line-height: 1.5;
+    }
+  }
+
+  &__btn-wrap{
+    display: flex;
+    gap: 20px;
+
+    .edit-btn{
+      display: block;
+      background: rgba(105,105,115,1);
+      border-width: 0px;
+      color: white;
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+
+      &:hover{
+        background: #f54a7e;
+      }
+    }
+
+    .delete-btn{
+      display: block;
+      background: rgba(221,14,28,1);
+      border-width: 0px;
+      color: white;
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+      &:hover{
+        background: #f54a7e;
+      }
+    }
+  }
+
+  &__action-btns{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    a {
+      min-width: 300px;
+      background: black;
+      height: 40px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+
+      &:hover{
+        background: #f54a7e;
+      }
+    }
+  }
+}
+
+.back{
+  margin-bottom: 10px;
+  a{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: black;
+
+    i{
+      font-size: 12px;
+    }
+  }
 }

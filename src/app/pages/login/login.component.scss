@@ -26,6 +26,7 @@
 .flex-display {
     display: flex;
     margin: 20px 0;
+    justify-content: space-between;
 }
 .titleArea {
     text-align: center;
@@ -34,8 +35,10 @@
 .titleArea h2 {
     color: #000;
     font-family: 'Montserrat','Arial';
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .checkbox {

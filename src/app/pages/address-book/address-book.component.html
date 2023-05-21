@@ -1,54 +1,22 @@
-<div class="main-container">
+<div class="main-container add-address">
   <app-ad-banner></app-ad-banner>
 
+  <div class="back">
+    <a [routerLink]="['/profile']"><i class="pi pi-arrow-left"></i> Go Back</a>
+  </div>
+  
   <div class="signup-wrapper">
     <h2 class="heading-title">Add Address</h2>
     <p-divider></p-divider>
   </div>
   <div class="signup-content-wrapper">
-    <!-- <div class="grid">
-      <div class="col-12 md:col-3 lg:col-3">
-        <p>First Name <span class="required">*</span></p>
-      </div>
-      <div class="col-12 md:col-9 lg:col-9">
-        <input
-          type="text"
-          placeholder="First Name"
-          [(ngModel)]="addressBook.first_name"
-        />
-      </div>
-    </div>
-    <div class="grid">
-      <div class="col-12 md:col-3 lg:col-3">
-        <p>Last Name <span class="required">*</span></p>
-      </div>
-      <div class="col-12 md:col-9 lg:col-9">
-        <input
-          type="text"
-          placeholder="Last Name"
-          [(ngModel)]="addressBook.last_name"
-        />
-      </div>
-    </div> -->
-
-    <!-- <div class="grid">
-      <div class="col-12 md:col-3 lg:col-3">
-        <p>Company</p>
-      </div>
-      <div class="col-12 md:col-9 lg:col-9">
-        <app-input-textbox
-          type="text"
-          placeholder="Company"
-        ></app-input-textbox>
-      </div>
-    </div> -->
-
     <div class="grid">
       <div class="col-12 md:col-3 lg:col-3">
         <p>Address 1 <span class="required">*</span></p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
         <input
+          class="textbox"
           type="text"
           placeholder="Address Line 1"
           [(ngModel)]="addressBook.address_line_one"
@@ -61,11 +29,8 @@
         <p>Address 2</p>
       </div>
       <div class="col-12 md:col-9 lg:col-9">
-        <!-- <app-input-textbox
-          type="text"
-          placeholder="Address 2"
-        ></app-input-textbox> -->
         <input
+          class="textbox"
           type="text"
           placeholder="Address Line 2"
           [(ngModel)]="addressBook.address_line_two"
@@ -79,6 +44,7 @@
       </div>
       <div class="col-12 md:col-9 lg:col-9">
         <input
+          class="textbox"
           type="text"
           placeholder="City"
           [(ngModel)]="addressBook.address_city"
@@ -92,6 +58,7 @@
       </div>
       <div class="col-12 md:col-9 lg:col-9">
         <input
+          class="textbox"
           type="text"
           placeholder="Postal Code"
           [(ngModel)]="addressBook.address_zip_code"
@@ -147,8 +114,8 @@
 
     <div>
       <!-- <app-input-button buttonText="Continue"></app-input-button> -->
-      <a (click)="createAddress()" *ngIf="!isEdit">Continue</a>
-      <a (click)="updateAddress()" *ngIf="isEdit">Continue</a>
+      <a class="btn-continue" (click)="createAddress()" *ngIf="!isEdit">Continue</a>
+      <a class="btn-continue" (click)="updateAddress()" *ngIf="isEdit">Continue</a>
     </div>
   </div>
 </div>
