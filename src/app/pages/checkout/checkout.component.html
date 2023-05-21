@@ -885,3 +885,11 @@
 <ng-template #loadingSpinner>
   <app-loading-spinner class="d-flex pt-4"></app-loading-spinner>
 </ng-template>
+
+<p-dialog
+  header="Header"
+  [(visible)]="orderSuccessDialogBox"
+  [style]="{ width: '50vw' }"
+>
+  <p>Order placed successfully.</p>
+</p-dialog>

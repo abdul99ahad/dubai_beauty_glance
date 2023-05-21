@@ -66,6 +66,7 @@ export class CheckoutComponent implements OnInit {
   };
 
   response: boolean = true;
+  orderSuccessDialogBox: boolean = false;
   wantToUseExistingAddressBoolean: boolean = true;
   wantToUseExistingShippingAddressBoolean: boolean = true;
 
@@ -308,6 +309,7 @@ export class CheckoutComponent implements OnInit {
     // Send to API
     this.webApiService.createOrder(this.checkoutOrder).subscribe((response) => {
       this.response = true;
+      this.orderSuccessDialogBox = true;
       this.cartService.clear();
       console.log(response);
       this.router.navigate(['/']);
