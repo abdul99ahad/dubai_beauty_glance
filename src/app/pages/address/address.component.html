@@ -1,24 +1,36 @@
-<h2>Address Book Entries</h2>
-<p-messages [enableService]="true" [closable]="false"></p-messages>
+<div class="main-container">
+  <app-ad-banner></app-ad-banner>
 
-<p *ngIf="addresses.length == 0">You have no addresses in your account.</p>
+  <div class="back">
+    <a [routerLink]="['/profile']"><i class="pi pi-arrow-left"></i> Go Back</a>
+  </div>
 
-<div *ngIf="addresses">
-  <div class="addressBlock" *ngFor="let address of addresses">
-    <div>
-      <p>{{ address.address_line_one }}</p>
-      <p>{{ address.address_line_two }}</p>
-      <p>{{ address.address_city }}</p>
-      <p>{{ address.address_zip_code }}</p>
-      <p>{{ address.address_state }}</p>
-      <p>{{ address.address_country }}</p>
+  <div class="address">
+    <h2>Address Book Entries</h2>
+    <p-messages [enableService]="true" [closable]="false"></p-messages>
+
+    <p *ngIf="addresses.length == 0">You have no addresses in your account.</p>
+
+    <div *ngIf="addresses">
+      <div class="address__inner" *ngFor="let address of addresses">
+        <div>
+          <p>{{ address.address_line_one }}</p>
+          <p>{{ address.address_line_two }}</p>
+          <p>{{ address.address_city }}</p>
+          <p>{{ address.address_zip_code }}</p>
+          <p>{{ address.address_state }}</p>
+          <p>{{ address.address_country }}</p>
+        </div>
+
+        <div class="address__btn-wrap">
+          <a class="edit-btn" (click)="editAddress(address)">Edit</a>
+          <a class="delete-btn" (click)="deleteAddress(address)">Delete</a>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <a (click)="editAddress(address)">Edit</a>
-      <a (click)="deleteAddress(address)">Delete</a>
+    <div class="address__action-btns">
+      <a href="javascript:void(0)">BACK</a>
+      <a [routerLink]="['/profile/address/addressbook']">NEW ADDRESS</a>
     </div>
   </div>
 </div>
-<button>Back</button>
-<a [routerLink]="['/profile/address/addressbook']">NEW ADDRESS </a>

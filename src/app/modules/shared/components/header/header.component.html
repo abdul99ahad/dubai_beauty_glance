@@ -53,14 +53,14 @@
 
         <div *ngIf="email && isUserLoggedIn" class="member-link text-center">
           <a [routerLink]="['/']" (click)="signOut()">
-            <i class="pi pi-sign-out" style="font-size: 2rem"></i>
+            <i class="pi pi-sign-out" ></i>
             <p>Sign Out</p>
           </a>
         </div>
 
         <div *ngIf="email && isUserLoggedIn" class="member-link">
           <a [routerLink]="['/profile']">
-            <i class="pi pi-user" style="font-size: 2rem"></i>
+            <i class="pi pi-user"></i>
             <p>My Account</p>
           </a>
         </div>
@@ -143,11 +143,13 @@
           </div>
         </div>
 
-        <div class="member-link">
+        <div class="member-link member-link-wishlist">
           <a [routerLink]="['/wishlist']">
-            <i class="pi pi-heart" style="font-size: 2rem"></i>
-            <p>Wishlist</p>
-            <p>{{ wishListItemsQuantity }}</p>
+            <i class="pi pi-heart" ></i>
+            <span>
+              <p>Wishlist</p>
+              <p class="wish-qty">{{ wishListItemsQuantity }}</p>
+            </span>
           </a>
         </div>
       </div>

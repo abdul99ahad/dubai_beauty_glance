@@ -1,13 +1,27 @@
-<div>
+<div class="main-container profile">
   <h2>My Account</h2>
-  <div>
-    <a [routerLink]="['/profile/edit']">Edit your account information</a>
-    <a>Change your password</a>
-    <a [routerLink]="['/profile/address']">Modify address book entries</a>
-    <a>Modify your wishlist</a>
+  <div class="profile__inner">
+    <a [routerLink]="['/profile/edit']">
+      <i class="pi pi-user-edit"></i>
+      <span>Edit your account information</span>
+    </a>
+    <a [routerLink]="['/changepassword']">
+      <i class="pi pi-unlock"></i>
+      <span>Change your password</span>
+    </a>
+    <a [routerLink]="['/profile/address']">
+      <i class="pi pi-id-card"></i>
+      <span>Modify address book entries</span>
+    </a>
+    <a [routerLink]="['/wishlist']">
+      <i class="pi pi-heart-fill"></i>
+      <span>Modify your wishlist</span>
+    </a>
   </div>
 
-  <h2>My Orders</h2>
-  <a [routerLink]="['/orderhistory']">View your order history</a>
-  <a>Your Transactions</a>
+    <h2>My Orders</h2>
+    <div class="profile__inner">
+      <a [routerLink]="['/orderhistory']"><i class="pi pi-book"></i><span>View your order history</span></a>
+      <a><i class="pi pi-money-bill"></i><span>Your Transactions</span></a>
+    </div>
 </div>

@@ -28,8 +28,10 @@ p {
   margin: 0 auto;
   .heading-title {
     text-align: left;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 }
 
@@ -46,5 +48,40 @@ p {
   .radio-wrapper{
     display: flex;
     align-items: center;
+  }
+}
+
+.btn-continue{
+  width: 250px;
+  background: black;
+  height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  margin-left: auto;
+  margin-top: 10px;
+  text-transform: uppercase;
+
+  &:hover{
+    background: #f54a7e;
+  }
+}
+
+.back{
+  margin-bottom: 10px;
+  a{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: black;
+
+    i{
+      font-size: 12px;
+    }
   }
 }

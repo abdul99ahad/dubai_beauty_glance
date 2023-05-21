@@ -31,7 +31,7 @@
 }
 
 .member-link {
-  padding: 0 1rem
+  text-align: center;
 }
 
 input[type="image"] {
@@ -484,11 +484,22 @@ select {
 
 .auth {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
+  gap: 12px;
 
   i {
     color: #000;
+  }
+
+  .member-link{
+
+    a{
+      color: #000;
+    }
+    i{
+      font-size: 30px;
+    }
   }
   
   .member-link-web{
@@ -514,6 +525,36 @@ select {
 
     img{
       max-width: 30px;
+    }
+  }
+
+  .member-link-wishlist{
+    a{
+      position: relative;
+      display: block;
+    }
+    span {
+      display: flex;
+      gap: 5px;
+
+      .wish-qty{
+        position: absolute;
+        top: -5px;
+        right: 0;
+        background: red;
+        color: white;
+        width: 10px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 1);
+        background: rgba(221, 14, 28, 1);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 1);
+        border-radius: 10px;
+        min-width: 1.65em;
+        height: 1.65em;
+        padding: 0 3px;
+      }
     }
   }
 }
