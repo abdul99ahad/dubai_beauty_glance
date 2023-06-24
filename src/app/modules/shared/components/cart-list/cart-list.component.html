@@ -18,11 +18,16 @@
     <ng-template pTemplate="body" let-item>
       <tr>
         <td>
-          <img
-            [routerLink]="'/product/' + item.slug"
-            src="{{ item.image }}"
-            class="cart-item-img"
-          />
+          <p-checkbox
+            value="item"
+            (onChange)="selectCartListItems($event, item)"
+          >
+            <img
+              [routerLink]="'/product/' + item.slug"
+              src="{{ item.image }}"
+              class="cart-item-img"
+            />
+          </p-checkbox>
         </td>
         <td>
           <a [routerLink]="'/product/' + item.slug">
@@ -122,6 +127,14 @@
 
     <div style="margin-top: 20px; text-align: center">
       <a [routerLink]="['/checkout']" class="checkout">CHECKOUT</a>
+    </div>
+    <div style="margin-top: 20px; text-align: center">
+      <a
+        [routerLink]="['/checkout']"
+        class="checkout"
+        (click)="checkoutSelectedItems()"
+        >CHECKOUT SELECTED ITEM(S)</a
+      >
     </div>
   </div>
 </div>
