@@ -156,7 +156,7 @@ export class HeaderComponent
     this.wishListService.addItemBehaviorObservable.subscribe((data) => {
       this.displayWishListPopUp(JSON.parse(data || ''));
     });
-    this.cartService.onChange.subscribe({
+    this.cartService.onItemAdded.subscribe({
       next: (event: Event) => {
         this.cartItemsQuantity = cartService.itemCount();
         this.updateCartList();
