@@ -20,8 +20,8 @@ export class WishListService<T> {
       this.wishList.push(item);
       this.onChangeItemCount.next(this.itemCount());
       localStorage.setItem('wishlist', JSON.stringify(this.wishList));
-      this.addItemBehavior.next(JSON.stringify(item));
     }
+    this.addItemBehavior.next(JSON.stringify(item) || '');
   }
 
   //   getItem(id: number) : ProductCartItem {
