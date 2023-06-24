@@ -164,6 +164,12 @@ export class HeaderComponent
           this.displayCartPopUp(this.cartList.slice(-1)[0]);
       },
     });
+    this.cartService.onChange.subscribe({
+      next: (event: Event) => {
+        this.cartItemsQuantity = cartService.itemCount();
+        this.updateCartList();
+      },
+    });
   }
 
   private displayWishListPopUp(product: ProductCartItem) {
