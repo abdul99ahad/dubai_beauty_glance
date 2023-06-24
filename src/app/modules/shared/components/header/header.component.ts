@@ -24,6 +24,7 @@ import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartProduct } from 'src/app/interfaces/cart-product.interface';
 import { WishListService } from 'src/app/services/wishlist.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -142,7 +143,8 @@ export class HeaderComponent
     private readonly authService: AuthService,
     private readonly router: Router,
     private cartService: CartService<ProductCartItem>,
-    private wishListService: WishListService<ProductCartItem>
+    private wishListService: WishListService<ProductCartItem>,
+    private sharedService: SharedService
   ) {
     super();
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
@@ -169,6 +171,9 @@ export class HeaderComponent
         this.cartItemsQuantity = cartService.itemCount();
         this.updateCartList();
       },
+    });
+    this.sharedService.getEvent().subscribe((data) => {
+      if (this.cartList.length > 0) this.displayCartPopUp(data);
     });
   }
 

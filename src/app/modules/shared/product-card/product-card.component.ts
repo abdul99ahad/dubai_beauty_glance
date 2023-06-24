@@ -6,6 +6,7 @@ import { WebApiService } from 'src/app/services/web-api.service';
 import { WishListService } from 'src/app/services/wishlist.service';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { CurrencyService } from '../../../services/currency.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-product-card',
@@ -27,7 +28,8 @@ export class ProductCardComponent {
     private readonly currencyService: CurrencyService,
     private cartService: CartService<ProductCartItem>,
     private wishListService: WishListService<ProductCartItem>,
-    private webApiService: WebApiService
+    private webApiService: WebApiService,
+    private sharedService: SharedService
   ) {
     this.currency = this.currencyService.selectedCurrency;
   }
@@ -45,6 +47,7 @@ export class ProductCardComponent {
       if (this.cartService.getItem(detail.sku)) {
         const product = this.cartService.getItem(detail.sku);
         product.setQuantity(product.quantity + detail.min_order_quantity);
+        this.sharedService.emitEvent(product);
       } else {
         this.cartService.addItem(
           new ProductCartItem({
