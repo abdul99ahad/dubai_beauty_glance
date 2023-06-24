@@ -35,11 +35,16 @@
           </a>
         </td>
         <td>
-          {{ currency }}
-          {{
-            (item.discount_price ? item.discount_price : item.price)
-              | number : "1.2-2"
-          }}
+          <p>
+            <s> {{ currency }} {{ item.price | number : "1.2-2" }} </s>
+          </p>
+          <p>
+            {{ currency }}
+            {{
+              (item.discount_price ? item.discount_price : item.price)
+                | number : "1.2-2"
+            }}
+          </p>
         </td>
         <td>
           <p-inputNumber
