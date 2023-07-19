@@ -114,6 +114,7 @@ export class CheckoutComponent implements OnInit {
   };
 
   termsAndConditionsChecked: boolean = false;
+  termsAndConditionsView: boolean = false;
   loggedInUserPersonalDetailsFetched: boolean = false;
   constructor(
     private cartService: CartService<ProductCartItem>,
@@ -289,6 +290,10 @@ export class CheckoutComponent implements OnInit {
       this.passwordFieldsEnable = false;
       this.logInFieldsEnable = false;
     }
+  }
+
+  public termsAndConditionsViewMethod() {
+    this.termsAndConditionsView = true;
   }
 
   public confirmOrder() {

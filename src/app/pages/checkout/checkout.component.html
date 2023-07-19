@@ -979,7 +979,7 @@
                   type="checkbox"
                   [(ngModel)]="termsAndConditionsChecked"
                 />I have read and agree to the
-                <a href="#" class="agree"
+                <a (click)="termsAndConditionsViewMethod()" class="agree"
                   ><b>Terms &amp; Conditions</b></a
                 ></label
               >
@@ -1022,4 +1022,109 @@
   [style]="{ width: '50vw' }"
 >
   <p>Order placed successfully.</p>
+</p-dialog>
+
+<p-dialog
+  header="Terms & Conditions"
+  [(visible)]="termsAndConditionsView"
+  [style]="{ width: '50vw' }"
+>
+  Terms of Use: Agreement to these Terms and Conditions constitutes execution of
+  an agreement for use of the services provided by Beauty Glance and is agreed
+  upon by Beauty Glance and the purchaser who buys products on website
+  www.beautyglance.pk (the “Site”). Any transaction executed through Beauty
+  Glance service is governed by the laws of the Islamic Republic of Pakistan
+  (“Pakistan”) and any statement herein about time, period and place is based
+  upon the time, period and place of Pakistan. Agreement to Terms of Use: These
+  Terms and Conditions of Use (the “Terms of Use”) apply to Beauty Glance. The
+  Site www.beautyglance.pk is the property of Beauty Glance. By using the site,
+  you are agreeing to the following listed terms; if you do not agree, please
+  refrain from using this site. Beauty Glance reserves the right, at its sole
+  discretion, to change, modify, add or remove portions of these Terms of Use,
+  at any time. It is your responsibility to check these Terms of Use
+  periodically for changes. Your continued use of the Site following the posting
+  of changes will mean that you accept and agree to the changes. If you comply
+  with these Terms of Use, Beauty Glance grants you a personal, non-exclusive,
+  non-transferable, limited privilege to enter and use the site. Privacy: TO
+  UNDERSTAND OUR PRACTICES, PLEASE REVIEW OUR PRIVACY POLICY, WHICH ALSO GOVERNS
+  YOUR VISIT TO BEAUTY GLANCE. Electronic Communications: WHEN YOU VISIT BEAUTY
+  GLANCE OR SEND E-MAILS TO US, YOU ARE COMMUNICATING WITH US ELECTRONICALLY.
+  YOU CONSENT TO RECEIVE COMMUNICATIONS FROM US ELECTRONICALLY. WE WILL
+  COMMUNICATE WITH YOU BY E-MAIL OR BY POSTING NOTICES ON THIS SITE. YOU AGREE
+  THAT ALL AGREEMENTS, NOTICES, DISCLOSURES AND OTHER COMMUNICATIONS THAT WE
+  PROVIDE TO YOU ELECTRONICALLY, SATISFIES ANY LEGAL REQUIREMENTS THAT SUCH
+  COMMUNICATIONS BE IN WRITING. Copyright: All content included on this site,
+  such as text, graphics, logos, button icons, images, audio clips, digital
+  downloads, data compilations, and software, is the property of Beauty Glance
+  or its content suppliers and protected by Pakistan and international copyright
+  laws. The compilation of all content on this site is the exclusive property of
+  Beauty Glance and protected by Pakistan and international copyright laws.
+  License and Site Access: Beauty Glance grants you a limited license to access
+  and make personal use of this site and not to download (other than page
+  caching) or modify it, or any portion of it, except with express written
+  consent of Beauty Glance. This license does not include any resale or
+  commercial use of this site or its contents; any collection and use of any
+  product listings, descriptions, or prices; any derivative use of this site or
+  its contents; any downloading or copying of account information for the
+  benefit of another merchant; or any use of data mining, robots, or similar
+  data gathering and extraction tools. This site or any portion of this site may
+  not be reproduced, duplicated, copied, sold, resold, visited, or otherwise
+  exploited for any commercial purpose without express written consent of Beauty
+  Glance. You may not frame or utilize framing techniques to enclose logo, or
+  other proprietary information (including images, text, page layout, or form)
+  of Beauty Glance without express written consent. Any unauthorized use
+  terminates the permission or license granted by Beauty Glance. You are granted
+  a limited, revocable, and nonexclusive right to create a hyperlink to the home
+  page of Beauty Glance so long as the link does not portray Beauty Glance, or
+  its products or services in a false, misleading, derogatory, or otherwise
+  offensive matter. You may not use the Beauty Glance logo or other proprietary
+  graphic as part of the link without express written permission. Your Account:
+  If you use this site, you are responsible for maintaining the confidentiality
+  of your account and password and for restricting access to your computer, and
+  you agree to accept responsibility for all activities that occur under your
+  account or password. Beauty Glance does sell products for children, but it
+  sells them to adults, who can purchase with a credit card or other permitted
+  payment method. Beauty Glance reserves the right to refuse service, terminate
+  accounts, remove or edit content, or cancel orders in their sole discretion.
+  Each member is entitled to one Beauty Glance account. Account verification is
+  done thru verification of the member's mobile phone number. If you believe
+  there is an error with the account verification process, please contact Beauty
+  Glance by email (sales@beautyglance.pk). Management of Members: 1. Beauty
+  Glance may take any or all the following measures against members who have
+  violated the Terms and Conditions, applicable laws and regulations or general
+  commercial practices: a) Withdrawal of all or part of the benefits given by
+  Beauty Glance; b) Restriction on use of certain services; c) Termination of
+  the Use Contract; d) Claim for damages 2. Beauty Glance will notify the
+  relevant member by phone or e-mail prior to taking any measure specified
+  above, but if the member cannot be reached, or in cases of urgency, Beauty
+  Glance may take the measure first and notify the member after the event. 3.
+  Members may dispute the measures taken by Beauty Glance under this Article if
+  they have grounds to do so. Returns, Exchanges, Refunds and Ownership: 1. If a
+  customer is not satisfied with the buying of products from us then you may
+  return it in 7 days from delivery date. 2. Money will be refunded, and order
+  should be changed after the verification from Beauty Glance. 3. Order will be
+  cancelled automatically if the provided information is insufficient. 4.
+  Product can be replaced or returned if it is damaged, expired or broken while
+  shipment. Product Descriptions: Beauty Glance attempts to be as accurate as
+  possible. However, Beauty Glance does not warrant that product descriptions or
+  other content of this site is accurate, complete, reliable, current, or
+  error-free. If a product offered by Beauty Glance itself is not as described,
+  your sole remedy is to return it in unused condition. Disputes: Any dispute or
+  claim relating in any way to your visit to Beauty Glance or to products or
+  services sold or distributed by Beauty Glance or through beautyglance.pk will
+  be resolved by binding arbitration, rather than in court, except that you may
+  assert claims in small claims court if your claims qualify. The laws of the
+  Islamic Republic of Pakistan (“Pakistan”) apply to this agreement. Any legal
+  proceedings brought in connection with disputes arising between Beauty Glance
+  and any member from Beauty Glance services shall be submitted to the competent
+  court having jurisdiction over the location of the head office of Beauty
+  Glance. Applicable Law: Matters not provided for in the Terms and Conditions
+  shall be governed by the law of Islamic Republic of Pakistan. Site Policies,
+  Modification, and Sever ability: Please review our other policies, such as our
+  pricing policy, posted on this site. These policies also govern your visit to
+  Beauty Glance. We reserve the right to make changes to our site, policies, and
+  these Conditions of Use at any time. If any of these conditions shall be
+  deemed invalid, void, or for any reason unenforceable, that condition shall be
+  deemed severable and shall not affect the validity and enforceability of any
+  remaining condition.
 </p-dialog>
