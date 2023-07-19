@@ -16,6 +16,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { AddressBook } from 'src/app/interfaces/address-book.interface';
 import { Router } from '@angular/router';
+import { UserLogin } from 'src/app/interfaces/user-login.interface';
 
 @Component({
   selector: 'app-checkout',
@@ -23,6 +24,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
+  selectedOption: string = 'Register';
+  passwordFieldsEnable: boolean = true;
+  logInFieldsEnable: boolean = false;
+  isUserLoggedInLocal: boolean;
   registerFormFields: any = {
     firstName: 'First Name',
     lastName: 'Last Name',
@@ -31,6 +36,11 @@ export class CheckoutComponent implements OnInit {
     password: 'Password',
     confirmPassword: 'Confirm Password',
     subscribeNewsLetter: 'Subscribe',
+  };
+
+  logInDetails: UserLogin = {
+    email: '',
+    password: '',
   };
 
   billingDetailsForm: PersonalDetails = {
@@ -116,6 +126,7 @@ export class CheckoutComponent implements OnInit {
     this.billingDetailsForm = this.autoPopulateUserData();
     this.shippingDetailsForm = this.autoPopulateUserData(); //TODO
     this.autoPopulateAddressData();
+    this.isUserLoggedInLocal = this.authService.isUserLoggedIn();
   }
 
   ngOnInit(): void {
@@ -265,6 +276,19 @@ export class CheckoutComponent implements OnInit {
   public setShippingCharges(shippingMethod: Enum) {
     if (shippingMethod.name == 'FREE_SHIPPING') this.shippingCost = 0;
     else this.shippingCost = 15;
+  }
+
+  public setOptions(option: string) {
+    if (option == 'Login') {
+      this.passwordFieldsEnable = false;
+      this.logInFieldsEnable = true;
+    } else if (option == 'Register') {
+      this.passwordFieldsEnable = true;
+      this.logInFieldsEnable = false;
+    } else if (option == 'Guest') {
+      this.passwordFieldsEnable = false;
+      this.logInFieldsEnable = false;
+    }
   }
 
   public confirmOrder() {

@@ -3,11 +3,15 @@
     <div class="col-4 md:col-4 lg:col-4 sm:col-12 pl-0">
       <form>
         <!--Login Section -->
-        <!-- <div class="checkout-section section-login">
+
+        <div
+          class="checkout-section section-login"
+          *ngIf="!isUserLoggedInLocal"
+        >
           <div class="title section-title">Login or Register</div>
           <div class="section-body">
             <div class="form-group login-options">
-              <div class="radio">
+              <!-- <div class="radio">
                 <label
                   ><input type="radio" name="account" value="" />Login</label
                 >
@@ -29,11 +33,87 @@
                     value="guest"
                   />Guest</label
                 >
-              </div>
+              </div> -->
+
+              <p-radioButton
+                name="group"
+                value="Login"
+                inputId="Login"
+                (ngModelChange)="setOptions('Login')"
+                [(ngModel)]="selectedOption"
+              ></p-radioButton>
+              <label for="Login">Login</label>
+
+              <p-radioButton
+                name="group"
+                value="Register"
+                inputId="Register"
+                (ngModelChange)="setOptions('Register')"
+                [(ngModel)]="selectedOption"
+              ></p-radioButton>
+              <label for="Register">Register</label>
+
+              <p-radioButton
+                name="group"
+                value="Guest"
+                inputId="Guest"
+                (ngModelChange)="setOptions('Guest')"
+                [(ngModel)]="selectedOption"
+              ></p-radioButton>
+              <label for="Guest">Guest</label>
             </div>
             <div class="login-form"></div>
           </div>
-        </div> -->
+          <div *ngIf="logInFieldsEnable">
+            <table summary="" style="width: 100%">
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <p>
+                      Email
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="email"
+                      [(ngModel)]="logInDetails.email"
+                      placeholder="Email"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">
+                    <p>
+                      Password
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="password"
+                      name="password"
+                      [(ngModel)]="logInDetails.password"
+                      placeholder="Password"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
+                    />
+                  </td>
+                </tr>
+
+                <a>Forgotten Password</a>
+
+                <button>Login</button>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <!-- Personal/Billing Details -->
         <div
@@ -114,6 +194,46 @@
                       name="contactNo"
                       [(ngModel)]="billingDetailsForm.contact"
                       placeholder="Contact No"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
+                    />
+                  </td>
+                </tr>
+
+                <tr *ngIf="passwordFieldsEnable">
+                  <th scope="row">
+                    <p>
+                      Password
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="password"
+                      name="password"
+                      [(ngModel)]="billingDetailsForm.password"
+                      placeholder="Password"
+                      id="input-payment-company"
+                      class="form-control"
+                      [disabled]="loggedInUserPersonalDetailsFetched"
+                    />
+                  </td>
+                </tr>
+
+                <tr *ngIf="passwordFieldsEnable">
+                  <th scope="row">
+                    <p>
+                      Confirm Password
+                      <span class="required">*</span>
+                    </p>
+                  </th>
+                  <td>
+                    <input
+                      type="password"
+                      name="confirm_password"
+                      [(ngModel)]="billingDetailsForm.confirm_password"
+                      placeholder="Password Confirm"
                       id="input-payment-company"
                       class="form-control"
                       [disabled]="loggedInUserPersonalDetailsFetched"
@@ -231,7 +351,7 @@
         <div class="checkout-section payment-address">
           <div class="title section-title">Billing Address</div>
           <div class="section-body">
-            <div>
+            <div *ngIf="this.isUserLoggedInLocal">
               <div class="field-checkbox">
                 <p-radioButton
                   name="wantToUseExistingAddressBoolean"
@@ -249,6 +369,7 @@
                 optionLabel="address_line_one"
                 (onChange)="onExistingAddressChange($event)"
                 (ngModelChange)="setAddressDetails(selectedAddress)"
+                placeholder="Select existing address"
               ></p-dropdown>
 
               <div class="field-checkbox">
@@ -276,7 +397,10 @@
                 }}</label>
               </div> -->
             </div>
-            <table *ngIf="!wantToUseExistingAddressBoolean" summary="">
+            <table
+              *ngIf="!wantToUseExistingAddressBoolean || !isUserLoggedInLocal"
+              summary=""
+            >
               <tbody>
                 <tr>
                   <th scope="row">
@@ -420,7 +544,7 @@
         >
           <div class="title section-title">Shipping Address</div>
           <div class="section-body">
-            <div>
+            <div *ngIf="this.isUserLoggedInLocal">
               <div class="field-checkbox">
                 <p-radioButton
                   name="wantToUseExistingShippingAddressBoolean"
@@ -436,6 +560,7 @@
                 [ngModel]="selectedAddress"
                 (onChange)="onExistingShippingAddressChange($event)"
                 optionLabel="address_line_one"
+                placeholder="Select existing address"
               ></p-dropdown>
 
               <div class="field-checkbox">
@@ -448,7 +573,12 @@
                 <label>I want to use a new address</label>
               </div>
             </div>
-            <table *ngIf="!wantToUseExistingShippingAddressBoolean" summary="">
+            <table
+              *ngIf="
+                !wantToUseExistingShippingAddressBoolean || !isUserLoggedInLocal
+              "
+              summary=""
+            >
               <tbody>
                 <tr>
                   <th scope="row">
