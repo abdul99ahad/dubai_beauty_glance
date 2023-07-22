@@ -15,6 +15,7 @@ export interface OrderItem {
 }
 
 interface ReceiverDetails {
+  create_account?: boolean;
   billing: PersonalDetails;
   shipping: PersonalDetails;
 }

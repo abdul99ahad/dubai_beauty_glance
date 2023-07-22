@@ -24,6 +24,7 @@ import { UserLogin } from 'src/app/interfaces/user-login.interface';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
+  currentUserLoginState: string;
   selectedOption: string = 'Register';
   passwordFieldsEnable: boolean = true;
   logInFieldsEnable: boolean = false;
@@ -280,6 +281,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public setOptions(option: string) {
+    this.currentUserLoginState = option;
     if (option == 'Login') {
       this.passwordFieldsEnable = false;
       this.logInFieldsEnable = true;
@@ -334,6 +336,11 @@ export class CheckoutComponent implements OnInit {
 
     console.log(this.authService.getUserLoginInfo());
     console.log(this.checkoutOrder);
+
+    if (this.currentUserLoginState == 'Register')
+      this.checkoutOrder.receiver_details.create_account = true;
+    else if (this.currentUserLoginState == 'Guest')
+      this.checkoutOrder.receiver_details.create_account = false;
 
     // Send to API
     this.webApiService.createOrder(this.checkoutOrder).subscribe((response) => {
