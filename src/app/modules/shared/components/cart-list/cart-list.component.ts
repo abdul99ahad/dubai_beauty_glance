@@ -3,6 +3,8 @@ import { CartService } from 'ng-shopping-cart';
 import { Cost } from 'src/app/interfaces/cost.interface';
 import { ProductCartItem } from 'src/app/utilities/productCartItem';
 import { CurrencyService } from '../../../../services/currency.service';
+import { Product } from 'src/app/interfaces/product.interface';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -41,6 +43,7 @@ export class CartListComponent implements OnInit {
   // ]; // TODO: Interface and API
 
   cartList: ProductCartItem[];
+  checkboxedSelectedCartList: ProductCartItem[] = [];
   // totalAmount: any = [
   //   {
   //     amount: 120.0,
@@ -58,7 +61,8 @@ export class CartListComponent implements OnInit {
 
   public constructor(
     private readonly currencyService: CurrencyService,
-    private cartService: CartService<ProductCartItem>
+    private cartService: CartService<ProductCartItem>,
+    private sharedService: SharedService
   ) {
     this.currency = this.currencyService.selectedCurrency;
   }
@@ -117,5 +121,23 @@ export class CartListComponent implements OnInit {
     this.cartList = this.cartService.getItems();
     this.totalProductItemsCount = this.cartService.itemCount();
     this.costCalculation();
+  }
+
+  public selectCartListItems(e: any, item: ProductCartItem) {
+    if (e.checked.length > 0) {
+      this.checkboxedSelectedCartList.push(item);
+    } else {
+      this.checkboxedSelectedCartList = this.checkboxedSelectedCartList.filter(
+        (x) => x.id != item.id
+      );
+    }
+
+    console.log(this.checkboxedSelectedCartList);
+  }
+
+  public checkoutSelectedItems(): void {
+    this.emptyCart();
+    this.checkboxedSelectedCartList.forEach((x) => this.cartService.addItem(x));
+    this.updateCartItems();
   }
 }

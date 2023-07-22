@@ -16,6 +16,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { AddressBook } from 'src/app/interfaces/address-book.interface';
 import { Router } from '@angular/router';
+import { UserLogin } from 'src/app/interfaces/user-login.interface';
 
 @Component({
   selector: 'app-checkout',
@@ -23,6 +24,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
+  currentUserLoginState: string;
+  selectedOption: string = 'Register';
+  passwordFieldsEnable: boolean = true;
+  logInFieldsEnable: boolean = false;
+  isUserLoggedInLocal: boolean;
   registerFormFields: any = {
     firstName: 'First Name',
     lastName: 'Last Name',
@@ -31,6 +37,11 @@ export class CheckoutComponent implements OnInit {
     password: 'Password',
     confirmPassword: 'Confirm Password',
     subscribeNewsLetter: 'Subscribe',
+  };
+
+  logInDetails: UserLogin = {
+    email: '',
+    password: '',
   };
 
   billingDetailsForm: PersonalDetails = {
@@ -104,6 +115,7 @@ export class CheckoutComponent implements OnInit {
   };
 
   termsAndConditionsChecked: boolean = false;
+  termsAndConditionsView: boolean = false;
   loggedInUserPersonalDetailsFetched: boolean = false;
   constructor(
     private cartService: CartService<ProductCartItem>,
@@ -116,6 +128,7 @@ export class CheckoutComponent implements OnInit {
     this.billingDetailsForm = this.autoPopulateUserData();
     this.shippingDetailsForm = this.autoPopulateUserData(); //TODO
     this.autoPopulateAddressData();
+    this.isUserLoggedInLocal = this.authService.isUserLoggedIn();
   }
 
   ngOnInit(): void {
@@ -267,6 +280,24 @@ export class CheckoutComponent implements OnInit {
     else this.shippingCost = 15;
   }
 
+  public setOptions(option: string) {
+    this.currentUserLoginState = option;
+    if (option == 'Login') {
+      this.passwordFieldsEnable = false;
+      this.logInFieldsEnable = true;
+    } else if (option == 'Register') {
+      this.passwordFieldsEnable = true;
+      this.logInFieldsEnable = false;
+    } else if (option == 'Guest') {
+      this.passwordFieldsEnable = false;
+      this.logInFieldsEnable = false;
+    }
+  }
+
+  public termsAndConditionsViewMethod() {
+    this.termsAndConditionsView = true;
+  }
+
   public confirmOrder() {
     if (
       this.billingAddressForm.address_line_one == '' ||
@@ -305,6 +336,11 @@ export class CheckoutComponent implements OnInit {
 
     console.log(this.authService.getUserLoginInfo());
     console.log(this.checkoutOrder);
+
+    if (this.currentUserLoginState == 'Register')
+      this.checkoutOrder.receiver_details.create_account = true;
+    else if (this.currentUserLoginState == 'Guest')
+      this.checkoutOrder.receiver_details.create_account = false;
 
     // Send to API
     this.webApiService.createOrder(this.checkoutOrder).subscribe((response) => {

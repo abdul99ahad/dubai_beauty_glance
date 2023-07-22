@@ -4,4 +4,6 @@ export interface PersonalDetails {
   email: string;
   contact: string;
   profile_picture?: string;
+  password?: string;
+  password_confirmation?: string;
 }

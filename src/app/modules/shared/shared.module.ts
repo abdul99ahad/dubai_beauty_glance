@@ -48,6 +48,9 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 //Directives
 import { EmailValidationDirective } from './directives/email-validation.directive';
 
+//Services
+import { SharedService } from './services/shared.service';
+
 @NgModule({
   declarations: [
     InputTextboxComponent,
@@ -128,5 +131,6 @@ import { EmailValidationDirective } from './directives/email-validation.directiv
     WishListComponent,
     EmailValidationDirective,
   ],
+  providers: [SharedService],
 })
 export class SharedModule {}
